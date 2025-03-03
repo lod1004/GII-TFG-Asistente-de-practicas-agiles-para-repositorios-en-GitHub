@@ -4,4 +4,6 @@ Aplicación web que recoge información de un repositorio de GitHub para, tras a
 
 
 Funcionalidades:
+
 El usuario debe ser capaz de introducir un repositorio de gitHub y hacer que la App lo compare con otros similares, a ser posible en momentos del tiempo similares.
+La web debe sugerir usar Issues, o en su defecto, posibles formas de mejorar su calidad (Indicar su ciclo de vida, issues cada 15 días por ejemplo, documentación e imágenes de estos, etiquetas, deadlines, 
