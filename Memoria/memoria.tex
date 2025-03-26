@@ -8,6 +8,7 @@
 \usepackage{lmodern} % Scalable font
 \usepackage{microtype}
 \usepackage{placeins}
+\usepackage{natbib}
 
 \RequirePackage{booktabs}
 \RequirePackage[table]{xcolor}
@@ -423,11 +424,11 @@ D. nombre co-tutor
 % Abstract en castellano
 \renewcommand*\abstractname{Resumen}
 \begin{abstract}
-    Este proyecto para Trabajo de Fin de Grado desarrolla una aplicación web escrita en Python y Angular destinada a analizar la calidad y eficiencia de desarrollo de repositorios de GitHub mediante la recopilación y evaluación de métricas clave relacionadas con el proceso de desarrollo, documentación y la interacción de los colaboradores. Estas métricas abarcan información cuantitativa como el número de commits, issues, pull requests, releases y el éxito de los workflows de integración continua. Adicionalmente recopilará y analizará información como como la velocidad de desarrollo, la calidad de la documentación de commits y el ciclo de vida de las issues. \newline
+Las prácticas ágiles han demostrado ser fundamentales en el desarrollo de software, ya que promueven la entrega iterativa, la mejora continua y una mejor colaboración entre los desarrolladores. Su aplicación es observable en los repositorios open source de plataformas como GitHub, que facilitan la gestión del código, la documentación y la colaboración entre desarrolladores. En el contexto académico, GitHub es ampliamente utilizado por los estudiantes para la gestión de sus Trabajos de Fin de Grado (TFG). Sin embargo, muchos enfrentan dificultades para aplicar correctamente las prácticas ágiles en sus repositorios, lo que puede afectar la calidad y eficiencia de su desarrollo.
+El objetivo de este trabajo es ayudar a los estudiantes a aplicar prácticas ágiles en sus repositorios de GitHub mediante una aplicación web que evalúa su grado de adopción. Para ello, la aplicación analiza el uso del repositorio según consultas y reglas basadas en prácticas ágiles, comparando los resultados con valores de referencia fijos o con repositorios seleccionados como modelo.
+De esta manera, la herramienta facilita la identificación de áreas de mejora y fomenta la adopción de buenas prácticas en la gestión y desarrollo de proyectos académicos en GitHub. La aplicación web está escrita en Python y Angular y se puede acceder a un despliegue (añadir url) y a su código (añadir url).
 
-    Para ello, la aplicación se conecta a la API de GitHub para extraer información, tomando como entrada el repositorio destinado a analizar y asistir, y uno o varios repositorios adicionales para utilizar como comparación y fuente de objetivos a alcanzar para el repositorio original. \newline
-    
-    El objetivo principal de este TFG es proporcionar asistencia para aplicar buenas prácticas de documentación continua, metodologías ágiles y flujos de integración y despliegue continuo, facilitando así la mejora de la calidad y el rendimiento de los proyectos analizados.
+
 \end{abstract}
 
 \renewcommand*\abstractname{Descriptores}
@@ -440,11 +441,7 @@ Métricas de calidad, proceso de desarrollo de software, metodologías ágiles, 
 % Abstract en inglés
 \renewcommand*\abstractname{Abstract}
 \begin{abstract}
-    This project for the TFG develops an application written in Python and Angular destined to analyze the quality and the developing efficiency of GitHub repositories by collecting and evaluating key metrics related to the developing process, documentation and the colaborator's interactions with the project. These metrics include quantitative information such as the number of commits, issues, pull requests, releases, and the success of the continuous integration workflows. In addition, the application will extract and analyze information like developing speed, documentation quality and the issues' life cycle.\newline
-
-    To do the previously mentioned, the application connects itself to the GitHub Api to extract the information, taking as input the repository to analyze and assist, and one or more repositories to use as an achievements and comparison source\newline
-    
-    The main objective of this TFG is to give assistance to apply good practices of continuous documentation, agile methodology and continuous integration and deployment flows, making maintaining the project's quality and efficiency easier and more achievable
+Agile practices have proven to be essential for software development. This is because they promote iterative delivery, continuous improvement, and better collaboration between developers. Its usage is visible in open source repositories from platforms like GitHub, which make code administration, documentation, and collaboration between developers much easier. In the academic context, GitHub is heavily used by students for their TFG's administration. However, many of them face difficulties to apply correctly agile methodology in their projects, which can affect their developments' quality and efficiency. The objective of this project is to help students apply agile practices in their GitHub repositories by a web app that evaluates  the usage of agile methodology. To achieve that, the app analyzes the use of the repository using queries and rules based on agile practices, comparing results with fixed reference values or repositories selected as a comparison source. This way, the tool helps the user identify areas of improvement, and encourages the user adopting agile practices in their academic GitHub's projects' administration and development. The web app is written in Python and Angular, and can be acceded to its deployment (URL) and its code (URL).
 \end{abstract}
 
 \renewcommand*\abstractname{Keywords}
