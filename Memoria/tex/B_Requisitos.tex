@@ -2,39 +2,189 @@
 
 \section{Introducción}
 
-Una muestra de cómo podría ser una tabla de casos de uso:
+Este apéndice recoge los requisitos funcionales del sistema propuesto para evaluar la adopción de prácticas ágiles en repositorios de GitHub utilizados en Trabajos de Fin de Grado (TFG). La aplicación web, desarrollada en Node.js y Angular, analizará automáticamente los repositorios y proporcionará recomendaciones basadas en métricas cuantitativas y reglas predefinidas.
 
-% Caso de Uso 1 -> Consultar Experimentos.
+% Caso de Uso 1 -> Analizar repositorio de GitHub
 \begin{table}[p]
 	\centering
 	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
 		\toprule
-		\textbf{CU-1}    & \textbf{Ejemplo de caso de uso}\\
+		\textbf{CU-1}    & Analizar repositorio de GitHub \\
 		\toprule
-		\textbf{Versión}              & 1.0    \\
-		\textbf{Autor}                & Alumno \\
-		\textbf{Requisitos asociados} & RF-xx, RF-xx \\
-		\textbf{Descripción}          & La descripción del CU \\
-		\textbf{Precondición}         & Precondiciones (podría haber más de una) \\
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Lucas Olmedo Díez \\
+		\textbf{Requisitos asociados} & RF-01, RF-02, RF-03 \\
+		\textbf{Descripción}          & Permite al usuario introducir la URL de un repositorio para ser analizado. El sistema extrae y procesa datos relevantes. \\
+		\textbf{Precondición}         & El usuario debe tener acceso a la URL del repositorio público en GitHub. \\
 		\textbf{Acciones}             &
 		\begin{enumerate}
-			\def\labelenumi{\arabic{enumi}.}
-			\tightlist
-			\item Pasos del CU
-			\item Pasos del CU (añadir tantos como sean necesarios)
+			\item El usuario introduce la URL del repositorio.
+			\item El sistema accede a la API de GitHub y recopila la información del repositorio.
+			\item El sistema almacena temporalmente los datos extraídos.
+			\item El sistema analiza los datos y calcula las métricas necesarias.
 		\end{enumerate}\\
-		\textbf{Postcondición}        & Postcondiciones (podría haber más de una) \\
-		\textbf{Excepciones}          & Excepciones \\
-		\textbf{Importancia}          & Alta o Media o Baja... \\
+		\textbf{Postcondición}        & El repositorio ha sido analizado y sus datos están disponibles para pdoer ser evaluados. \\
+		\textbf{Excepciones}          & La URL es incorrecta o no se tiene acceso al repositorio \\
+		\textbf{Importancia}          & Alta \\
 		\bottomrule
 	\end{tabularx}
-	\caption{CU-1 Nombre del caso de uso.}
+	\caption{CU-2 Generar informe de evaluación.}
 \end{table}
+
+% Caso de Uso 2 -> Generar informe de evaluación
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-2}    & Generar informe de evaluación \\
+		\toprule
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Lucas Olmedo Díez \\
+		\textbf{Requisitos asociados} & RF-04, RF-05, RF-07, RF-08 \\
+		\textbf{Descripción}          & El sistema genera un informe visual y textual con los resultados del análisis, incluyendo recomendaciones. \\
+		\textbf{Precondición}         & El repositorio ha sido previamente analizado. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\item El usuario accede a la vista de resultados.
+			\item El sistema presenta un informe con gráficas y estadísticas.
+			\item El informe incluye recomendaciones agrupadas por niveles.
+		\end{enumerate}\\
+		\textbf{Postcondición}        & El usuario ha visualizado el informe generado. \\
+		\textbf{Excepciones}          & Error en el análisis previo, datos incompletos. \\
+		\textbf{Importancia}          & Alta \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-2 Generar informe de evaluación.}
+\end{table}
+
+% Caso de Uso 3 -> Comparar con repositorio de referencia
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-3}    & Comparar con repositorio de referencia \\
+		\toprule
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Lucas Olmedo Díez \\
+		\textbf{Requisitos asociados} & RF-06, RF-09 \\
+		\textbf{Descripción}          & Permite comparar las métricas del repositorio analizado con otro considerado de referencia. \\
+		\textbf{Precondición}         & El repositorio original ha sido analizado y se dispone de al menos un repositorio de referencia. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\item El sistema muestra la opción de comparación con modelo.
+			\item El usuario selecciona un repositorio de referencia.
+			\item El sistema realiza una comparación métrica entre ambos.
+			\item Se destacan áreas de mejora del repositorio del estudiante.
+		\end{enumerate}\\
+		\textbf{Postcondición}        & El usuario obtiene una visión comparativa útil. \\
+		\textbf{Excepciones}          & Repositorio de referencia no accesible o incompatible. \\
+		\textbf{Importancia}          & Media \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-3 Comparar con repositorio de referencia.}
+\end{table}
+
+% Caso de Uso 4 -> Consultar detalle de métricas
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-4}    & Consultar detalle de métricas \\
+		\toprule
+		\textbf{Versión}              & 1.0 \\
+		\textbf{Autor}                & Lucas Olmedo Díez \\
+		\textbf{Requisitos asociados} & RF-10 \\
+		\textbf{Descripción}          & El usuario puede visualizar información detallada sobre cada métrica calculada. \\
+		\textbf{Precondición}         & Repositorio analizado y métricas disponibles. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\item El usuario accede a la sección de métricas.
+			\item El sistema muestra una lista de métricas evaluadas.
+			\item El usuario selecciona una métrica para ver el detalle.
+		\end{enumerate}\\
+		\textbf{Postcondición}        & El usuario ha revisado información específica sobre la métrica seleccionada. \\
+		\textbf{Excepciones}          & Métrica no disponible por error de análisis. \\
+		\textbf{Importancia}          & Media \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-4 Consultar detalle de métricas.}
+\end{table}
+
 
 \section{Objetivos generales}
 
+\begin{itemize}
+    \item Facilitar a los estudiantes la adopción de buenas prácticas ágiles en sus TFG.
+    \item Automatizar el análisis de repositorios GitHub mediante métricas objetivas en el contexto académico.
+    \item Generar recomendaciones personalizadas para mejorar el desarrollo, la gestión del repositorio y la documentación.
+    \item Clasificar y adaptar las recomendaciones según el contexto académico.
+\end{itemize}
+
 \section{Catálogo de requisitos}
+
+\begin{itemize}
+    \item \textbf{RF-01} – Introducción de URL de repositorio
+    \item \textbf{RF-02} – Extracción de datos del repositorio
+    \item \textbf{RF-03} – Cálculo de métricas ágiles
+    \item \textbf{RF-04} – Evaluación con reglas generales
+    \item \textbf{RF-05} – Evaluación con reglas específicas del contexto docente
+    \item \textbf{RF-06} – Comparación con repositorios de referencia
+    \item \textbf{RF-07} – Generación de informe visual y textual
+    \item \textbf{RF-08} – Generación de recomendaciones
+    \item \textbf{RF-09} – Clasificación de recomendaciones por niveles
+    \item \textbf{RF-10} – Consulta detallada de métricas
+    \item \textbf{RF-11} – Interfaz web accesible
+    \item \textbf{RF-12} – Despliegue público de la aplicación
+\end{itemize}
 
 \section{Especificación de requisitos}
 
+A continuación se describen de forma detallada los requisitos funcionales del sistema.
 
+\subsection*{RF-01 – Introducción de URL de repositorio}
+
+La aplicación debe permitir al usuario introducir la URL de un repositorio público de GitHub. Esta URL servirá como punto de partida para el análisis automatizado del sistema. Se validará que la URL sea correcta y que el repositorio esté disponible para su lectura.
+
+\subsection*{RF-02 – Extracción de datos del repositorio}
+
+Una vez introducida la URL, el sistema debe conectarse a la API de GitHub y extraer los datos necesarios para el análisis: commits, issues, pull requests, etiquetas (tags), releases, estructura de carpetas y archivos, entre otros. Esta información será procesada y almacenada temporalmente para su análisis posterior.
+
+\subsection*{RF-03 – Cálculo de métricas ágiles}
+
+Con los datos extraídos, el sistema calculará métricas asociadas a buenas prácticas ágiles, tales como la frecuencia y densidad de commits, número de issues abiertas/cerradas, releases realizadas, uso de etiquetas, calidad de los mensajes de commits y documentación asociada.
+
+\subsection*{RF-04 – Evaluación con reglas generales}
+
+El sistema aplicará un conjunto de reglas fijas basadas en buenas prácticas ágiles reconocidas (como las descritas en el recurso Subway Map to Agile Practices). Estas reglas incluyen, entre otras: uso adecuado de issues, mensajes descriptivos en commits, frecuencia de trabajo, y presencia de documentación básica.
+
+\subsection*{RF-05 – Evaluación con reglas específicas del contexto docente}
+
+Además de las reglas generales, se aplicarán reglas específicas definidas en función de los criterios de evaluación de los TFG de la Universidad de Burgos (UBU). Estas incluyen la estructura del repositorio, la documentación en LaTeX, la inclusión de prototipos, código fuente y pruebas.
+
+\subsection*{RF-06 – Comparación con repositorios de referencia}
+
+El sistema debe permitir comparar los resultados obtenidos con repositorios considerados como ejemplo o referencia. Esto permitirá contextualizar el nivel de adopción de buenas prácticas del estudiante respecto a un estándar definido o a proyectos anteriores bien evaluados.
+
+\subsection*{RF-07 – Generación de informe visual y textual}
+
+A partir del análisis, se generará un informe completo con los resultados obtenidos, el cumplimiento de las reglas evaluadas, las métricas calculadas y gráficas visuales. Este informe debe ser claro, accesible y exportable, para su consulta por parte del estudiante y del tutor académico.
+
+\subsection*{RF-08 – Generación de recomendaciones}
+
+El sistema debe generar recomendaciones prácticas basadas en el análisis realizado. Estas recomendaciones estarán orientadas a la mejora del proceso de desarrollo, el cumplimiento de buenas prácticas ágiles y la mejora de la documentación y estructura del repositorio.
+
+\subsection*{RF-09 – Clasificación de recomendaciones por niveles}
+
+Las recomendaciones generadas se clasificarán en distintos niveles en función de su prioridad, aplicabilidad y el grado de impacto. Esta clasificación facilitará a los estudiantes y tutores priorizar las acciones necesarias para mejorar la calidad del proyecto.
+
+\subsection*{RF-10 – Consulta detallada de métricas}
+
+El usuario podrá consultar en detalle cada una de las métricas evaluadas. Esta información incluirá su definición, valor calculado, umbral de referencia y un análisis interpretativo de su significado en el contexto del proyecto evaluado.
+
+\subsection*{RF-11 – Interfaz web accesible}
+
+La aplicación debe ofrecer una interfaz web amigable e intuitiva, accesible desde distintos dispositivos, que permita a estudiantes y tutores acceder a las funcionalidades del sistema sin necesidad de conocimientos técnicos avanzados.
+
+\subsection*{RF-12 – Despliegue público de la aplicación}
+
+La aplicación debe estar disponible públicamente mediante un despliegue web accesible desde cualquier navegador. Asimismo, el código fuente estará publicado en un repositorio de acceso abierto para facilitar su revisión, mejora y reutilización en otros contextos educativos.
