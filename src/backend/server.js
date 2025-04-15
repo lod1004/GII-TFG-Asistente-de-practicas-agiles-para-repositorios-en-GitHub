@@ -20,3 +20,12 @@ app.use("/api", repoRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
+
+process.on("uncaughtException", (err) => {
+  console.error("Excepción no controlada:", err);
+  process.exit(1);
+});
+
+process.on("unhandledRejection", (err) => {
+  console.error("Promesa no manejada:", err);
+});

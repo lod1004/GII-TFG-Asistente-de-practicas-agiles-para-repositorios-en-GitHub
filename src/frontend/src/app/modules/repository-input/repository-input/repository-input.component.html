@@ -1,0 +1,15 @@
+<form [formGroup]="repositoryForm" (ngSubmit)="submitRepo()">
+    <label for="mainRepositoryUrl">URL del repositorio principal:</label>
+    <input
+      id="mainRepositoryUrl"
+      formControlName="mainRepositoryUrl"
+      type="text"
+      placeholder="Introduce la URL del repositorio"
+    />
+    <div *ngIf="repositoryForm.get('mainRepositoryUrl')?.invalid && repositoryForm.get('mainRepositoryUrl')?.touched">
+      <small *ngIf="repositoryForm.get('mainRepositoryUrl')?.hasError('required')">La URL es obligatoria.</small>
+      <small *ngIf="repositoryForm.get('mainRepositoryUrl')?.hasError('pattern')">La URL no es válida.</small>
+    </div>
+    <button type="submit" [disabled]="repositoryForm.invalid">Enviar</button>
+  </form>
+  
