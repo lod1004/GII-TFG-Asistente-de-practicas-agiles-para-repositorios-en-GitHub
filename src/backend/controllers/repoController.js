@@ -1,9 +1,19 @@
-const Repository = require("../models/repo");
+const MainRepository = require("../models/repo");
+const Counter = require("../models/counter");
 const { extractOwnerAndRepo, getIssueStats, getIssueQualityStats, getCommitStats, getCommitQualityStats, getPullRequestStats } = require("../utils/github");
 
-const getRepositories = async (req, res) => {
+async function getNextId(sequenceName) {
+  const counter = await Counter.findOneAndUpdate(
+    { name: sequenceName },
+    { $inc: { value: 1 } },
+    { new: true, upsert: true }
+  );
+  return counter.value;
+}
+
+const getMainRepositories = async (req, res) => {
   try {
-    const repos = await Repository.find();
+    const repos = await MainRepository.find();
     res.json(repos);
   } catch (error) {
     res.status(500).json({ message: "Error al obtener los repositorios" });
@@ -12,6 +22,7 @@ const getRepositories = async (req, res) => {
 
 const createRepository = async (req, res) => {
   const { url } = req.body;
+  const newId = await getNextId("repositoryId");
 
   if (!url) {
     return res.status(400).json({ message: "URL requerida" });
@@ -22,24 +33,33 @@ const createRepository = async (req, res) => {
     return res.status(400).json({ message: "URL inválida" });
   }
 
-  const { owner, repo } = parsed;
+  const { owner, repoTitle } = parsed;
 
   try {
-    const { openCount, closedCount } = await getIssueStats(owner, repo);
-    const { withDescriptionPercent, withImagesPercent, withAssigneesPercent, withLabelsPercent, withMilestonesPercent } = await getIssueQualityStats(owner, repo);
-    const { commitCount } = await getCommitStats(owner, repo);
-    const { customTitleCount, descriptionCount, issueReferenceCount } = await getCommitQualityStats(owner, repo);
-    const { openPrCount, closedPrCount } = await getPullRequestStats(owner, repo);
+    const { openIssuesCount, closedIssuesCount } = await getIssueStats(owner, repoTitle);
+    const { descriptionIssuesPercent, imagedIssuesPercent, assignedIssuesPercent, labeledIssuesPercent, milestonedIssuesPercent } = await getIssueQualityStats(owner, repoTitle);
+    const { commitCount } = await getCommitStats(owner, repoTitle);
+    const { titledCommitsPercent, descriptionCommitsPercent, referencesCommitsPercent } = await getCommitQualityStats(owner, repoTitle);
+    const { openPrCount, closedPrCount } = await getPullRequestStats(owner, repoTitle);
 
-    const newRepo = new Repository({
+    const newRepo = new MainRepository({
+      id: newId,
       url,
       owner,
-      name: repo,
-      openIssues: openCount,
-      closedIssues: closedCount,
-      commits: commitCount,
-      openPullRequests: openPrCount,
-      closedPullRequests: closedPrCount,
+      repoTitle,
+      openIssuesCount,
+      closedIssuesCount,
+      descriptionIssuesPercent,
+      imagedIssuesPercent,
+      assignedIssuesPercent,
+      labeledIssuesPercent,
+      milestonedIssuesPercent,
+      commitCount,
+      titledCommitsPercent,
+      descriptionCommitsPercent,
+      referencesCommitsPercent,
+      openPrCount,
+      closedPrCount,
       createdAt: new Date()
     });
 
@@ -54,7 +74,7 @@ const createRepository = async (req, res) => {
 module.exports = {
   getRepositories: async (req, res) => {
     try {
-      const repos = await Repository.find();
+      const repos = await MainRepository.find();
       res.json(repos);
     } catch (error) {
       res.status(500).json({ message: "Error al obtener los repositorios" });
