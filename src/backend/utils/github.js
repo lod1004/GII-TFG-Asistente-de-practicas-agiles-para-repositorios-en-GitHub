@@ -29,6 +29,62 @@ async function getIssueStats(owner, repo) {
   return { openCount, closedCount };
 }
 
+async function getIssueQualityStats(owner, repo) {
+  const headers = {
+    Accept: "application/vnd.github+json",
+    Authorization: `Bearer ${process.env.GITHUB_TOKEN}`
+  };
+
+  let allIssues = [];
+  let page = 1;
+  const perPage = 100;
+
+  while (true) {
+    const res = await axios.get(
+      `https://api.github.com/repos/${owner}/${repo}/issues?state=all&per_page=${perPage}&page=${page}`,
+      { headers }
+    );
+
+    const issues = res.data.filter(issue => !issue.pull_request); // excluir PRs
+    allIssues = allIssues.concat(issues);
+
+    if (issues.length < perPage) break;
+    page++;
+  }
+
+  const total = allIssues.length;
+  if (total === 0) {
+    console.log("No hay issues en el repositorio.");
+    return {};
+  }
+
+  const withDescription = allIssues.filter(issue => issue.body && issue.body.trim().length > 0).length;
+  const withImages = allIssues.filter(issue =>
+    /!\[.*?\]\(.*?\)|<img\s+.*?>/i.test(issue.body || "")
+  ).length;
+  const withAssignees = allIssues.filter(issue => issue.assignees && issue.assignees.length > 0).length;
+  const withLabels = allIssues.filter(issue => issue.labels && issue.labels.length > 0).length;
+  const withMilestones = allIssues.filter(issue => issue.milestone !== null).length;
+
+  const toPercent = (n) => (n / total) * 100;
+
+  const stats = {
+    withDescriptionPercent: toPercent(withDescription),
+    withImagesPercent: toPercent(withImages),
+    withAssigneesPercent: toPercent(withAssignees),
+    withLabelsPercent: toPercent(withLabels),
+    withMilestonesPercent: toPercent(withMilestones),
+  };
+
+  console.log("% Issues con descripción:", stats.withDescriptionPercent.toFixed(2));
+  console.log("% Issues con imágenes:", stats.withImagesPercent.toFixed(2));
+  console.log("% Issues con personas asignadas:", stats.withAssigneesPercent.toFixed(2));
+  console.log("% Issues con etiquetas:", stats.withLabelsPercent.toFixed(2));
+  console.log("% Issues con milestone:", stats.withMilestonesPercent.toFixed(2));
+
+  return stats;
+}
+
 // Por defecto en la rama main
 async function getCommitStats(owner, repo) {
   const headers = {
@@ -101,7 +157,7 @@ async function getCommitQualityStats(owner, repo) {
     const hasDescription = lines.length > 1 && lines.slice(1).some(line => line.trim().length > 0);
     if (hasDescription) descriptionCount++;
 
-    const hasIssueReference = /(^|\s)#\d+(\s|$)/.test(message);
+    const hasIssueReference = /(^|\s)#\d+[.,(){}\[\]:;!?-]?(\s|$)/.test(message);
     if (hasIssueReference) issueReferenceCount++;
   }
 
@@ -143,6 +199,7 @@ async function getPullRequestStats(owner, repo) {
 module.exports = {
   extractOwnerAndRepo,
   getIssueStats,
+  getIssueQualityStats,
   getCommitStats,
   getCommitQualityStats,
   getPullRequestStats

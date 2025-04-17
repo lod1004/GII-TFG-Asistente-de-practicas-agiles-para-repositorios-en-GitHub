@@ -1,5 +1,5 @@
 const Repository = require("../models/repo");
-const { extractOwnerAndRepo, getIssueStats, getCommitStats, getCommitQualityStats, getPullRequestStats } = require("../utils/github");
+const { extractOwnerAndRepo, getIssueStats, getIssueQualityStats, getCommitStats, getCommitQualityStats, getPullRequestStats } = require("../utils/github");
 
 const getRepositories = async (req, res) => {
   try {
@@ -26,6 +26,7 @@ const createRepository = async (req, res) => {
 
   try {
     const { openCount, closedCount } = await getIssueStats(owner, repo);
+    const { withDescriptionPercent, withImagesPercent, withAssigneesPercent, withLabelsPercent, withMilestonesPercent } = await getIssueQualityStats(owner, repo);
     const { commitCount } = await getCommitStats(owner, repo);
     const { customTitleCount, descriptionCount, issueReferenceCount } = await getCommitQualityStats(owner, repo);
     const { openPrCount, closedPrCount } = await getPullRequestStats(owner, repo);
