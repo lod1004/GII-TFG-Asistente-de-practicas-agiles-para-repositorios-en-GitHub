@@ -107,7 +107,7 @@ async function getCommitStats(owner, repoTitle) {
   }
 
   console.log("Total de commits:", commitCount);
-  return {commitCount};
+  return { commitCount };
 }
 
 async function getCommitQualityStats(owner, repoTitle) {
@@ -195,11 +195,97 @@ async function getPullRequestStats(owner, repoTitle) {
   return { openPrCount, closedPrCount };
 }
 
+const getPullRequestQualityStats = async (owner, repoTitle) => {
+  const headers = {
+    Accept: "application/vnd.github+json",
+    Authorization: `Bearer ${process.env.GITHUB_TOKEN}`
+  };
+
+  let allPRs = [];
+  let page = 1;
+  const perPage = 100;
+
+  while (true) {
+    const res = await axios.get(
+      `https://api.github.com/repos/${owner}/${repoTitle}/pulls?state=all&per_page=${perPage}&page=${page}`,
+      { headers }
+    );
+
+    const prs = res.data;
+    if (prs.length === 0) break;
+
+    allPRs.push(...prs);
+
+    if (prs.length < perPage) break;
+    page++;
+  }
+
+  const total = allPRs.length;
+  if (total === 0) {
+    console.log("No hay pull requests en el repositorio.");
+    return {};
+  }
+
+  const withReviewers = allPRs.filter(pr => pr.requested_reviewers && pr.requested_reviewers.length > 0).length;
+  const withAssignees = allPRs.filter(pr => pr.assignees && pr.assignees.length > 0).length;
+  const withLabels = allPRs.filter(pr => pr.labels && pr.labels.length > 0).length;
+  const withMilestones = allPRs.filter(pr => pr.milestone !== null).length;
+
+  const toPercent = n => ((n / total) * 100).toFixed(2);
+
+  const stats = {
+    reviewersPrPercent: toPercent(withReviewers),
+    assigneesPrPercent: toPercent(withAssignees),
+    labelsPrPercent: toPercent(withLabels),
+    milestonesPrPercent: toPercent(withMilestones)
+  };
+
+  console.log("% PRs con reviewers:", stats.reviewersPrPercent);
+  console.log("% PRs con assignees:", stats.assigneesPrPercent);
+  console.log("% PRs con labels:", stats.labelsPrPercent);
+  console.log("% PRs con milestone:", stats.milestonesPrPercent);
+
+  return stats;
+};
+
+const getActions = async (owner, repo) => {
+  const headers = {
+    Accept: "application/vnd.github+json",
+    Authorization: `Bearer ${process.env.GITHUB_TOKEN}`
+  };
+
+  try {
+    const res = await axios.get(
+      `https://api.github.com/repos/${owner}/${repo}/contents/.github/workflows`,
+      { headers }
+    );
+
+    const files = res.data || [];
+    const workflowFiles = files.filter(file =>
+      file.name.endsWith(".yml") || file.name.endsWith(".yaml")
+    );
+
+    console.log(`El repositorio tiene ${workflowFiles.length} workflow(s) de GitHub Actions`);
+
+    actionsCount = workflowFiles.length;
+
+    return { actionsCount }
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      console.log("No se encontraron workflows en .github/workflows");
+      actionsCount = 0
+      return { actionsCount };
+    }
+  }
+};
+
 module.exports = {
   extractOwnerAndRepo,
   getIssueStats,
   getIssueQualityStats,
   getCommitStats,
   getCommitQualityStats,
-  getPullRequestStats
+  getPullRequestStats,
+  getPullRequestQualityStats,
+  getActions
 };
