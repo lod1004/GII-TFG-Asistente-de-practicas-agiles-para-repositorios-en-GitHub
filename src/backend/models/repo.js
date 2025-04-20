@@ -23,6 +23,9 @@ const repoSchema = new mongoose.Schema({
   labelsPrPercent: { type: Number, },
   milestonesPrPercent: { type: Number, },
   actionsCount: { type: Number, },
+  releasesCount: { type: Number, },
+  tagsCount: { type: Number, },
+  descriptionReleasesPercent: { type: Number, },
   createdAt: { type: Date, default: Date.now }
 }/*, { timestamps: true }*/);
 

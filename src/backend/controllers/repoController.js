@@ -1,6 +1,8 @@
 const MainRepository = require("../models/repo");
 const Counter = require("../models/counter");
-const { extractOwnerAndRepo, getIssueStats, getIssueQualityStats, getCommitStats, getCommitQualityStats, getPullRequestStats, getPullRequestQualityStats, getActions } = require("../utils/github");
+const { extractOwnerAndRepo, getIssueStats, getIssueQualityStats, getCommitStats, 
+  getCommitQualityStats, getPullRequestStats, getPullRequestQualityStats, getActions,
+  getReleaseStats, getReleaseQualityStats } = require("../utils/github");
 
 async function getNextId(sequenceName) {
   const counter = await Counter.findOneAndUpdate(
@@ -43,6 +45,8 @@ const createRepository = async (req, res) => {
     const { openPrCount, closedPrCount } = await getPullRequestStats(owner, repoTitle);
     const { reviewersPrPercent, assigneesPrPercent, labelsPrPercent, milestonesPrPercent}  = await getPullRequestQualityStats(owner, repoTitle);
     const { actionsCount } = await getActions(owner, repoTitle);
+    const { releasesCount, tagsCount } = await getReleaseStats(owner, repoTitle);
+    const { descriptionReleasesPercent } = await getReleaseQualityStats(owner, repoTitle);
 
 console.log(actionsCount);
 
@@ -69,6 +73,9 @@ console.log(actionsCount);
       labelsPrPercent,
       milestonesPrPercent,
       actionsCount,
+      releasesCount,
+      tagsCount,
+      descriptionReleasesPercent,
       createdAt: new Date()
     });
 
