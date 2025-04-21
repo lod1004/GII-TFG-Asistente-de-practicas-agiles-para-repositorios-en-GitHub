@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RepositoryInputModule } from '../modules/repository-input/repository-input.module';
+import { RepositoryInputComponent } from '../modules/repository-input/repository-input/repository-input.component';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RepositoryInputModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RepositoryInputComponent
   ],
   bootstrap: [AppComponent]
 })

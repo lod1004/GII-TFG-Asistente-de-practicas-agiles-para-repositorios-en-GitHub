@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RepositoryService } from '../../../services/repository.service';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  standalone: false,
   selector: 'app-repository-input',
   templateUrl: './repository-input.component.html',
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule]
 })
 export class RepositoryInputComponent implements OnInit {
   repositoryForm =new FormGroup({

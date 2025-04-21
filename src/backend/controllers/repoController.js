@@ -1,8 +1,11 @@
-const MainRepository = require("../models/repo");
+const Repository = require("../models/repo");
 const Counter = require("../models/counter");
-const { extractOwnerAndRepo, getIssueStats, getIssueQualityStats, getCommitStats, 
-  getCommitQualityStats, getPullRequestStats, getPullRequestQualityStats, getActions,
-  getReleaseStats, getReleaseQualityStats } = require("../utils/github");
+const { extractOwnerAndRepo } = require("../utils/github");
+const { getCommitStats, getCommitQualityStats } = require("../utils/commits");
+const { getActions } = require("../utils/actions");
+const { getPullRequestStats, getPullRequestQualityStats } = require("../utils/pullRequests");
+const { getReleaseStats, getReleaseQualityStats } = require("../utils/releases");
+const { getIssueStats, getIssueQualityStats } = require("../utils/issues");
 
 async function getNextId(sequenceName) {
   const counter = await Counter.findOneAndUpdate(
@@ -13,9 +16,9 @@ async function getNextId(sequenceName) {
   return counter.value;
 }
 
-const getMainRepositories = async (req, res) => {
+const getRepositories = async (req, res) => {
   try {
-    const repos = await MainRepository.find();
+    const repos = await Repository.find();
     res.json(repos);
   } catch (error) {
     res.status(500).json({ message: "Error al obtener los repositorios" });
@@ -43,14 +46,14 @@ const createRepository = async (req, res) => {
     const { commitCount } = await getCommitStats(owner, repoTitle);
     const { titledCommitsPercent, descriptionCommitsPercent, referencesCommitsPercent } = await getCommitQualityStats(owner, repoTitle);
     const { openPrCount, closedPrCount } = await getPullRequestStats(owner, repoTitle);
-    const { reviewersPrPercent, assigneesPrPercent, labelsPrPercent, milestonesPrPercent}  = await getPullRequestQualityStats(owner, repoTitle);
+    const { reviewersPrPercent, assigneesPrPercent, labelsPrPercent, milestonesPrPercent } = await getPullRequestQualityStats(owner, repoTitle);
     const { actionsCount } = await getActions(owner, repoTitle);
     const { releasesCount, tagsCount } = await getReleaseStats(owner, repoTitle);
     const { descriptionReleasesPercent } = await getReleaseQualityStats(owner, repoTitle);
 
-console.log(actionsCount);
+    console.log(actionsCount);
 
-    const newRepo = new MainRepository({
+    const newRepo = new Repository({
       id: newId,
       url,
       owner,
@@ -90,7 +93,7 @@ console.log(actionsCount);
 module.exports = {
   getRepositories: async (req, res) => {
     try {
-      const repos = await MainRepository.find();
+      const repos = await Repository.find();
       res.json(repos);
     } catch (error) {
       res.status(500).json({ message: "Error al obtener los repositorios" });
