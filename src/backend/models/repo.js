@@ -8,6 +8,7 @@ const repoSchema = new mongoose.Schema({
   openIssuesCount: { type: Number, },
   closedIssuesCount: { type: Number, },
   descriptionIssuesPercent: { type: Number, },
+  commentedIssuesPercent: { type: Number, },
   imagedIssuesPercent: { type: Number, },
   assignedIssuesPercent: { type: Number, },
   labeledIssuesPercent: { type: Number, },
@@ -26,6 +27,7 @@ const repoSchema = new mongoose.Schema({
   releasesCount: { type: Number, },
   tagsCount: { type: Number, },
   descriptionReleasesPercent: { type: Number, },
+  isMain: { type: Boolean, required: true },
   createdAt: { type: Date, default: Date.now }
 }/*, { timestamps: true }*/);
 

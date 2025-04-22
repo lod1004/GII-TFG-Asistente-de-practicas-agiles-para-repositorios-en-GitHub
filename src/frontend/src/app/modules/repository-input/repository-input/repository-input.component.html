@@ -1,8 +1,14 @@
 <form [formGroup]="repositoryForm" (ngSubmit)="submitRepo()">
+
   <div>
     <label for="mainRepositoryUrl">URL del repositorio principal:</label>
     <input id="mainRepositoryUrl" formControlName="mainRepositoryUrl" type="text"
-      placeholder="Introduce la URL del repositorio" style="width: 50rem;"/>
+      placeholder="Introduce la URL del repositorio" style="width: 50rem;" />
+    <button type="button" (click)="addMainUrl()">-></button>
+  </div>
+  <div *ngIf="mainUrl">
+    <strong>Repositorio principal:</strong>
+    <p>{{ mainUrl }}</p>
   </div>
   <br>
 
@@ -10,7 +16,19 @@
     <label for="sourceRepositoryUrl">URL del repositorio de ejemplo para comparar:</label>
     <input id="sourceRepositoryUrl" formControlName="sourceRepositoryUrl" type="text"
       placeholder="Introduce la URL del repositorio" style="width: 50rem;" />
+    <button type="button" (click)="addExampleUrl()">-></button>
   </div>
+
+  <div *ngIf="exampleUrls.length > 0">
+    <strong>Repositorios de ejemplo (Máximo 5):</strong>
+    <ul>
+      <li *ngFor="let url of exampleUrls; let i = index">
+        {{ url }}
+        <button type="button" (click)="removeExampleUrl(i)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
+
   <br>
-  <button type="submit" [disabled]="repositoryForm.invalid">Enviar</button>
+  <button type="submit" [disabled]="!mainUrl || exampleUrls.length === 0">COMENZAR</button>
 </form>

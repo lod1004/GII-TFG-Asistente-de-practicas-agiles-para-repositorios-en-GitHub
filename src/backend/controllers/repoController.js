@@ -26,23 +26,25 @@ const getRepositories = async (req, res) => {
 };
 
 const createRepository = async (req, res) => {
-  const { url } = req.body;
-  const newId = await getNextId("repositoryId");
+  const { main, examples } = req.body;
 
-  if (!url) {
-    return res.status(400).json({ message: "URL requerida" });
+  if (!main || !Array.isArray(examples)) {
+    return res.status(400).json({ message: "Se requiere una URL principal y una o varias URLs de ejemplo" });
   }
 
-  const parsed = extractOwnerAndRepo(url);
-  if (!parsed) {
-    return res.status(400).json({ message: "URL inválida" });
+  const parsedMain = extractOwnerAndRepo(main);
+  if (!parsedMain) {
+    return res.status(400).json({ message: "URL principal inválida" });
   }
 
-  const { owner, repoTitle } = parsed;
+  const repositories = [];
 
   try {
+    const newId = await getNextId("repositoryId");
+    const { owner, repoTitle } = parsedMain;
+
     const { openIssuesCount, closedIssuesCount } = await getIssueStats(owner, repoTitle);
-    const { descriptionIssuesPercent, imagedIssuesPercent, assignedIssuesPercent, labeledIssuesPercent, milestonedIssuesPercent } = await getIssueQualityStats(owner, repoTitle);
+    const { descriptionIssuesPercent, commentedIssuesPercent, imagedIssuesPercent, assignedIssuesPercent, labeledIssuesPercent, milestonedIssuesPercent } = await getIssueQualityStats(owner, repoTitle);
     const { commitCount } = await getCommitStats(owner, repoTitle);
     const { titledCommitsPercent, descriptionCommitsPercent, referencesCommitsPercent } = await getCommitQualityStats(owner, repoTitle);
     const { openPrCount, closedPrCount } = await getPullRequestStats(owner, repoTitle);
@@ -51,16 +53,15 @@ const createRepository = async (req, res) => {
     const { releasesCount, tagsCount } = await getReleaseStats(owner, repoTitle);
     const { descriptionReleasesPercent } = await getReleaseQualityStats(owner, repoTitle);
 
-    console.log(actionsCount);
-
-    const newRepo = new Repository({
+    const mainRepo = new Repository({
       id: newId,
-      url,
+      url: main,
       owner,
       repoTitle,
       openIssuesCount,
       closedIssuesCount,
       descriptionIssuesPercent,
+      commentedIssuesPercent,
       imagedIssuesPercent,
       assignedIssuesPercent,
       labeledIssuesPercent,
@@ -79,14 +80,68 @@ const createRepository = async (req, res) => {
       releasesCount,
       tagsCount,
       descriptionReleasesPercent,
+      isMain: boolean = true,
       createdAt: new Date()
     });
 
-    await newRepo.save();
-    res.status(201).json(newRepo);
+    await mainRepo.save();
+    repositories.push(mainRepo);
+
+    for (const url of examples) {
+      const parsed = extractOwnerAndRepo(url);
+      if (!parsed) continue;
+
+      const exampleId = await getNextId("repositoryId");
+      const { owner, repoTitle } = parsed;
+
+      const { openIssuesCount, closedIssuesCount } = await getIssueStats(owner, repoTitle);
+      const { descriptionIssuesPercent, commentedIssuesPercent, imagedIssuesPercent, assignedIssuesPercent, labeledIssuesPercent, milestonedIssuesPercent } = await getIssueQualityStats(owner, repoTitle);
+      const { commitCount } = await getCommitStats(owner, repoTitle);
+      const { titledCommitsPercent, descriptionCommitsPercent, referencesCommitsPercent } = await getCommitQualityStats(owner, repoTitle);
+      const { openPrCount, closedPrCount } = await getPullRequestStats(owner, repoTitle);
+      const { reviewersPrPercent, assigneesPrPercent, labelsPrPercent, milestonesPrPercent } = await getPullRequestQualityStats(owner, repoTitle);
+      const { actionsCount } = await getActions(owner, repoTitle);
+      const { releasesCount, tagsCount } = await getReleaseStats(owner, repoTitle);
+      const { descriptionReleasesPercent } = await getReleaseQualityStats(owner, repoTitle);
+      const exampleRepo = new Repository({
+        id: exampleId,
+        url: main,
+        owner,
+        repoTitle,
+        openIssuesCount,
+        closedIssuesCount,
+        descriptionIssuesPercent,
+        commentedIssuesPercent,
+        imagedIssuesPercent,
+        assignedIssuesPercent,
+        labeledIssuesPercent,
+        milestonedIssuesPercent,
+        commitCount,
+        titledCommitsPercent,
+        descriptionCommitsPercent,
+        referencesCommitsPercent,
+        openPrCount,
+        closedPrCount,
+        reviewersPrPercent,
+        assigneesPrPercent,
+        labelsPrPercent,
+        milestonesPrPercent,
+        actionsCount,
+        releasesCount,
+        tagsCount,
+        descriptionReleasesPercent,
+        isMain: boolean = false,
+        createdAt: new Date()
+      });
+
+      await exampleRepo.save();
+      repositories.push(exampleRepo);
+    }
+
+    res.status(201).json({ message: "Repos procesados correctamente", repositories });
   } catch (error) {
-    console.error("Error al procesar la URL:", error.message, error);
-    res.status(500).json({ message: "Error al obtener datos del repositorio" });
+    console.error("Error al procesar las URLs:", error.message, error);
+    res.status(500).json({ message: "Error al obtener datos de los repositorios" });
   }
 };
 

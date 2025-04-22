@@ -12,7 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 export class RepositoryInputComponent implements OnInit {
   repositoryForm =new FormGroup({
     mainRepositoryUrl: new FormControl<string>(''),
-  })
+    sourceRepositoryUrl: new FormControl<string>(''),
+  });
+
+  mainUrl: string | null = null;
+  exampleUrls: string[] = [];
 
   constructor(
     private repoService: RepositoryService,
@@ -23,19 +27,40 @@ export class RepositoryInputComponent implements OnInit {
 
   }
 
-  submitRepo(): void {
-    if (this.repositoryForm.valid) {
-      const mainRepositoryUrl = this.repositoryForm.get('mainRepositoryUrl')?.value;
-      this.repoService.sendRepositoryUrl({ url: mainRepositoryUrl! }).subscribe({
-        next: (res) => {
-          console.log('Enviado correctamente:', res);
-        },
-        error: (err) => {
-          console.error('Error al enviar la url del repositorio:', err);
-        }
-      });
-    } else {
-      console.log('Formulario no válido');
+  addMainUrl(): void {
+    const url = this.repositoryForm.get('mainRepositoryUrl')?.value?.trim();
+    if (url) {
+      this.mainUrl = url;
+      this.repositoryForm.get('mainRepositoryUrl')?.reset();
     }
+  }
+
+  addExampleUrl(): void {
+    const url = this.repositoryForm.get('sourceRepositoryUrl')?.value?.trim();
+    if (url && this.exampleUrls.length < 5) {
+      this.exampleUrls.push(url);
+      this.repositoryForm.get('sourceRepositoryUrl')?.reset();
+    }
+  }
+
+  removeExampleUrl(index: number): void {
+    this.exampleUrls.splice(index, 1);
+  }
+
+  submitRepo(): void {
+    if (!this.mainUrl || this.exampleUrls.length === 0) {
+      console.log("Se necesita una URL principal y al menos una de ejemplo.");
+      return;
+    }
+
+    const payload = {
+      main: this.mainUrl,
+      examples: this.exampleUrls
+    };
+
+    this.repoService.sendRepositoryUrls(payload).subscribe({
+      next: (res) => console.log('Enviado correctamente:', res),
+      error: (err) => console.error('Error al enviar las URLs:', err)
+    });
   }
 }

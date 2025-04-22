@@ -10,7 +10,7 @@ export class RepositoryService {
 
   constructor(private http: HttpClient) {}
 
-  sendRepositoryUrl(payload: { url: string }) {
+  sendRepositoryUrls(payload: { main: string; examples: string[] }) {
     return this.http.post('http://localhost:5000/api/repos', payload);
   }
 }
