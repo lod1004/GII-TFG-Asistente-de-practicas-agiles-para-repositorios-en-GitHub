@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule }
 import { RepositoryService } from '../../../services/repository.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-repository-input',
@@ -10,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule]
 })
 export class RepositoryInputComponent implements OnInit {
-  repositoryForm =new FormGroup({
+  repositoryForm = new FormGroup({
     mainRepositoryUrl: new FormControl<string>(''),
     sourceRepositoryUrl: new FormControl<string>(''),
   });
@@ -20,8 +21,9 @@ export class RepositoryInputComponent implements OnInit {
 
   constructor(
     private repoService: RepositoryService,
+    private router: Router,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
 
@@ -59,7 +61,10 @@ export class RepositoryInputComponent implements OnInit {
     };
 
     this.repoService.sendRepositoryUrls(payload).subscribe({
-      next: (res) => console.log('Enviado correctamente:', res),
+      next: (res) => {
+        console.log('Enviado correctamente:', res);
+        this.router.navigate(['statistics'])
+      },
       error: (err) => console.error('Error al enviar las URLs:', err)
     });
   }

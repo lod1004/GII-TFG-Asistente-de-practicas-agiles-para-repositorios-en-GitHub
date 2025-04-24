@@ -37,8 +37,10 @@ const createRepository = async (req, res) => {
     return res.status(400).json({ message: "URL principal inválida" });
   }
 
+
   const repositories = [];
 
+  await Repository.deleteMany({});
   try {
     const newId = await getNextId("repositoryId");
     const { owner, repoTitle } = parsedMain;

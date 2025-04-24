@@ -13,4 +13,8 @@ export class RepositoryService {
   sendRepositoryUrls(payload: { main: string; examples: string[] }) {
     return this.http.post('http://localhost:5000/api/repos', payload);
   }
+
+  getAllRepositories(): Observable<any> {
+    return this.http.get(this.apiUrl);
+  }
 }

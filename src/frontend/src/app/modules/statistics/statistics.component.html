@@ -1,0 +1,86 @@
+<div style="margin-top: 2rem;">
+    <div style="display: flex; justify-content: center; margin-left: 32%;">
+        <button (click)="prevRepo()" [disabled]="repoIndex === 0">Anterior</button>
+        <button (click)="nextRepo()"
+            [disabled]="repoIndex === comparisonRepositories.length - 1">Siguiente</button>
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+        <div style="width: 50%; margin-left: 12.5%;">
+            <h2>Repositorio Principal</h2>
+            <div *ngIf="mainRepository">
+                <strong>{{ mainRepository.repoTitle }}</strong>
+                <br>
+                <strong>Commits:</strong>
+                <p><span>Nº de Commits:</span> {{ mainRepository.commitCount }}</p>
+                <p><span>Commits con título personalizado:</span> {{ mainRepository.titledCommitsPercent | number:'1.0-2' }}%</p>
+                <p><span>Commits con descripción:</span> {{ mainRepository.descriptionCommitsPercent | number:'1.0-2' }}%</p>
+                <p><span>Commits con referencias a Issues y Pull Requests:</span> {{ mainRepository.referencesCommitsPercent | number:'1.0-2' }}%</p>
+                <br>
+                <strong>Issues:</strong>
+                <p><span>Issues abiertos:</span> {{ mainRepository.openIssuesCount }}</p>
+                <p><span>Issues cerrados:</span> {{ mainRepository.closedIssuesCount }}</p>
+                <p><span>Issues con descripción:</span> {{ mainRepository.descriptionIssuesPercent | number:'1.0-2' }}%</p>
+                <p><span>Issues con comentarios:</span> {{ mainRepository.commentedIssuesPercent | number:'1.0-2' }}%</p>
+                <p><span>Issues con imágenes:</span> {{ mainRepository.imagedIssuesPercent | number:'1.0-2' }}%</p>
+                <p><span>Issues con personas asignadas:</span> {{ mainRepository.assignedIssuesPercent | number:'1.0-2' }}%</p>
+                <p><span>Issues con etiquetas:</span> {{ mainRepository.labeledIssuesPercent | number:'1.0-2' }}%</p>
+                <p><span>Issues con milestones:</span> {{ mainRepository.milestonedIssuesPercent | number:'1.0-2' }}%</p>
+                <br>
+                <strong>Pull Requests:</strong>
+                <p><span>Pull Requests abiertas:</span> {{ mainRepository.openPrCount }}</p>
+                <p><span>Pull Requests cerradas:</span> {{ mainRepository.closedPrCount }}</p>
+                <p><span>Pull Requests con revisores:</span> {{ mainRepository.reviewersPrPercent | number:'1.0-2' }}%</p>
+                <p><span>Pull Requests con personas asignadas:</span> {{ mainRepository.assigneesPrPercent | number:'1.0-2' }}%</p>
+                <p><span>Pull Requests con etiquetas:</span> {{ mainRepository.labelsPrPercent | number:'1.0-2' }}%</p>
+                <p><span>Pull Requests con milestones:</span> {{ mainRepository.milestonesPrPercent | number:'1.0-2' }}%</p>
+                <br>
+                <strong>Actions:</strong>
+                <p><span>Nº de ficheros workflow de GitHub Actions:</span> {{ mainRepository.actionsCount }}</p>
+                <br>
+                <strong>Releases:</strong>
+                <p><span>Nº de Releases:</span> {{ mainRepository.releasesCount }}</p>
+                <p><span>Releases con descripción:</span> {{ mainRepository.descriptionReleasesPercent | number:'1.0-2' }}%</p>
+                <p><span>Nº de Tags:</span> {{ mainRepository.tagsCount }}</p>
+            </div>
+        </div>
+
+        <div style="width: 50%; margin-left: 12.5%;">
+            <h2>Repositorio Comparado</h2>
+            <div *ngIf="showedRepo">
+                <strong>{{ showedRepo.repoTitle }}</strong>
+                <br>
+                <strong>Commits:</strong>
+                <p><span>Nº de Commits:</span> {{ showedRepo.commitCount }}</p>
+                <p><span>Commits con título personalizado:</span> {{ showedRepo.titledCommitsPercent | number:'1.0-2' }}%</p>
+                <p><span>Commits con descripción:</span> {{ showedRepo.descriptionCommitsPercent | number:'1.0-2' }}%</p>
+                <p><span>Commits con referencias a Issues y Pull Requests:</span> {{ showedRepo.referencesCommitsPercent | number:'1.0-2' }}%</p>
+                <br>
+                <strong>Issues:</strong>
+                <p><span>Issues abiertos:</span> {{ showedRepo.openIssuesCount }}</p>
+                <p><span>Issues cerrados:</span> {{ showedRepo.closedIssuesCount }}</p>
+                <p><span>Issues con descripción:</span> {{ showedRepo.descriptionIssuesPercent | number:'1.0-2' }}%</p>
+                <p><span>Issues con comentarios:</span> {{ showedRepo.commentedIssuesPercent | number:'1.0-2' }}%</p>
+                <p><span>Issues con imágenes:</span> {{ showedRepo.imagedIssuesPercent | number:'1.0-2' }}%</p>
+                <p><span>Issues con personas asignadas:</span> {{ showedRepo.assignedIssuesPercent | number:'1.0-2' }}%</p>
+                <p><span>Issues con etiquetas:</span> {{ showedRepo.labeledIssuesPercent | number:'1.0-2' }}%</p>
+                <p><span>Issues con milestones:</span> {{ showedRepo.milestonedIssuesPercent | number:'1.0-2' }}%</p>
+                <br>
+                <strong>Pull Requests:</strong>
+                <p><span>Pull Requests abiertas:</span> {{ showedRepo.openPrCount }}</p>
+                <p><span>Pull Requests cerradas:</span> {{ showedRepo.closedPrCount }}</p>
+                <p><span>Pull Requests con revisores:</span> {{ showedRepo.reviewersPrPercent | number:'1.0-2' }}%</p>
+                <p><span>Pull Requests con personas asignadas:</span> {{ showedRepo.assigneesPrPercent | number:'1.0-2' }}%</p>
+                <p><span>Pull Requests con etiquetas:</span> {{ showedRepo.labelsPrPercent | number:'1.0-2' }}%</p>
+                <p><span>Pull Requests con milestones:</span> {{ showedRepo.milestonesPrPercent | number:'1.0-2' }}%</p>
+                <br>
+                <strong>Actions:</strong>
+                <p><span>Nº de ficheros workflow de GitHub Actions:</span> {{ showedRepo.actionsCount }}</p>
+                <br>
+                <strong>Releases:</strong>
+                <p><span>Nº de Releases:</span> {{ showedRepo.releasesCount }}</p>
+                <p><span>Releases con descripción:</span> {{ showedRepo.descriptionReleasesPercent | number:'1.0-2' }}%</p>
+                <p><span>Nº de Tags:</span> {{ showedRepo.tagsCount }}</p>
+            </div>
+        </div>
+    </div>
+</div>
