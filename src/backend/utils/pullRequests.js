@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { getHeaders  } = require('./github');
+const { getHeaders } = require('./github');
 
 async function getPullRequestStats(owner, repoTitle) {
 
@@ -18,7 +18,6 @@ async function getPullRequestStats(owner, repoTitle) {
 }
 
 const getPullRequestQualityStats = async (owner, repoTitle) => {
-
     let allPRs = [];
     let page = 1;
     const perPage = 100;
@@ -41,30 +40,66 @@ const getPullRequestQualityStats = async (owner, repoTitle) => {
     const total = allPRs.length;
     if (total === 0) {
         console.log("No hay pull requests en el repositorio.");
-        return {};
+        return {        
+            assigneesPrPercent: 0,
+            labelsPrPercent: 0,
+            milestonesPrPercent: 0,
+            collaborativePrPercent: 0,
+            prParticipationPercent: 0
+        };
     }
+
+    const repoContributorsRes = await axios.get(
+        `https://api.github.com/repos/${owner}/${repoTitle}/contributors`,
+        { headers: getHeaders() }
+    );
+    const contributors = repoContributorsRes.data.map(c => c.login);
+    const contributorsSet = new Set(contributors);
 
     const withReviewers = allPRs.filter(pr => pr.requested_reviewers && pr.requested_reviewers.length > 0).length;
     const withAssignees = allPRs.filter(pr => pr.assignees && pr.assignees.length > 0).length;
     const withLabels = allPRs.filter(pr => pr.labels && pr.labels.length > 0).length;
     const withMilestones = allPRs.filter(pr => pr.milestone !== null).length;
 
+    let collaborativePRs = 0;
+    const participatingAuthors = new Set();
+
+    for (const pr of allPRs) {
+        const textToCheck = (pr.title || "") + " " + (pr.body || "");
+        if (/@[a-z0-9_-]+/i.test(textToCheck)) {
+            collaborativePRs++;
+        }
+
+        // console.log(pr.user)
+        // console.log(contributors)
+        // console.log(contributors.length)
+        if (pr.user && contributorsSet.has(pr.user.login)) {
+            participatingAuthors.add(pr.user.login);
+        }
+    }
+
     const toPercent = n => ((n / total) * 100).toFixed(2);
+    const toPercentAuthors = n => ((n / contributors.length) * 100).toFixed(2);
 
     const stats = {
         reviewersPrPercent: toPercent(withReviewers),
         assigneesPrPercent: toPercent(withAssignees),
         labelsPrPercent: toPercent(withLabels),
-        milestonesPrPercent: toPercent(withMilestones)
+        milestonesPrPercent: toPercent(withMilestones),
+        collaborativePrPercent: toPercent(collaborativePRs),
+        prParticipationPercent: toPercentAuthors(participatingAuthors.size)
     };
 
     console.log("% PRs con reviewers:", stats.reviewersPrPercent);
     console.log("% PRs con assignees:", stats.assigneesPrPercent);
     console.log("% PRs con labels:", stats.labelsPrPercent);
     console.log("% PRs con milestone:", stats.milestonesPrPercent);
+    console.log("% PRs colaborativas (menciones @):", stats.collaborativePrPercent);
+    console.log("% Participación de colaboradores en PRs:", stats.prParticipationPercent);
 
     return stats;
 };
+
 
 module.exports = {
     getPullRequestStats,

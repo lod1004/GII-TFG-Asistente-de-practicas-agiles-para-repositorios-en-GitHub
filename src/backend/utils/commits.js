@@ -23,10 +23,12 @@ async function getCommitStats(owner, repoTitle) {
 }
 
 async function getCommitQualityStats(owner, repoTitle) {
-
     let page = 1;
     const perPage = 100;
     let allCommits = [];
+    const url = `https://api.github.com/repos/${owner}/${repoTitle}/commits?per_page=${perPage}&page=${page}`;
+    const response = await axios.get(url, { headers: getHeaders() });
+    const commits = response.data;
 
     while (true) {
         const url = `https://api.github.com/repos/${owner}/${repoTitle}/commits?per_page=${perPage}&page=${page}`;
@@ -41,9 +43,19 @@ async function getCommitQualityStats(owner, repoTitle) {
         page++;
     }
 
-    let withTitleCommitsPercent = 0;
-    let withDescriptionCommitsPercent = 0;
-    let withReferencesCommitsPercent = 0;
+    const repoContributorsRes = await axios.get(
+        `https://api.github.com/repos/${owner}/${repoTitle}/contributors`,
+        { headers: getHeaders() }
+    );
+    const contributors = repoContributorsRes.data.map(c => c.login);
+    const contributorsSet = new Set(contributors);
+
+    let withTitleCommits = 0;
+    let withDescriptionCommits = 0;
+    let withReferencesCommits = 0;
+    let collaborativeCommits = 0;
+
+    const participatingAuthors = new Set();
 
     const defaultTitles = [
         "update readme", "create readme", "initial commit", "add files via upload"
@@ -52,35 +64,46 @@ async function getCommitQualityStats(owner, repoTitle) {
     for (const commitData of allCommits) {
         const message = commitData.commit.message;
         const lines = message.trim().split("\n");
-
         const title = lines[0].trim().toLowerCase();
 
-        const isCustomTitle = !defaultTitles.some(def =>
-            title === def || title.startsWith(def)
-        );
-        if (isCustomTitle) withTitleCommitsPercent++;
+        if (!defaultTitles.some(def => title === def || title.startsWith(def))) {
+            withTitleCommits++;
+        }
 
         const hasDescription = lines.length > 1 && lines.slice(1).some(line => line.trim().length > 0);
-        if (hasDescription) withDescriptionCommitsPercent++;
+        if (hasDescription) withDescriptionCommits++;
 
         const hasIssueReference = /(^|\s)#\d+[.,(){}\[\]:;!?-]?(\s|$)/.test(message);
-        if (hasIssueReference) withReferencesCommitsPercent++;
+        if (hasIssueReference) withReferencesCommits++;
+
+        if (/@[a-z0-9_-]+/i.test(message)) collaborativeCommits++;
+
+        if (commitData.author && contributorsSet.has(commitData.author.login)) {
+            participatingAuthors.add(commitData.author.login);
+        }
     }
 
     const total = allCommits.length;
-    const percent = (count) => ((count / total) * 100).toFixed(2);
+    const totalContributors = contributors.length;
 
-    console.log(`Un ${percent(withTitleCommitsPercent)}% de los commits tienen título personalizado`);
-    console.log(`Un ${percent(withDescriptionCommitsPercent)}% tienen descripción`);
-    console.log(`Un ${percent(withReferencesCommitsPercent)}% hacen referencia a issues o pull requests`);
+    const toPercent = (n) => (n / total) * 100;
+    const toPercentAuthors = (n) => (n / contributors.length) * 100;
 
-    stats = {
-        titledCommitsPercent: percent(withTitleCommitsPercent),
-        descriptionCommitsPercent: percent(withDescriptionCommitsPercent),
-        referencesCommitsPercent: percent(withReferencesCommitsPercent),
+    const stats = {
+        titledCommitsPercent: toPercent(withTitleCommits),
+        descriptionCommitsPercent: toPercent(withDescriptionCommits),
+        referencesCommitsPercent: toPercent(withReferencesCommits),
+        collaborativeCommitsPercent: toPercent(collaborativeCommits),
+        commitParticipationPercent: toPercentAuthors(participatingAuthors.size, totalContributors)
     };
 
-    return stats
+    console.log("% Commits con título personalizado:", stats.titledCommitsPercent.toFixed(2));
+    console.log("% Commits con descripción:", stats.descriptionCommitsPercent.toFixed(2));
+    console.log("% Commits con referencias a Issues o Pull Requests:", stats.referencesCommitsPercent.toFixed(2));
+    console.log("% Commits colaborativos:", stats.collaborativeCommitsPercent.toFixed(2));
+    console.log("% de contribuidores que han hecho commits:", stats.commitParticipationPercent.toFixed(2));
+
+    return stats;
 }
 
 module.exports = {
