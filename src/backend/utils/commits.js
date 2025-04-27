@@ -26,9 +26,6 @@ async function getCommitQualityStats(owner, repoTitle) {
     let page = 1;
     const perPage = 100;
     let allCommits = [];
-    const url = `https://api.github.com/repos/${owner}/${repoTitle}/commits?per_page=${perPage}&page=${page}`;
-    const response = await axios.get(url, { headers: getHeaders() });
-    const commits = response.data;
 
     while (true) {
         const url = `https://api.github.com/repos/${owner}/${repoTitle}/commits?per_page=${perPage}&page=${page}`;
@@ -43,19 +40,24 @@ async function getCommitQualityStats(owner, repoTitle) {
         page++;
     }
 
-    const repoContributorsRes = await axios.get(
-        `https://api.github.com/repos/${owner}/${repoTitle}/contributors`,
-        { headers: getHeaders() }
-    );
-    const contributors = repoContributorsRes.data.map(c => c.login);
-    const contributorsSet = new Set(contributors);
+    const total = allCommits.length;
+    if (total === 0) {
+        console.log("No hay commits en el repositorio.");
+        return {
+            titledCommitsPercent: 0,
+            descriptionCommitsPercent: 0,
+            referencesCommitsPercent: 0,
+            collaborativeCommitsPercent: 0,
+            commitParticipants: []
+        };
+    }
 
     let withTitleCommits = 0;
     let withDescriptionCommits = 0;
     let withReferencesCommits = 0;
     let collaborativeCommits = 0;
 
-    const participatingAuthors = new Set();
+    const commitParticipantsMap = new Map();
 
     const defaultTitles = [
         "update readme", "create readme", "initial commit", "add files via upload"
@@ -78,33 +80,34 @@ async function getCommitQualityStats(owner, repoTitle) {
 
         if (/@[a-z0-9_-]+/i.test(message)) collaborativeCommits++;
 
-        if (commitData.author && contributorsSet.has(commitData.author.login)) {
-            participatingAuthors.add(commitData.author.login);
+        if (commitData.author && commitData.author.login) {
+            const login = commitData.author.login;
+            commitParticipantsMap.set(login, (commitParticipantsMap.get(login) || 0) + 1);
         }
     }
 
-    const total = allCommits.length;
-    const totalContributors = contributors.length;
-
     const toPercent = (n) => (n / total) * 100;
-    const toPercentAuthors = (n) => (n / contributors.length) * 100;
+
+    const commitParticipants = Array.from(commitParticipantsMap.entries())
+        .map(([login, participations]) => ({ login, participations }));
 
     const stats = {
-        titledCommitsPercent: toPercent(withTitleCommits),
-        descriptionCommitsPercent: toPercent(withDescriptionCommits),
-        referencesCommitsPercent: toPercent(withReferencesCommits),
-        collaborativeCommitsPercent: toPercent(collaborativeCommits),
-        commitParticipationPercent: toPercentAuthors(participatingAuthors.size, totalContributors)
+        titledCommitsPercent: toPercent(withTitleCommits).toFixed(2),
+        descriptionCommitsPercent: toPercent(withDescriptionCommits).toFixed(2),
+        referencesCommitsPercent: toPercent(withReferencesCommits).toFixed(2),
+        collaborativeCommitsPercent: toPercent(collaborativeCommits).toFixed(2),
+        commitParticipants
     };
 
-    console.log("% Commits con título personalizado:", stats.titledCommitsPercent.toFixed(2));
-    console.log("% Commits con descripción:", stats.descriptionCommitsPercent.toFixed(2));
-    console.log("% Commits con referencias a Issues o Pull Requests:", stats.referencesCommitsPercent.toFixed(2));
-    console.log("% Commits colaborativos:", stats.collaborativeCommitsPercent.toFixed(2));
-    console.log("% de contribuidores que han hecho commits:", stats.commitParticipationPercent.toFixed(2));
+    console.log("% Commits con título personalizado:", stats.titledCommitsPercent);
+    console.log("% Commits con descripción:", stats.descriptionCommitsPercent);
+    console.log("% Commits con referencias a Issues o Pull Requests:", stats.referencesCommitsPercent);
+    console.log("% Commits colaborativos:", stats.collaborativeCommitsPercent);
+    console.log("Usuarios que participaron en Commits:", stats.commitParticipants);
 
     return stats;
 }
+
 
 module.exports = {
     getCommitStats,

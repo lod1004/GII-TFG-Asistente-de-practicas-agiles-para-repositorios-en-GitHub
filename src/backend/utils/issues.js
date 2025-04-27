@@ -31,25 +31,28 @@ async function getIssueQualityStats(owner, repoTitle) {
         const issues = res.data.filter(issue => !issue.pull_request);
         allIssues = allIssues.concat(issues);
 
-        if ( issues.length < perPage ) break;
-
+        if (issues.length < perPage) break;
         page++;
     }
 
     const total = allIssues.length;
     if (total === 0) {
         console.log("No hay issues en el repositorio.");
-        return {};
+        return {
+            descriptionIssuesPercent: 0,
+            imagedIssuesPercent: 0,
+            commentedIssuesPercent: 0,
+            assignedIssuesPercent: 0,
+            labeledIssuesPercent: 0,
+            milestonedIssuesPercent: 0,
+            storyPointsIssuesPercent: 0,
+            reopenedIssuesPercent: 0,
+            collaborativeIssuesPercent: 0,
+            issueParticipants: []
+        };
     }
 
     const labelRegex = /(p:\d+|story[-_ ]?points?:?:?\d*)/i;
-
-    const repoContributorsRes = await axios.get(
-        `https://api.github.com/repos/${owner}/${repoTitle}/contributors`,
-        { headers: getHeaders() }
-    );
-    const contributors = repoContributorsRes.data.map(c => c.login);
-    const contributorsSet = new Set(contributors);
 
     let withDescription = 0;
     let withBodyImages = 0;
@@ -62,23 +65,25 @@ async function getIssueQualityStats(owner, repoTitle) {
     let reopenedIssues = 0;
     let collaborativeIssues = 0;
 
-    const participatingAuthors = new Set();
+    const issueParticipantsMap = new Map(); // login -> nº de participaciones
 
     for (const issue of allIssues) {
-        if (issue.body && issue.body.trim().length > 0) {withDescription++;}
-        if (/!\[.*?\]\(.*?\)|<img\s+.*?>/i.test(issue.body || "")) {withBodyImages++;}
-        if (issue.assignees && issue.assignees.length > 0) {withAssignees++;}
-        if (issue.labels && issue.labels.length > 0) {withLabels++;}
-        if (issue.milestone !== null) {withMilestones++;}
-        if (issue.labels.some(label => labelRegex.test(label.name))) {issuesWithStoryPoints++;}
+        if (issue.body && issue.body.trim().length > 0) { withDescription++; }
+        if (/!\[.*?\]\(.*?\)|<img\s+.*?>/i.test(issue.body || "")) { withBodyImages++; }
+        if (issue.assignees && issue.assignees.length > 0) { withAssignees++; }
+        if (issue.labels && issue.labels.length > 0) { withLabels++; }
+        if (issue.milestone !== null) { withMilestones++; }
+        if (issue.labels.some(label => labelRegex.test(label.name))) { issuesWithStoryPoints++; }
 
-        if (issue.user && contributorsSet.has(issue.user.login)) {
-            participatingAuthors.add(issue.user.login);
+        if (issue.user && issue.user.login) {
+            const login = issue.user.login;
+            issueParticipantsMap.set(login, (issueParticipantsMap.get(login) || 0) + 1);
         }
+
         if (issue.assignees && issue.assignees.length > 0) {
             issue.assignees.forEach(assignee => {
-                if (contributorsSet.has(assignee.login)) {
-                    participatingAuthors.add(assignee.login);
+                if (assignee.login) {
+                    issueParticipantsMap.set(assignee.login, (issueParticipantsMap.get(assignee.login) || 0) + 1);
                 }
             });
         }
@@ -93,8 +98,9 @@ async function getIssueQualityStats(owner, repoTitle) {
         if (comments.some(comment => /!\[.*?\]\(.*?\)|<img\s+.*?>/i.test(comment.body || ""))) withImageComments++;
 
         comments.forEach(comment => {
-            if (comment.user && contributorsSet.has(comment.user.login)) {
-                participatingAuthors.add(comment.user.login);
+            if (comment.user && comment.user.login) {
+                const login = comment.user.login;
+                issueParticipantsMap.set(login, (issueParticipantsMap.get(login) || 0) + 1);
             }
         });
 
@@ -109,36 +115,39 @@ async function getIssueQualityStats(owner, repoTitle) {
     }
 
     const withImages = withBodyImages + withImageComments;
-    const authorsWhoParticipated = participatingAuthors.size;
+
     const toPercent = (n) => (n / total) * 100;
-    const toPercentAuthors = (n) => (n / contributors.length) * 100;
+
+    const issueParticipants = Array.from(issueParticipantsMap.entries())
+        .map(([login, participations]) => ({ login, participations }));
 
     const stats = {
-        descriptionIssuesPercent: toPercent(withDescription),
-        imagedIssuesPercent: toPercent(withImages),
-        commentedIssuesPercent: toPercent(withComments),
-        assignedIssuesPercent: toPercent(withAssignees),
-        labeledIssuesPercent: toPercent(withLabels),
-        milestonedIssuesPercent: toPercent(withMilestones),
-        storyPointsIssuesPercent: toPercent(issuesWithStoryPoints),
-        reopenedIssuesPercent: toPercent(reopenedIssues),
-        issueParticipationPercent: toPercentAuthors(authorsWhoParticipated),
-        collaborativeIssuesPercent: toPercent(collaborativeIssues),
+        descriptionIssuesPercent: toPercent(withDescription).toFixed(2),
+        imagedIssuesPercent: toPercent(withImages).toFixed(2),
+        commentedIssuesPercent: toPercent(withComments).toFixed(2),
+        assignedIssuesPercent: toPercent(withAssignees).toFixed(2),
+        labeledIssuesPercent: toPercent(withLabels).toFixed(2),
+        milestonedIssuesPercent: toPercent(withMilestones).toFixed(2),
+        storyPointsIssuesPercent: toPercent(issuesWithStoryPoints).toFixed(2),
+        reopenedIssuesPercent: toPercent(reopenedIssues).toFixed(2),
+        collaborativeIssuesPercent: toPercent(collaborativeIssues).toFixed(2),
+        issueParticipants
     };
 
-    console.log("% Issues con descripción:", stats.descriptionIssuesPercent.toFixed(2));
-    console.log("% Issues con comentarios:", stats.commentedIssuesPercent.toFixed(2));
-    console.log("% Issues con imágenes en descripción o comentarios:", stats.imagedIssuesPercent.toFixed(2));
-    console.log("% Issues con personas asignadas:", stats.assignedIssuesPercent.toFixed(2));
-    console.log("% Issues con etiquetas:", stats.labeledIssuesPercent.toFixed(2));
-    console.log("% Issues con milestone:", stats.milestonedIssuesPercent.toFixed(2));
-    console.log("% Issues con Story Points:", stats.storyPointsIssuesPercent.toFixed(2));
-    console.log("% Issues reabiertas:", stats.reopenedIssuesPercent.toFixed(2));
-    console.log("% Participación de colaboradores en las Issues:", stats.issueParticipationPercent.toFixed(2));
-    console.log("% Issues colaborativas:", stats.collaborativeIssuesPercent.toFixed(2));
+    console.log("% Issues con descripción:", stats.descriptionIssuesPercent);
+    console.log("% Issues con imágenes:", stats.imagedIssuesPercent);
+    console.log("% Issues con comentarios:", stats.commentedIssuesPercent);
+    console.log("% Issues con personas asignadas:", stats.assignedIssuesPercent);
+    console.log("% Issues con etiquetas:", stats.labeledIssuesPercent);
+    console.log("% Issues con milestone:", stats.milestonedIssuesPercent);
+    console.log("% Issues con Story Points:", stats.storyPointsIssuesPercent);
+    console.log("% Issues reabiertas:", stats.reopenedIssuesPercent);
+    console.log("% Issues colaborativas:", stats.collaborativeIssuesPercent);
+    console.log("Usuarios que participaron en Issues:", stats.issueParticipants);
 
     return stats;
 }
+
 
 module.exports = {
     getIssueStats,

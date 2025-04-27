@@ -71,21 +71,14 @@ async function getReleaseQualityStats(owner, repoTitle) {
         return {
             descriptionReleasesPercent: 0,
             collaborativeReleasesPercent: 0,
-            releaseParticipationPercent: 0
+            releaseParticipants: []
         };
     }
-
-    const repoContributorsRes = await axios.get(
-        `https://api.github.com/repos/${owner}/${repoTitle}/contributors`,
-        { headers: getHeaders() }
-    );
-    const contributors = repoContributorsRes.data.map(c => c.login);
-    const contributorsSet = new Set(contributors);
 
     const withBody = allReleases.filter(rel => rel.body && rel.body.trim().length > 0).length;
 
     let collaborativeReleases = 0;
-    const participatingAuthors = new Set();
+    const releaseParticipantsMap = new Map();
 
     for (const release of allReleases) {
         const textToCheck = (release.name || "") + " " + (release.body || "");
@@ -93,23 +86,26 @@ async function getReleaseQualityStats(owner, repoTitle) {
             collaborativeReleases++;
         }
 
-        if (release.author && contributorsSet.has(release.author.login)) {
-            participatingAuthors.add(release.author.login);
+        if (release.author && release.author.login) {
+            const login = release.author.login;
+            releaseParticipantsMap.set(login, (releaseParticipantsMap.get(login) || 0) + 1);
         }
     }
 
     const toPercent = n => ((n / total) * 100).toFixed(2);
-    const toPercentAuthors = n => ((n / contributors.length) * 100).toFixed(2);
+
+    const releaseParticipants = Array.from(releaseParticipantsMap.entries())
+        .map(([login, participations]) => ({ login, participations }));
 
     const stats = {
         descriptionReleasesPercent: toPercent(withBody),
         collaborativeReleasesPercent: toPercent(collaborativeReleases),
-        releaseParticipationPercent: toPercentAuthors(participatingAuthors.size)
+        releaseParticipants
     };
 
     console.log(`% Releases con descripción: ${stats.descriptionReleasesPercent}%`);
     console.log(`% Releases colaborativas (menciones @): ${stats.collaborativeReleasesPercent}%`);
-    console.log(`% Participación de colaboradores en Releases: ${stats.releaseParticipationPercent}%`);
+    console.log(`Usuarios que participaron en Releases:`, stats.releaseParticipants);
 
     return stats;
 }

@@ -6,6 +6,7 @@ const { getActions, getActionsSuccess } = require("../utils/actions");
 const { getPullRequestStats, getPullRequestQualityStats } = require("../utils/pullRequests");
 const { getReleaseStats, getReleaseQualityStats } = require("../utils/releases");
 const { getIssueStats, getIssueQualityStats } = require("../utils/issues");
+const { getParticipantsStats } = require("../utils/participants");
 
 async function getNextId(sequenceName) {
   const counter = await Counter.findOneAndUpdate(
@@ -46,15 +47,16 @@ const createRepository = async (req, res) => {
     const { owner, repoTitle } = parsedMain;
 
     const { openIssuesCount, closedIssuesCount } = await getIssueStats(owner, repoTitle);
-    const { descriptionIssuesPercent, commentedIssuesPercent, imagedIssuesPercent, assignedIssuesPercent, labeledIssuesPercent, milestonedIssuesPercent, storyPointsIssuesPercent, reopenedIssuesPercent, issueParticipationPercent, collaborativeIssuesPercent } = await getIssueQualityStats(owner, repoTitle);
+    const { descriptionIssuesPercent, commentedIssuesPercent, imagedIssuesPercent, assignedIssuesPercent, labeledIssuesPercent, milestonedIssuesPercent, storyPointsIssuesPercent, reopenedIssuesPercent, collaborativeIssuesPercent, issueParticipants } = await getIssueQualityStats(owner, repoTitle);
     const { commitCount } = await getCommitStats(owner, repoTitle);
-    const { titledCommitsPercent, descriptionCommitsPercent, referencesCommitsPercent, collaborativeCommitsPercent, commitParticipationPercent } = await getCommitQualityStats(owner, repoTitle);
+    const { titledCommitsPercent, descriptionCommitsPercent, referencesCommitsPercent, collaborativeCommitsPercent, commitParticipants } = await getCommitQualityStats(owner, repoTitle);
     const { openPrCount, closedPrCount } = await getPullRequestStats(owner, repoTitle);
-    const { reviewersPrPercent, assigneesPrPercent, labelsPrPercent, milestonesPrPercent, collaborativePrPercent, prParticipationPercent } = await getPullRequestQualityStats(owner, repoTitle);
+    const { reviewersPrPercent, assigneesPrPercent, labelsPrPercent, milestonesPrPercent, collaborativePrPercent, prParticipants } = await getPullRequestQualityStats(owner, repoTitle);
     const { actionsCount } = await getActions(owner, repoTitle);
     const { actionsRuns, actionsSuccess } = await getActionsSuccess(owner, repoTitle);
     const { releasesCount, tagsCount } = await getReleaseStats(owner, repoTitle);
-    const { descriptionReleasesPercent, collaborativeReleasesPercent, releaseParticipationPercent } = await getReleaseQualityStats(owner, repoTitle);
+    const { descriptionReleasesPercent, collaborativeReleasesPercent, releaseParticipants } = await getReleaseQualityStats(owner, repoTitle);
+    const { commitParticipationPercent, issueParticipationPercent, prParticipationPercent, releaseParticipationPercent } = await getParticipantsStats(issueParticipants, commitParticipants, prParticipants, releaseParticipants);
 
     const mainRepo = new Repository({
       id: newId,
@@ -110,15 +112,17 @@ const createRepository = async (req, res) => {
       const { owner, repoTitle } = parsed;
 
       const { openIssuesCount, closedIssuesCount } = await getIssueStats(owner, repoTitle);
-      const { descriptionIssuesPercent, commentedIssuesPercent, imagedIssuesPercent, assignedIssuesPercent, labeledIssuesPercent, milestonedIssuesPercent, storyPointsIssuesPercent, reopenedIssuesPercent, issueParticipationPercent, collaborativeIssuesPercent } = await getIssueQualityStats(owner, repoTitle);
+      const { descriptionIssuesPercent, commentedIssuesPercent, imagedIssuesPercent, assignedIssuesPercent, labeledIssuesPercent, milestonedIssuesPercent, storyPointsIssuesPercent, reopenedIssuesPercent, collaborativeIssuesPercent, issueParticipants } = await getIssueQualityStats(owner, repoTitle);
       const { commitCount } = await getCommitStats(owner, repoTitle);
-      const { titledCommitsPercent, descriptionCommitsPercent, referencesCommitsPercent, collaborativeCommitsPercent, commitParticipationPercent } = await getCommitQualityStats(owner, repoTitle);
+      const { titledCommitsPercent, descriptionCommitsPercent, referencesCommitsPercent, collaborativeCommitsPercent, commitParticipants } = await getCommitQualityStats(owner, repoTitle);
       const { openPrCount, closedPrCount } = await getPullRequestStats(owner, repoTitle);
-      const { reviewersPrPercent, assigneesPrPercent, labelsPrPercent, milestonesPrPercent, collaborativePrPercent, prParticipationPercent } = await getPullRequestQualityStats(owner, repoTitle);
+      const { reviewersPrPercent, assigneesPrPercent, labelsPrPercent, milestonesPrPercent, collaborativePrPercent, prParticipants } = await getPullRequestQualityStats(owner, repoTitle);
       const { actionsCount } = await getActions(owner, repoTitle);
       const { actionsRuns, actionsSuccess } = await getActionsSuccess(owner, repoTitle);
       const { releasesCount, tagsCount } = await getReleaseStats(owner, repoTitle);
-      const { descriptionReleasesPercent, collaborativeReleasesPercent, releaseParticipationPercent } = await getReleaseQualityStats(owner, repoTitle);
+      const { descriptionReleasesPercent, collaborativeReleasesPercent, releaseParticipants } = await getReleaseQualityStats(owner, repoTitle);
+      const { commitParticipationPercent, issueParticipationPercent, prParticipationPercent, releaseParticipationPercent } = await getParticipantsStats(issueParticipants, commitParticipants, prParticipants, releaseParticipants);
+  
       const exampleRepo = new Repository({
         id: exampleId,
         url: main,
