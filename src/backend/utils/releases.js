@@ -1,50 +1,7 @@
 const axios = require("axios");
-const { getHeaders  } = require('./github');
+const { getHeaders } = require('./github');
 
-async function getReleaseStats(owner, repoTitle) {
-
-    // Contar releases
-    let releasesCount = 0;
-    let page = 1;
-    const perPage = 100;
-
-    while (true) {
-        const res = await axios.get(
-            `https://api.github.com/repos/${owner}/${repoTitle}/releases?per_page=${perPage}&page=${page}`,
-            { headers: getHeaders() }
-        );
-
-        const releases = res.data;
-        releasesCount += releases.length;
-
-        if (releases.length < perPage) break;
-        page++;
-    }
-
-    // Contar tags
-    let tagsCount = 0;
-    page = 1;
-
-    while (true) {
-        const res = await axios.get(
-            `https://api.github.com/repos/${owner}/${repoTitle}/tags?per_page=${perPage}&page=${page}`,
-            { headers: getHeaders() }
-        );
-
-        const tags = res.data;
-        tagsCount += tags.length;
-
-        if (tags.length < perPage) break;
-        page++;
-    }
-
-    console.log("Total de releases:", releasesCount);
-    console.log("Total de tags:", tagsCount);
-
-    return { releasesCount, tagsCount };
-}
-
-async function getReleaseQualityStats(owner, repoTitle) {
+const getReleaseStats = async (owner, repoTitle, startDate, endDate) => {
     let allReleases = [];
     let page = 1;
     const perPage = 100;
@@ -54,64 +11,74 @@ async function getReleaseQualityStats(owner, repoTitle) {
             `https://api.github.com/repos/${owner}/${repoTitle}/releases?per_page=${perPage}&page=${page}`,
             { headers: getHeaders() }
         );
-
-        const releases = res.data;
-        if (releases.length === 0) break;
-
-        allReleases.push(...releases);
-
-        if (releases.length < perPage) break;
+        if (res.data.length === 0) break;
+        allReleases.push(...res.data);
+        if (res.data.length < perPage) break;
         page++;
     }
 
-    const total = allReleases.length;
+    allReleases = allReleases.filter(release => {
+        const createdAt = new Date(release.created_at);
+        return createdAt >= startDate && createdAt <= endDate;
+    });
 
-    if (total === 0) {
+    const releasesCount = allReleases.length;
+
+    // Count tags
+    let tagsCount = 0;
+    page = 1;
+    while (true) {
+        const res = await axios.get(
+            `https://api.github.com/repos/${owner}/${repoTitle}/tags?per_page=${perPage}&page=${page}`,
+            { headers: getHeaders() }
+        );
+        tagsCount += res.data.length;
+        if (res.data.length < perPage) break;
+        page++;
+    }
+
+    if (releasesCount === 0) {
         console.log("No hay releases en el repositorio.");
         return {
+            releasesCount: 0,
+            tagsCount,
             descriptionReleasesPercent: 0,
             collaborativeReleasesPercent: 0,
             releaseParticipants: []
         };
     }
 
-    const withBody = allReleases.filter(rel => rel.body && rel.body.trim().length > 0).length;
+    const withDescription = allReleases.filter(r => r.body?.trim().length).length;
+    const collaborativeReleases = allReleases.filter(r =>
+        /@[a-z0-9_-]+/i.test(`${r.name || ""} ${r.body || ""}`)
+    ).length;
 
-    let collaborativeReleases = 0;
     const releaseParticipantsMap = new Map();
-
-    for (const release of allReleases) {
-        const textToCheck = (release.name || "") + " " + (release.body || "");
-        if (/@[a-z0-9_-]+/i.test(textToCheck)) {
-            collaborativeReleases++;
-        }
-
-        if (release.author && release.author.login) {
-            const login = release.author.login;
-            releaseParticipantsMap.set(login, (releaseParticipantsMap.get(login) || 0) + 1);
+    for (const r of allReleases) {
+        if (r.author?.login) {
+            releaseParticipantsMap.set(r.author.login, (releaseParticipantsMap.get(r.author.login) || 0) + 1);
         }
     }
 
-    const toPercent = n => ((n / total) * 100).toFixed(2);
-
+    const toPercent = n => ((n / releasesCount) * 100).toFixed(2);
     const releaseParticipants = Array.from(releaseParticipantsMap.entries())
         .map(([login, participations]) => ({ login, participations }));
 
     const stats = {
-        descriptionReleasesPercent: toPercent(withBody),
+        releasesCount,
+        tagsCount,
+        descriptionReleasesPercent: toPercent(withDescription),
         collaborativeReleasesPercent: toPercent(collaborativeReleases),
         releaseParticipants
     };
 
-    console.log(`% Releases con descripción: ${stats.descriptionReleasesPercent}%`);
-    console.log(`% Releases colaborativas (menciones @): ${stats.collaborativeReleasesPercent}%`);
-    console.log(`Usuarios que participaron en Releases:`, stats.releaseParticipants);
+    console.log("Total de releases:", releasesCount);
+    console.log("Total de tags:", tagsCount);
+    console.log("% Releases con descripción:", stats.descriptionReleasesPercent);
+    console.log("% Releases colaborativas:", stats.collaborativeReleasesPercent);
+    console.log("Usuarios que participaron en Releases:", stats.releaseParticipants);
 
     return stats;
-}
-
-
-module.exports = {
-    getReleaseStats,
-    getReleaseQualityStats
 };
+
+module.exports = { getReleaseStats };

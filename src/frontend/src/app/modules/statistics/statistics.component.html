@@ -10,6 +10,8 @@
             <div *ngIf="mainRepository">
                 <strong>{{ mainRepository.repoTitle }}</strong>
                 <br>
+                <span>Analizado desde {{ showedRepo.startDate }} hasta {{ showedRepo.endDate }}</span>
+                <br>
                 <strong>Commits:</strong>
                 <p><span>Nº de Commits:</span> {{ mainRepository.commitCount }}</p>
                 <p><span>Commits con título personalizado:</span> {{ mainRepository.titledCommitsPercent | number:'1.0-2' }}%</p>
@@ -60,6 +62,8 @@
             <h2>Repositorio Comparado</h2>
             <div *ngIf="showedRepo">
                 <strong>{{ showedRepo.repoTitle }}</strong>
+                <br>
+                <span>Analizado desde {{ showedRepo.startDate }} hasta {{ showedRepo.endDate }}</span>
                 <br>
                 <strong>Commits:</strong>
                 <p><span>Nº de Commits:</span> {{ showedRepo.commitCount }}</p>

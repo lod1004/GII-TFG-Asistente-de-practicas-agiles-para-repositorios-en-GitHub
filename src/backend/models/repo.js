@@ -5,6 +5,8 @@ const repoSchema = new mongoose.Schema({
   url: { type: String, required: true },
   owner: { type: String, required: true },
   repoTitle: { type: String, required: true },
+  startDate: { type: Date, required: true },
+  endDate: { type: Date, required: true },
 
   openIssuesCount: { type: Number, },
   closedIssuesCount: { type: Number, },

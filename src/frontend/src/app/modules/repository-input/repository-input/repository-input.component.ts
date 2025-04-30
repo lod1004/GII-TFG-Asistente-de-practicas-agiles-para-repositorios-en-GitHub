@@ -2,18 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RepositoryService } from '../../../services/repository.service';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MaterialModule } from '../../shared/material.module';
 
 @Component({
   selector: 'app-repository-input',
   templateUrl: './repository-input.component.html',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule, HttpClientModule]
 })
 export class RepositoryInputComponent implements OnInit {
   repositoryForm = new FormGroup({
     mainRepositoryUrl: new FormControl<string>(''),
     sourceRepositoryUrl: new FormControl<string>(''),
+    useTimeIntervals: new FormControl<boolean>(false),
+    useRelativeDates: new FormControl<boolean>(false),
+    startTimeInterval: new FormControl<number>(0),
+    endTimeInterval: new FormControl<number>(0),
   });
 
   mainUrl: string | null = null;
@@ -22,7 +27,6 @@ export class RepositoryInputComponent implements OnInit {
   constructor(
     private repoService: RepositoryService,
     private router: Router,
-    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -49,16 +53,54 @@ export class RepositoryInputComponent implements OnInit {
     this.exampleUrls.splice(index, 1);
   }
 
-  submitRepo(): void {
-    if (!this.mainUrl || this.exampleUrls.length === 0) {
-      console.log("Se necesita una URL principal y al menos una de ejemplo.");
-      return;
-    }
+  get relativeTimeIntervalsError(): boolean {
+    const useRelative = this.repositoryForm.controls.useRelativeDates?.value;
+    const endInterval = this.repositoryForm.controls.endTimeInterval?.value;
+    return useRelative === true && endInterval != null && endInterval >= 5;
+  }
 
-    const payload = {
-      main: this.mainUrl,
-      examples: this.exampleUrls
-    };
+  get timeIntervalsComparisonError(): boolean {
+    const startInterval = this.repositoryForm.controls.startTimeInterval?.value;
+    const endInterval = this.repositoryForm.controls.endTimeInterval?.value;
+    if (startInterval != null || endInterval != null) {
+      if (startInterval! >= endInterval!) {
+        return true;
+      }
+    }
+    return false
+  }
+
+  get timeIntervalsValueError(): boolean {
+    const startInterval = this.repositoryForm.controls.startTimeInterval?.value;
+    const endInterval = this.repositoryForm.controls.endTimeInterval?.value;
+    if (startInterval == null || endInterval == null
+      || startInterval < 0 || !Number.isInteger(startInterval)
+      || endInterval < 0 || !Number.isInteger(endInterval)) {
+      return true;
+    } else { return false }
+  }
+
+  submitRepo(): void {
+
+    var payload;
+
+    if (this.repositoryForm.controls.useTimeIntervals?.value === true) {
+      payload = {
+        main: this.mainUrl!,
+        examples: this.exampleUrls,
+        useRelativeDates: this.repositoryForm.controls.useRelativeDates.value,
+        startTimeInterval: this.repositoryForm.controls.startTimeInterval.value,
+        endTimeInterval: this.repositoryForm.controls.endTimeInterval.value
+      };
+    } else {
+      payload = {
+        main: this.mainUrl!,
+        examples: this.exampleUrls,
+        useRelativeDates: true,
+        startTimeInterval: 0,
+        endTimeInterval: 4
+      };
+    }
 
     this.repoService.sendRepositoryUrls(payload).subscribe({
       next: (res) => {

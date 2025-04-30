@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from '../../services/repository.service';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../shared/material.module';
 
 @Component({
   selector: 'app-statistics',
-  imports: [CommonModule],
+  imports: [CommonModule, MaterialModule],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.css'
 })

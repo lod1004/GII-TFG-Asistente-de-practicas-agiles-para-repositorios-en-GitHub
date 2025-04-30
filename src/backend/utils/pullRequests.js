@@ -1,23 +1,7 @@
 const axios = require("axios");
 const { getHeaders } = require('./github');
 
-async function getPullRequestStats(owner, repoTitle) {
-
-    const [openRes, closedRes] = await Promise.all([
-        axios.get(`https://api.github.com/search/issues?q=repo:${owner}/${repoTitle}+type:pr+state:open`, { headers: getHeaders() }),
-        axios.get(`https://api.github.com/search/issues?q=repo:${owner}/${repoTitle}+type:pr+state:closed`, { headers: getHeaders() })
-    ]);
-
-    const openPrCount = openRes.data.total_count;
-    const closedPrCount = closedRes.data.total_count;
-
-    console.log("Pull requests abiertas:", openPrCount);
-    console.log("Pull requests cerradas:", closedPrCount);
-
-    return { openPrCount, closedPrCount };
-}
-
-const getPullRequestQualityStats = async (owner, repoTitle) => {
+const getPullRequestStats = async (owner, repoTitle, startDate, endDate) => {
     let allPRs = [];
     let page = 1;
     const perPage = 100;
@@ -32,15 +16,21 @@ const getPullRequestQualityStats = async (owner, repoTitle) => {
         if (prs.length === 0) break;
 
         allPRs.push(...prs);
-
         if (prs.length < perPage) break;
         page++;
     }
 
+    allPRs = allPRs.filter(pr => {
+        const createdAt = new Date(pr.created_at);
+        return createdAt >= startDate && createdAt <= endDate;
+    });
+
     const total = allPRs.length;
     if (total === 0) {
         console.log("No hay pull requests en el repositorio.");
-        return {        
+        return {
+            openPrCount: 0,
+            closedPrCount: 0,
             reviewersPrPercent: 0,
             assigneesPrPercent: 0,
             labelsPrPercent: 0,
@@ -50,32 +40,32 @@ const getPullRequestQualityStats = async (owner, repoTitle) => {
         };
     }
 
-    const withReviewers = allPRs.filter(pr => pr.requested_reviewers && pr.requested_reviewers.length > 0).length;
-    const withAssignees = allPRs.filter(pr => pr.assignees && pr.assignees.length > 0).length;
-    const withLabels = allPRs.filter(pr => pr.labels && pr.labels.length > 0).length;
+    const openPrCount = allPRs.filter(pr => pr.state === "open").length;
+    const closedPrCount = allPRs.filter(pr => pr.state === "closed").length;
+    const withReviewers = allPRs.filter(pr => pr.requested_reviewers?.length).length;
+    const withAssignees = allPRs.filter(pr => pr.assignees?.length).length;
+    const withLabels = allPRs.filter(pr => pr.labels?.length).length;
     const withMilestones = allPRs.filter(pr => pr.milestone !== null).length;
 
     let collaborativePRs = 0;
     const prParticipantsMap = new Map();
 
     for (const pr of allPRs) {
-        const textToCheck = (pr.title || "") + " " + (pr.body || "");
-        if (/@[a-z0-9_-]+/i.test(textToCheck)) {
-            collaborativePRs++;
-        }
+        const text = `${pr.title} ${pr.body || ""}`;
+        if (/@[a-z0-9_-]+/i.test(text)) collaborativePRs++;
 
-        if (pr.user && pr.user.login) {
-            const login = pr.user.login;
-            prParticipantsMap.set(login, (prParticipantsMap.get(login) || 0) + 1);
+        if (pr.user?.login) {
+            prParticipantsMap.set(pr.user.login, (prParticipantsMap.get(pr.user.login) || 0) + 1);
         }
     }
 
     const toPercent = n => ((n / total) * 100).toFixed(2);
-
     const prParticipants = Array.from(prParticipantsMap.entries())
         .map(([login, participations]) => ({ login, participations }));
 
     const stats = {
+        openPrCount,
+        closedPrCount,
         reviewersPrPercent: toPercent(withReviewers),
         assigneesPrPercent: toPercent(withAssignees),
         labelsPrPercent: toPercent(withLabels),
@@ -84,18 +74,16 @@ const getPullRequestQualityStats = async (owner, repoTitle) => {
         prParticipants
     };
 
+    console.log("Pull requests abiertas:", openPrCount);
+    console.log("Pull requests cerradas:", closedPrCount);
     console.log("% PRs con reviewers:", stats.reviewersPrPercent);
     console.log("% PRs con assignees:", stats.assigneesPrPercent);
     console.log("% PRs con labels:", stats.labelsPrPercent);
     console.log("% PRs con milestone:", stats.milestonesPrPercent);
-    console.log("% PRs colaborativas (menciones @):", stats.collaborativePrPercent);
-    console.log("Usuarios que participaron en PRs:", stats.prParticipants);
+    console.log("% PRs colaborativas:", stats.collaborativePrPercent);
+    console.log("Usuarios que participaron en PRs:", prParticipants);
 
     return stats;
 };
 
-
-module.exports = {
-    getPullRequestStats,
-    getPullRequestQualityStats,
-};
+module.exports = { getPullRequestStats };

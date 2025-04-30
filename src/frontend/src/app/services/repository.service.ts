@@ -10,7 +10,7 @@ export class RepositoryService {
 
   constructor(private http: HttpClient) {}
 
-  sendRepositoryUrls(payload: { main: string; examples: string[] }) {
+  sendRepositoryUrls(payload: { main: string; examples: string[], useRelativeDates:any, startTimeInterval: any, endTimeInterval: any }) {
     return this.http.post('http://localhost:5000/api/repos', payload);
   }
 

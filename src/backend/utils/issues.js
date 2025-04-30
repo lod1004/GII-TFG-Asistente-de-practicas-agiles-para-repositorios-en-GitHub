@@ -1,27 +1,12 @@
 const axios = require("axios");
 const { getHeaders } = require('./github');
 
-async function getIssueStats(owner, repoTitle) {
-
-    const [openRes, closedRes] = await Promise.all([
-        axios.get(`https://api.github.com/search/issues?q=repo:${owner}/${repoTitle}+type:issue+state:open`, { headers: getHeaders() }),
-        axios.get(`https://api.github.com/search/issues?q=repo:${owner}/${repoTitle}+type:issue+state:closed`, { headers: getHeaders() }),
-    ]);
-
-    const openIssuesCount = openRes.data.total_count;
-    const closedIssuesCount = closedRes.data.total_count;
-
-    console.log("Issues abiertas:", openIssuesCount);
-    console.log("Issues cerradas:", closedIssuesCount);
-
-    return { openIssuesCount, closedIssuesCount };
-}
-
-async function getIssueQualityStats(owner, repoTitle) {
+async function getIssueStats(owner, repoTitle, startDate, endDate) {
     let allIssues = [];
     let page = 1;
     const perPage = 100;
 
+    // Obtener todas las issues (sin los PR)
     while (true) {
         const res = await axios.get(
             `https://api.github.com/repos/${owner}/${repoTitle}/issues?state=all&per_page=${perPage}&page=${page}`,
@@ -35,10 +20,21 @@ async function getIssueQualityStats(owner, repoTitle) {
         page++;
     }
 
+    // Filtrar por rango de fechas
+    allIssues = allIssues.filter(issue => {
+        const createdAt = new Date(issue.created_at);
+        return createdAt >= startDate && createdAt <= endDate;
+    });
+
+    const openIssuesCount = allIssues.filter(issue => issue.state === 'open').length;
+    const closedIssuesCount = allIssues.filter(issue => issue.state === 'closed').length;
+
     const total = allIssues.length;
     if (total === 0) {
         console.log("No hay issues en el repositorio.");
         return {
+            openIssuesCount,
+            closedIssuesCount,
             descriptionIssuesPercent: 0,
             imagedIssuesPercent: 0,
             commentedIssuesPercent: 0,
@@ -65,22 +61,22 @@ async function getIssueQualityStats(owner, repoTitle) {
     let reopenedIssues = 0;
     let collaborativeIssues = 0;
 
-    const issueParticipantsMap = new Map(); // login -> nº de participaciones
+    const issueParticipantsMap = new Map();
 
     for (const issue of allIssues) {
-        if (issue.body && issue.body.trim().length > 0) { withDescription++; }
-        if (/!\[.*?\]\(.*?\)|<img\s+.*?>/i.test(issue.body || "")) { withBodyImages++; }
-        if (issue.assignees && issue.assignees.length > 0) { withAssignees++; }
-        if (issue.labels && issue.labels.length > 0) { withLabels++; }
-        if (issue.milestone !== null) { withMilestones++; }
-        if (issue.labels.some(label => labelRegex.test(label.name))) { issuesWithStoryPoints++; }
+        if (issue.body && issue.body.trim().length > 0) withDescription++;
+        if (/!\[.*?\]\(.*?\)|<img\s+.*?>/i.test(issue.body || "")) withBodyImages++;
+        if (issue.assignees?.length > 0) withAssignees++;
+        if (issue.labels?.length > 0) withLabels++;
+        if (issue.milestone !== null) withMilestones++;
+        if (issue.labels.some(label => labelRegex.test(label.name))) issuesWithStoryPoints++;
 
-        if (issue.user && issue.user.login) {
+        if (issue.user?.login) {
             const login = issue.user.login;
             issueParticipantsMap.set(login, (issueParticipantsMap.get(login) || 0) + 1);
         }
 
-        if (issue.assignees && issue.assignees.length > 0) {
+        if (issue.assignees?.length > 0) {
             issue.assignees.forEach(assignee => {
                 if (assignee.login) {
                     issueParticipantsMap.set(assignee.login, (issueParticipantsMap.get(assignee.login) || 0) + 1);
@@ -95,17 +91,17 @@ async function getIssueQualityStats(owner, repoTitle) {
 
         const comments = commentRes.data;
         if (comments.length > 0) withComments++;
-        if (comments.some(comment => /!\[.*?\]\(.*?\)|<img\s+.*?>/i.test(comment.body || ""))) withImageComments++;
+        if (comments.some(c => /!\[.*?\]\(.*?\)|<img\s+.*?>/i.test(c.body || ""))) withImageComments++;
 
-        comments.forEach(comment => {
-            if (comment.user && comment.user.login) {
-                const login = comment.user.login;
+        comments.forEach(c => {
+            if (c.user?.login) {
+                const login = c.user.login;
                 issueParticipantsMap.set(login, (issueParticipantsMap.get(login) || 0) + 1);
             }
         });
 
         const mentionedInBody = (issue.body || "").includes("@");
-        const mentionsInComments = comments.some(comment => (comment.body || "").includes("@"));
+        const mentionsInComments = comments.some(c => (c.body || "").includes("@"));
         const multipleAssignees = issue.assignees && issue.assignees.length >= 2;
         if (multipleAssignees || mentionedInBody || mentionsInComments) collaborativeIssues++;
 
@@ -122,6 +118,8 @@ async function getIssueQualityStats(owner, repoTitle) {
         .map(([login, participations]) => ({ login, participations }));
 
     const stats = {
+        openIssuesCount,
+        closedIssuesCount,
         descriptionIssuesPercent: toPercent(withDescription).toFixed(2),
         imagedIssuesPercent: toPercent(withImages).toFixed(2),
         commentedIssuesPercent: toPercent(withComments).toFixed(2),
@@ -134,6 +132,8 @@ async function getIssueQualityStats(owner, repoTitle) {
         issueParticipants
     };
 
+    console.log("Issues abiertas:", stats.openIssuesCount);
+    console.log("Issues cerradas:", stats.closedIssuesCount);
     console.log("% Issues con descripción:", stats.descriptionIssuesPercent);
     console.log("% Issues con imágenes:", stats.imagedIssuesPercent);
     console.log("% Issues con comentarios:", stats.commentedIssuesPercent);
@@ -148,8 +148,6 @@ async function getIssueQualityStats(owner, repoTitle) {
     return stats;
 }
 
-
 module.exports = {
-    getIssueStats,
-    getIssueQualityStats,
+    getIssueStats
 };

@@ -1,28 +1,7 @@
 const axios = require("axios");
-const { getHeaders  } = require('./github');
+const { getHeaders } = require('./github');
 
-// Por defecto en la rama main
-async function getCommitStats(owner, repoTitle) {
-
-    const commitsUrl = `https://api.github.com/repos/${owner}/${repoTitle}/commits?per_page=1`;
-
-    const response = await axios.get(commitsUrl, { headers: getHeaders() });
-
-    const linkHeader = response.headers.link;
-    let commitCount = 0;
-
-    if (linkHeader) {
-        const match = linkHeader.match(/&page=(\d+)>; rel="last"/);
-        commitCount = match ? parseInt(match[1]) : response.data.length;
-    } else {
-        commitCount = response.data.length;
-    }
-
-    console.log("Total de commits:", commitCount);
-    return { commitCount };
-}
-
-async function getCommitQualityStats(owner, repoTitle) {
+async function getCommitStats(owner, repoTitle, startDate, endDate) {
     let page = 1;
     const perPage = 100;
     let allCommits = [];
@@ -40,10 +19,16 @@ async function getCommitQualityStats(owner, repoTitle) {
         page++;
     }
 
-    const total = allCommits.length;
-    if (total === 0) {
+    allCommits = allCommits.filter(commit => {
+        const commitDate = new Date(commit.commit.author.date);
+        return commitDate >= startDate && commitDate <= endDate;
+    });
+
+    const commitCount = allCommits.length;
+    if (commitCount === 0) {
         console.log("No hay commits en el repositorio.");
         return {
+            commitCount: 0,
             titledCommitsPercent: 0,
             descriptionCommitsPercent: 0,
             referencesCommitsPercent: 0,
@@ -86,12 +71,13 @@ async function getCommitQualityStats(owner, repoTitle) {
         }
     }
 
-    const toPercent = (n) => (n / total) * 100;
+    const toPercent = (n) => (n / commitCount) * 100;
 
     const commitParticipants = Array.from(commitParticipantsMap.entries())
         .map(([login, participations]) => ({ login, participations }));
 
     const stats = {
+        commitCount,
         titledCommitsPercent: toPercent(withTitleCommits).toFixed(2),
         descriptionCommitsPercent: toPercent(withDescriptionCommits).toFixed(2),
         referencesCommitsPercent: toPercent(withReferencesCommits).toFixed(2),
@@ -99,6 +85,7 @@ async function getCommitQualityStats(owner, repoTitle) {
         commitParticipants
     };
 
+    console.log("Total de commits:", stats.commitCount);
     console.log("% Commits con título personalizado:", stats.titledCommitsPercent);
     console.log("% Commits con descripción:", stats.descriptionCommitsPercent);
     console.log("% Commits con referencias a Issues o Pull Requests:", stats.referencesCommitsPercent);
@@ -108,8 +95,6 @@ async function getCommitQualityStats(owner, repoTitle) {
     return stats;
 }
 
-
 module.exports = {
-    getCommitStats,
-    getCommitQualityStats,
+    getCommitStats
 };

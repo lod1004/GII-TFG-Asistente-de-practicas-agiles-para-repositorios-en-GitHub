@@ -1,34 +1,27 @@
 const axios = require("axios");
 const { getHeaders } = require('./github');
 
-const getActions = async (owner, repo) => {
-
+const getActionsStats = async (owner, repoTitle, startDate, endDate) => {
+    let actionsCount = 0;
     try {
         const res = await axios.get(
-            `https://api.github.com/repos/${owner}/${repo}/contents/.github/workflows`,
+            `https://api.github.com/repos/${owner}/${repoTitle}/contents/.github/workflows`,
             { headers: getHeaders() }
         );
 
         const files = res.data || [];
-        const workflowFiles = files.filter(file =>
+        const workflows = files.filter(file =>
             file.name.endsWith(".yml") || file.name.endsWith(".yaml")
         );
 
-        console.log(`El repositorio tiene ${workflowFiles.length} workflow(s) de GitHub Actions`);
-
-        actionsCount = workflowFiles.length;
-
-        return { actionsCount }
-    } catch (error) {
-        if (error.response && error.response.status === 404) {
+        actionsCount = workflows.length;
+        console.log(`El repositorio tiene ${actionsCount} workflow(s) de GitHub Actions`);
+    } catch (err) {
+        if (err.response?.status === 404) {
             console.log("No se encontraron workflows en .github/workflows");
-            actionsCount = 0
-            return { actionsCount };
         }
     }
-};
 
-const getActionsSuccess = async (owner, repo) => {
     let page = 1;
     let actionsRuns = 0;
     let successfulRuns = 0;
@@ -36,35 +29,35 @@ const getActionsSuccess = async (owner, repo) => {
     try {
         while (true) {
             const res = await axios.get(
-                `https://api.github.com/repos/${owner}/${repo}/actions/runs?per_page=100&page=${page}`,
+                `https://api.github.com/repos/${owner}/${repoTitle}/actions/runs?per_page=100&page=${page}`,
                 { headers: getHeaders() }
             );
-
             const runs = res.data.workflow_runs || [];
             if (runs.length === 0) break;
 
-            actionsRuns += runs.length;
-            successfulRuns += runs.filter(run => run.conclusion === "success").length;
+            for (const run of runs) {
+                const createdAt = new Date(run.created_at);
+                if (createdAt >= startDate && createdAt <= endDate) {
+                    actionsRuns++;
+                    if (run.conclusion === "success") successfulRuns++;
+                }
+            }
 
+            if (runs.length < 100) break;
             page++;
         }
-
-        const actionsSuccess = actionsRuns > 0
-            ? parseFloat(((successfulRuns / actionsRuns) * 100).toFixed(2))
-            : 0;
-
-        console.log(`Ejecuciones totales de los workflows: ${actionsRuns}`);
-        console.log(`Workflows ejecutados con éxito: ${actionsSuccess}%`);
-
-        return { actionsRuns, actionsSuccess };
-    } catch (error) {
-        console.error("Error al obtener las ejecuciones de los workflows:", error.message);
-        return { actionsRuns: 0, actionsSuccess: 0 };
+    } catch (err) {
+        console.error("Error al obtener las ejecuciones de workflows:", err.message);
     }
+
+    const actionsSuccess = actionsRuns > 0
+        ? ((successfulRuns / actionsRuns) * 100).toFixed(2)
+        : 0;
+
+    console.log(`Ejecuciones totales de workflows: ${actionsRuns}`);
+    console.log(`Workflows ejecutados con éxito: ${actionsSuccess}%`);
+
+    return { actionsCount, actionsRuns, actionsSuccess };
 };
 
-
-module.exports = {
-    getActions,
-    getActionsSuccess
-};
+module.exports = { getActionsStats };
