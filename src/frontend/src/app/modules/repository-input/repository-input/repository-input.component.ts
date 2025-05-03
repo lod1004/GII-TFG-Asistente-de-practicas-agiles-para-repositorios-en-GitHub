@@ -17,6 +17,7 @@ export class RepositoryInputComponent implements OnInit {
     sourceRepositoryUrl: new FormControl<string>(''),
     useTimeIntervals: new FormControl<boolean>(false),
     useRelativeDates: new FormControl<boolean>(false),
+    averageDays: new FormControl<number>(15),
     startTimeInterval: new FormControl<number>(0),
     endTimeInterval: new FormControl<number>(0),
   });
@@ -89,6 +90,7 @@ export class RepositoryInputComponent implements OnInit {
         main: this.mainUrl!,
         examples: this.exampleUrls,
         useRelativeDates: this.repositoryForm.controls.useRelativeDates.value,
+        averageDays: this.repositoryForm.controls.averageDays.value,
         startTimeInterval: this.repositoryForm.controls.startTimeInterval.value,
         endTimeInterval: this.repositoryForm.controls.endTimeInterval.value
       };
@@ -97,6 +99,7 @@ export class RepositoryInputComponent implements OnInit {
         main: this.mainUrl!,
         examples: this.exampleUrls,
         useRelativeDates: true,
+        averageDays: this.repositoryForm.controls.averageDays.value,
         startTimeInterval: 0,
         endTimeInterval: 4
       };

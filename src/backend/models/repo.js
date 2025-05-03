@@ -10,6 +10,7 @@ const repoSchema = new mongoose.Schema({
 
   openIssuesCount: { type: Number, },
   closedIssuesCount: { type: Number, },
+  averageClosedIssues: { type: Number, },
   descriptionIssuesPercent: { type: Number, },
   commentedIssuesPercent: { type: Number, },
   imagedIssuesPercent: { type: Number, },
@@ -22,6 +23,7 @@ const repoSchema = new mongoose.Schema({
   issueParticipationPercent: { type: Number, },
 
   commitCount: { type: Number, },
+  averageCommits: { type: Number, },
   titledCommitsPercent: { type: Number, },
   descriptionCommitsPercent: { type: Number, },
   referencesCommitsPercent: { type: Number, },
@@ -30,6 +32,7 @@ const repoSchema = new mongoose.Schema({
 
   openPrCount: { type: Number, },
   closedPrCount: { type: Number, },
+  averageClosedPr: { type: Number, },
   reviewersPrPercent: { type: Number, },
   assigneesPrPercent: { type: Number, },
   labelsPrPercent: { type: Number, },
@@ -40,11 +43,15 @@ const repoSchema = new mongoose.Schema({
   actionsCount: { type: Number, },
   actionsRuns: { type: Number, },
   actionsSuccess: { type: Number, },
+  actionFrequency: { type: Number, },
+
   releasesCount: { type: Number, },
   tagsCount: { type: Number, },
   descriptionReleasesPercent: { type: Number, },
   collaborativeReleasesPercent: { type: Number, },
   releaseParticipationPercent: { type: Number, },
+
+  averageUserActivity: { type: Number, },
 
   isMain: { type: Boolean, required: true },
   createdAt: { type: Date, default: Date.now }
