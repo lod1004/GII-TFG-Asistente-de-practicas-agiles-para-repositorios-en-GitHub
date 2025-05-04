@@ -38,9 +38,9 @@ function getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate) 
                 reviewersPrPercent: 0,
                 assigneesPrPercent: 0,
                 labelsPrPercent: 0,
-                milestonesPrPercent: 0,
+                milestonedPrPercent: 0,
                 collaborativePrPercent: 0,
-                averageClosedPr,
+                averageClosedPr: 0,
                 prParticipants: []
             };
         }
@@ -82,7 +82,7 @@ function getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate) 
             reviewersPrPercent: toPercent(withReviewers),
             assigneesPrPercent: toPercent(withAssignees),
             labelsPrPercent: toPercent(withLabels),
-            milestonesPrPercent: toPercent(withMilestones),
+            milestonedPrPercent: toPercent(withMilestones),
             collaborativePrPercent: toPercent(collaborativePRs),
             averageClosedPr,
             prParticipants
@@ -93,7 +93,7 @@ function getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate) 
         console.log("% PRs con reviewers:", stats.reviewersPrPercent);
         console.log("% PRs con assignees:", stats.assigneesPrPercent);
         console.log("% PRs con labels:", stats.labelsPrPercent);
-        console.log("% PRs con milestone:", stats.milestonesPrPercent);
+        console.log("% PRs con milestone:", stats.milestonedPrPercent);
         console.log("% PRs colaborativas:", stats.collaborativePrPercent);
         console.log("Media de PRs (cada", averageDays, " días):", stats.averageClosedPr);
         console.log("Usuarios que participaron en PRs:", prParticipants);

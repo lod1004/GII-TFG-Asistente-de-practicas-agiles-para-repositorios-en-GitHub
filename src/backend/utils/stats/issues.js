@@ -40,7 +40,7 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
             return {
                 openIssuesCount,
                 closedIssuesCount,
-                averageClosedIssues,
+                averageClosedIssues: 0,
                 descriptionIssuesPercent: 0,
                 imagedIssuesPercent: 0,
                 commentedIssuesPercent: 0,

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RepositoryService } from '../../../services/repository.service';
+import { RepositoryService } from '../../services/repository.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { MaterialModule } from '../../shared/material.module';
+import { MaterialModule } from '../shared/material.module';
 
 @Component({
   selector: 'app-repository-input',

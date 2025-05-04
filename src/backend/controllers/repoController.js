@@ -1,12 +1,19 @@
 const Repository = require("../models/repo");
 const Counter = require("../models/counter");
-const { getRepoPrimaryStats } = require("../utils/github");
-const { getCommitStats } = require("../utils/commits");
-const { getActionsStats } = require("../utils/actions");
-const { getPullRequestStats } = require("../utils/pullRequests");
-const { getReleaseStats } = require("../utils/releases");
-const { getIssueStats } = require("../utils/issues");
-const { getParticipantsStats } = require("../utils/participants");
+const IssueStats = require("../models/issue_stats");
+const CommitStats = require("../models/commit_stats");
+const PullRequestStats = require("../models/pull_request_stats");
+const ActionStats = require("../models/action_stats");
+const ReleaseStats = require("../models/release_stats");
+const ParticipantStats = require("../models/participant_stats");
+
+const { getRepoPrimaryStats } = require("../utils/stats/github");
+const { getCommitStats } = require("../utils/stats/commits");
+const { getActionsStats } = require("../utils/stats/actions");
+const { getPullRequestStats } = require("../utils/stats/pullRequests");
+const { getReleaseStats } = require("../utils/stats/releases");
+const { getIssueStats } = require("../utils/stats/issues");
+const { getParticipantsStats } = require("../utils/stats/participants");
 
 async function getNextId(sequenceName) {
   const counter = await Counter.findOneAndUpdate(
@@ -17,12 +24,110 @@ async function getNextId(sequenceName) {
   return counter.value;
 }
 
+async function saveIssueStats(repoId, data) {
+  const { issueParticipants, ...issueStats } = data;
+  await IssueStats.create({ repoId, ...issueStats });
+  return issueParticipants;
+}
+
+async function saveCommitStats(repoId, data) {
+  const { commitParticipants, ...commitStats } = data;
+  await CommitStats.create({ repoId, ...commitStats });
+  return commitParticipants;
+}
+
+async function savePRStats(repoId, data) {
+  const { prParticipants, ...prStats } = data;
+  await PullRequestStats.create({ repoId, ...prStats });
+  return prParticipants;
+}
+
+async function saveActionStats(repoId, data) {
+  await ActionStats.create({ repoId, ...data });
+}
+
+async function saveReleaseStats(repoId, data) {
+  const { releaseParticipants, ...releaseStats } = data;
+  await ReleaseStats.create({ repoId, ...releaseStats });
+  return releaseParticipants;
+}
+
+async function saveParticipantStats(repoId, data) {
+  await ParticipantStats.create({ repoId, ...data });
+}
+
+async function processRepository({ url, isMain, averageDays, useRelativeDates, startTimeInterval, endTimeInterval }) {
+  const parsed = await getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, endTimeInterval);
+  if (!parsed) return null;
+
+  const repoId = await getNextId("repositoryId");
+  const { owner, repoTitle, startDate, endDate } = parsed;
+
+  const issueStats = await getIssueStats(owner, repoTitle, averageDays, startDate, endDate);
+  const commitStats = await getCommitStats(owner, repoTitle, averageDays, startDate, endDate);
+  const prStats = await getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate);
+  const actionStats = await getActionsStats(owner, repoTitle, startDate, endDate);
+  const releaseStats = await getReleaseStats(owner, repoTitle, averageDays, startDate, endDate);
+
+  await Repository.create({
+    id: repoId,
+    url,
+    owner,
+    repoTitle,
+    startDate,
+    endDate,
+    isMain,
+    createdAt: new Date()
+  });
+
+  const issueParticipants = await saveIssueStats(repoId, issueStats);
+  const commitParticipants = await saveCommitStats(repoId, commitStats);
+  const prParticipants = await savePRStats(repoId, prStats);
+  await saveActionStats(repoId, actionStats);
+  const releaseParticipants = await saveReleaseStats(repoId, releaseStats);
+
+  const participantStats = await getParticipantsStats(
+    issueParticipants,
+    commitParticipants,
+    prParticipants,
+    releaseParticipants,
+    averageDays,
+    startDate,
+    endDate
+  );
+  await saveParticipantStats(repoId, participantStats);
+
+  return { id: repoId, url };
+}
+
 const getRepositories = async (req, res) => {
   try {
-    const repos = await Repository.find();
-    res.json(repos);
+    const repositories = await Repository.find();
+    const enrichedRepositories = await Promise.all(repositories.map(async (repo) => {
+      const [issues, commits, pulls, actions, releases, participants] = await Promise.all([
+        IssueStats.findOne({ repoId: repo.id }),
+        CommitStats.findOne({ repoId: repo.id }),
+        PullRequestStats.findOne({ repoId: repo.id }),
+        ActionStats.findOne({ repoId: repo.id }),
+        ReleaseStats.findOne({ repoId: repo.id }),
+        ParticipantStats.findOne({ repoId: repo.id }),
+      ]);
+
+      return {
+        ...repo.toObject(),
+        issueStats: issues || {},
+        commitStats: commits || {},
+        pullRequestStats: pulls || {},
+        actionStats: actions || {},
+        releaseStats: releases || {},
+        participantStats: participants || {}
+      };
+    }));
+
+    res.json(enrichedRepositories);
   } catch (error) {
-    res.status(500).json({ message: "Error al obtener los repositorios" });
+    console.error("Error al obtener repositorios y estadísticas:", error.message);
+    res.status(500).json({ message: "Error al obtener los repositorios y sus estadísticas" });
   }
 };
 
@@ -33,169 +138,43 @@ const createRepository = async (req, res) => {
     return res.status(400).json({ message: "Se requiere una URL principal y una o varias URLs de ejemplo" });
   }
 
-  const parsedMain = await getRepoPrimaryStats(main, useRelativeDates, startTimeInterval, endTimeInterval );
-  if (!parsedMain) {
-    return res.status(400).json({ message: "URL principal inválida" });
-  }
-  const repositories = [];
-
-  await Repository.deleteMany({});
   try {
-    const newId = await getNextId("repositoryId");
-    const { owner, repoTitle, startDate, endDate } = parsedMain;
+    await Promise.all([
+      Repository.deleteMany({}),
+      IssueStats.deleteMany({}),
+      CommitStats.deleteMany({}),
+      PullRequestStats.deleteMany({}),
+      ActionStats.deleteMany({}),
+      ReleaseStats.deleteMany({}),
+      ParticipantStats.deleteMany({})
+    ]);
 
-    const { openIssuesCount, closedIssuesCount, averageClosedIssues, descriptionIssuesPercent, commentedIssuesPercent, 
-      imagedIssuesPercent, assignedIssuesPercent, labeledIssuesPercent, milestonedIssuesPercent, 
-      storyPointsIssuesPercent, reopenedIssuesPercent, collaborativeIssuesPercent, issueParticipants } = await getIssueStats(owner, repoTitle, averageDays, startDate, endDate);
-
-    const { commitCount, averageCommits, titledCommitsPercent, descriptionCommitsPercent, referencesCommitsPercent, 
-      collaborativeCommitsPercent, commitParticipants } = await getCommitStats(owner, repoTitle, averageDays, startDate, endDate);
-   
-    const { openPrCount, closedPrCount, averageClosedPr, reviewersPrPercent, assigneesPrPercent, 
-      labelsPrPercent, milestonesPrPercent, collaborativePrPercent, prParticipants } = await getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate);
-    
-    const { actionsCount, actionsRuns, actionsSuccess, actionFrequency } = await getActionsStats(owner, repoTitle, startDate, endDate);
-
-    const { releasesCount, averageReleases, tagsCount, descriptionReleasesPercent, collaborativeReleasesPercent, 
-      releaseParticipants } = await getReleaseStats(owner, repoTitle, averageDays, startDate, endDate);
-    const { commitParticipationPercent, issueParticipationPercent, prParticipationPercent, releaseParticipationPercent, 
-      averageUserActivity } = await getParticipantsStats(issueParticipants, commitParticipants, prParticipants, releaseParticipants, averageDays, startDate, endDate);
-
-    const mainRepo = new Repository({
-      id: newId,
+    const processedMain = await processRepository({
       url: main,
-      owner,
-      repoTitle,
-      startDate,
-      endDate,
-      openIssuesCount,
-      closedIssuesCount,
-      averageClosedIssues,
-      descriptionIssuesPercent,
-      commentedIssuesPercent,
-      imagedIssuesPercent,
-      assignedIssuesPercent,
-      labeledIssuesPercent,
-      milestonedIssuesPercent,
-      storyPointsIssuesPercent, 
-      reopenedIssuesPercent, 
-      collaborativeIssuesPercent,
-      issueParticipationPercent, 
-      commitCount,
-      averageCommits,
-      titledCommitsPercent,
-      descriptionCommitsPercent,
-      referencesCommitsPercent,
-      collaborativeCommitsPercent, 
-      commitParticipationPercent,
-      openPrCount,
-      closedPrCount,
-      averageClosedPr,
-      reviewersPrPercent,
-      assigneesPrPercent,
-      labelsPrPercent,
-      milestonesPrPercent,
-      collaborativePrPercent, 
-      prParticipationPercent,
-      actionsCount,
-      actionsRuns,
-      actionsSuccess,
-      actionFrequency,
-      releasesCount,
-      averageReleases,
-      tagsCount,
-      descriptionReleasesPercent,
-      collaborativeReleasesPercent, 
-      releaseParticipationPercent,
-      averageUserActivity,
-      isMain: boolean = true,
-      createdAt: new Date()
+      isMain: true,
+      averageDays,
+      useRelativeDates,
+      startTimeInterval,
+      endTimeInterval
     });
 
-    await mainRepo.save();
-    repositories.push(mainRepo);
-
+    const processedExamples = [];
     for (const url of examples) {
-      const parsed = await getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, endTimeInterval );
-      if (!parsed) continue;
-
-      const exampleId = await getNextId("repositoryId");
-
-      const { owner, repoTitle, startDate, endDate } = parsed;
-
-      const { openIssuesCount, closedIssuesCount, averageClosedIssues, descriptionIssuesPercent, commentedIssuesPercent, 
-        imagedIssuesPercent, assignedIssuesPercent, labeledIssuesPercent, milestonedIssuesPercent, 
-        storyPointsIssuesPercent, reopenedIssuesPercent, collaborativeIssuesPercent, issueParticipants } = await getIssueStats(owner, repoTitle, averageDays, startDate, endDate);
-  
-      const { commitCount, averageCommits, titledCommitsPercent, descriptionCommitsPercent, referencesCommitsPercent, 
-        collaborativeCommitsPercent, commitParticipants } = await getCommitStats(owner, repoTitle, averageDays, startDate, endDate);
-     
-      const { openPrCount, closedPrCount, averageClosedPr, reviewersPrPercent, assigneesPrPercent, 
-        labelsPrPercent, milestonesPrPercent, collaborativePrPercent, prParticipants } = await getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate);
-      
-      const { actionsCount, actionsRuns, actionsSuccess, actionFrequency } = await getActionsStats(owner, repoTitle, startDate, endDate);
-  
-      const { releasesCount, averageReleases, tagsCount, descriptionReleasesPercent, collaborativeReleasesPercent, 
-        releaseParticipants } = await getReleaseStats(owner, repoTitle, averageDays, startDate, endDate);
-      const { commitParticipationPercent, issueParticipationPercent, prParticipationPercent, releaseParticipationPercent, 
-        averageUserActivity } = await getParticipantsStats(issueParticipants, commitParticipants, prParticipants, releaseParticipants, averageDays, startDate, endDate);
-  
-      const exampleRepo = new Repository({
-        id: exampleId,
-        url: main,
-        owner,
-        repoTitle,
-        startDate,
-        endDate,
-        openIssuesCount,
-        closedIssuesCount,
-        averageClosedIssues,
-        descriptionIssuesPercent,
-        commentedIssuesPercent,
-        imagedIssuesPercent,
-        assignedIssuesPercent,
-        labeledIssuesPercent,
-        milestonedIssuesPercent,
-        storyPointsIssuesPercent, 
-        reopenedIssuesPercent, 
-        collaborativeIssuesPercent,
-        issueParticipationPercent, 
-        commitCount,
-        averageCommits,
-        titledCommitsPercent,
-        descriptionCommitsPercent,
-        referencesCommitsPercent,
-        collaborativeCommitsPercent, 
-        commitParticipationPercent,
-        openPrCount,
-        closedPrCount,
-        averageClosedPr,
-        reviewersPrPercent,
-        assigneesPrPercent,
-        labelsPrPercent,
-        milestonesPrPercent,
-        collaborativePrPercent, 
-        prParticipationPercent,
-        actionsCount,
-        actionsRuns,
-        actionsSuccess,
-        actionFrequency,
-        releasesCount,
-        averageReleases,
-        tagsCount,
-        descriptionReleasesPercent,
-        collaborativeReleasesPercent, 
-        releaseParticipationPercent,
-        averageUserActivity,
-        isMain: boolean = false,
-        createdAt: new Date()
+      const result = await processRepository({
+        url,
+        isMain: false,
+        averageDays,
+        useRelativeDates,
+        startTimeInterval,
+        endTimeInterval
       });
-
-      await exampleRepo.save();
-      repositories.push(exampleRepo);
+      if (result) processedExamples.push(result);
     }
 
-    res.status(201).json({ message: "Repositorios procesados correctamente", repositories });
+    res.status(201).json({
+      message: "Repositorios procesados correctamente",
+      repositories: [processedMain, ...processedExamples]
+    });
   } catch (error) {
     console.error("Error al procesar las URLs:", error.message, error);
     res.status(500).json({ message: "Error al obtener datos de los repositorios" });
@@ -203,13 +182,6 @@ const createRepository = async (req, res) => {
 };
 
 module.exports = {
-  getRepositories: async (req, res) => {
-    try {
-      const repos = await Repository.find();
-      res.json(repos);
-    } catch (error) {
-      res.status(500).json({ message: "Error al obtener los repositorios" });
-    }
-  },
+  getRepositories,
   createRepository
 };

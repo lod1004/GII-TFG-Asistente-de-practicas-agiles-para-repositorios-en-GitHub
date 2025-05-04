@@ -39,7 +39,7 @@ function getCommitStats(owner, repoTitle, averageDays, startDate, endDate) {
                 descriptionCommitsPercent: 0,
                 referencesCommitsPercent: 0,
                 collaborativeCommitsPercent: 0,
-                averageCommits,
+                averageCommits: 0,
                 commitParticipants: []
             };
         }

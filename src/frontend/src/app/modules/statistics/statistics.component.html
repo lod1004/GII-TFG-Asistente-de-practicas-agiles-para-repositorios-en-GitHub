@@ -1,128 +1,18 @@
 <div style="margin-top: 2rem;">
     <div style="display: flex; justify-content: center; margin-left: 32%;">
         <button (click)="prevRepo()" [disabled]="repoIndex === 0">Anterior</button>
-        <button (click)="nextRepo()"
-            [disabled]="repoIndex === comparisonRepositories.length - 1">Siguiente</button>
+        <button (click)="nextRepo()" [disabled]="repoIndex === comparisonRepositories.length - 1">Siguiente</button>
     </div>
+
     <div style="display: flex; justify-content: space-between;">
         <div style="width: 50%; margin-left: 12.5%;">
-            <h2>Repositorio Principal</h2>
-            <div *ngIf="mainRepository">
-                <strong>{{ mainRepository.repoTitle }}</strong>
-                <br>
-                <span>Analizado desde {{ mainRepository.startDate }} hasta {{ mainRepository.endDate }}</span>
-                <br>
-                <strong>Actividad:</strong>
-                <p><span>Media de actividad:</span> {{ mainRepository.averageUserActivity }}</p>
-                <strong>Commits:</strong>
-                <p><span>Nº de Commits:</span> {{ mainRepository.commitCount }}</p>
-                <p><span>Media de Commits:</span> {{ mainRepository.averageCommits }}</p>
-                <p><span>Commits con título personalizado:</span> {{ mainRepository.titledCommitsPercent | number:'1.0-2' }}%</p>
-                <p><span>Commits con descripción:</span> {{ mainRepository.descriptionCommitsPercent | number:'1.0-2' }}%</p>
-                <p><span>Commits con referencias a Issues y Pull Requests:</span> {{ mainRepository.referencesCommitsPercent | number:'1.0-2' }}%</p>
-                <p><span>Commits con colaboraciones:</span> {{ mainRepository.collaborativeCommitsPercent | number:'1.0-2' }}%</p>
-                <p><span>Participación de los colaboradores en los Commits:</span> {{ mainRepository.commitParticipationPercent | number:'1.0-2' }}%</p>
-                <br>
-                <strong>Issues:</strong>
-                <p><span>Issues abiertos:</span> {{ mainRepository.openIssuesCount }}</p>
-                <p><span>Issues cerrados:</span> {{ mainRepository.closedIssuesCount }}</p>
-                <p><span>Media de Issues cerrados:</span> {{ mainRepository.averageClosedIssues }}</p>
-                <p><span>Issues con descripción:</span> {{ mainRepository.descriptionIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con comentarios:</span> {{ mainRepository.commentedIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con imágenes:</span> {{ mainRepository.imagedIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con personas asignadas:</span> {{ mainRepository.assignedIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con etiquetas:</span> {{ mainRepository.labeledIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con etiquetas tipo StoryPoints:</span> {{ mainRepository.storyPointsIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con milestones:</span> {{ mainRepository.milestonedIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues reabiertas:</span> {{ mainRepository.reopenedIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con colaboraciones:</span> {{ mainRepository.collaborativeIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Participación de los colaboradores en las Issues:</span> {{ mainRepository.issueParticipationPercent | number:'1.0-2' }}%</p>
-                <br>
-                <strong>Pull Requests:</strong>
-                <p><span>Pull Requests abiertas:</span> {{ mainRepository.openPrCount }}</p>
-                <p><span>Pull Requests cerradas:</span> {{ mainRepository.closedPrCount }}</p>
-                <p><span>Media de Pull Requests cerradas:</span> {{ mainRepository.averageClosedPr }}</p>
-                <p><span>Pull Requests con revisores:</span> {{ mainRepository.reviewersPrPercent | number:'1.0-2' }}%</p>
-                <p><span>Pull Requests con personas asignadas:</span> {{ mainRepository.assigneesPrPercent | number:'1.0-2' }}%</p>
-                <p><span>Pull Requests con etiquetas:</span> {{ mainRepository.labelsPrPercent | number:'1.0-2' }}%</p>
-                <p><span>Pull Requests con milestones:</span> {{ mainRepository.milestonesPrPercent | number:'1.0-2' }}%</p>
-                <p><span>Pull Requests con colaboraciones:</span> {{ mainRepository.collaborativePrPercent | number:'1.0-2' }}%</p>
-                <p><span>Participación de los colaboradores en las Pull Requests:</span> {{ mainRepository.prParticipationPercent | number:'1.0-2' }}%</p>
-                <br>
-                <strong>Actions:</strong>
-                <p><span>Nº de ficheros workflow de GitHub Actions:</span> {{ mainRepository.actionsCount }}</p>
-                <p><span>Nº de ficheros workflow de GitHub Actions:</span> {{ mainRepository.actionsRuns }}</p>
-                <p><span>Nº de ficheros workflow de GitHub Actions:</span> {{ mainRepository.actionsSuccess | number:'1.0-2' }}%</p>
-                <p><span>Frecuencia media de ejecución de workflows: </span> {{ mainRepository.actionFrequency }}</p>
-                <br>
-                <strong>Releases:</strong>
-                <p><span>Nº de Releases:</span> {{ mainRepository.averageReleases }}</p>
-                <p><span>Media de de Releases:</span> {{ mainRepository.releasesCount }}</p>
-                <p><span>Releases con descripción:</span> {{ mainRepository.descriptionReleasesPercent | number:'1.0-2' }}%</p>
-                <p><span>Releases con colaboraciones:</span> {{ mainRepository.collaborativeReleasesPercent | number:'1.0-2' }}%</p>
-                <p><span>Participación de los colaboradores en las Releases:</span> {{ mainRepository.releaseParticipationPercent | number:'1.0-2' }}%</p>
-                <p><span>Nº de Tags:</span> {{ mainRepository.tagsCount }}</p>
-            </div>
+            <h1>Repositorio Principal</h1>
+            <app-statistics-list [repo]="mainRepository"></app-statistics-list>
         </div>
 
         <div style="width: 50%; margin-left: 12.5%;">
-            <h2>Repositorio Comparado</h2>
-            <div *ngIf="showedRepo">
-                <strong>{{ showedRepo.repoTitle }}</strong>
-                <br>
-                <span>Analizado desde {{ showedRepo.startDate }} hasta {{ showedRepo.endDate }}</span>
-                <br>
-                <strong>Actividad:</strong>
-                <p><span>Media de actividad:</span> {{ showedRepo.averageUserActivity }}</p>
-                <strong>Commits:</strong>
-                <p><span>Nº de Commits:</span> {{ showedRepo.commitCount }}</p>
-                <p><span>Media de Commits:</span> {{ showedRepo.averageCommits }}</p>
-                <p><span>Commits con título personalizado:</span> {{ showedRepo.titledCommitsPercent | number:'1.0-2' }}%</p>
-                <p><span>Commits con descripción:</span> {{ showedRepo.descriptionCommitsPercent | number:'1.0-2' }}%</p>
-                <p><span>Commits con referencias a Issues y Pull Requests:</span> {{ showedRepo.referencesCommitsPercent | number:'1.0-2' }}%</p>
-                <p><span>Commits con colaboraciones:</span> {{ showedRepo.collaborativeCommitsPercent | number:'1.0-2' }}%</p>
-                <p><span>Participación de los colaboradores en los Commits:</span> {{ showedRepo.commitParticipationPercent | number:'1.0-2' }}%</p>
-                <br>
-                <strong>Issues:</strong>
-                <p><span>Issues abiertos:</span> {{ showedRepo.openIssuesCount }}</p>
-                <p><span>Issues cerrados:</span> {{ showedRepo.closedIssuesCount }}</p>
-                <p><span>Media de Issues cerrados:</span> {{ showedRepo.averageClosedIssues }}</p>
-                <p><span>Issues con descripción:</span> {{ showedRepo.descriptionIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con comentarios:</span> {{ showedRepo.commentedIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con imágenes:</span> {{ showedRepo.imagedIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con personas asignadas:</span> {{ showedRepo.assignedIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con etiquetas:</span> {{ showedRepo.labeledIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con etiquetas tipo StoryPoints:</span> {{ showedRepo.storyPointsIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con milestones:</span> {{ showedRepo.milestonedIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues reabiertas:</span> {{ showedRepo.reopenedIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Issues con colaboraciones:</span> {{ showedRepo.collaborativeIssuesPercent | number:'1.0-2' }}%</p>
-                <p><span>Participación de los colaboradores en las Issues:</span> {{ showedRepo.issueParticipationPercent | number:'1.0-2' }}%</p>
-                <br>
-                <strong>Pull Requests:</strong>
-                <p><span>Pull Requests abiertas:</span> {{ showedRepo.openPrCount }}</p>
-                <p><span>Pull Requests cerradas:</span> {{ showedRepo.closedPrCount }}</p>
-                <p><span>Media de Pull Requests cerradas:</span> {{ showedRepo.averageClosedPr }}</p>
-                <p><span>Pull Requests con revisores:</span> {{ showedRepo.reviewersPrPercent | number:'1.0-2' }}%</p>
-                <p><span>Pull Requests con personas asignadas:</span> {{ showedRepo.assigneesPrPercent | number:'1.0-2' }}%</p>
-                <p><span>Pull Requests con etiquetas:</span> {{ showedRepo.labelsPrPercent | number:'1.0-2' }}%</p>
-                <p><span>Pull Requests con milestones:</span> {{ showedRepo.milestonesPrPercent | number:'1.0-2' }}%</p>
-                <p><span>Pull Requests con colaboraciones:</span> {{ showedRepo.collaborativePrPercent | number:'1.0-2' }}%</p>
-                <p><span>Participación de los colaboradores en las Pull Requests:</span> {{ showedRepo.prParticipationPercent | number:'1.0-2' }}%</p>
-                <br>
-                <strong>Actions:</strong>
-                <p><span>Nº de ficheros workflow de GitHub Actions:</span> {{ showedRepo.actionsCount }}</p>
-                <p><span>Nº de ficheros workflow de GitHub Actions:</span> {{ showedRepo.actionsRuns }}</p>
-                <p><span>Nº de ficheros workflow de GitHub Actions:</span> {{ showedRepo.actionsSuccess | number:'1.0-2' }}%</p>
-                <p><span>Frecuencia media de ejecución de workflows: </span> {{ showedRepo.actionFrequency }}</p>
-                <br>
-                <strong>Releases:</strong>
-                <p><span>Nº de Releases:</span> {{ showedRepo.averageReleases }}</p>
-                <p><span>Media de de Releases:</span> {{ showedRepo.releasesCount }}</p>
-                <p><span>Releases con descripción:</span> {{ showedRepo.descriptionReleasesPercent | number:'1.0-2' }}%</p>
-                <p><span>Releases con colaboraciones:</span> {{ showedRepo.collaborativeReleasesPercent | number:'1.0-2' }}%</p>
-                <p><span>Participación de los colaboradores en las Releases:</span> {{ showedRepo.releaseParticipationPercent | number:'1.0-2' }}%</p>
-                <p><span>Nº de Tags:</span> {{ showedRepo.tagsCount }}</p>
-            </div>
+            <h1>Repositorio Comparado</h1>
+            <app-statistics-list [repo]="showedRepo"></app-statistics-list>
         </div>
     </div>
 </div>

@@ -89,7 +89,7 @@ function getReleaseStats(owner, repoTitle, averageDays, startDate, endDate) {
             tagsCount,
             descriptionReleasesPercent: toPercent(withDescription),
             collaborativeReleasesPercent: toPercent(collaborativeReleases),
-            averageReleases,
+            averageReleases: 0,
             releaseParticipants
         };
 
