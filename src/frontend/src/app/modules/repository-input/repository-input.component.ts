@@ -108,7 +108,7 @@ export class RepositoryInputComponent implements OnInit {
     this.repoService.sendRepositoryUrls(payload).subscribe({
       next: (res) => {
         console.log('Enviado correctamente:', res);
-        this.router.navigate(['statistics'])
+        this.router.navigate(['results'])
       },
       error: (err) => console.error('Error al enviar las URLs:', err)
     });

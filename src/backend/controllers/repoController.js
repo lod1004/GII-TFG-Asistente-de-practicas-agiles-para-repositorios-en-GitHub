@@ -6,6 +6,9 @@ const PullRequestStats = require("../models/pull_request_stats");
 const ActionStats = require("../models/action_stats");
 const ReleaseStats = require("../models/release_stats");
 const ParticipantStats = require("../models/participant_stats");
+const RulesResult = require("../models/rules_result");
+
+const { evaluateAllRules } = require("../utils/rules/rule-evaluator");
 
 const { getRepoPrimaryStats } = require("../utils/stats/github");
 const { getCommitStats } = require("../utils/stats/commits");
@@ -14,6 +17,7 @@ const { getPullRequestStats } = require("../utils/stats/pullRequests");
 const { getReleaseStats } = require("../utils/stats/releases");
 const { getIssueStats } = require("../utils/stats/issues");
 const { getParticipantsStats } = require("../utils/stats/participants");
+const participant_stats = require("../models/participant_stats");
 
 async function getNextId(sequenceName) {
   const counter = await Counter.findOneAndUpdate(
@@ -131,6 +135,16 @@ const getRepositories = async (req, res) => {
   }
 };
 
+const getRulesResults = async (req, res) => {
+  try {
+    const rules = await RulesResult.find().sort({ createdAt: -1 });
+    res.json({ rules });
+  } catch (error) {
+    console.error("Error al recuperar resultados de reglas:", error.message);
+    res.status(500).json({ message: "Error al obtener resultados de reglas." });
+  }
+};
+
 const createRepository = async (req, res) => {
   const { main, examples, useRelativeDates, averageDays, startTimeInterval, endTimeInterval } = req.body;
 
@@ -171,6 +185,32 @@ const createRepository = async (req, res) => {
       if (result) processedExamples.push(result);
     }
 
+    const mainRepoStats = {
+      issue_stats: await IssueStats.findOne({ repoId: processedMain.id }),
+      commit_stats: await CommitStats.findOne({ repoId: processedMain.id }),
+      pull_request_stats: await PullRequestStats.findOne({ repoId: processedMain.id }),
+      release_stats: await ReleaseStats.findOne({ repoId: processedMain.id }),
+      action_stats: await ActionStats.findOne({ repoId: processedMain.id }),
+      participant_stats: await ParticipantStats.findOne({ repoId: processedMain.id }),
+    };
+    
+    const comparisonReposStats = [];
+    for (const { id } of processedExamples) {
+      comparisonReposStats.push({
+        issue_stats: await IssueStats.findOne({ repoId: id }),
+        commit_stats: await CommitStats.findOne({ repoId: id }),
+        pull_request_stats: await PullRequestStats.findOne({ repoId: id }),
+        release_stats: await ReleaseStats.findOne({ repoId: id }),
+        action_stats: await ActionStats.findOne({ repoId: id }),
+        participant_stats: await ParticipantStats.findOne({ repoId: id }),
+      });
+    }
+    
+    const rulesResults = evaluateAllRules(mainRepoStats, comparisonReposStats);
+
+    await RulesResult.deleteMany({});
+    await RulesResult.insertMany(rulesResults);
+
     res.status(201).json({
       message: "Repositorios procesados correctamente",
       repositories: [processedMain, ...processedExamples]
@@ -183,5 +223,6 @@ const createRepository = async (req, res) => {
 
 module.exports = {
   getRepositories,
+  getRulesResults,
   createRepository
 };

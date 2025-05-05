@@ -7,7 +7,6 @@ const participantStatsSchema = new mongoose.Schema({
     commitParticipationPercent: Number,
     prParticipationPercent: Number,
     releaseParticipationPercent: Number,
-
     averageUserActivity: Number
 });
 

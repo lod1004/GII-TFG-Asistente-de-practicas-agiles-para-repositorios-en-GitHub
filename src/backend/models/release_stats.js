@@ -8,7 +8,6 @@ const releaseStatsSchema = new mongoose.Schema({
     tagsCount: Number,
     descriptionReleasesPercent: Number,
     collaborativeReleasesPercent: Number,
-    releaseParticipationPercent: Number,
 });
 
 module.exports = mongoose.model("ReleaseStats", releaseStatsSchema);

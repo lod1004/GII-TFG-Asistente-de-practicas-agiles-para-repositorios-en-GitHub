@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RepositoryInputComponent } from '../modules/repository-input/repository-input.component';
 import { StatisticsComponent } from '../modules/statistics/statistics.component';
+import { ResultsComponent } from '../modules/results/results.component';
 
 const routes: Routes = [
   {
     path: 'add-repositories',
     component: RepositoryInputComponent,
+  },
+  {
+    path: 'results',
+    component: ResultsComponent,
   },
   {
     path: 'statistics',

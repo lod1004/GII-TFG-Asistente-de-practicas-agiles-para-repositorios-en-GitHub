@@ -1,0 +1,42 @@
+<h1>Resultados</h1>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let rule of rulesResults">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ rule.rule }}
+            </mat-panel-title>
+            <span>
+              {{ rule.passed }}
+            </span>
+          </mat-expansion-panel-header>
+  
+      <p><strong>Descripción:</strong> {{ rule.description }}</p>
+      <p><strong>Explicación:</strong> {{ rule.message }}</p>
+  
+      <table mat-table [dataSource]="rule.details">
+        <ng-container matColumnDef="label">
+          <th mat-header-cell *matHeaderCellDef> Indicador </th>
+          <td mat-cell *matCellDef="let detail"> {{ detail.label }} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef> Valor </th>
+          <td mat-cell *matCellDef="let detail"> {{ detail.value }} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="evaluation">
+          <th mat-header-cell *matHeaderCellDef> Evaluación </th>
+          <td mat-cell *matCellDef="let detail"> {{ detail.evaluation }} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="comparedWith">
+          <th mat-header-cell *matHeaderCellDef> Comparado con </th>
+          <td mat-cell *matCellDef="let detail"> {{ detail.comparedWith.join(', ') }} </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="['label', 'value', 'evaluation', 'comparedWith']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['label', 'value', 'evaluation', 'comparedWith'];"></tr>
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+  

@@ -23,6 +23,12 @@ async function getActionsStats(owner, repoTitle, startDate, endDate) {
     } catch (err) {
         if (err.response?.status === 404) {
             console.log("No se encontraron workflows en .github/workflows.");
+            return {
+                actionsCount: 0,
+                actionsRuns: 0,
+                actionsSuccess: 0,
+                actionFrequency: 0,
+            }
         } else {
             console.error("Error al obtener los workflows:", err.message);
         }

@@ -6,15 +6,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RepositoryService {
-  private apiUrl = 'http://localhost:5000/api/repos'; 
+  private apiUrl = 'http://localhost:5000/api'; 
 
   constructor(private http: HttpClient) {}
 
   sendRepositoryUrls(payload: { main: string; examples: string[], useRelativeDates:any, averageDays: any, startTimeInterval: any, endTimeInterval: any }) {
-    return this.http.post('http://localhost:5000/api/repos', payload);
+    return this.http.post(`${this.apiUrl}/repos`, payload);
   }
 
   getAllRepositories(): Observable<any> {
-    return this.http.get(this.apiUrl);
+    return this.http.get(`${this.apiUrl}/repos`);
+  }
+
+  getRulesResults(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/rules`);
   }
 }
