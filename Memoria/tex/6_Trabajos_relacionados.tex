@@ -1,3 +1,19 @@
 \capitulo{6}{Trabajos relacionados}
 
-Este apartado sería parecido a un estado del arte de una tesis o tesina. En un trabajo final grado no parece obligada su presencia, aunque se puede dejar a juicio del tutor el incluir un pequeño resumen comentado de los trabajos y proyectos ya realizados en el campo del proyecto en curso. 
+\section{Documentación de la evolución de proyectos en el tiempo}
+
+Uno de los aspectos diferenciales del presente proyecto frente a herramientas similares es su capacidad para analizar la evolución temporal de los repositorios software. Esta funcionalidad permite al usuario seleccionar rangos de fechas personalizados sobre los cuales se calcularán las métricas, facilitando así el seguimiento detallado del progreso, mantenimiento y salud de un proyecto a lo largo del tiempo. Esta característica no está presente en muchas de las herramientas analizadas, donde los análisis se realizan de forma estática y centrados en el estado actual del repositorio.
+
+Gracias a esta funcionalidad temporal, el usuario puede, por ejemplo, evaluar cómo ha cambiado la calidad del repositorio desde el inicio del mismo, o comprobar si el uso de las prácticas ágiles de desarrollo han tenido impacto en la velocidad y el desarrollo del mismo. Esta capacidad resulta especialmente útil en contextos docentes (como proyectos fin de carrera o asignaturas de carreras relacionadas a la informática), donde se requiere un seguimiento detallado y didáctico de la evolución del trabajo de los estudiantes.
+
+Además, incluye la posibilidad de realizar tanto análisis relativos como análisis absolutos, algo poco común en herramientas similares. Esto permite no sólo se observar si un repositorio mejora o empeora con el paso de unidades de tiempo, si no también con el paso de las distintas fases de desarrollo del proyecto. Por ejemplo, se puede observar si la definición de "Done" se respeta de forma más consistente con el paso de los sprints, o si las prácticas de integración continua se estabilizan a lo largo de los meses.
+
+Esta funcionalidad no se recoge en otras herramientas como \textit{Criticality-Score}, \textit{Agile-Metrics} o \textit{Activity-API}, las cuales realizan análisis puntuales y no permiten al usuario especificar periodos temporales personalizados. Los tres proyectos mencionados abordan el análisis de proyectos de software desde distintas perspectivas, sirviendo como referentes valiosos para el desarrollo del presente trabajo. 
+
+Criticality-Score se centra en medir la importancia de los proyectos open source para priorizar su seguridad, pero no evalúa métricas cualitativas ni trabaja con umbrales.
+
+Agile-Metrics recopila indicadores ágiles según la forja de repositorio utilizada, pero carece de una unificación de métricas y no trabaja con GitHub o GitLab, lo que limita su alcance. 
+
+Activity-API, más cercano al proyecto presentado en esta memoria, permite evaluar y comparar métricas de actividad, aunque sólo entre dos proyectos. 
+
+En conjunto, estos proyectos ofrecen ideas complementarias, pero el actual amplía sus funcionalidades con una mayor capacidad de comparación y evaluación de métricas mediante intervalos temporales, resultando así en una herramienta avanzada tanto para análisis retrospectivos en detalle como para evaluación continua durante el desarrollo..
