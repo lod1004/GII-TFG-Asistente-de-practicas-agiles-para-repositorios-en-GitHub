@@ -11,14 +11,19 @@ function getCommitStats(owner, repoTitle, averageDays, startDate, endDate) {
 
         while (hasMoreCommits) {
             const url = `https://api.github.com/repos/${owner}/${repoTitle}/commits?per_page=${perPage}&page=${page}`;
-            const response = await axios.get(url, { headers: getHeaders() });
-            const commits = response.data;
+            try {
+                const response = await axios.get(url, { headers: getHeaders() });
+                const commits = response.data;
 
-            if (commits.length === 0) break;
+                if (commits.length === 0) break;
 
-            allCommits.push(...commits);
-            hasMoreCommits = commits.length === perPage;
-            page++;
+                allCommits.push(...commits);
+                hasMoreCommits = commits.length === perPage;
+                page++;
+            } catch (error) {
+                console.error(`Error obteniendo los Commits:`, error.message);
+                return null;
+            }
         }
 
         allCommits = allCommits.filter(commit => {

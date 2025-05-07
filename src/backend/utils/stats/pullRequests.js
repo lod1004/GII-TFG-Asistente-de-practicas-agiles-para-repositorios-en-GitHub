@@ -10,15 +10,20 @@ function getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate) 
         let hasMorePRs = true;
 
         while (hasMorePRs) {
-            const res = await axios.get(
-                `https://api.github.com/repos/${owner}/${repoTitle}/pulls?state=all&per_page=${perPage}&page=${page}`,
-                { headers: getHeaders() }
-            );
+            try {
+                const res = await axios.get(
+                    `https://api.github.com/repos/${owner}/${repoTitle}/pulls?state=all&per_page=${perPage}&page=${page}`,
+                    { headers: getHeaders() }
+                );
 
-            const prs = res.data;
-            allPRs.push(...prs);
-            hasMorePRs = prs.length === perPage;
-            page++;
+                const prs = res.data;
+                allPRs.push(...prs);
+                hasMorePRs = prs.length === perPage;
+                page++;
+            } catch (error) {
+                console.error(`Error obteniendo los Pull Requests:`, error.message);
+                return null;
+            }
         }
 
         allPRs = allPRs.filter(pr => {

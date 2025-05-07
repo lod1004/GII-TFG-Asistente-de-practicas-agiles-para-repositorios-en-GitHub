@@ -28,9 +28,10 @@ async function getActionsStats(owner, repoTitle, startDate, endDate) {
                 actionsRuns: 0,
                 actionsSuccess: 0,
                 actionFrequency: 0,
-            }
+            };
         } else {
             console.error("Error al obtener los workflows:", err.message);
+            return null;
         }
     }
 
@@ -39,39 +40,43 @@ async function getActionsStats(owner, repoTitle, startDate, endDate) {
         let hasMore = true;
 
         while (hasMore) {
-            const res = await axios.get(
-                `https://api.github.com/repos/${owner}/${repoTitle}/actions/runs?per_page=100&page=${page}`,
-                { headers: getHeaders() }
-            );
+            try {
+                const res = await axios.get(
+                    `https://api.github.com/repos/${owner}/${repoTitle}/actions/runs?per_page=100&page=${page}`,
+                    { headers: getHeaders() }
+                );
 
-            const runs = res.data.workflow_runs || [];
-            if (runs.length === 0) break;
+                const runs = res.data.workflow_runs || [];
+                if (runs.length === 0) break;
 
-            for (const run of runs) {
-                const createdAt = new Date(run.created_at);
-                if (createdAt >= startDate && createdAt <= endDate) {
-                    actionsRuns++;
-                    runTimestamps.push(createdAt.getTime());
-                    if (run.conclusion === "success") successfulRuns++;
+                for (const run of runs) {
+                    const createdAt = new Date(run.created_at);
+                    if (createdAt >= startDate && createdAt <= endDate) {
+                        actionsRuns++;
+                        runTimestamps.push(createdAt.getTime());
+                        if (run.conclusion === "success") successfulRuns++;
+                    }
                 }
-            }
 
-            hasMore = runs.length === 100;
-            page++;
+                hasMore = runs.length === 100;
+                page++;
+            } catch (err) {
+                console.error(`Error al obtener las ejecuciones de los workflows:`, err.message);
+                return null;
+            }
         }
     } catch (err) {
-        console.error("Error al obtener las ejecuciones de workflows:", err.message);
+        console.error("Error general al obtener los ficheros workflow y sus ejecuciones", err.message);
+        return null;
     }
 
     let actionFrequency = 0;
     if (runTimestamps.length > 1) {
         runTimestamps.sort((a, b) => a - b);
         let totalDiff = 0;
-
         for (let i = 1; i < runTimestamps.length; i++) {
             totalDiff += runTimestamps[i] - runTimestamps[i - 1];
         }
-
         const averageDiffMs = totalDiff / (runTimestamps.length - 1);
         actionFrequency = (averageDiffMs / (1000 * 60 * 60 * 24)).toFixed(2);
     }

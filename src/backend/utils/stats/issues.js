@@ -10,16 +10,21 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
         let hasMoreIssues = true;
 
         while (hasMoreIssues) {
-            const res = await axios.get(
-                `https://api.github.com/repos/${owner}/${repoTitle}/issues?state=all&per_page=${perPage}&page=${page}`,
-                { headers: getHeaders() }
-            );
+            try {
+                const res = await axios.get(
+                    `https://api.github.com/repos/${owner}/${repoTitle}/issues?state=all&per_page=${perPage}&page=${page}`,
+                    { headers: getHeaders() }
+                );
 
-            const issues = res.data.filter(issue => !issue.pull_request);
-            allIssues = allIssues.concat(issues);
+                const issues = res.data.filter(issue => !issue.pull_request);
+                allIssues = allIssues.concat(issues);
 
-            hasMoreIssues = issues.length === perPage;
-            page++;
+                hasMoreIssues = issues.length === perPage;
+                page++;
+            } catch (err) {
+                console.error(`Error obteniendo las Issues:`, err.message);
+                return null;
+            }
         }
 
         allIssues = allIssues.filter(issue => {
@@ -90,12 +95,21 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
                 });
             }
 
-            const [commentRes, eventsRes] = await Promise.all([
-                axios.get(`https://api.github.com/repos/${owner}/${repoTitle}/issues/${issue.number}/comments`, { headers: getHeaders() }),
-                axios.get(`https://api.github.com/repos/${owner}/${repoTitle}/issues/${issue.number}/events`, { headers: getHeaders() })
-            ]);
+            let comments = [];
+            let events = [];
 
-            const comments = commentRes.data;
+            try {
+                const [commentRes, eventsRes] = await Promise.all([
+                    axios.get(`https://api.github.com/repos/${owner}/${repoTitle}/issues/${issue.number}/comments`, { headers: getHeaders() }),
+                    axios.get(`https://api.github.com/repos/${owner}/${repoTitle}/issues/${issue.number}/events`, { headers: getHeaders() })
+                ]);
+                comments = commentRes.data;
+                events = eventsRes.data;
+            } catch (err) {
+                console.error(`Error obteniendo comentarios o eventos del issue #${issue.number}:`, err.message);
+                continue;
+            }
+
             if (comments.length > 0) withComments++;
             if (comments.some(c => /!\[.*?\]\(.*?\)|<img\s+.*?>/i.test(c.body || ""))) withImageComments++;
 
@@ -111,7 +125,6 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
             const multipleAssignees = issue.assignees && issue.assignees.length >= 2;
             if (multipleAssignees || mentionedInBody || mentionsInComments) collaborativeIssues++;
 
-            const events = eventsRes.data;
             const wasReopened = events.some(event => event.event === "reopened");
             if (wasReopened) reopenedIssues++;
         }

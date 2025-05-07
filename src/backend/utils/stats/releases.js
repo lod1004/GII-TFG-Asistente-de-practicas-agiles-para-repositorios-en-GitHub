@@ -10,15 +10,19 @@ function getReleaseStats(owner, repoTitle, averageDays, startDate, endDate) {
         let hasMoreReleases = true;
 
         while (hasMoreReleases) {
-            const res = await axios.get(
-                `https://api.github.com/repos/${owner}/${repoTitle}/releases?per_page=${perPage}&page=${page}`,
-                { headers: getHeaders() }
-            );
-
-            const releases = res.data;
-            allReleases.push(...releases);
-            hasMoreReleases = releases.length === perPage;
-            page++;
+            try {
+                const res = await axios.get(
+                    `https://api.github.com/repos/${owner}/${repoTitle}/releases?per_page=${perPage}&page=${page}`,
+                    { headers: getHeaders() }
+                );
+                const releases = res.data;
+                allReleases.push(...releases);
+                hasMoreReleases = releases.length === perPage;
+                page++;
+            } catch (error) {
+                console.error(`Error obteniendo las Releases:`, error.message);
+                return null;
+            }
         }
 
         allReleases = allReleases.filter(release => {
@@ -27,26 +31,28 @@ function getReleaseStats(owner, repoTitle, averageDays, startDate, endDate) {
         });
 
         const releasesCount = allReleases.length;
-
         const lifeDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
         const periodCount = Math.ceil(lifeDays / averageDays);
         const averageReleases = periodCount > 0 ? (releasesCount / periodCount).toFixed(2) : "0.00";
 
-        // Count tags
         let tagsCount = 0;
         page = 1;
         let hasMoreTags = true;
 
         while (hasMoreTags) {
-            const res = await axios.get(
-                `https://api.github.com/repos/${owner}/${repoTitle}/tags?per_page=${perPage}&page=${page}`,
-                { headers: getHeaders() }
-            );
-
-            const tags = res.data;
-            tagsCount += tags.length;
-            hasMoreTags = tags.length === perPage;
-            page++;
+            try {
+                const res = await axios.get(
+                    `https://api.github.com/repos/${owner}/${repoTitle}/tags?per_page=${perPage}&page=${page}`,
+                    { headers: getHeaders() }
+                );
+                const tags = res.data;
+                tagsCount += tags.length;
+                hasMoreTags = tags.length === perPage;
+                page++;
+            } catch (error) {
+                console.error(`Error obteniendo los Tags:`, error.message);
+                return null;
+            }
         }
 
         if (releasesCount === 0) {
@@ -56,7 +62,7 @@ function getReleaseStats(owner, repoTitle, averageDays, startDate, endDate) {
                 tagsCount,
                 descriptionReleasesPercent: 0,
                 collaborativeReleasesPercent: 0,
-                averageReleases,
+                averageReleases: 0,
                 releaseParticipants: []
             };
         }
@@ -67,8 +73,7 @@ function getReleaseStats(owner, repoTitle, averageDays, startDate, endDate) {
         ).length;
 
         const releaseParticipantsMap = new Map();
-        for (let i = 0; i < allReleases.length; i++) {
-            const r = allReleases[i];
+        for (const r of allReleases) {
             if (r.author?.login) {
                 releaseParticipantsMap.set(
                     r.author.login,
@@ -89,7 +94,7 @@ function getReleaseStats(owner, repoTitle, averageDays, startDate, endDate) {
             tagsCount,
             descriptionReleasesPercent: toPercent(withDescription),
             collaborativeReleasesPercent: toPercent(collaborativeReleases),
-            averageReleases: 0,
+            averageReleases,
             releaseParticipants
         };
 

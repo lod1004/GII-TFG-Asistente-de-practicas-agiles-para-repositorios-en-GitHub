@@ -8,13 +8,11 @@ function getHeaders() {
 }
 
 async function getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, endTimeInterval) {
-
   const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
   if (!match) return null;
 
   const owner = match[1];
   const repoTitle = match[2];
-
   const perPage = 100;
 
   let firstCommitDate;
@@ -37,19 +35,26 @@ async function getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, end
     const firstCommit = lastPageCommits[lastPageCommits.length - 1];
     firstCommitDate = new Date(firstCommit.commit.author.date);
   } catch (err) {
-    console.error("Error obteniendo el primer commit:", err.message);
+    console.error("Error obteniendo la fecha del primer commit:", err.message);
     return null;
   }
 
-  const lastCommitRes = await axios.get(
-    `https://api.github.com/repos/${owner}/${repoTitle}/commits?per_page=1&page=1&sort=created&direction=desc`,
-    { headers: getHeaders() }
-  );
-  const lastCommitDate = new Date(lastCommitRes.data[0].commit.author.date);
-  console.log('Fecha del primer commit:', firstCommitDate)
-  console.log('Fecha del final commit:', lastCommitDate)
+  let lastCommitDate;
+  try {
+    const lastCommitRes = await axios.get(
+      `https://api.github.com/repos/${owner}/${repoTitle}/commits?per_page=1&page=1&sort=created&direction=desc`,
+      { headers: getHeaders() }
+    );
+    lastCommitDate = new Date(lastCommitRes.data[0].commit.author.date);
+  } catch (err) {
+    console.error("Error obteniendo la fecha del último commit:", err.message);
+    return null;
+  }
 
-  // Calculo de las fechas
+  console.log('Fecha del primer commit:', firstCommitDate);
+  console.log('Fecha del final commit:', lastCommitDate);
+
+  // Cálculo de las fechas
   let startDate, endDate;
   if (useRelativeDates) {
     const durationMs = lastCommitDate - firstCommitDate;
@@ -61,7 +66,6 @@ async function getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, end
     if (endDate > lastCommitDate) {
       endDate = lastCommitDate;
     }
-
   } else {
     const totalMonths = (lastCommitDate.getFullYear() - firstCommitDate.getFullYear()) * 12 +
       (lastCommitDate.getMonth() - firstCommitDate.getMonth());
@@ -73,6 +77,7 @@ async function getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, end
       startDate = new Date(firstCommitDate);
       startDate.setMonth(startDate.getMonth() + startTimeInterval);
     }
+
     if (endTimeInterval > totalMonths) {
       endDate = lastCommitDate;
     } else {
@@ -86,7 +91,7 @@ async function getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, end
   console.log('Fecha de inicio:', startDate);
   console.log('Fecha de fin:', endDate);
 
-  return {    
+  return {
     owner,
     repoTitle,
     startDate,
