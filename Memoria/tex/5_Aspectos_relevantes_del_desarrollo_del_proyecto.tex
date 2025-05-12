@@ -1,7 +1,44 @@
 \capitulo{5}{Aspectos relevantes del desarrollo del proyecto}
 
-Este apartado pretende recoger los aspectos más interesantes del desarrollo del proyecto, comentados por los autores del mismo.
-Debe incluir desde la exposición del ciclo de vida utilizado, hasta los detalles de mayor relevancia de las fases de análisis, diseño e implementación.
-Se busca que no sea una mera operación de copiar y pegar diagramas y extractos del código fuente, sino que realmente se justifiquen los caminos de solución que se han tomado, especialmente aquellos que no sean triviales.
-Puede ser el lugar más adecuado para documentar los aspectos más interesantes del diseño y de la implementación, con un mayor hincapié en aspectos tales como el tipo de arquitectura elegido, los índices de las tablas de la base de datos, normalización y desnormalización, distribución en ficheros3, reglas de negocio dentro de las bases de datos (EDVHV GH GDWRV DFWLYDV), aspectos de desarrollo relacionados con el WWW...
-Este apartado, debe convertirse en el resumen de la experiencia práctica del proyecto, y por sí mismo justifica que la memoria se convierta en un documento útil, fuente de referencia para los autores, los tutores y futuros alumnos.
+Durante la implementación de este Trabajo de Fin de Grado, se han tomado decisiones técnicas y de diseño que han marcado de forma clara el rumbo y la calidad final del proyecto \textit{Asistente de buenas prácticas en GitHub}. Este capítulo describe los aspectos más destacados del desarrollo, sus motivaciones y las soluciones adoptadas, con el objetivo de que puedan servir de referencia para otros estudiantes o desarrolladores que se enfrenten a retos similares.
+
+\section{Motivación para el proyecto}
+Desde el principio la idea del proyecto era asistir al usuario al desarrollo de la creación de trabajos en repositorios de GitHub, pero no al código de los trabajos, si no al repositorio en sí. En GitHub hay un montón de herramientas y opciones que pasan desapercibidas, especialmente para alumnos de la carrera de Ingeniería Informática que no tienen tanta experiencia con esta plataforma. Muchos hacen proyectos enteros sin saber siquiera lo que es una Issue, una Release, que pueden agregar implementación continua usando GitHub Actions, etc. Por ello se decidió que en este Trabajo de Fin de Grado se desarrollaría una App que ayudara al desarrollo de repositorios en el ámbito docente para facilitiar y agilizar la planificación trabajo de los alumnos en GitHub.
+
+\section{Las metodologías Ágiles como base teórica}
+
+Para ayudar a los usuarios a trabajar con sus repositorios necesitaríamos unas bases teóricas que ayudaran a justificar el por qué de los resultados que la app proporcionaría, y finalmente se eligieron las metodologías Ágiles, un concepto con el que los alumnos del Grado de Ingeniería Informática están familiarizados, especialmente por la asignatura del tercer curso "Gestíon de Proyectos". Finalmente se así decidió mostrar los resultados de los análisis de los repositorios en forma de reglas de agilidad sacadas del Agile Subway Map \cite{agileSubwayMap} como Integración Continua, Control de Versiones, etc. Estas reglas evalúan aspectos como la frecuencia de commits, la coherencia en los mensajes, la asignación de issues, y la distribución del trabajo.
+
+Posteriormente se desarrolló un módulo de evaluación de estas reglas que, a partir de los datos obtenidos vía la API de GitHub, genera una puntuación por cada regla y un resumen visual en el FrontEnd que permite observar tanto rápidamente los puntos fuertes y débiles del repositorio, como detalladamente las bases teóricas de la metodología Ágil que se cumplen o no, explicando el por qué. Esta funcionalidad fue clave para transformar el análisis en una herramienta útil para no solo alumnos, sino también profesores o equipos de desarrollo.
+
+\section{La tecnología de Node js y Angular}: Se optó por usar la tecnología de Angular para el FrontEnd por su gran capacidad para diseñar aplicaciones web eficaces, fáciles de maquetar y estilizar, y gran variedad de herramientas como servicios, componentes, módulos, y librerías que ayudan a desarrollar fácilmente una aplicación totalmente funcional y agradable al usuario. Previamente a este proyecto ya había trabajado en varias aplicaciones que usaban esta tecnología, lo cual ayudó desde un comienzo a tener clara la estructura de esta parte del código.
+
+También se optó por usar Node js en el BackEnd debido a la similaridad del lenguaje (JavaScript) con el que usa Angular para sus componentes que implementan la funcionalidad del código (TypeScript).
+
+Estas decisiones permitieron generar un ejecutable funcional, autocontenible y sin dependencias externas, mejorando la portabilidad y experiencia del usuario final.
+
+\section{Selección de MongoDB como sistema de almacenamiento}
+
+MongoDB fue elegido como base de datos por su naturaleza flexible y su excelente integración con Node.js y su facilidad de uso. Además, al tratarse de una aplicación local, se optó por una base de datos embebida que no requiriese configuración externa por parte del usuario.
+
+\section{Arquitectura modular y comunicación entre capas}
+
+La aplicación se estructura en tres capas claramente diferenciadas: BackEnd (Node.js), base de datos (MongoDB) y FrontEnd (Angular)). Esta separación permitió trabajar en cada módulo de manera independiente y facilitó la escalabilidad del sistema.
+
+El BackEnd ofrece una API REST con rutas específicas para analizar repositorios, extraer estadísticas y aplicar reglas basadas en metodologías ágiles, todo esto guardando los resultados en una base de datos en MONGODB, de la cual extraerlos posteriormente para mandarlos al FrontEnd una vez se requieran a través de diferentes llamadas y joins. Por su parte, el FrontEnd permite al usuario interactuar de forma visual, seleccionando repositorios, rangos de fechas y recibiendo evaluaciones contextualizadas. La comunicación se realiza mediante peticiones HTTP sobre \texttt{localhost}, garantizando así una experiencia fluida sin requerir conexión a internet.
+
+\section{Integración de lenguaje natural para resúmenes y explicaciones}
+
+Con el objetivo de ofrecer una experiencia más didáctica y comprensible, se exploró el uso de modelos de lenguaje (LLM) para generar explicaciones en lenguaje natural a partir de los resultados del análisis. 
+
+Inicialmente se evaluaron opciones como OpenAI GPT y modelos open-source, priorizando la claridad y la coherencia en las respuestas. Finalmente, debido a que la mayoría de mensajes de resultado que aparecerían tras el análisis serían similares estructuralmente y bastante cortos dentro de lo posible, se decidió que como posible mejora del sistema, se podría integrar una capa de generación de lenguaje que permita resumir los informes y ofrecer feedback personalizado.
+
+\section{Desarrollo iterativo y depuración mediante testing manual}
+
+Dado el alcance de la aplicación y su complejidad funcional, se adoptó un enfoque de desarrollo iterativo. Cada módulo (visualización, análisis, integración con GitHub, etc.) fue construido y probado individualmente a través de la basede datos de Mongo y la consola del BackEnd antes de su integración global.
+
+Uno de los principales retos cerca del final del proyecto fue la depuración en entorno empaquetado. Al final se optó por lanzar las releases en forma de BackEnds empaquetados que accederían al FrontEnd y a las variables de entorno en la misma carpeta y, por motivos de calidad, sería necesario insertar registros de log visibles en pantalla o mediante archivos para detectar errores silenciosos, así como el progreso de análisis de repositorios de la aplicación.
+
+\section{Autoformación y búsqueda activa de soluciones}
+
+El proyecto ha supuesto un esfuerzo significativo de aprendizaje autónomo en varias tecnologías: Angular, Node js, MongoDB o GitHub REST API. Muchos de los problemas encontrados fueron resueltos consultando documentación oficial, foros técnicos (como Stack Overflow o GitHub Issues), recursos especializados, o comparándolos con problemas similares tenidos en proyectos previos (Especialmente en la parte del FrontEnd en Angular).

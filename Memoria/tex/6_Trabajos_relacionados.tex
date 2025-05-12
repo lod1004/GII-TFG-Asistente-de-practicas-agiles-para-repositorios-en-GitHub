@@ -1,19 +1,48 @@
 \capitulo{6}{Trabajos relacionados}
 
-\section{Documentación de la evolución de proyectos en el tiempo}
+La funcionalidad principal y más común de este proyecto es el análisis de reposiotrios de GitHub, y la comparación entre estos. Hay una gran variedad de herramientas similares que también analizan repositorios, y/o los comparan entre sí.
 
-Uno de los aspectos diferenciales del presente proyecto frente a herramientas similares es su capacidad para analizar la evolución temporal de los repositorios software. Esta funcionalidad permite al usuario seleccionar rangos de fechas personalizados sobre los cuales se calcularán las métricas, facilitando así el seguimiento detallado del progreso, mantenimiento y salud de un proyecto a lo largo del tiempo. Esta característica no está presente en muchas de las herramientas analizadas, donde los análisis se realizan de forma estática y centrados en el estado actual del repositorio.
+Se han seleccionado algunas de estas herramientas debido a su similaridad con la aplicación que presenta este proyecto a la hora de analizar aspectos clave de repositorios. Estas herramientas son: 
+\textit{Criticality-Score}~\cite{ossf_criticality_score}, 
+\textit{Agile-Metrics}~\cite{dagrisa_agile_metrics}, 
+\textit{Activiti-API}~\cite{dba0010_activiti_api}  
+\textit{Comparador-de-metricas-de-evolucion-en-repositorios-ftware}~\cite{joaquin_gm_gii_o_ma}
 
-Gracias a esta funcionalidad temporal, el usuario puede, por ejemplo, evaluar cómo ha cambiado la calidad del repositorio desde el inicio del mismo, o comprobar si el uso de las prácticas ágiles de desarrollo han tenido impacto en la velocidad y el desarrollo del mismo. Esta capacidad resulta especialmente útil en contextos docentes (como proyectos fin de carrera o asignaturas de carreras relacionadas a la informática), donde se requiere un seguimiento detallado y didáctico de la evolución del trabajo de los estudiantes.
-
-Además, incluye la posibilidad de realizar tanto análisis relativos como análisis absolutos, algo poco común en herramientas similares. Esto permite no sólo se observar si un repositorio mejora o empeora con el paso de unidades de tiempo, si no también con el paso de las distintas fases de desarrollo del proyecto. Por ejemplo, se puede observar si la definición de "Done" se respeta de forma más consistente con el paso de los sprints, o si las prácticas de integración continua se estabilizan a lo largo de los meses.
-
-Esta funcionalidad no se recoge en otras herramientas como \textit{Criticality-Score}, \textit{Agile-Metrics} o \textit{Activity-API}, las cuales realizan análisis puntuales y no permiten al usuario especificar periodos temporales personalizados. Los tres proyectos mencionados abordan el análisis de proyectos de software desde distintas perspectivas, sirviendo como referentes valiosos para el desarrollo del presente trabajo. 
+Estas herramientas realizan análisis puntuales de repositorios, pero no permiten al usuario especificar periodos temporales personalizados. Los proyectos mencionados abordan el análisis de proyectos de software desde distintas perspectivas, sirviendo como referentes valiosos para el desarrollo del presente trabajo.
 
 Criticality-Score se centra en medir la importancia de los proyectos open source para priorizar su seguridad, pero no evalúa métricas cualitativas ni trabaja con umbrales.
 
-Agile-Metrics recopila indicadores ágiles según la forja de repositorio utilizada, pero carece de una unificación de métricas y no trabaja con GitHub o GitLab, lo que limita su alcance. 
+Agile-Metrics recopila indicadores ágiles según la forja de repositorio utilizada, pero carece de una unificación de métricas y no trabaja con GitHub, lo que limita su alcance.
 
-Activity-API, más cercano al proyecto presentado en esta memoria, permite evaluar y comparar métricas de actividad, aunque sólo entre dos proyectos. 
+Activiti-API, más cercano al proyecto presentado en esta memoria, permite evaluar y comparar métricas de actividad, aunque sólo entre dos proyectos.
 
-En conjunto, estos proyectos ofrecen ideas complementarias, pero el actual amplía sus funcionalidades con una mayor capacidad de comparación y evaluación de métricas mediante intervalos temporales, resultando así en una herramienta avanzada tanto para análisis retrospectivos en detalle como para evaluación continua durante el desarrollo.
+El proyecto \textit{Comparador-de-metricas-de-evolucion-en-repositorios-Software}~\cite{joaquin_gm_gii_o_ma} se centra en la mejora de un proyecto previo que trata sobre los procesos de desarrollo mediante la automatización del cálculo de métricas de evolución extraídas de plataformas como GitHub o GitLab. Su enfoque se enmarca dentro del desarrollo iterativo e incremental característico de metodologías ágiles como Scrum o XP, y busca proporcionar a los jefes de proyecto una herramienta que les permita detectar posibles ineficiencias en los ciclos de desarrollo.
+
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.5}
+	\rowcolors{2}{gray!20}{white}
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{m{4.5cm} >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{3.2cm} >{\centering\arraybackslash}m{2.8cm}  >{\centering\arraybackslash}m{2.8cm}}
+			\toprule
+			\textbf{Herramientas} & \textbf{Análisis temporal} & \textbf{Selección personalizada de fechas} & \textbf{Uso de intervalos de tiempo absolutos y relativos} & \textbf{Enfoque docente} & \textbf{Base teórica sobre metodologías Ágiles} & \textbf{Comparación de múltiples repositorios} \\
+			\midrule
+            Asistente de buenas prácticas para proyectos en GitHub & Sí & Sí & Sí & Sí & Sí & Sí \\
+            Comparador de metricas de evolucion en repositorios Software & Sí & No & No & No & No & Sí \\
+            Activiti-API & No & No & No & No & No & Sí (Dos repositorios)\\
+            Agile-Metrics & Sí & No & No & No & No & No \\
+            Criticality-Score & No & No & No & No & No & No \\
+			\bottomrule
+		\end{tabular}
+	}
+	\caption{Comparación de herramientas y trabajos relacionados}
+	\label{comparacion_trabajos}
+\end{table}
+
+El proyecto presentado en este TFG amplía las funcionalidades de las herramientas mencionadas con una mayor capacidad de comparación y evaluación de métricas mediante el análisis de la evolución temporal usando fechas e intervalos personalizados, resultando así en una herramienta avanzada tanto para análisis retrospectivos en detalle como para evaluación continua durante el desarrollo.
+
+Esta funcionalidad permite al usuario seleccionar rangos de fechas personalizados sobre los cuales se calcularán las métricas, facilitando así el seguimiento detallado del progreso, mantenimiento y salud de un proyecto a lo largo del tiempo. Esta característica no está presente las herramientas analizadas, donde los análisis se realizan de forma estática y centrados en el estado actual del repositorio, aunque se utilicen fechas para la obtención de algunas métricas.
+
+Gracias a esta funcionalidad temporal, el usuario puede, por ejemplo, evaluar cómo ha cambiado la calidad del repositorio desde el inicio del mismo, o comprobar si el uso de las prácticas ágiles de desarrollo han tenido impacto en la velocidad y el desarrollo del mismo. Esta capacidad resulta especialmente útil en contextos docentes (como proyectos fin de carrera o asignaturas de carreras relacionadas a la informática), donde se requiere un seguimiento detallado y didáctico de la evolución del trabajo de los estudiantes.
+
+Además, incluye la posibilidad de realizar tanto análisis relativos como análisis absoluto. Esto permite no sólo observar si un repositorio mejora o empeora con el paso de unidades de tiempo, sino también con el paso de las distintas fases de desarrollo del proyecto. Por ejemplo, se puede observar si la definición de ``Done'' se respeta de forma más consistente con el paso de los sprints, o si las prácticas de integración continua se estabilizan a lo largo de los meses.
