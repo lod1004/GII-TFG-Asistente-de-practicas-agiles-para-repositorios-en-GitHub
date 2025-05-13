@@ -5,7 +5,7 @@ function evaluateBacklogQualityRule(mainRepo, comparisonRepos) {
   const description = "El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.";
 
   const statsToCompare = [
-    { key: 'issue_stats.openIssuesCount', label: 'Número total de Issues abiertas' },
+    { key: 'issue_stats.issuesCount', label: 'Número total de Issues' },
     { key: 'issue_stats.closedIssuesCount', label: 'Número total de Issues cerradas' },
     { key: 'issue_stats.descriptionIssuesPercent', label: 'Porcentaje de Issues con descripción' },
     { key: 'issue_stats.imagedIssuesPercent', label: 'Porcentaje de Issues con imágenes' },

@@ -52,6 +52,7 @@ function getParticipantsStats(
     }
 
     const stats = {
+        totalParticipants: totalUsers,
         commitParticipationPercent: toPercent(usersWithCommits),
         issueParticipationPercent: toPercent(usersWithIssues),
         prParticipationPercent: toPercent(usersWithPRs),
@@ -60,6 +61,7 @@ function getParticipantsStats(
         participants
     };
 
+    console.log("Total de participantes únicos:", stats.totalParticipants);
     console.log("Porcentaje de participación en Issues:", stats.issueParticipationPercent);
     console.log("Porcentaje de participación en Commits:", stats.commitParticipationPercent);
     console.log("Porcentaje de participación en PRs:", stats.prParticipationPercent);

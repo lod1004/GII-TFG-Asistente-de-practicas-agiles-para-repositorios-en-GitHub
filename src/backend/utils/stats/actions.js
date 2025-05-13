@@ -17,9 +17,31 @@ async function getActionsStats(owner, repoTitle, startDate, endDate) {
         const workflows = files.filter(file =>
             file.name.endsWith(".yml") || file.name.endsWith(".yaml")
         );
-        actionsCount = workflows.length;
 
-        console.log(`El repositorio tiene ${actionsCount} workflow(s) de GitHub Actions.`);
+        const validWorkflows = [];
+
+        for (const workflow of workflows) {
+            try {
+                const commitsRes = await axios.get(
+                    `https://api.github.com/repos/${owner}/${repoTitle}/commits?path=${encodeURIComponent(workflow.path)}&per_page=1&sha=main`,
+                    { headers: getHeaders() }
+                );
+
+                const commit = commitsRes.data[0];
+                if (commit) {
+                    const commitDate = new Date(commit.commit.author.date);
+                    if (commitDate >= startDate && commitDate <= endDate) {
+                        validWorkflows.push(workflow);
+                    }
+                }
+            } catch (err) {
+                console.warn(`No se pudo obtener el commit para el workflow ${workflow.name}:`, err.message);
+                continue;
+            }
+        }
+
+        actionsCount = validWorkflows.length;
+        console.log(`Workflows creados dentro del rango: ${actionsCount}`);
     } catch (err) {
         if (err.response?.status === 404) {
             console.log("No se encontraron workflows en .github/workflows.");
@@ -40,33 +62,28 @@ async function getActionsStats(owner, repoTitle, startDate, endDate) {
         let hasMore = true;
 
         while (hasMore) {
-            try {
-                const res = await axios.get(
-                    `https://api.github.com/repos/${owner}/${repoTitle}/actions/runs?per_page=100&page=${page}`,
-                    { headers: getHeaders() }
-                );
+            const res = await axios.get(
+                `https://api.github.com/repos/${owner}/${repoTitle}/actions/runs?per_page=100&page=${page}`,
+                { headers: getHeaders() }
+            );
 
-                const runs = res.data.workflow_runs || [];
-                if (runs.length === 0) break;
+            const runs = res.data.workflow_runs || [];
+            if (runs.length === 0) break;
 
-                for (const run of runs) {
-                    const createdAt = new Date(run.created_at);
-                    if (createdAt >= startDate && createdAt <= endDate) {
-                        actionsRuns++;
-                        runTimestamps.push(createdAt.getTime());
-                        if (run.conclusion === "success") successfulRuns++;
-                    }
+            for (const run of runs) {
+                const createdAt = new Date(run.created_at);
+                if (createdAt >= startDate && createdAt <= endDate) {
+                    actionsRuns++;
+                    runTimestamps.push(createdAt.getTime());
+                    if (run.conclusion === "success") successfulRuns++;
                 }
-
-                hasMore = runs.length === 100;
-                page++;
-            } catch (err) {
-                console.error(`Error al obtener las ejecuciones de los workflows:`, err.message);
-                return null;
             }
+
+            hasMore = runs.length === 100;
+            page++;
         }
     } catch (err) {
-        console.error("Error general al obtener los ficheros workflow y sus ejecuciones", err.message);
+        console.error(`Error al obtener ejecuciones de workflows:`, err.message);
         return null;
     }
 

@@ -33,7 +33,24 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
         });
 
         const openIssuesCount = allIssues.filter(issue => issue.state === 'open').length;
-        const closedIssuesCount = allIssues.filter(issue => issue.state === 'closed').length;
+        const closedIssuesList = allIssues.filter(issue => issue.state === 'closed');
+        const closedIssuesCount = closedIssuesList.length;
+
+        const totalClosedTime = closedIssuesList.reduce((sum, issue) => {
+            if (issue.closed_at) {
+                const created = new Date(issue.created_at);
+                const closed = new Date(issue.closed_at);
+                const diffDays = (closed - created) / (1000 * 60 * 60 * 24);
+                return sum + diffDays;
+            }
+            return sum;
+        }, 0);
+
+        const averageCloseTime = closedIssuesCount > 0
+            ? (totalClosedTime / closedIssuesCount).toFixed(2)
+            : "0.00";
+
+        const issuesCount = openIssuesCount + closedIssuesCount;
 
         const lifeDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
         const periodCount = Math.ceil(lifeDays / averageDays);
@@ -45,7 +62,9 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
             return {
                 openIssuesCount,
                 closedIssuesCount,
+                issuesCount,
                 averageClosedIssues: 0,
+                averageCloseTime: 0,
                 descriptionIssuesPercent: 0,
                 imagedIssuesPercent: 0,
                 commentedIssuesPercent: 0,
@@ -139,7 +158,9 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
         const stats = {
             openIssuesCount,
             closedIssuesCount,
+            issuesCount,
             averageClosedIssues,
+            averageCloseTime,
             descriptionIssuesPercent: toPercent(withDescription).toFixed(2),
             imagedIssuesPercent: toPercent(withImages).toFixed(2),
             commentedIssuesPercent: toPercent(withComments).toFixed(2),
@@ -154,7 +175,9 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
 
         console.log("Issues abiertas:", stats.openIssuesCount);
         console.log("Issues cerradas:", stats.closedIssuesCount);
+        console.log("Total Issues (abiertas + cerradas):", stats.issuesCount);
         console.log("Media de Issues cerradas (cada", averageDays, " días):", stats.averageClosedIssues);
+        console.log("Tiempo medio de cierre de Issues (en días):", stats.averageCloseTime);
         console.log("% Issues con descripción:", stats.descriptionIssuesPercent);
         console.log("% Issues con imágenes:", stats.imagedIssuesPercent);
         console.log("% Issues con comentarios:", stats.commentedIssuesPercent);
@@ -168,6 +191,7 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
 
         return stats;
     })();
+
 }
 
 module.exports = {

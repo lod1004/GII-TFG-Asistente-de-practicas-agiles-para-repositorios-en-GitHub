@@ -5,6 +5,7 @@ function evaluateCollectiveOwnershipRule(mainRepo, comparisonRepos) {
   const description = "Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...";
 
   const statsToCompare = [
+    { key: 'participant_stats.totalParticipants', label: 'Número de participantes' },
     { key: 'participant_stats.issueParticipationPercent', label: 'Porcentaje de participación en Issues' },
     { key: 'participant_stats.commitParticipationPercent', label: 'Porcentaje de participación en Commits' },
     { key: 'participant_stats.prParticipationPercent', label: 'Porcentaje de participación en Pull Requests' },

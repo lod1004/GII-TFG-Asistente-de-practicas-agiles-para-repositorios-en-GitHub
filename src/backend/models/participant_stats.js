@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const participantStatsSchema = new mongoose.Schema({
     repoId: { type: Number, required: true, ref: "Repository" },
 
+    totalParticipants: Number,
     issueParticipationPercent: Number,
     commitParticipationPercent: Number,
     prParticipationPercent: Number,
