@@ -1,4 +1,5 @@
 const axios = require("axios");
+const logger = require('../../logger');
 const { getHeaders } = require('./github');
 
 async function getActionsStats(owner, repoTitle, startDate, endDate) {
@@ -35,16 +36,16 @@ async function getActionsStats(owner, repoTitle, startDate, endDate) {
                     }
                 }
             } catch (err) {
-                console.warn(`No se pudo obtener el commit para el workflow ${workflow.name}:`, err.message);
+                logger.error(`No se pudo obtener el commit para el workflow ${workflow.name}:` + err.message);
                 continue;
             }
         }
 
         actionsCount = validWorkflows.length;
-        console.log(`Workflows creados dentro del rango: ${actionsCount}`);
+        logger.info(`Workflows creados dentro del rango: ${actionsCount}`);
     } catch (err) {
         if (err.response?.status === 404) {
-            console.log("No se encontraron workflows en .github/workflows.");
+            logger.info("No se encontraron workflows en .github/workflows.");
             return {
                 actionsCount: 0,
                 actionsRuns: 0,
@@ -52,7 +53,7 @@ async function getActionsStats(owner, repoTitle, startDate, endDate) {
                 actionFrequency: 0,
             };
         } else {
-            console.error("Error al obtener los workflows:", err.message);
+            logger.error("Error al obtener los workflows: " + err.message);
             return null;
         }
     }
@@ -83,7 +84,7 @@ async function getActionsStats(owner, repoTitle, startDate, endDate) {
             page++;
         }
     } catch (err) {
-        console.error(`Error al obtener ejecuciones de workflows:`, err.message);
+        logger.error(`Error al obtener ejecuciones de workflows:` + err.message);
         return null;
     }
 
@@ -102,9 +103,9 @@ async function getActionsStats(owner, repoTitle, startDate, endDate) {
         ? ((successfulRuns / actionsRuns) * 100).toFixed(2)
         : "0.00";
 
-    console.log("Ejecuciones totales de workflows:", actionsRuns);
-    console.log("Workflows exitosos:", actionsSuccess + "%");
-    console.log("Frecuencia media de ejecución:", actionFrequency + " días");
+    logger.info("Ejecuciones totales de workflows: " + actionsRuns);
+    logger.info("Workflows exitosos: " + actionsSuccess + "%");
+    logger.info("Frecuencia media de ejecución: " + actionFrequency + " días");
 
     return {
         actionsCount,

@@ -1,4 +1,5 @@
 const axios = require("axios");
+const logger = require('../../logger');
 const { getHeaders } = require('./github');
 
 function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
@@ -22,7 +23,7 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
                 hasMoreIssues = issues.length === perPage;
                 page++;
             } catch (err) {
-                console.error(`Error obteniendo las Issues:`, err.message);
+                logger.error(`Error obteniendo las Issues:` + err.message);
                 return null;
             }
         }
@@ -58,7 +59,7 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
 
         const total = allIssues.length;
         if (total === 0) {
-            console.log("No hay Issues en el repositorio.");
+            logger.info("No hay Issues en el repositorio.");
             return {
                 openIssuesCount,
                 closedIssuesCount,
@@ -125,7 +126,7 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
                 comments = commentRes.data;
                 events = eventsRes.data;
             } catch (err) {
-                console.error(`Error obteniendo comentarios o eventos del issue #${issue.number}:`, err.message);
+                logger.error(`Error obteniendo comentarios o eventos del issue #${issue.number}:` + err.message);
                 continue;
             }
 
@@ -173,21 +174,21 @@ function getIssueStats(owner, repoTitle, averageDays, startDate, endDate) {
             issueParticipants
         };
 
-        console.log("Issues abiertas:", stats.openIssuesCount);
-        console.log("Issues cerradas:", stats.closedIssuesCount);
-        console.log("Total Issues (abiertas + cerradas):", stats.issuesCount);
-        console.log("Media de Issues cerradas (cada", averageDays, " días):", stats.averageClosedIssues);
-        console.log("Tiempo medio de cierre de Issues (en días):", stats.averageCloseTime);
-        console.log("% Issues con descripción:", stats.descriptionIssuesPercent);
-        console.log("% Issues con imágenes:", stats.imagedIssuesPercent);
-        console.log("% Issues con comentarios:", stats.commentedIssuesPercent);
-        console.log("% Issues con personas asignadas:", stats.assignedIssuesPercent);
-        console.log("% Issues con etiquetas:", stats.labeledIssuesPercent);
-        console.log("% Issues con milestone:", stats.milestonedIssuesPercent);
-        console.log("% Issues con Story Points:", stats.storyPointsIssuesPercent);
-        console.log("% Issues reabiertas:", stats.reopenedIssuesPercent);
-        console.log("% Issues colaborativas:", stats.collaborativeIssuesPercent);
-        console.log("Usuarios que participaron en Issues:", stats.issueParticipants);
+        logger.info("Issues abiertas: " + stats.openIssuesCount);
+        logger.info("Issues cerradas: " + stats.closedIssuesCount);
+        logger.info("Total Issues (abiertas + cerradas): " + stats.issuesCount);
+        logger.info("Media de Issues cerradas (cada " + averageDays + " días): " + stats.averageClosedIssues);
+        logger.info("Tiempo medio de cierre de Issues (en días): " + stats.averageCloseTime);
+        logger.info("% Issues con descripción: " + stats.descriptionIssuesPercent);
+        logger.info("% Issues con imágenes: " + stats.imagedIssuesPercent);
+        logger.info("% Issues con comentarios: " + stats.commentedIssuesPercent);
+        logger.info("% Issues con personas asignadas: " + stats.assignedIssuesPercent);
+        logger.info("% Issues con etiquetas: " + stats.labeledIssuesPercent);
+        logger.info("% Issues con milestone: " + stats.milestonedIssuesPercent);
+        logger.info("% Issues con Story Points: " + stats.storyPointsIssuesPercent);
+        logger.info("% Issues reabiertas: " + stats.reopenedIssuesPercent);
+        logger.info("% Issues colaborativas: " + stats.collaborativeIssuesPercent);
+        logger.info("Usuarios que participaron en Issues: " + stats.issueParticipants);
 
         return stats;
     })();

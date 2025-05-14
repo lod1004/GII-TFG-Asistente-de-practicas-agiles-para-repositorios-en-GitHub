@@ -1,4 +1,5 @@
 const { compareStats } = require("../rule-comparator");
+const logger = require('../../../logger');
 
 function evaluateAutomatedBuildsRule(mainRepo, comparisonRepos) {
   const ruleName = "DevOps - Automated Build";
@@ -19,11 +20,11 @@ function evaluateAutomatedBuildsRule(mainRepo, comparisonRepos) {
     message = 'El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización';
   } 
 
-  console.log('Regla: ', ruleName)
-  console.log('Descripción: ', description)
-  console.log('Aprobada: ', status)
-  console.log('Expliación: ', message)
-  console.log('Detalles: ', resultDetails)
+  logger.info('Regla: ' + ruleName)
+  logger.info('Descripción: ' + description)
+  logger.info('Aprobada: ' + status)
+  logger.info('Expliación: ' + message)
+  logger.info('Detalles: ' + resultDetails)
 
   return {
     rule: ruleName,

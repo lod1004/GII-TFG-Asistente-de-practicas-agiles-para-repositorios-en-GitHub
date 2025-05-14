@@ -1,4 +1,5 @@
 const { compareStats } = require("../rule-comparator");
+const logger = require('../../../logger');
 
 function evaluateFrequentReleasesRule(mainRepo, comparisonRepos) {
   const ruleName = "Extreme Programming - Frequent Releases";
@@ -23,11 +24,11 @@ function evaluateFrequentReleasesRule(mainRepo, comparisonRepos) {
     message = `El repositorio tiene Releases, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 
-  console.log('Regla: ', ruleName)
-  console.log('Descripción: ', description)
-  console.log('Aprobada: ', status)
-  console.log('Expliación: ', message)
-  console.log('Detalles: ', resultDetails)
+  logger.info('Regla: ' + ruleName)
+  logger.info('Descripción: ' + description)
+  logger.info('Aprobada: ' + status)
+  logger.info('Expliación: ' + message)
+  logger.info('Detalles: ' + resultDetails)
 
   return {
     rule: ruleName,

@@ -1,4 +1,5 @@
 const { compareStats } = require("../rule-comparator");
+const logger = require('../../../logger');
 
 function evaluateIterationsRule(mainRepo, comparisonRepos) {
   const ruleName = "Scrum, Extreme Programming - Iteraciones";
@@ -25,11 +26,11 @@ function evaluateIterationsRule(mainRepo, comparisonRepos) {
     message = `El repositorio parece usar iteraciones, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 
-  console.log('Regla: ', ruleName)
-  console.log('Descripción: ', description)
-  console.log('Aprobada: ', status)
-  console.log('Expliación: ', message)
-  console.log('Detalles: ', resultDetails)
+  logger.info('Regla: ' + ruleName)
+  logger.info('Descripción: ' + description)
+  logger.info('Aprobada: ' + status)
+  logger.info('Expliación: ' + message)
+  logger.info('Detalles: ' + resultDetails)
 
   return {
     rule: ruleName,

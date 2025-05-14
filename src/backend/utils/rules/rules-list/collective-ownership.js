@@ -1,4 +1,5 @@
 const { compareStats } = require("../rule-comparator");
+const logger = require('../../../logger');
 
 function evaluateCollectiveOwnershipRule(mainRepo, comparisonRepos) {
   const ruleName = "Extreme Programming - Collective Ownership";
@@ -27,11 +28,11 @@ function evaluateCollectiveOwnershipRule(mainRepo, comparisonRepos) {
     message = `Hay indicios de colaboración, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 
-  console.log('Regla: ', ruleName)
-  console.log('Descripción: ', description)
-  console.log('Aprobada: ', status)
-  console.log('Expliación: ', message)
-  console.log('Detalles: ', resultDetails)
+  logger.info('Regla: ' + ruleName)
+  logger.info('Descripción: ' + description)
+  logger.info('Aprobada: ' + status)
+  logger.info('Expliación: ' + message)
+  logger.info('Detalles: ' + resultDetails)
 
   return {
     rule: ruleName,

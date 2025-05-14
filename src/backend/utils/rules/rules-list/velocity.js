@@ -1,3 +1,5 @@
+const logger = require('../../../logger');
+
 function evaluateVelocityRule(mainRepo, comparisonRepos) {
   const ruleName = "Extreme Programming - Velocity";
   const description = "El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.";
@@ -71,14 +73,14 @@ function evaluateVelocityRule(mainRepo, comparisonRepos) {
     const problems = resultDetails
       .filter(d => d.evaluation === 'worse' || d.evaluation === 'zero')
       .map(d => d.label);
-    message = `El repositorio podría mejorar la medición de velocidad en: ${problems.join(', ')}.`;
+    message = `El repositorio podría mejorar la medición de velocidad en: ${problems.join(' + ')}.`;
   }
 
-  console.log('Regla: ', ruleName);
-  console.log('Descripción: ', description);
-  console.log('Aprobada: ', status);
-  console.log('Expliación: ', message);
-  console.log('Detalles: ', resultDetails);
+  logger.info('Regla: ' + ruleName);
+  logger.info('Descripción: ' + description);
+  logger.info('Aprobada: ' + status);
+  logger.info('Expliación: ' + message);
+  logger.info('Detalles: ', resultDetails);
 
   return {
     rule: ruleName,

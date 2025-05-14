@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\proyectos\\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\\src\\backend\\logs\\audit.json",
+    "files": [
+        {
+            "date": 1747249886166,
+            "name": "C:\\proyectos\\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\\src\\backend\\logs\\main-log-14-05-2025.log",
+            "hash": "d2889889ed90c90b2532f25c9bbfcb8d12cdc540e0ee4efd50d70ea58495d539"
+        }
+    ],
+    "hashType": "sha256"
+}

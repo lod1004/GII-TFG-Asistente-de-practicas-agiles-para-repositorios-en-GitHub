@@ -1,4 +1,5 @@
 const axios = require("axios");
+const logger = require('../../logger');
 const { getHeaders } = require('./github');
 
 function getParticipantsStats(
@@ -61,12 +62,12 @@ function getParticipantsStats(
         participants
     };
 
-    console.log("Total de participantes únicos:", stats.totalParticipants);
-    console.log("Porcentaje de participación en Issues:", stats.issueParticipationPercent);
-    console.log("Porcentaje de participación en Commits:", stats.commitParticipationPercent);
-    console.log("Porcentaje de participación en PRs:", stats.prParticipationPercent);
-    console.log("Porcentaje de participación en Releases:", stats.releaseParticipationPercent);
-    console.log("Media de actividad por usuario (cada", averageDays, " días):", stats.averageUserActivity);
+    logger.info("Total de participantes únicos: " + stats.totalParticipants);
+    logger.info("Porcentaje de participación en Issues: " + stats.issueParticipationPercent);
+    logger.info("Porcentaje de participación en Commits: " + stats.commitParticipationPercent);
+    logger.info("Porcentaje de participación en PRs: " + stats.prParticipationPercent);
+    logger.info("Porcentaje de participación en Releases: " + stats.releaseParticipationPercent);
+    logger.info("Media de actividad por usuario (cada " + averageDays + " días): " + stats.averageUserActivity);
 
     return stats;
 }

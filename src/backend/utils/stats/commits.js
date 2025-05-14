@@ -1,4 +1,5 @@
 const axios = require("axios");
+const logger = require('../../logger');
 const { getHeaders } = require('./github');
 
 function getCommitStats(owner, repoTitle, averageDays, startDate, endDate) {
@@ -21,7 +22,7 @@ function getCommitStats(owner, repoTitle, averageDays, startDate, endDate) {
                 hasMoreCommits = commits.length === perPage;
                 page++;
             } catch (error) {
-                console.error(`Error obteniendo los Commits:`, error.message);
+                logger.error(`Error obteniendo los Commits:` + error.message);
                 return null;
             }
         }
@@ -37,7 +38,7 @@ function getCommitStats(owner, repoTitle, averageDays, startDate, endDate) {
         const averageCommits = periodCount > 0 ? (commitCount / periodCount).toFixed(2) : "0.00";
 
         if (commitCount === 0) {
-            console.log("No hay Commits en el repositorio.");
+            logger.info("No hay Commits en el repositorio.");
             return {
                 commitCount: 0,
                 titledCommitsPercent: 0,
@@ -98,13 +99,13 @@ function getCommitStats(owner, repoTitle, averageDays, startDate, endDate) {
             commitParticipants
         };
 
-        console.log("Total de Commits:", stats.commitCount);
-        console.log("% Commits con título personalizado:", stats.titledCommitsPercent);
-        console.log("% Commits con descripción:", stats.descriptionCommitsPercent);
-        console.log("% Commits con referencias a Issues o Pull Requests:", stats.referencesCommitsPercent);
-        console.log("% Commits colaborativos:", stats.collaborativeCommitsPercent);
-        console.log("Media de Commits (cada", averageDays, " días):", stats.averageCommits);
-        console.log("Usuarios que participaron en Commits:", stats.commitParticipants);
+        logger.info("Total de Commits: " + stats.commitCount);
+        logger.info("% Commits con título personalizado: " + stats.titledCommitsPercent);
+        logger.info("% Commits con descripción: " + stats.descriptionCommitsPercent);
+        logger.info("% Commits con referencias a Issues o Pull Requests: " + stats.referencesCommitsPercent);
+        logger.info("% Commits colaborativos: " + stats.collaborativeCommitsPercent);
+        logger.info("Media de Commits (cada " + averageDays + " días): " + stats.averageCommits);
+        logger.info("Usuarios que participaron en Commits: " + stats.commitParticipants);
 
         return stats;
     })();

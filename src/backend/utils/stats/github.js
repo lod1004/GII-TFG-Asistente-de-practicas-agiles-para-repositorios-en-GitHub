@@ -1,4 +1,5 @@
 const axios = require("axios");
+const logger = require('../../logger');
 
 function getHeaders() {
   return {
@@ -35,7 +36,7 @@ async function getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, end
     const firstCommit = lastPageCommits[lastPageCommits.length - 1];
     firstCommitDate = new Date(firstCommit.commit.author.date);
   } catch (err) {
-    console.error("Error obteniendo la fecha del primer commit:", err.message);
+    logger.error("Error obteniendo la fecha del primer commit: " + err.message);
     return null;
   }
 
@@ -47,12 +48,9 @@ async function getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, end
     );
     lastCommitDate = new Date(lastCommitRes.data[0].commit.author.date);
   } catch (err) {
-    console.error("Error obteniendo la fecha del último commit:", err.message);
+    logger.error("Error obteniendo la fecha del último commit: " + err.message);
     return null;
   }
-
-  console.log('Fecha del primer commit:', firstCommitDate);
-  console.log('Fecha del final commit:', lastCommitDate);
 
   // Cálculo de las fechas
   let startDate, endDate;
@@ -86,10 +84,12 @@ async function getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, end
     }
   }
 
-  console.log('Dueño del repositorio:', owner);
-  console.log('Título del repositorio:', repoTitle);
-  console.log('Fecha de inicio:', startDate);
-  console.log('Fecha de fin:', endDate);
+  logger.info('Dueño del repositorio: ' + owner);
+  logger.info('Título del repositorio: ' + repoTitle);
+  logger.info('Fecha del primer commit: ' + firstCommitDate);
+  logger.info('Fecha del final commit: ' + lastCommitDate);
+  logger.info('Fecha de inicio: ' + startDate);
+  logger.info('Fecha de fin: ' + endDate);
 
   return {
     owner,

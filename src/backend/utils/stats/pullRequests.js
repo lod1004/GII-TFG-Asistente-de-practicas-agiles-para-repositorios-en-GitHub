@@ -1,4 +1,5 @@
 const axios = require("axios");
+const logger = require('../../logger');
 const { getHeaders } = require('./github');
 
 function getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate) {
@@ -21,7 +22,7 @@ function getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate) 
                 hasMorePRs = prs.length === perPage;
                 page++;
             } catch (error) {
-                console.error(`Error obteniendo los Pull Requests:`, error.message);
+                logger.error(`Error obteniendo los Pull Requests:` + error.message);
                 return null;
             }
         }
@@ -36,7 +37,7 @@ function getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate) 
         const periodCount = Math.ceil(lifeDays / averageDays);
 
         if (total === 0) {
-            console.log("No hay pull requests en el repositorio.");
+            logger.info("No hay pull requests en el repositorio.");
             return {
                 openPrCount: 0,
                 closedPrCount: 0,
@@ -93,15 +94,15 @@ function getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate) 
             prParticipants
         };
 
-        console.log("Pull requests abiertas:", openPrCount);
-        console.log("Pull requests cerradas:", closedPrCount);
-        console.log("% PRs con reviewers:", stats.reviewersPrPercent);
-        console.log("% PRs con assignees:", stats.assigneesPrPercent);
-        console.log("% PRs con labels:", stats.labelsPrPercent);
-        console.log("% PRs con milestone:", stats.milestonedPrPercent);
-        console.log("% PRs colaborativas:", stats.collaborativePrPercent);
-        console.log("Media de PRs (cada", averageDays, " días):", stats.averageClosedPr);
-        console.log("Usuarios que participaron en PRs:", prParticipants);
+        logger.info("Pull requests abiertas: " + openPrCount);
+        logger.info("Pull requests cerradas: " + closedPrCount);
+        logger.info("% PRs con reviewers: " + stats.reviewersPrPercent);
+        logger.info("% PRs con assignees: " + stats.assigneesPrPercent);
+        logger.info("% PRs con labels: " + stats.labelsPrPercent);
+        logger.info("% PRs con milestone: " + stats.milestonedPrPercent);
+        logger.info("% PRs colaborativas: " + stats.collaborativePrPercent);
+        logger.info("Media de PRs (cada " + averageDays + " días): " + stats.averageClosedPr);
+        logger.info("Usuarios que participaron en PRs: " + prParticipants);
 
         return stats;
     })();

@@ -1,4 +1,5 @@
 const { compareStats } = require("../rule-comparator");
+const logger = require('../../../logger');
 
 function evaluatePairProgrammingRule(mainRepo, comparisonRepos) {
   const ruleName = "Extreme Programming - Pair Programming";
@@ -25,11 +26,11 @@ function evaluatePairProgrammingRule(mainRepo, comparisonRepos) {
     message = `Hay algunos indicios de colaboración, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 
-  console.log('Regla: ', ruleName)
-  console.log('Descripción: ', description)
-  console.log('Aprobada: ', status)
-  console.log('Expliación: ', message)
-  console.log('Detalles: ', resultDetails)
+  logger.info('Regla: ' + ruleName)
+  logger.info('Descripción: ' + description)
+  logger.info('Aprobada: ' + status)
+  logger.info('Expliación: ' + message)
+  logger.info('Detalles: ' + resultDetails)
 
   return {
     rule: ruleName,

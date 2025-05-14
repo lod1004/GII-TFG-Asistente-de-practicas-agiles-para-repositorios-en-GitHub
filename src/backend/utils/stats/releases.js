@@ -1,4 +1,5 @@
 const axios = require("axios");
+const logger = require('../../logger');
 const { getHeaders } = require('./github');
 
 function getReleaseStats(owner, repoTitle, averageDays, startDate, endDate) {
@@ -20,7 +21,7 @@ function getReleaseStats(owner, repoTitle, averageDays, startDate, endDate) {
                 hasMoreReleases = releases.length === perPage;
                 page++;
             } catch (error) {
-                console.error(`Error obteniendo las Releases:`, error.message);
+                logger.error(`Error obteniendo las Releases:` + error.message);
                 return null;
             }
         }
@@ -50,13 +51,13 @@ function getReleaseStats(owner, repoTitle, averageDays, startDate, endDate) {
                 hasMoreTags = tags.length === perPage;
                 page++;
             } catch (error) {
-                console.error(`Error obteniendo los Tags:`, error.message);
+                logger.error(`Error obteniendo los Tags:` + error.message);
                 return null;
             }
         }
 
         if (releasesCount === 0) {
-            console.log("No hay Releases en el repositorio.");
+            logger.info("No hay Releases en el repositorio.");
             return {
                 releasesCount: 0,
                 tagsCount,
@@ -98,12 +99,12 @@ function getReleaseStats(owner, repoTitle, averageDays, startDate, endDate) {
             releaseParticipants
         };
 
-        console.log("Total de Releases:", releasesCount);
-        console.log("Total de tags:", tagsCount);
-        console.log("% Releases con descripción:", stats.descriptionReleasesPercent);
-        console.log("% Releases colaborativas:", stats.collaborativeReleasesPercent);
-        console.log("Media de Releases (cada", averageDays, " días):", stats.averageReleases);
-        console.log("Usuarios que participaron en Releases:", stats.releaseParticipants);
+        logger.info("Total de Releases: " + releasesCount);
+        logger.info("Total de tags: " + tagsCount);
+        logger.info("% Releases con descripción: " + stats.descriptionReleasesPercent);
+        logger.info("% Releases colaborativas: " + stats.collaborativeReleasesPercent);
+        logger.info("Media de Releases (cada " + averageDays + " días): " + stats.averageReleases);
+        logger.info("Usuarios que participaron en Releases: " + stats.releaseParticipants);
 
         return stats;
     })();

@@ -1,3 +1,5 @@
+const logger = require('../logger');
+
 const Repository = require("../models/repo");
 const Counter = require("../models/counter");
 const IssueStats = require("../models/issue_stats");
@@ -17,7 +19,6 @@ const { getPullRequestStats } = require("../utils/stats/pullRequests");
 const { getReleaseStats } = require("../utils/stats/releases");
 const { getIssueStats } = require("../utils/stats/issues");
 const { getParticipantsStats } = require("../utils/stats/participants");
-const participant_stats = require("../models/participant_stats");
 
 async function getNextId(sequenceName) {
   const counter = await Counter.findOneAndUpdate(
@@ -130,7 +131,7 @@ const getRepositories = async (req, res) => {
 
     res.json(enrichedRepositories);
   } catch (error) {
-    console.error("Error al obtener repositorios y estadísticas:", error.message);
+    logger.error("Error al obtener repositorios y estadísticas: " + error.message);
     res.status(500).json({ message: "Error al obtener los repositorios y sus estadísticas" });
   }
 };
@@ -140,7 +141,7 @@ const getRulesResults = async (req, res) => {
     const rules = await RulesResult.find().sort({ createdAt: -1 });
     res.json({ rules });
   } catch (error) {
-    console.error("Error al recuperar resultados de reglas:", error.message);
+    logger.error("Error al recuperar resultados de reglas: " + error.message);
     res.status(500).json({ message: "Error al obtener resultados de reglas." });
   }
 };
@@ -216,7 +217,7 @@ const createRepository = async (req, res) => {
       repositories: [processedMain, ...processedExamples]
     });
   } catch (error) {
-    console.error("Error al procesar las URLs:", error.message, error);
+    logger.error("Error al procesar las URLs: " + error.message, error);
     res.status(500).json({ message: "Error al obtener datos de los repositorios" });
   }
 };
