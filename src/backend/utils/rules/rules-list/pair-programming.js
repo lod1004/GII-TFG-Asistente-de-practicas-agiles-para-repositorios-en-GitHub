@@ -4,25 +4,26 @@ const logger = require('../../../logger');
 function evaluatePairProgrammingRule(mainRepo, comparisonRepos) {
   const ruleName = "Extreme Programming - Pair Programming";
   const description = "Los miembros del repositorio practican la programación por parejas.";
+  const documentationUrl = "https://www.agilealliance.org/glossary/pair-programming/";
 
   const statsToCompare = [
-    { key: 'commit_stats.collaborativeCommitsPercent', label: 'Commits colaborativos (menciones en mensajes)' },
-    { key: 'pull_request_stats.collaborativePrPercent', label: 'Pull Requests colaborativos (menciones)' },
-    { key: 'issue_stats.collaborativeIssuesPercent', label: 'Issues colaborativos (varios asignados o menciones)' },
-    { key: 'release_stats.collaborativeReleasesPercent', label: 'Releases colaborativas (menciones)' },
+    { key: 'commit_stats.collaborativeCommitsPercent', label: 'Porcentaje de Commits colaborativos (menciones en mensajes)', units: '%', },
+    { key: 'pull_request_stats.collaborativePrPercent', label: 'Porcentaje de Pull Requests colaborativos (menciones)', units: '%', },
+    { key: 'issue_stats.collaborativeIssuesPercent', label: 'Porcentaje de Issues colaborativos (varios asignados o menciones)', units: '%', },
+    { key: 'release_stats.collaborativeReleasesPercent', label: 'Porcentaje de Releases colaborativas (menciones)', units: '%', },
   ];
 
-  const { status, resultDetails } = compareStats(mainRepo, comparisonRepos, statsToCompare);
+  const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'approved') {
+  if (status === 'Superada') {
     message = 'Se observa una buena práctica de programación por parejas mediante colaboración activa en Issues, Pull Requests, Releases y Commits.';
-  } else if (status === 'failed') {
+  } else if (status === 'Suspendida') {
     message = 'No se observan suficientes evidencias de programación por parejas.';
-  } else if (status === 'zero') {
+  } else if (status === 'Cero') {
     message = 'No hay ninguna actividad colaborativa que indique programación por parejas.';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'worse' || d.evaluation === 'zero').map(d => d.label);
+    const problems = resultDetails.filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero').map(d => d.label);
     message = `Hay algunos indicios de colaboración, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 
@@ -35,7 +36,10 @@ function evaluatePairProgrammingRule(mainRepo, comparisonRepos) {
   return {
     rule: ruleName,
     description,
+    documentationUrl,
     passed: status,
+    statsBetter,
+    totalStats,
     message,
     details: resultDetails
   };

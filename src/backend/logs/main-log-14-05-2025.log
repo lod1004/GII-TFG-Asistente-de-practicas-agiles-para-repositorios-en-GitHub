@@ -98,52 +98,52 @@
 [2025-05-14 21:04:35] [INFO]: Media de actividad por usuario (cada10 días): 4.31
 [2025-05-14 21:04:36] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
 [2025-05-14 21:04:36] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
-[2025-05-14 21:04:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:04:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:04:36] [INFO]: Expliación: El repositorio parece usar iteraciones, pero podría mejorar en: Pull Requests con Milestones.
 [2025-05-14 21:04:36] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:04:36] [INFO]: Regla: DevOps - Automated Build
 [2025-05-14 21:04:36] [INFO]: Descripción: El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.
-[2025-05-14 21:04:36] [INFO]: Aprobada: zero
+[2025-05-14 21:04:36] [INFO]: Aprobada: Cero
 [2025-05-14 21:04:36] [INFO]: Expliación: El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización
 [2025-05-14 21:04:36] [INFO]: Detalles: [object Object]
 [2025-05-14 21:04:36] [INFO]: Regla: DevOps - Version Control
 [2025-05-14 21:04:36] [INFO]: Descripción: El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay commits frecuentemente y estos contienen buenas características como descripción y referencias
-[2025-05-14 21:04:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:04:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:04:36] [INFO]: Expliación: El repositorio parece usar commits y un control de versiones, pero podría mejorar en: Porcentaje de commits con título personalizado, Porcentaje de commits con referencias.
 [2025-05-14 21:04:36] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:04:36] [INFO]: Regla: DevOps, Extreme Programming - Continuous integration
 [2025-05-14 21:04:36] [INFO]: Descripción: El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente
-[2025-05-14 21:04:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:04:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:04:36] [INFO]: Expliación: El repositorio parece usar integración continua, pero podría mejorar en: Frecuencia de ejecución de los ficheros workflow, Porcentaje de éxito de los ficheros workflow.
 [2025-05-14 21:04:36] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-14 21:04:36] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-14 21:04:36] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-14 21:04:36] [INFO]: Aprobada: failed
+[2025-05-14 21:04:36] [INFO]: Aprobada: Suspendida
 [2025-05-14 21:04:36] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-14 21:04:36] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-14 21:04:36] [INFO]: Regla: Scrum - Backlog Quality
 [2025-05-14 21:04:36] [INFO]: Descripción: El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.
-[2025-05-14 21:04:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:04:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:04:36] [INFO]: Expliación: El backlog podría mejorar en: Número total de Issues, Número total de Issues cerradas, Porcentaje de Issues con personas asignadas.
 [2025-05-14 21:04:36] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:04:36] [INFO]: Regla: Extreme Programming - Velocity
 [2025-05-14 21:04:36] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
-[2025-05-14 21:04:36] [INFO]: Aprobada: approved
+[2025-05-14 21:04:36] [INFO]: Aprobada: Superada
 [2025-05-14 21:04:36] [INFO]: Expliación: El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.
 [2025-05-14 21:04:36] [INFO]: Detalles: 
 [2025-05-14 21:04:36] [INFO]: Regla: Extreme Programming - Frequent Releases
 [2025-05-14 21:04:36] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
-[2025-05-14 21:04:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:04:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:04:36] [INFO]: Expliación: El repositorio tiene Releases, pero podría mejorar en: Número de Releases.
 [2025-05-14 21:04:36] [INFO]: Detalles: [object Object],[object Object]
 [2025-05-14 21:04:36] [INFO]: Regla: Extreme Programming - Collective Ownership
 [2025-05-14 21:04:36] [INFO]: Descripción: Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...
-[2025-05-14 21:04:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:04:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:04:36] [INFO]: Expliación: Hay indicios de colaboración, pero podría mejorar en: Número de participantes, Porcentaje de participación en Commits.
 [2025-05-14 21:04:36] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:04:36] [INFO]: Regla: Extreme Programming - Pair Programming
 [2025-05-14 21:04:36] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
-[2025-05-14 21:04:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:04:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:04:36] [INFO]: Expliación: Hay algunos indicios de colaboración, pero podría mejorar en: Commits colaborativos (menciones en mensajes), Pull Requests colaborativos (menciones), Releases colaborativas (menciones).
 [2025-05-14 21:04:36] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:06:01] [INFO]: Servidor corriendo en http://localhost:5000
@@ -246,52 +246,52 @@
 [2025-05-14 21:06:58] [INFO]: Media de actividad por usuario (cada10 días): 4.31
 [2025-05-14 21:06:58] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
 [2025-05-14 21:06:58] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
-[2025-05-14 21:06:58] [INFO]: Aprobada: parcial
+[2025-05-14 21:06:58] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:06:58] [INFO]: Expliación: El repositorio parece usar iteraciones, pero podría mejorar en: Pull Requests con Milestones.
 [2025-05-14 21:06:58] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:06:58] [INFO]: Regla: DevOps - Automated Build
 [2025-05-14 21:06:58] [INFO]: Descripción: El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.
-[2025-05-14 21:06:58] [INFO]: Aprobada: zero
+[2025-05-14 21:06:58] [INFO]: Aprobada: Cero
 [2025-05-14 21:06:58] [INFO]: Expliación: El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización
 [2025-05-14 21:06:58] [INFO]: Detalles: [object Object]
 [2025-05-14 21:06:58] [INFO]: Regla: DevOps - Version Control
 [2025-05-14 21:06:58] [INFO]: Descripción: El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay commits frecuentemente y estos contienen buenas características como descripción y referencias
-[2025-05-14 21:06:58] [INFO]: Aprobada: parcial
+[2025-05-14 21:06:58] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:06:58] [INFO]: Expliación: El repositorio parece usar commits y un control de versiones, pero podría mejorar en: Porcentaje de commits con título personalizado, Porcentaje de commits con referencias.
 [2025-05-14 21:06:58] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:06:58] [INFO]: Regla: DevOps, Extreme Programming - Continuous integration
 [2025-05-14 21:06:58] [INFO]: Descripción: El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente
-[2025-05-14 21:06:58] [INFO]: Aprobada: parcial
+[2025-05-14 21:06:58] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:06:58] [INFO]: Expliación: El repositorio parece usar integración continua, pero podría mejorar en: Frecuencia de ejecución de los ficheros workflow, Porcentaje de éxito de los ficheros workflow.
 [2025-05-14 21:06:58] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-14 21:06:58] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-14 21:06:58] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-14 21:06:58] [INFO]: Aprobada: failed
+[2025-05-14 21:06:58] [INFO]: Aprobada: Suspendida
 [2025-05-14 21:06:58] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-14 21:06:58] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-14 21:06:58] [INFO]: Regla: Scrum - Backlog Quality
 [2025-05-14 21:06:58] [INFO]: Descripción: El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.
-[2025-05-14 21:06:58] [INFO]: Aprobada: parcial
+[2025-05-14 21:06:58] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:06:58] [INFO]: Expliación: El backlog podría mejorar en: Número total de Issues, Número total de Issues cerradas, Porcentaje de Issues con personas asignadas.
 [2025-05-14 21:06:58] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:06:58] [INFO]: Regla: Extreme Programming - Velocity
 [2025-05-14 21:06:58] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
-[2025-05-14 21:06:58] [INFO]: Aprobada: approved
+[2025-05-14 21:06:58] [INFO]: Aprobada: Superada
 [2025-05-14 21:06:58] [INFO]: Expliación: El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.
 [2025-05-14 21:06:58] [INFO]: Detalles: 
 [2025-05-14 21:06:58] [INFO]: Regla: Extreme Programming - Frequent Releases
 [2025-05-14 21:06:58] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
-[2025-05-14 21:06:58] [INFO]: Aprobada: parcial
+[2025-05-14 21:06:58] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:06:58] [INFO]: Expliación: El repositorio tiene Releases, pero podría mejorar en: Número de Releases.
 [2025-05-14 21:06:58] [INFO]: Detalles: [object Object],[object Object]
 [2025-05-14 21:06:58] [INFO]: Regla: Extreme Programming - Collective Ownership
 [2025-05-14 21:06:58] [INFO]: Descripción: Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...
-[2025-05-14 21:06:58] [INFO]: Aprobada: parcial
+[2025-05-14 21:06:58] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:06:58] [INFO]: Expliación: Hay indicios de colaboración, pero podría mejorar en: Número de participantes, Porcentaje de participación en Commits.
 [2025-05-14 21:06:58] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:06:58] [INFO]: Regla: Extreme Programming - Pair Programming
 [2025-05-14 21:06:58] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
-[2025-05-14 21:06:58] [INFO]: Aprobada: parcial
+[2025-05-14 21:06:58] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:06:58] [INFO]: Expliación: Hay algunos indicios de colaboración, pero podría mejorar en: Commits colaborativos (menciones en mensajes), Pull Requests colaborativos (menciones), Releases colaborativas (menciones).
 [2025-05-14 21:06:58] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:07:45] [INFO]: Servidor corriendo en http://localhost:5000
@@ -394,52 +394,52 @@
 [2025-05-14 21:08:34] [INFO]: Media de actividad por usuario (cada15 días): 6.46
 [2025-05-14 21:08:34] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
 [2025-05-14 21:08:34] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
-[2025-05-14 21:08:34] [INFO]: Aprobada: parcial
+[2025-05-14 21:08:34] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:08:34] [INFO]: Expliación: El repositorio parece usar iteraciones, pero podría mejorar en: Pull Requests con Milestones.
 [2025-05-14 21:08:34] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:08:34] [INFO]: Regla: DevOps - Automated Build
 [2025-05-14 21:08:34] [INFO]: Descripción: El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.
-[2025-05-14 21:08:34] [INFO]: Aprobada: zero
+[2025-05-14 21:08:34] [INFO]: Aprobada: Cero
 [2025-05-14 21:08:34] [INFO]: Expliación: El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización
 [2025-05-14 21:08:34] [INFO]: Detalles: [object Object]
 [2025-05-14 21:08:34] [INFO]: Regla: DevOps - Version Control
 [2025-05-14 21:08:34] [INFO]: Descripción: El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay commits frecuentemente y estos contienen buenas características como descripción y referencias
-[2025-05-14 21:08:34] [INFO]: Aprobada: parcial
+[2025-05-14 21:08:34] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:08:34] [INFO]: Expliación: El repositorio parece usar commits y un control de versiones, pero podría mejorar en: Porcentaje de commits con título personalizado, Porcentaje de commits con referencias.
 [2025-05-14 21:08:34] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:08:34] [INFO]: Regla: DevOps, Extreme Programming - Continuous integration
 [2025-05-14 21:08:34] [INFO]: Descripción: El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente
-[2025-05-14 21:08:34] [INFO]: Aprobada: parcial
+[2025-05-14 21:08:34] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:08:34] [INFO]: Expliación: El repositorio parece usar integración continua, pero podría mejorar en: Frecuencia de ejecución de los ficheros workflow, Porcentaje de éxito de los ficheros workflow.
 [2025-05-14 21:08:34] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-14 21:08:34] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-14 21:08:34] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-14 21:08:34] [INFO]: Aprobada: failed
+[2025-05-14 21:08:34] [INFO]: Aprobada: Suspendida
 [2025-05-14 21:08:34] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-14 21:08:34] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-14 21:08:34] [INFO]: Regla: Scrum - Backlog Quality
 [2025-05-14 21:08:34] [INFO]: Descripción: El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.
-[2025-05-14 21:08:34] [INFO]: Aprobada: parcial
+[2025-05-14 21:08:34] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:08:34] [INFO]: Expliación: El backlog podría mejorar en: Número total de Issues, Número total de Issues cerradas, Porcentaje de Issues con personas asignadas.
 [2025-05-14 21:08:34] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:08:34] [INFO]: Regla: Extreme Programming - Velocity
 [2025-05-14 21:08:34] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
-[2025-05-14 21:08:34] [INFO]: Aprobada: approved
+[2025-05-14 21:08:34] [INFO]: Aprobada: Superada
 [2025-05-14 21:08:34] [INFO]: Expliación: El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.
 [2025-05-14 21:08:34] [INFO]: Detalles: 
 [2025-05-14 21:08:34] [INFO]: Regla: Extreme Programming - Frequent Releases
 [2025-05-14 21:08:34] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
-[2025-05-14 21:08:34] [INFO]: Aprobada: parcial
+[2025-05-14 21:08:34] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:08:34] [INFO]: Expliación: El repositorio tiene Releases, pero podría mejorar en: Número de Releases.
 [2025-05-14 21:08:34] [INFO]: Detalles: [object Object],[object Object]
 [2025-05-14 21:08:34] [INFO]: Regla: Extreme Programming - Collective Ownership
 [2025-05-14 21:08:34] [INFO]: Descripción: Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...
-[2025-05-14 21:08:34] [INFO]: Aprobada: parcial
+[2025-05-14 21:08:34] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:08:34] [INFO]: Expliación: Hay indicios de colaboración, pero podría mejorar en: Número de participantes, Porcentaje de participación en Commits.
 [2025-05-14 21:08:34] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:08:34] [INFO]: Regla: Extreme Programming - Pair Programming
 [2025-05-14 21:08:34] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
-[2025-05-14 21:08:34] [INFO]: Aprobada: parcial
+[2025-05-14 21:08:34] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:08:34] [INFO]: Expliación: Hay algunos indicios de colaboración, pero podría mejorar en: Commits colaborativos (menciones en mensajes), Pull Requests colaborativos (menciones), Releases colaborativas (menciones).
 [2025-05-14 21:08:34] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:09:54] [INFO]: Servidor corriendo en http://localhost:5000
@@ -542,52 +542,52 @@
 [2025-05-14 21:10:35] [INFO]: Media de actividad por usuario (cada15 días): 6.46
 [2025-05-14 21:10:36] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
 [2025-05-14 21:10:36] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
-[2025-05-14 21:10:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:10:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:10:36] [INFO]: Expliación: El repositorio parece usar iteraciones, pero podría mejorar en: Pull Requests con Milestones.
 [2025-05-14 21:10:36] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:10:36] [INFO]: Regla: DevOps - Automated Build
 [2025-05-14 21:10:36] [INFO]: Descripción: El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.
-[2025-05-14 21:10:36] [INFO]: Aprobada: zero
+[2025-05-14 21:10:36] [INFO]: Aprobada: Cero
 [2025-05-14 21:10:36] [INFO]: Expliación: El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización
 [2025-05-14 21:10:36] [INFO]: Detalles: [object Object]
 [2025-05-14 21:10:36] [INFO]: Regla: DevOps - Version Control
 [2025-05-14 21:10:36] [INFO]: Descripción: El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay commits frecuentemente y estos contienen buenas características como descripción y referencias
-[2025-05-14 21:10:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:10:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:10:36] [INFO]: Expliación: El repositorio parece usar commits y un control de versiones, pero podría mejorar en: Porcentaje de commits con título personalizado, Porcentaje de commits con referencias.
 [2025-05-14 21:10:36] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:10:36] [INFO]: Regla: DevOps, Extreme Programming - Continuous integration
 [2025-05-14 21:10:36] [INFO]: Descripción: El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente
-[2025-05-14 21:10:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:10:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:10:36] [INFO]: Expliación: El repositorio parece usar integración continua, pero podría mejorar en: Frecuencia de ejecución de los ficheros workflow, Porcentaje de éxito de los ficheros workflow.
 [2025-05-14 21:10:36] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-14 21:10:36] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-14 21:10:36] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-14 21:10:36] [INFO]: Aprobada: failed
+[2025-05-14 21:10:36] [INFO]: Aprobada: Suspendida
 [2025-05-14 21:10:36] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-14 21:10:36] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-14 21:10:36] [INFO]: Regla: Scrum - Backlog Quality
 [2025-05-14 21:10:36] [INFO]: Descripción: El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.
-[2025-05-14 21:10:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:10:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:10:36] [INFO]: Expliación: El backlog podría mejorar en: Número total de Issues, Número total de Issues cerradas, Porcentaje de Issues con personas asignadas.
 [2025-05-14 21:10:36] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:10:36] [INFO]: Regla: Extreme Programming - Velocity
 [2025-05-14 21:10:36] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
-[2025-05-14 21:10:36] [INFO]: Aprobada: approved
+[2025-05-14 21:10:36] [INFO]: Aprobada: Superada
 [2025-05-14 21:10:36] [INFO]: Expliación: El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.
 [2025-05-14 21:10:36] [INFO]: Detalles: 
 [2025-05-14 21:10:36] [INFO]: Regla: Extreme Programming - Frequent Releases
 [2025-05-14 21:10:36] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
-[2025-05-14 21:10:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:10:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:10:36] [INFO]: Expliación: El repositorio tiene Releases, pero podría mejorar en: Número de Releases.
 [2025-05-14 21:10:36] [INFO]: Detalles: [object Object],[object Object]
 [2025-05-14 21:10:36] [INFO]: Regla: Extreme Programming - Collective Ownership
 [2025-05-14 21:10:36] [INFO]: Descripción: Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...
-[2025-05-14 21:10:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:10:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:10:36] [INFO]: Expliación: Hay indicios de colaboración, pero podría mejorar en: Número de participantes, Porcentaje de participación en Commits.
 [2025-05-14 21:10:36] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:10:36] [INFO]: Regla: Extreme Programming - Pair Programming
 [2025-05-14 21:10:36] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
-[2025-05-14 21:10:36] [INFO]: Aprobada: parcial
+[2025-05-14 21:10:36] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:10:36] [INFO]: Expliación: Hay algunos indicios de colaboración, pero podría mejorar en: Commits colaborativos (menciones en mensajes), Pull Requests colaborativos (menciones), Releases colaborativas (menciones).
 [2025-05-14 21:10:36] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:11:17] [INFO]: Fecha del primer commit: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
@@ -696,51 +696,51 @@
 [2025-05-14 21:12:09] [INFO]: Media de actividad por usuario (cada 15 días): 6.46
 [2025-05-14 21:12:10] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
 [2025-05-14 21:12:10] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
-[2025-05-14 21:12:10] [INFO]: Aprobada: parcial
+[2025-05-14 21:12:10] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:12:10] [INFO]: Expliación: El repositorio parece usar iteraciones, pero podría mejorar en: Pull Requests con Milestones.
 [2025-05-14 21:12:10] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:12:10] [INFO]: Regla: DevOps - Automated Build
 [2025-05-14 21:12:10] [INFO]: Descripción: El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.
-[2025-05-14 21:12:10] [INFO]: Aprobada: zero
+[2025-05-14 21:12:10] [INFO]: Aprobada: Cero
 [2025-05-14 21:12:10] [INFO]: Expliación: El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización
 [2025-05-14 21:12:10] [INFO]: Detalles: [object Object]
 [2025-05-14 21:12:10] [INFO]: Regla: DevOps - Version Control
 [2025-05-14 21:12:10] [INFO]: Descripción: El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay commits frecuentemente y estos contienen buenas características como descripción y referencias
-[2025-05-14 21:12:10] [INFO]: Aprobada: parcial
+[2025-05-14 21:12:10] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:12:10] [INFO]: Expliación: El repositorio parece usar commits y un control de versiones, pero podría mejorar en: Porcentaje de commits con título personalizado, Porcentaje de commits con referencias.
 [2025-05-14 21:12:10] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:12:10] [INFO]: Regla: DevOps, Extreme Programming - Continuous integration
 [2025-05-14 21:12:10] [INFO]: Descripción: El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente
-[2025-05-14 21:12:10] [INFO]: Aprobada: parcial
+[2025-05-14 21:12:10] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:12:10] [INFO]: Expliación: El repositorio parece usar integración continua, pero podría mejorar en: Frecuencia de ejecución de los ficheros workflow, Porcentaje de éxito de los ficheros workflow.
 [2025-05-14 21:12:10] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-14 21:12:10] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-14 21:12:10] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-14 21:12:10] [INFO]: Aprobada: failed
+[2025-05-14 21:12:10] [INFO]: Aprobada: Suspendida
 [2025-05-14 21:12:10] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-14 21:12:10] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-14 21:12:10] [INFO]: Regla: Scrum - Backlog Quality
 [2025-05-14 21:12:10] [INFO]: Descripción: El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.
-[2025-05-14 21:12:10] [INFO]: Aprobada: parcial
+[2025-05-14 21:12:10] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:12:10] [INFO]: Expliación: El backlog podría mejorar en: Número total de Issues, Número total de Issues cerradas, Porcentaje de Issues con personas asignadas.
 [2025-05-14 21:12:10] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:12:10] [INFO]: Regla: Extreme Programming - Velocity
 [2025-05-14 21:12:10] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
-[2025-05-14 21:12:10] [INFO]: Aprobada: approved
+[2025-05-14 21:12:10] [INFO]: Aprobada: Superada
 [2025-05-14 21:12:10] [INFO]: Expliación: El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.
 [2025-05-14 21:12:10] [INFO]: Detalles: 
 [2025-05-14 21:12:10] [INFO]: Regla: Extreme Programming - Frequent Releases
 [2025-05-14 21:12:10] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
-[2025-05-14 21:12:10] [INFO]: Aprobada: parcial
+[2025-05-14 21:12:10] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:12:10] [INFO]: Expliación: El repositorio tiene Releases, pero podría mejorar en: Número de Releases.
 [2025-05-14 21:12:10] [INFO]: Detalles: [object Object],[object Object]
 [2025-05-14 21:12:10] [INFO]: Regla: Extreme Programming - Collective Ownership
 [2025-05-14 21:12:10] [INFO]: Descripción: Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...
-[2025-05-14 21:12:10] [INFO]: Aprobada: parcial
+[2025-05-14 21:12:10] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:12:10] [INFO]: Expliación: Hay indicios de colaboración, pero podría mejorar en: Número de participantes, Porcentaje de participación en Commits.
 [2025-05-14 21:12:10] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-14 21:12:10] [INFO]: Regla: Extreme Programming - Pair Programming
 [2025-05-14 21:12:10] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
-[2025-05-14 21:12:10] [INFO]: Aprobada: parcial
+[2025-05-14 21:12:10] [INFO]: Aprobada: Parcialmente superada
 [2025-05-14 21:12:10] [INFO]: Expliación: Hay algunos indicios de colaboración, pero podría mejorar en: Commits colaborativos (menciones en mensajes), Pull Requests colaborativos (menciones), Releases colaborativas (menciones).
 [2025-05-14 21:12:10] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]

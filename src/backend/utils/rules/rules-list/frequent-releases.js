@@ -1,26 +1,27 @@
 const { compareStats } = require("../rule-comparator");
 const logger = require('../../../logger');
 
-function evaluateFrequentReleasesRule(mainRepo, comparisonRepos) {
+function evaluateFrequentReleasesRule(mainRepo, comparisonRepos, averageDays) {
   const ruleName = "Extreme Programming - Frequent Releases";
   const description = "El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.";
-
+  const documentationUrl = "https://www.agilealliance.org/glossary/frequent-releases/";
+  
   const statsToCompare = [
-    { key: 'release_stats.releasesCount', label: 'Número de Releases' },
-    { key: 'release_stats.averageReleases', label: 'Frecuencia de Releases' },
+    { key: 'release_stats.releasesCount', label: 'Número de Releases', units: 'Releases',},
+    { key: 'release_stats.averageReleases', label: 'Media de Releases subidas cada ' + averageDays + ' días', units: 'Releases',},
   ];
 
-  const { status, resultDetails } = compareStats(mainRepo, comparisonRepos, statsToCompare);
+  const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'approved') {
+  if (status === 'Superada') {
     message = 'El repositorio publica Releases de forma frecuente, lo cual es un buen indicio de entrega continua.';
-  } else if (status === 'failed') {
+  } else if (status === 'Suspendida') {
     message = 'El repositorio no publica Releases con suficiente frecuencia.';
-  } else if (status === 'zero') {
+  } else if (status === 'Cero') {
     message = 'El repositorio no ha publicado ningún tipo de Release.';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'worse' || d.evaluation === 'zero').map(d => d.label);
+    const problems = resultDetails.filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero').map(d => d.label);
     message = `El repositorio tiene Releases, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 
@@ -33,7 +34,10 @@ function evaluateFrequentReleasesRule(mainRepo, comparisonRepos) {
   return {
     rule: ruleName,
     description,
+    documentationUrl,
     passed: status,
+    statsBetter,
+    totalStats,
     message,
     details: resultDetails
   };

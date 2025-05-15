@@ -9,18 +9,18 @@ const { evaluateFrequentReleasesRule } = require("./rules-list/frequent-releases
 const { evaluateCollectiveOwnershipRule } = require("./rules-list/collective-ownership");
 const { evaluatePairProgrammingRule } = require("./rules-list/pair-programming");
 
-function evaluateAllRules(mainRepo, comparisonRepos) {
+function evaluateAllRules(mainRepo, comparisonRepos, averageDays) {
   const rules = [];
 
-  rules.push(evaluateIterationsRule(mainRepo, comparisonRepos));
+  rules.push(evaluateIterationsRule(mainRepo, comparisonRepos, averageDays));
   rules.push(evaluateAutomatedBuildsRule(mainRepo, comparisonRepos));
-  rules.push(evaluateVersionControlRule(mainRepo, comparisonRepos));
-  rules.push(evaluateContinuousIntegrationRule(mainRepo, comparisonRepos));
+  rules.push(evaluateVersionControlRule(mainRepo, comparisonRepos, averageDays));
+  rules.push(evaluateContinuousIntegrationRule(mainRepo, comparisonRepos, averageDays));
   rules.push(evaluateDefinitionOfDoneRule(mainRepo, comparisonRepos));
   rules.push(evaluateBacklogQualityRule(mainRepo, comparisonRepos));
-  rules.push(evaluateVelocityRule(mainRepo, comparisonRepos));
-  rules.push(evaluateFrequentReleasesRule(mainRepo, comparisonRepos));
-  rules.push(evaluateCollectiveOwnershipRule(mainRepo, comparisonRepos));
+  rules.push(evaluateVelocityRule(mainRepo, comparisonRepos, averageDays));
+  rules.push(evaluateFrequentReleasesRule(mainRepo, comparisonRepos, averageDays));
+  rules.push(evaluateCollectiveOwnershipRule(mainRepo, comparisonRepos, averageDays));
   rules.push(evaluatePairProgrammingRule(mainRepo, comparisonRepos));
 
   return rules;

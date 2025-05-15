@@ -1,18 +1,19 @@
 const logger = require('../../../logger');
 
-function evaluateVelocityRule(mainRepo, comparisonRepos) {
+function evaluateVelocityRule(mainRepo, comparisonRepos, averageDays) {
   const ruleName = "Extreme Programming - Velocity";
   const description = "El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.";
-
+  const documentationUrl = "https://www.agilealliance.org/glossary/velocity/";
+  
   const statsToCompare = [
-    { key: 'issue_stats.averageClosedIssues', label: 'Media de cierre de Issues' },
-    { key: 'issue_stats.averageCloseTime', label: 'Media de días de cierre de Issues' },
+    { key: 'issue_stats.averageClosedIssues', label: 'Media de Issues cerradas cada ' + averageDays + ' días', units: 'Issues cerradas',},
+    { key: 'issue_stats.averageCloseTime', label: 'Media de días necesarios para cerrar una Issue', units: 'días',},
   ];
 
   const resultDetails = [];
-  let better = 0;
-  let worse = 0;
-  let zero = 0;
+  let Bien = 0;
+  let Mal = 0;
+  let Cero = 0;
 
   for (const stat of statsToCompare) {
     const [category, field] = stat.key.split('.');
@@ -39,39 +40,42 @@ function evaluateVelocityRule(mainRepo, comparisonRepos) {
 
     let evaluation = 'average';
     if (mainValue === 0) {
-      evaluation = 'zero';
-      zero++;
+      evaluation = 'Cero';
+      Cero++;
     } else if (higherCount >= lowerCount) {
-      evaluation = 'better';
-      better++;
+      evaluation = 'Bien';
+      Bien++;
     } else if (lowerCount > higherCount) {
-      evaluation = 'worse';
-      worse++;
+      evaluation = 'Mal';
+      Mal++;
     }
 
     resultDetails.push({
       label: stat.label,
       value: mainValue,
       evaluation,
+      unit: stat.units,
+      surpassedCount: higherCount,
+      totalCompared: comparisonRepos.length,
       comparedWith: comparisonRepos.map(r => r[category][field])
     });
   }
 
-  let status = 'parcial';
-  if (better === statsToCompare.length) status = 'approved';
-  else if (zero === statsToCompare.length) status = 'zero';
-  else if ((worse + zero) === statsToCompare.length) status = 'failed';
+  let status = 'Parcialmente superada';
+  if (Bien === statsToCompare.length) status = 'Superada';
+  else if (Cero === statsToCompare.length) status = 'Cero';
+  else if ((Mal + Cero) === statsToCompare.length) status = 'Suspendida';
 
   let message = '';
-  if (status === 'approved') {
+  if (status === 'Superada') {
     message = 'El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.';
-  } else if (status === 'failed') {
+  } else if (status === 'Suspendida') {
     message = 'No hay evidencia clara de que el repositorio mantenga la velocidad de trabajo.';
-  } else if (status === 'zero') {
+  } else if (status === 'Cero') {
     message = 'No se detectaron issues cerradas.';
   } else {
     const problems = resultDetails
-      .filter(d => d.evaluation === 'worse' || d.evaluation === 'zero')
+      .filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero')
       .map(d => d.label);
     message = `El repositorio podría mejorar la medición de velocidad en: ${problems.join(' + ')}.`;
   }
@@ -85,7 +89,10 @@ function evaluateVelocityRule(mainRepo, comparisonRepos) {
   return {
     rule: ruleName,
     description,
+    documentationUrl,
     passed: status,
+    statsBetter: Bien,
+    totalStats: statsToCompare.length,
     message,
     details: resultDetails
   };

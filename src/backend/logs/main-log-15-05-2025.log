@@ -1,0 +1,740 @@
+[2025-05-15 18:53:45] [INFO]: Servidor corriendo en http://localhost:5000
+[2025-05-15 18:53:46] [ERROR]: Error al enviar index.html: ENOENT: no such file or directory, stat 'C:\proyectos\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\src\backend\frontend\dist\frontend\browser\index.html'
+[2025-05-15 18:53:46] [INFO]: Conectado a MongoDB
+[2025-05-15 18:54:03] [INFO]: Dueño del repositorio: lod1004
+[2025-05-15 18:54:03] [INFO]: Título del repositorio: GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub
+[2025-05-15 18:54:03] [INFO]: Fecha del primer commit: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
+[2025-05-15 18:54:03] [INFO]: Fecha del final commit: Wed May 14 2025 21:14:45 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 18:54:03] [INFO]: Fecha de inicio: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
+[2025-05-15 18:54:03] [INFO]: Fecha de fin: Wed May 14 2025 21:14:45 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 18:54:14] [INFO]: Issues abiertas: 5
+[2025-05-15 18:54:14] [INFO]: Issues cerradas: 35
+[2025-05-15 18:54:14] [INFO]: Total Issues (abiertas + cerradas): 40
+[2025-05-15 18:54:14] [INFO]: Media de Issues cerradas (cada 15 días): 7.00
+[2025-05-15 18:54:14] [INFO]: Tiempo medio de cierre de Issues (en días): 10.62
+[2025-05-15 18:54:14] [INFO]: % Issues con descripción: 100.00
+[2025-05-15 18:54:14] [INFO]: % Issues con imágenes: 32.50
+[2025-05-15 18:54:14] [INFO]: % Issues con comentarios: 87.50
+[2025-05-15 18:54:14] [INFO]: % Issues con personas asignadas: 92.50
+[2025-05-15 18:54:14] [INFO]: % Issues con etiquetas: 100.00
+[2025-05-15 18:54:14] [INFO]: % Issues con milestone: 45.00
+[2025-05-15 18:54:14] [INFO]: % Issues con Story Points: 0.00
+[2025-05-15 18:54:14] [INFO]: % Issues reabiertas: 12.50
+[2025-05-15 18:54:14] [INFO]: % Issues colaborativas: 12.50
+[2025-05-15 18:54:14] [INFO]: Usuarios que participaron en Issues: [object Object],[object Object]
+[2025-05-15 18:54:15] [INFO]: Total de Commits: 53
+[2025-05-15 18:54:15] [INFO]: % Commits con título personalizado: 69.81
+[2025-05-15 18:54:15] [INFO]: % Commits con descripción: 71.70
+[2025-05-15 18:54:15] [INFO]: % Commits con referencias a Issues o Pull Requests: 43.40
+[2025-05-15 18:54:15] [INFO]: % Commits colaborativos: 0.00
+[2025-05-15 18:54:15] [INFO]: Media de Commits (cada 15 días): 10.60
+[2025-05-15 18:54:15] [INFO]: Usuarios que participaron en Commits: [object Object]
+[2025-05-15 18:54:15] [INFO]: Pull requests abiertas: 0
+[2025-05-15 18:54:15] [INFO]: Pull requests cerradas: 2
+[2025-05-15 18:54:15] [INFO]: % PRs con reviewers: 0.00
+[2025-05-15 18:54:15] [INFO]: % PRs con assignees: 50.00
+[2025-05-15 18:54:15] [INFO]: % PRs con labels: 50.00
+[2025-05-15 18:54:15] [INFO]: % PRs con milestone: 0.00
+[2025-05-15 18:54:15] [INFO]: % PRs colaborativas: 0.00
+[2025-05-15 18:54:15] [INFO]: Media de PRs (cada 15 días): 0.40
+[2025-05-15 18:54:15] [INFO]: Usuarios que participaron en PRs: [object Object]
+[2025-05-15 18:54:15] [INFO]: No se encontraron workflows en .github/workflows.
+[2025-05-15 18:54:16] [INFO]: Total de Releases: 1
+[2025-05-15 18:54:16] [INFO]: Total de tags: 1
+[2025-05-15 18:54:16] [INFO]: % Releases con descripción: 100.00
+[2025-05-15 18:54:16] [INFO]: % Releases colaborativas: 0.00
+[2025-05-15 18:54:16] [INFO]: Media de Releases (cada 15 días): 0.20
+[2025-05-15 18:54:16] [INFO]: Usuarios que participaron en Releases: [object Object]
+[2025-05-15 18:54:16] [INFO]: Total de participantes únicos: 2
+[2025-05-15 18:54:16] [INFO]: Porcentaje de participación en Issues: 100.00
+[2025-05-15 18:54:16] [INFO]: Porcentaje de participación en Commits: 50.00
+[2025-05-15 18:54:16] [INFO]: Porcentaje de participación en PRs: 50.00
+[2025-05-15 18:54:16] [INFO]: Porcentaje de participación en Releases: 50.00
+[2025-05-15 18:54:16] [INFO]: Media de actividad por usuario (cada 15 días): 18.90
+[2025-05-15 18:54:17] [INFO]: Dueño del repositorio: Joaquin-GM
+[2025-05-15 18:54:17] [INFO]: Título del repositorio: GII_O_MA_19.07-Comparador-de-metricas-de-evolucion-en-repositorios-Software
+[2025-05-15 18:54:17] [INFO]: Fecha del primer commit: Sat Oct 23 2021 19:25:56 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 18:54:17] [INFO]: Fecha del final commit: Wed Jun 15 2022 13:40:09 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 18:54:17] [INFO]: Fecha de inicio: Sat Oct 23 2021 19:25:56 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 18:54:17] [INFO]: Fecha de fin: Wed Jun 15 2022 13:40:09 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 18:54:40] [INFO]: Issues abiertas: 0
+[2025-05-15 18:54:40] [INFO]: Issues cerradas: 88
+[2025-05-15 18:54:40] [INFO]: Total Issues (abiertas + cerradas): 88
+[2025-05-15 18:54:40] [INFO]: Media de Issues cerradas (cada 15 días): 5.50
+[2025-05-15 18:54:40] [INFO]: Tiempo medio de cierre de Issues (en días): 66.06
+[2025-05-15 18:54:40] [INFO]: % Issues con descripción: 47.73
+[2025-05-15 18:54:40] [INFO]: % Issues con imágenes: 13.64
+[2025-05-15 18:54:40] [INFO]: % Issues con comentarios: 28.41
+[2025-05-15 18:54:40] [INFO]: % Issues con personas asignadas: 100.00
+[2025-05-15 18:54:40] [INFO]: % Issues con etiquetas: 100.00
+[2025-05-15 18:54:40] [INFO]: % Issues con milestone: 1.14
+[2025-05-15 18:54:40] [INFO]: % Issues con Story Points: 0.00
+[2025-05-15 18:54:40] [INFO]: % Issues reabiertas: 6.82
+[2025-05-15 18:54:40] [INFO]: % Issues colaborativas: 1.14
+[2025-05-15 18:54:40] [INFO]: Usuarios que participaron en Issues: [object Object],[object Object]
+[2025-05-15 18:54:40] [INFO]: Total de Commits: 100
+[2025-05-15 18:54:40] [INFO]: % Commits con título personalizado: 97.00
+[2025-05-15 18:54:40] [INFO]: % Commits con descripción: 0.00
+[2025-05-15 18:54:40] [INFO]: % Commits con referencias a Issues o Pull Requests: 57.00
+[2025-05-15 18:54:40] [INFO]: % Commits colaborativos: 0.00
+[2025-05-15 18:54:40] [INFO]: Media de Commits (cada 15 días): 6.25
+[2025-05-15 18:54:40] [INFO]: Usuarios que participaron en Commits: [object Object],[object Object],[object Object]
+[2025-05-15 18:54:41] [INFO]: No hay pull requests en el repositorio.
+[2025-05-15 18:54:41] [INFO]: Workflows creados dentro del rango: 1
+[2025-05-15 18:54:41] [INFO]: Ejecuciones totales de workflows: 0
+[2025-05-15 18:54:41] [INFO]: Workflows exitosos: 0.00%
+[2025-05-15 18:54:41] [INFO]: Frecuencia media de ejecución: 0 días
+[2025-05-15 18:54:42] [INFO]: Total de Releases: 3
+[2025-05-15 18:54:42] [INFO]: Total de tags: 3
+[2025-05-15 18:54:42] [INFO]: % Releases con descripción: 100.00
+[2025-05-15 18:54:42] [INFO]: % Releases colaborativas: 0.00
+[2025-05-15 18:54:42] [INFO]: Media de Releases (cada 15 días): 0.19
+[2025-05-15 18:54:42] [INFO]: Usuarios que participaron en Releases: [object Object]
+[2025-05-15 18:54:42] [INFO]: Total de participantes únicos: 3
+[2025-05-15 18:54:42] [INFO]: Porcentaje de participación en Issues: 66.67
+[2025-05-15 18:54:42] [INFO]: Porcentaje de participación en Commits: 100.00
+[2025-05-15 18:54:42] [INFO]: Porcentaje de participación en PRs: 0.00
+[2025-05-15 18:54:42] [INFO]: Porcentaje de participación en Releases: 33.33
+[2025-05-15 18:54:42] [INFO]: Media de actividad por usuario (cada 15 días): 6.46
+[2025-05-15 18:54:43] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
+[2025-05-15 18:54:43] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
+[2025-05-15 18:54:43] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 18:54:43] [INFO]: Expliación: El repositorio parece usar iteraciones, pero podría mejorar en: Pull Requests con Milestones.
+[2025-05-15 18:54:43] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
+[2025-05-15 18:54:43] [INFO]: Regla: DevOps - Automated Build
+[2025-05-15 18:54:43] [INFO]: Descripción: El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.
+[2025-05-15 18:54:43] [INFO]: Aprobada: Cero
+[2025-05-15 18:54:43] [INFO]: Expliación: El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización
+[2025-05-15 18:54:43] [INFO]: Detalles: [object Object]
+[2025-05-15 18:54:43] [INFO]: Regla: DevOps - Version Control
+[2025-05-15 18:54:43] [INFO]: Descripción: El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay commits frecuentemente y estos contienen buenas características como descripción y referencias
+[2025-05-15 18:54:43] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 18:54:43] [INFO]: Expliación: El repositorio parece usar commits y un control de versiones, pero podría mejorar en: Porcentaje de commits con título personalizado, Porcentaje de commits con referencias.
+[2025-05-15 18:54:43] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
+[2025-05-15 18:54:43] [INFO]: Regla: DevOps, Extreme Programming - Continuous integration
+[2025-05-15 18:54:43] [INFO]: Descripción: El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente
+[2025-05-15 18:54:43] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 18:54:43] [INFO]: Expliación: El repositorio parece usar integración continua, pero podría mejorar en: Frecuencia de ejecución de los ficheros workflow, Porcentaje de éxito de los ficheros workflow.
+[2025-05-15 18:54:43] [INFO]: Detalles: [object Object],[object Object],[object Object]
+[2025-05-15 18:54:43] [INFO]: Regla: Scrum - Definition of Done
+[2025-05-15 18:54:43] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
+[2025-05-15 18:54:43] [INFO]: Aprobada: Suspendida
+[2025-05-15 18:54:43] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
+[2025-05-15 18:54:43] [INFO]: Detalles: [object Object],[object Object],[object Object]
+[2025-05-15 18:54:43] [INFO]: Regla: Scrum - Backlog Quality
+[2025-05-15 18:54:43] [INFO]: Descripción: El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.
+[2025-05-15 18:54:43] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 18:54:43] [INFO]: Expliación: El backlog podría mejorar en: Número total de Issues, Número total de Issues cerradas, Porcentaje de Issues con personas asignadas.
+[2025-05-15 18:54:43] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 18:54:43] [INFO]: Regla: Extreme Programming - Velocity
+[2025-05-15 18:54:43] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
+[2025-05-15 18:54:43] [INFO]: Aprobada: Superada
+[2025-05-15 18:54:43] [INFO]: Expliación: El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.
+[2025-05-15 18:54:43] [INFO]: Detalles: 
+[2025-05-15 18:54:43] [INFO]: Regla: Extreme Programming - Frequent Releases
+[2025-05-15 18:54:43] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
+[2025-05-15 18:54:43] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 18:54:43] [INFO]: Expliación: El repositorio tiene Releases, pero podría mejorar en: Número de Releases.
+[2025-05-15 18:54:43] [INFO]: Detalles: [object Object],[object Object]
+[2025-05-15 18:54:43] [INFO]: Regla: Extreme Programming - Collective Ownership
+[2025-05-15 18:54:43] [INFO]: Descripción: Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...
+[2025-05-15 18:54:43] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 18:54:43] [INFO]: Expliación: Hay indicios de colaboración, pero podría mejorar en: Número de participantes, Porcentaje de participación en Commits.
+[2025-05-15 18:54:43] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 18:54:43] [INFO]: Regla: Extreme Programming - Pair Programming
+[2025-05-15 18:54:43] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
+[2025-05-15 18:54:43] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 18:54:43] [INFO]: Expliación: Hay algunos indicios de colaboración, pero podría mejorar en: Commits colaborativos (menciones en mensajes), Pull Requests colaborativos (menciones), Releases colaborativas (menciones).
+[2025-05-15 18:54:43] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:20:10] [INFO]: Servidor corriendo en http://localhost:5000
+[2025-05-15 21:20:11] [ERROR]: Error al enviar index.html: ENOENT: no such file or directory, stat 'C:\proyectos\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\src\backend\frontend\dist\frontend\browser\index.html'
+[2025-05-15 21:20:11] [INFO]: Conectado a MongoDB
+[2025-05-15 21:20:27] [INFO]: Dueño del repositorio: lod1004
+[2025-05-15 21:20:27] [INFO]: Título del repositorio: GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub
+[2025-05-15 21:20:27] [INFO]: Fecha del primer commit: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
+[2025-05-15 21:20:27] [INFO]: Fecha del final commit: Wed May 14 2025 21:14:45 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:20:27] [INFO]: Fecha de inicio: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
+[2025-05-15 21:20:27] [INFO]: Fecha de fin: Wed May 14 2025 21:14:45 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:20:38] [INFO]: Issues abiertas: 5
+[2025-05-15 21:20:38] [INFO]: Issues cerradas: 35
+[2025-05-15 21:20:38] [INFO]: Total Issues (abiertas + cerradas): 40
+[2025-05-15 21:20:38] [INFO]: Media de Issues cerradas (cada 15 días): 7.00
+[2025-05-15 21:20:38] [INFO]: Tiempo medio de cierre de Issues (en días): 10.62
+[2025-05-15 21:20:38] [INFO]: % Issues con descripción: 100.00
+[2025-05-15 21:20:38] [INFO]: % Issues con imágenes: 32.50
+[2025-05-15 21:20:38] [INFO]: % Issues con comentarios: 87.50
+[2025-05-15 21:20:38] [INFO]: % Issues con personas asignadas: 92.50
+[2025-05-15 21:20:38] [INFO]: % Issues con etiquetas: 100.00
+[2025-05-15 21:20:38] [INFO]: % Issues con milestone: 45.00
+[2025-05-15 21:20:38] [INFO]: % Issues con Story Points: 0.00
+[2025-05-15 21:20:38] [INFO]: % Issues reabiertas: 12.50
+[2025-05-15 21:20:38] [INFO]: % Issues colaborativas: 12.50
+[2025-05-15 21:20:38] [INFO]: Usuarios que participaron en Issues: [object Object],[object Object]
+[2025-05-15 21:20:39] [INFO]: Total de Commits: 53
+[2025-05-15 21:20:39] [INFO]: % Commits con título personalizado: 69.81
+[2025-05-15 21:20:39] [INFO]: % Commits con descripción: 71.70
+[2025-05-15 21:20:39] [INFO]: % Commits con referencias a Issues o Pull Requests: 43.40
+[2025-05-15 21:20:39] [INFO]: % Commits colaborativos: 0.00
+[2025-05-15 21:20:39] [INFO]: Media de Commits (cada 15 días): 10.60
+[2025-05-15 21:20:39] [INFO]: Usuarios que participaron en Commits: [object Object]
+[2025-05-15 21:20:39] [INFO]: Pull requests abiertas: 0
+[2025-05-15 21:20:39] [INFO]: Pull requests cerradas: 2
+[2025-05-15 21:20:39] [INFO]: % PRs con reviewers: 0.00
+[2025-05-15 21:20:39] [INFO]: % PRs con assignees: 50.00
+[2025-05-15 21:20:39] [INFO]: % PRs con labels: 50.00
+[2025-05-15 21:20:39] [INFO]: % PRs con milestone: 0.00
+[2025-05-15 21:20:39] [INFO]: % PRs colaborativas: 0.00
+[2025-05-15 21:20:39] [INFO]: Media de PRs (cada 15 días): 0.40
+[2025-05-15 21:20:39] [INFO]: Usuarios que participaron en PRs: [object Object]
+[2025-05-15 21:20:39] [INFO]: No se encontraron workflows en .github/workflows.
+[2025-05-15 21:20:40] [INFO]: Total de Releases: 1
+[2025-05-15 21:20:40] [INFO]: Total de tags: 1
+[2025-05-15 21:20:40] [INFO]: % Releases con descripción: 100.00
+[2025-05-15 21:20:40] [INFO]: % Releases colaborativas: 0.00
+[2025-05-15 21:20:40] [INFO]: Media de Releases (cada 15 días): 0.20
+[2025-05-15 21:20:40] [INFO]: Usuarios que participaron en Releases: [object Object]
+[2025-05-15 21:20:40] [INFO]: Total de participantes únicos: 2
+[2025-05-15 21:20:40] [INFO]: Porcentaje de participación en Issues: 100.00
+[2025-05-15 21:20:40] [INFO]: Porcentaje de participación en Commits: 50.00
+[2025-05-15 21:20:40] [INFO]: Porcentaje de participación en PRs: 50.00
+[2025-05-15 21:20:40] [INFO]: Porcentaje de participación en Releases: 50.00
+[2025-05-15 21:20:40] [INFO]: Media de actividad por usuario (cada 15 días): 18.90
+[2025-05-15 21:20:41] [INFO]: Dueño del repositorio: Joaquin-GM
+[2025-05-15 21:20:41] [INFO]: Título del repositorio: GII_O_MA_19.07-Comparador-de-metricas-de-evolucion-en-repositorios-Software
+[2025-05-15 21:20:41] [INFO]: Fecha del primer commit: Sat Oct 23 2021 19:25:56 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:20:41] [INFO]: Fecha del final commit: Wed Jun 15 2022 13:40:09 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:20:41] [INFO]: Fecha de inicio: Sat Oct 23 2021 19:25:56 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:20:41] [INFO]: Fecha de fin: Wed Jun 15 2022 13:40:09 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:21:04] [INFO]: Issues abiertas: 0
+[2025-05-15 21:21:04] [INFO]: Issues cerradas: 88
+[2025-05-15 21:21:04] [INFO]: Total Issues (abiertas + cerradas): 88
+[2025-05-15 21:21:04] [INFO]: Media de Issues cerradas (cada 15 días): 5.50
+[2025-05-15 21:21:04] [INFO]: Tiempo medio de cierre de Issues (en días): 66.06
+[2025-05-15 21:21:04] [INFO]: % Issues con descripción: 47.73
+[2025-05-15 21:21:04] [INFO]: % Issues con imágenes: 13.64
+[2025-05-15 21:21:04] [INFO]: % Issues con comentarios: 28.41
+[2025-05-15 21:21:04] [INFO]: % Issues con personas asignadas: 100.00
+[2025-05-15 21:21:04] [INFO]: % Issues con etiquetas: 100.00
+[2025-05-15 21:21:04] [INFO]: % Issues con milestone: 1.14
+[2025-05-15 21:21:04] [INFO]: % Issues con Story Points: 0.00
+[2025-05-15 21:21:04] [INFO]: % Issues reabiertas: 6.82
+[2025-05-15 21:21:04] [INFO]: % Issues colaborativas: 1.14
+[2025-05-15 21:21:04] [INFO]: Usuarios que participaron en Issues: [object Object],[object Object]
+[2025-05-15 21:21:05] [INFO]: Total de Commits: 100
+[2025-05-15 21:21:05] [INFO]: % Commits con título personalizado: 97.00
+[2025-05-15 21:21:05] [INFO]: % Commits con descripción: 0.00
+[2025-05-15 21:21:05] [INFO]: % Commits con referencias a Issues o Pull Requests: 57.00
+[2025-05-15 21:21:05] [INFO]: % Commits colaborativos: 0.00
+[2025-05-15 21:21:05] [INFO]: Media de Commits (cada 15 días): 6.25
+[2025-05-15 21:21:05] [INFO]: Usuarios que participaron en Commits: [object Object],[object Object],[object Object]
+[2025-05-15 21:21:05] [INFO]: No hay pull requests en el repositorio.
+[2025-05-15 21:21:06] [INFO]: Workflows creados dentro del rango: 1
+[2025-05-15 21:21:06] [INFO]: Ejecuciones totales de workflows: 0
+[2025-05-15 21:21:06] [INFO]: Workflows exitosos: 0.00%
+[2025-05-15 21:21:06] [INFO]: Frecuencia media de ejecución: 0 días
+[2025-05-15 21:21:06] [INFO]: Total de Releases: 3
+[2025-05-15 21:21:06] [INFO]: Total de tags: 3
+[2025-05-15 21:21:06] [INFO]: % Releases con descripción: 100.00
+[2025-05-15 21:21:06] [INFO]: % Releases colaborativas: 0.00
+[2025-05-15 21:21:06] [INFO]: Media de Releases (cada 15 días): 0.19
+[2025-05-15 21:21:06] [INFO]: Usuarios que participaron en Releases: [object Object]
+[2025-05-15 21:21:07] [INFO]: Total de participantes únicos: 3
+[2025-05-15 21:21:07] [INFO]: Porcentaje de participación en Issues: 66.67
+[2025-05-15 21:21:07] [INFO]: Porcentaje de participación en Commits: 100.00
+[2025-05-15 21:21:07] [INFO]: Porcentaje de participación en PRs: 0.00
+[2025-05-15 21:21:07] [INFO]: Porcentaje de participación en Releases: 33.33
+[2025-05-15 21:21:07] [INFO]: Media de actividad por usuario (cada 15 días): 6.46
+[2025-05-15 21:21:07] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
+[2025-05-15 21:21:07] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
+[2025-05-15 21:21:07] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:21:07] [INFO]: Expliación: El repositorio parece usar iteraciones, pero podría mejorar en: Porcentaje de Pull Requests con Milestones.
+[2025-05-15 21:21:07] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:21:07] [INFO]: Regla: DevOps - Automated Build
+[2025-05-15 21:21:07] [INFO]: Descripción: El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.
+[2025-05-15 21:21:07] [INFO]: Aprobada: Cero
+[2025-05-15 21:21:07] [INFO]: Expliación: El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización
+[2025-05-15 21:21:07] [INFO]: Detalles: [object Object]
+[2025-05-15 21:21:07] [INFO]: Regla: DevOps - Version Control
+[2025-05-15 21:21:07] [INFO]: Descripción: El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay Commits frecuentemente y estos contienen buenas características como descripción y referencias
+[2025-05-15 21:21:07] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:21:07] [INFO]: Expliación: El repositorio parece usar Commits y un control de versiones, pero podría mejorar en: Número de Commits, Porcentaje de Commits con título personalizado, Porcentaje de Commits con referencias.
+[2025-05-15 21:21:07] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:21:07] [INFO]: Regla: DevOps, Extreme Programming - Continuous integration
+[2025-05-15 21:21:07] [INFO]: Descripción: El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente
+[2025-05-15 21:21:07] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:21:07] [INFO]: Expliación: El repositorio parece usar integración continua, pero podría mejorar en: Frecuencia de ejecución de los ficheros workflow, Porcentaje de éxito de los ficheros workflow.
+[2025-05-15 21:21:07] [INFO]: Detalles: [object Object],[object Object],[object Object]
+[2025-05-15 21:21:07] [INFO]: Regla: Scrum - Definition of Done
+[2025-05-15 21:21:07] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
+[2025-05-15 21:21:07] [INFO]: Aprobada: Suspendida
+[2025-05-15 21:21:07] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
+[2025-05-15 21:21:07] [INFO]: Detalles: [object Object],[object Object],[object Object]
+[2025-05-15 21:21:07] [INFO]: Regla: Scrum - Backlog Quality
+[2025-05-15 21:21:07] [INFO]: Descripción: El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.
+[2025-05-15 21:21:07] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:21:07] [INFO]: Expliación: El backlog podría mejorar en: Número total de Issues, Número total de Issues cerradas, Porcentaje de Issues con personas asignadas.
+[2025-05-15 21:21:07] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:21:07] [INFO]: Regla: Extreme Programming - Velocity
+[2025-05-15 21:21:07] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
+[2025-05-15 21:21:07] [INFO]: Aprobada: Superada
+[2025-05-15 21:21:07] [INFO]: Expliación: El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.
+[2025-05-15 21:21:07] [INFO]: Detalles: 
+[2025-05-15 21:21:07] [INFO]: Regla: Extreme Programming - Frequent Releases
+[2025-05-15 21:21:07] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
+[2025-05-15 21:21:07] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:21:07] [INFO]: Expliación: El repositorio tiene Releases, pero podría mejorar en: Número de Releases.
+[2025-05-15 21:21:07] [INFO]: Detalles: [object Object],[object Object]
+[2025-05-15 21:21:07] [INFO]: Regla: Extreme Programming - Collective Ownership
+[2025-05-15 21:21:07] [INFO]: Descripción: Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...
+[2025-05-15 21:21:07] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:21:07] [INFO]: Expliación: Hay indicios de colaboración, pero podría mejorar en: Número de participantes, Porcentaje de participación en Commits.
+[2025-05-15 21:21:07] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:21:07] [INFO]: Regla: Extreme Programming - Pair Programming
+[2025-05-15 21:21:07] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
+[2025-05-15 21:21:07] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:21:07] [INFO]: Expliación: Hay algunos indicios de colaboración, pero podría mejorar en: Porcentaje de Commits colaborativos (menciones en mensajes), Porcentaje de Pull Requests colaborativos (menciones), Porcentaje de Releases colaborativas (menciones).
+[2025-05-15 21:21:07] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:23:48] [INFO]: Servidor corriendo en http://localhost:5000
+[2025-05-15 21:23:48] [ERROR]: Error al enviar index.html: ENOENT: no such file or directory, stat 'C:\proyectos\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\src\backend\frontend\dist\frontend\browser\index.html'
+[2025-05-15 21:23:49] [INFO]: Conectado a MongoDB
+[2025-05-15 21:24:00] [INFO]: Dueño del repositorio: lod1004
+[2025-05-15 21:24:00] [INFO]: Título del repositorio: GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub
+[2025-05-15 21:24:00] [INFO]: Fecha del primer commit: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
+[2025-05-15 21:24:00] [INFO]: Fecha del final commit: Wed May 14 2025 21:14:45 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:24:00] [INFO]: Fecha de inicio: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
+[2025-05-15 21:24:00] [INFO]: Fecha de fin: Wed May 14 2025 21:14:45 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:24:11] [INFO]: Issues abiertas: 5
+[2025-05-15 21:24:11] [INFO]: Issues cerradas: 35
+[2025-05-15 21:24:11] [INFO]: Total Issues (abiertas + cerradas): 40
+[2025-05-15 21:24:11] [INFO]: Media de Issues cerradas (cada 15 días): 7.00
+[2025-05-15 21:24:11] [INFO]: Tiempo medio de cierre de Issues (en días): 10.62
+[2025-05-15 21:24:11] [INFO]: % Issues con descripción: 100.00
+[2025-05-15 21:24:11] [INFO]: % Issues con imágenes: 32.50
+[2025-05-15 21:24:11] [INFO]: % Issues con comentarios: 87.50
+[2025-05-15 21:24:11] [INFO]: % Issues con personas asignadas: 92.50
+[2025-05-15 21:24:11] [INFO]: % Issues con etiquetas: 100.00
+[2025-05-15 21:24:11] [INFO]: % Issues con milestone: 45.00
+[2025-05-15 21:24:11] [INFO]: % Issues con Story Points: 0.00
+[2025-05-15 21:24:11] [INFO]: % Issues reabiertas: 12.50
+[2025-05-15 21:24:11] [INFO]: % Issues colaborativas: 12.50
+[2025-05-15 21:24:11] [INFO]: Usuarios que participaron en Issues: [object Object],[object Object]
+[2025-05-15 21:24:12] [INFO]: Total de Commits: 53
+[2025-05-15 21:24:12] [INFO]: % Commits con título personalizado: 69.81
+[2025-05-15 21:24:12] [INFO]: % Commits con descripción: 71.70
+[2025-05-15 21:24:12] [INFO]: % Commits con referencias a Issues o Pull Requests: 43.40
+[2025-05-15 21:24:12] [INFO]: % Commits colaborativos: 0.00
+[2025-05-15 21:24:12] [INFO]: Media de Commits (cada 15 días): 10.60
+[2025-05-15 21:24:12] [INFO]: Usuarios que participaron en Commits: [object Object]
+[2025-05-15 21:24:12] [INFO]: Pull requests abiertas: 0
+[2025-05-15 21:24:12] [INFO]: Pull requests cerradas: 2
+[2025-05-15 21:24:12] [INFO]: % PRs con reviewers: 0.00
+[2025-05-15 21:24:12] [INFO]: % PRs con assignees: 50.00
+[2025-05-15 21:24:12] [INFO]: % PRs con labels: 50.00
+[2025-05-15 21:24:12] [INFO]: % PRs con milestone: 0.00
+[2025-05-15 21:24:12] [INFO]: % PRs colaborativas: 0.00
+[2025-05-15 21:24:12] [INFO]: Media de PRs (cada 15 días): 0.40
+[2025-05-15 21:24:12] [INFO]: Usuarios que participaron en PRs: [object Object]
+[2025-05-15 21:24:12] [INFO]: No se encontraron workflows en .github/workflows.
+[2025-05-15 21:24:13] [INFO]: Total de Releases: 1
+[2025-05-15 21:24:13] [INFO]: Total de tags: 1
+[2025-05-15 21:24:13] [INFO]: % Releases con descripción: 100.00
+[2025-05-15 21:24:13] [INFO]: % Releases colaborativas: 0.00
+[2025-05-15 21:24:13] [INFO]: Media de Releases (cada 15 días): 0.20
+[2025-05-15 21:24:13] [INFO]: Usuarios que participaron en Releases: [object Object]
+[2025-05-15 21:24:13] [INFO]: Total de participantes únicos: 2
+[2025-05-15 21:24:13] [INFO]: Porcentaje de participación en Issues: 100.00
+[2025-05-15 21:24:13] [INFO]: Porcentaje de participación en Commits: 50.00
+[2025-05-15 21:24:13] [INFO]: Porcentaje de participación en PRs: 50.00
+[2025-05-15 21:24:13] [INFO]: Porcentaje de participación en Releases: 50.00
+[2025-05-15 21:24:13] [INFO]: Media de actividad por usuario (cada 15 días): 18.90
+[2025-05-15 21:24:14] [INFO]: Dueño del repositorio: Joaquin-GM
+[2025-05-15 21:24:14] [INFO]: Título del repositorio: GII_O_MA_19.07-Comparador-de-metricas-de-evolucion-en-repositorios-Software
+[2025-05-15 21:24:14] [INFO]: Fecha del primer commit: Sat Oct 23 2021 19:25:56 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:24:14] [INFO]: Fecha del final commit: Wed Jun 15 2022 13:40:09 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:24:14] [INFO]: Fecha de inicio: Sat Oct 23 2021 19:25:56 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:24:14] [INFO]: Fecha de fin: Wed Jun 15 2022 13:40:09 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:24:36] [INFO]: Issues abiertas: 0
+[2025-05-15 21:24:36] [INFO]: Issues cerradas: 88
+[2025-05-15 21:24:36] [INFO]: Total Issues (abiertas + cerradas): 88
+[2025-05-15 21:24:36] [INFO]: Media de Issues cerradas (cada 15 días): 5.50
+[2025-05-15 21:24:36] [INFO]: Tiempo medio de cierre de Issues (en días): 66.06
+[2025-05-15 21:24:36] [INFO]: % Issues con descripción: 47.73
+[2025-05-15 21:24:36] [INFO]: % Issues con imágenes: 13.64
+[2025-05-15 21:24:36] [INFO]: % Issues con comentarios: 28.41
+[2025-05-15 21:24:36] [INFO]: % Issues con personas asignadas: 100.00
+[2025-05-15 21:24:36] [INFO]: % Issues con etiquetas: 100.00
+[2025-05-15 21:24:36] [INFO]: % Issues con milestone: 1.14
+[2025-05-15 21:24:36] [INFO]: % Issues con Story Points: 0.00
+[2025-05-15 21:24:36] [INFO]: % Issues reabiertas: 6.82
+[2025-05-15 21:24:36] [INFO]: % Issues colaborativas: 1.14
+[2025-05-15 21:24:36] [INFO]: Usuarios que participaron en Issues: [object Object],[object Object]
+[2025-05-15 21:24:37] [INFO]: Total de Commits: 100
+[2025-05-15 21:24:37] [INFO]: % Commits con título personalizado: 97.00
+[2025-05-15 21:24:37] [INFO]: % Commits con descripción: 0.00
+[2025-05-15 21:24:37] [INFO]: % Commits con referencias a Issues o Pull Requests: 57.00
+[2025-05-15 21:24:37] [INFO]: % Commits colaborativos: 0.00
+[2025-05-15 21:24:37] [INFO]: Media de Commits (cada 15 días): 6.25
+[2025-05-15 21:24:37] [INFO]: Usuarios que participaron en Commits: [object Object],[object Object],[object Object]
+[2025-05-15 21:24:37] [INFO]: No hay pull requests en el repositorio.
+[2025-05-15 21:24:38] [INFO]: Workflows creados dentro del rango: 1
+[2025-05-15 21:24:38] [INFO]: Ejecuciones totales de workflows: 0
+[2025-05-15 21:24:38] [INFO]: Workflows exitosos: 0.00%
+[2025-05-15 21:24:38] [INFO]: Frecuencia media de ejecución: 0 días
+[2025-05-15 21:24:39] [INFO]: Total de Releases: 3
+[2025-05-15 21:24:39] [INFO]: Total de tags: 3
+[2025-05-15 21:24:39] [INFO]: % Releases con descripción: 100.00
+[2025-05-15 21:24:39] [INFO]: % Releases colaborativas: 0.00
+[2025-05-15 21:24:39] [INFO]: Media de Releases (cada 15 días): 0.19
+[2025-05-15 21:24:39] [INFO]: Usuarios que participaron en Releases: [object Object]
+[2025-05-15 21:24:40] [INFO]: Total de participantes únicos: 3
+[2025-05-15 21:24:40] [INFO]: Porcentaje de participación en Issues: 66.67
+[2025-05-15 21:24:40] [INFO]: Porcentaje de participación en Commits: 100.00
+[2025-05-15 21:24:40] [INFO]: Porcentaje de participación en PRs: 0.00
+[2025-05-15 21:24:40] [INFO]: Porcentaje de participación en Releases: 33.33
+[2025-05-15 21:24:40] [INFO]: Media de actividad por usuario (cada 15 días): 6.46
+[2025-05-15 21:24:41] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
+[2025-05-15 21:24:41] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
+[2025-05-15 21:24:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:24:41] [INFO]: Expliación: El repositorio parece usar iteraciones, pero podría mejorar en: Porcentaje de Pull Requests con Milestones.
+[2025-05-15 21:24:41] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:24:41] [INFO]: Regla: DevOps - Automated Build
+[2025-05-15 21:24:41] [INFO]: Descripción: El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.
+[2025-05-15 21:24:41] [INFO]: Aprobada: Cero
+[2025-05-15 21:24:41] [INFO]: Expliación: El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización
+[2025-05-15 21:24:41] [INFO]: Detalles: [object Object]
+[2025-05-15 21:24:41] [INFO]: Regla: DevOps - Version Control
+[2025-05-15 21:24:41] [INFO]: Descripción: El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay Commits frecuentemente y estos contienen buenas características como descripción y referencias
+[2025-05-15 21:24:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:24:41] [INFO]: Expliación: El repositorio parece usar Commits y un control de versiones, pero podría mejorar en: Número de Commits, Porcentaje de Commits con título personalizado, Porcentaje de Commits con referencias.
+[2025-05-15 21:24:41] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:24:41] [INFO]: Regla: DevOps, Extreme Programming - Continuous integration
+[2025-05-15 21:24:41] [INFO]: Descripción: El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente
+[2025-05-15 21:24:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:24:41] [INFO]: Expliación: El repositorio parece usar integración continua, pero podría mejorar en: Frecuencia de ejecución de los ficheros workflow, Porcentaje de éxito de los ficheros workflow.
+[2025-05-15 21:24:41] [INFO]: Detalles: [object Object],[object Object],[object Object]
+[2025-05-15 21:24:41] [INFO]: Regla: Scrum - Definition of Done
+[2025-05-15 21:24:41] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
+[2025-05-15 21:24:41] [INFO]: Aprobada: Suspendida
+[2025-05-15 21:24:41] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
+[2025-05-15 21:24:41] [INFO]: Detalles: [object Object],[object Object],[object Object]
+[2025-05-15 21:24:41] [INFO]: Regla: Scrum - Backlog Quality
+[2025-05-15 21:24:41] [INFO]: Descripción: El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.
+[2025-05-15 21:24:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:24:41] [INFO]: Expliación: El backlog podría mejorar en: Número total de Issues, Número total de Issues cerradas, Porcentaje de Issues con personas asignadas.
+[2025-05-15 21:24:41] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:24:41] [INFO]: Regla: Extreme Programming - Velocity
+[2025-05-15 21:24:41] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
+[2025-05-15 21:24:41] [INFO]: Aprobada: Superada
+[2025-05-15 21:24:41] [INFO]: Expliación: El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.
+[2025-05-15 21:24:41] [INFO]: Detalles: 
+[2025-05-15 21:24:41] [INFO]: Regla: Extreme Programming - Frequent Releases
+[2025-05-15 21:24:41] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
+[2025-05-15 21:24:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:24:41] [INFO]: Expliación: El repositorio tiene Releases, pero podría mejorar en: Número de Releases.
+[2025-05-15 21:24:41] [INFO]: Detalles: [object Object],[object Object]
+[2025-05-15 21:24:41] [INFO]: Regla: Extreme Programming - Collective Ownership
+[2025-05-15 21:24:41] [INFO]: Descripción: Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...
+[2025-05-15 21:24:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:24:41] [INFO]: Expliación: Hay indicios de colaboración, pero podría mejorar en: Número de participantes, Porcentaje de participación en Commits.
+[2025-05-15 21:24:41] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:24:41] [INFO]: Regla: Extreme Programming - Pair Programming
+[2025-05-15 21:24:41] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
+[2025-05-15 21:24:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:24:41] [INFO]: Expliación: Hay algunos indicios de colaboración, pero podría mejorar en: Porcentaje de Commits colaborativos (menciones en mensajes), Porcentaje de Pull Requests colaborativos (menciones), Porcentaje de Releases colaborativas (menciones).
+[2025-05-15 21:24:41] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:27:48] [INFO]: Servidor corriendo en http://localhost:5000
+[2025-05-15 21:27:48] [ERROR]: Error al enviar index.html: ENOENT: no such file or directory, stat 'C:\proyectos\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\src\backend\frontend\dist\frontend\browser\index.html'
+[2025-05-15 21:27:48] [INFO]: Conectado a MongoDB
+[2025-05-15 21:28:02] [INFO]: Dueño del repositorio: lod1004
+[2025-05-15 21:28:02] [INFO]: Título del repositorio: GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub
+[2025-05-15 21:28:02] [INFO]: Fecha del primer commit: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
+[2025-05-15 21:28:02] [INFO]: Fecha del final commit: Wed May 14 2025 21:14:45 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:28:02] [INFO]: Fecha de inicio: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
+[2025-05-15 21:28:02] [INFO]: Fecha de fin: Wed May 14 2025 21:14:45 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:28:13] [INFO]: Issues abiertas: 5
+[2025-05-15 21:28:13] [INFO]: Issues cerradas: 35
+[2025-05-15 21:28:13] [INFO]: Total Issues (abiertas + cerradas): 40
+[2025-05-15 21:28:13] [INFO]: Media de Issues cerradas (cada 15 días): 7.00
+[2025-05-15 21:28:13] [INFO]: Tiempo medio de cierre de Issues (en días): 10.62
+[2025-05-15 21:28:13] [INFO]: % Issues con descripción: 100.00
+[2025-05-15 21:28:13] [INFO]: % Issues con imágenes: 32.50
+[2025-05-15 21:28:13] [INFO]: % Issues con comentarios: 87.50
+[2025-05-15 21:28:13] [INFO]: % Issues con personas asignadas: 92.50
+[2025-05-15 21:28:13] [INFO]: % Issues con etiquetas: 100.00
+[2025-05-15 21:28:13] [INFO]: % Issues con milestone: 45.00
+[2025-05-15 21:28:13] [INFO]: % Issues con Story Points: 0.00
+[2025-05-15 21:28:13] [INFO]: % Issues reabiertas: 12.50
+[2025-05-15 21:28:13] [INFO]: % Issues colaborativas: 12.50
+[2025-05-15 21:28:13] [INFO]: Usuarios que participaron en Issues: [object Object],[object Object]
+[2025-05-15 21:28:13] [INFO]: Total de Commits: 53
+[2025-05-15 21:28:13] [INFO]: % Commits con título personalizado: 69.81
+[2025-05-15 21:28:13] [INFO]: % Commits con descripción: 71.70
+[2025-05-15 21:28:13] [INFO]: % Commits con referencias a Issues o Pull Requests: 43.40
+[2025-05-15 21:28:13] [INFO]: % Commits colaborativos: 0.00
+[2025-05-15 21:28:13] [INFO]: Media de Commits (cada 15 días): 10.60
+[2025-05-15 21:28:13] [INFO]: Usuarios que participaron en Commits: [object Object]
+[2025-05-15 21:28:14] [INFO]: Pull requests abiertas: 0
+[2025-05-15 21:28:14] [INFO]: Pull requests cerradas: 2
+[2025-05-15 21:28:14] [INFO]: % PRs con reviewers: 0.00
+[2025-05-15 21:28:14] [INFO]: % PRs con assignees: 50.00
+[2025-05-15 21:28:14] [INFO]: % PRs con labels: 50.00
+[2025-05-15 21:28:14] [INFO]: % PRs con milestone: 0.00
+[2025-05-15 21:28:14] [INFO]: % PRs colaborativas: 0.00
+[2025-05-15 21:28:14] [INFO]: Media de PRs (cada 15 días): 0.40
+[2025-05-15 21:28:14] [INFO]: Usuarios que participaron en PRs: [object Object]
+[2025-05-15 21:28:14] [INFO]: No se encontraron workflows en .github/workflows.
+[2025-05-15 21:28:14] [INFO]: Total de Releases: 1
+[2025-05-15 21:28:14] [INFO]: Total de tags: 1
+[2025-05-15 21:28:14] [INFO]: % Releases con descripción: 100.00
+[2025-05-15 21:28:14] [INFO]: % Releases colaborativas: 0.00
+[2025-05-15 21:28:14] [INFO]: Media de Releases (cada 15 días): 0.20
+[2025-05-15 21:28:14] [INFO]: Usuarios que participaron en Releases: [object Object]
+[2025-05-15 21:28:15] [INFO]: Total de participantes únicos: 2
+[2025-05-15 21:28:15] [INFO]: Porcentaje de participación en Issues: 100.00
+[2025-05-15 21:28:15] [INFO]: Porcentaje de participación en Commits: 50.00
+[2025-05-15 21:28:15] [INFO]: Porcentaje de participación en PRs: 50.00
+[2025-05-15 21:28:15] [INFO]: Porcentaje de participación en Releases: 50.00
+[2025-05-15 21:28:15] [INFO]: Media de actividad por usuario (cada 15 días): 18.90
+[2025-05-15 21:28:16] [INFO]: Dueño del repositorio: Joaquin-GM
+[2025-05-15 21:28:16] [INFO]: Título del repositorio: GII_O_MA_19.07-Comparador-de-metricas-de-evolucion-en-repositorios-Software
+[2025-05-15 21:28:16] [INFO]: Fecha del primer commit: Sat Oct 23 2021 19:25:56 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:28:16] [INFO]: Fecha del final commit: Wed Jun 15 2022 13:40:09 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:28:16] [INFO]: Fecha de inicio: Sat Oct 23 2021 19:25:56 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:28:16] [INFO]: Fecha de fin: Wed Jun 15 2022 13:40:09 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:28:38] [INFO]: Issues abiertas: 0
+[2025-05-15 21:28:38] [INFO]: Issues cerradas: 88
+[2025-05-15 21:28:38] [INFO]: Total Issues (abiertas + cerradas): 88
+[2025-05-15 21:28:38] [INFO]: Media de Issues cerradas (cada 15 días): 5.50
+[2025-05-15 21:28:38] [INFO]: Tiempo medio de cierre de Issues (en días): 66.06
+[2025-05-15 21:28:38] [INFO]: % Issues con descripción: 47.73
+[2025-05-15 21:28:38] [INFO]: % Issues con imágenes: 13.64
+[2025-05-15 21:28:38] [INFO]: % Issues con comentarios: 28.41
+[2025-05-15 21:28:38] [INFO]: % Issues con personas asignadas: 100.00
+[2025-05-15 21:28:38] [INFO]: % Issues con etiquetas: 100.00
+[2025-05-15 21:28:38] [INFO]: % Issues con milestone: 1.14
+[2025-05-15 21:28:38] [INFO]: % Issues con Story Points: 0.00
+[2025-05-15 21:28:38] [INFO]: % Issues reabiertas: 6.82
+[2025-05-15 21:28:38] [INFO]: % Issues colaborativas: 1.14
+[2025-05-15 21:28:38] [INFO]: Usuarios que participaron en Issues: [object Object],[object Object]
+[2025-05-15 21:28:39] [INFO]: Total de Commits: 100
+[2025-05-15 21:28:39] [INFO]: % Commits con título personalizado: 97.00
+[2025-05-15 21:28:39] [INFO]: % Commits con descripción: 0.00
+[2025-05-15 21:28:39] [INFO]: % Commits con referencias a Issues o Pull Requests: 57.00
+[2025-05-15 21:28:39] [INFO]: % Commits colaborativos: 0.00
+[2025-05-15 21:28:39] [INFO]: Media de Commits (cada 15 días): 6.25
+[2025-05-15 21:28:39] [INFO]: Usuarios que participaron en Commits: [object Object],[object Object],[object Object]
+[2025-05-15 21:28:39] [INFO]: No hay pull requests en el repositorio.
+[2025-05-15 21:28:40] [INFO]: Workflows creados dentro del rango: 1
+[2025-05-15 21:28:40] [INFO]: Ejecuciones totales de workflows: 0
+[2025-05-15 21:28:40] [INFO]: Workflows exitosos: 0.00%
+[2025-05-15 21:28:40] [INFO]: Frecuencia media de ejecución: 0 días
+[2025-05-15 21:28:40] [INFO]: Total de Releases: 3
+[2025-05-15 21:28:40] [INFO]: Total de tags: 3
+[2025-05-15 21:28:40] [INFO]: % Releases con descripción: 100.00
+[2025-05-15 21:28:40] [INFO]: % Releases colaborativas: 0.00
+[2025-05-15 21:28:40] [INFO]: Media de Releases (cada 15 días): 0.19
+[2025-05-15 21:28:40] [INFO]: Usuarios que participaron en Releases: [object Object]
+[2025-05-15 21:28:41] [INFO]: Total de participantes únicos: 3
+[2025-05-15 21:28:41] [INFO]: Porcentaje de participación en Issues: 66.67
+[2025-05-15 21:28:41] [INFO]: Porcentaje de participación en Commits: 100.00
+[2025-05-15 21:28:41] [INFO]: Porcentaje de participación en PRs: 0.00
+[2025-05-15 21:28:41] [INFO]: Porcentaje de participación en Releases: 33.33
+[2025-05-15 21:28:41] [INFO]: Media de actividad por usuario (cada 15 días): 6.46
+[2025-05-15 21:28:41] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
+[2025-05-15 21:28:41] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
+[2025-05-15 21:28:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:28:41] [INFO]: Expliación: El repositorio parece usar iteraciones, pero podría mejorar en: Porcentaje de Pull Requests con Milestones.
+[2025-05-15 21:28:41] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:28:41] [INFO]: Regla: DevOps - Automated Build
+[2025-05-15 21:28:41] [INFO]: Descripción: El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.
+[2025-05-15 21:28:41] [INFO]: Aprobada: Cero
+[2025-05-15 21:28:41] [INFO]: Expliación: El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización
+[2025-05-15 21:28:41] [INFO]: Detalles: [object Object]
+[2025-05-15 21:28:41] [INFO]: Regla: DevOps - Version Control
+[2025-05-15 21:28:41] [INFO]: Descripción: El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay Commits frecuentemente y estos contienen buenas características como descripción y referencias
+[2025-05-15 21:28:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:28:41] [INFO]: Expliación: El repositorio parece usar Commits y un control de versiones, pero podría mejorar en: Número de Commits, Porcentaje de Commits con título personalizado, Porcentaje de Commits con referencias.
+[2025-05-15 21:28:41] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:28:41] [INFO]: Regla: DevOps, Extreme Programming - Continuous integration
+[2025-05-15 21:28:41] [INFO]: Descripción: El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente
+[2025-05-15 21:28:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:28:41] [INFO]: Expliación: El repositorio parece usar integración continua, pero podría mejorar en: Frecuencia de ejecución de los ficheros workflow, Porcentaje de éxito de los ficheros workflow.
+[2025-05-15 21:28:41] [INFO]: Detalles: [object Object],[object Object],[object Object]
+[2025-05-15 21:28:41] [INFO]: Regla: Scrum - Definition of Done
+[2025-05-15 21:28:41] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
+[2025-05-15 21:28:41] [INFO]: Aprobada: Suspendida
+[2025-05-15 21:28:41] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
+[2025-05-15 21:28:41] [INFO]: Detalles: [object Object],[object Object],[object Object]
+[2025-05-15 21:28:41] [INFO]: Regla: Scrum - Backlog Quality
+[2025-05-15 21:28:41] [INFO]: Descripción: El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.
+[2025-05-15 21:28:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:28:41] [INFO]: Expliación: El backlog podría mejorar en: Número total de Issues, Número total de Issues cerradas, Porcentaje de Issues con personas asignadas.
+[2025-05-15 21:28:41] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:28:41] [INFO]: Regla: Extreme Programming - Velocity
+[2025-05-15 21:28:41] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
+[2025-05-15 21:28:41] [INFO]: Aprobada: Superada
+[2025-05-15 21:28:41] [INFO]: Expliación: El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.
+[2025-05-15 21:28:41] [INFO]: Detalles: 
+[2025-05-15 21:28:41] [INFO]: Regla: Extreme Programming - Frequent Releases
+[2025-05-15 21:28:41] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
+[2025-05-15 21:28:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:28:41] [INFO]: Expliación: El repositorio tiene Releases, pero podría mejorar en: Número de Releases.
+[2025-05-15 21:28:41] [INFO]: Detalles: [object Object],[object Object]
+[2025-05-15 21:28:41] [INFO]: Regla: Extreme Programming - Collective Ownership
+[2025-05-15 21:28:41] [INFO]: Descripción: Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...
+[2025-05-15 21:28:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:28:41] [INFO]: Expliación: Hay indicios de colaboración, pero podría mejorar en: Número de participantes, Porcentaje de participación en Commits.
+[2025-05-15 21:28:41] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:28:41] [INFO]: Regla: Extreme Programming - Pair Programming
+[2025-05-15 21:28:41] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
+[2025-05-15 21:28:41] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:28:41] [INFO]: Expliación: Hay algunos indicios de colaboración, pero podría mejorar en: Porcentaje de Commits colaborativos (menciones en mensajes), Porcentaje de Pull Requests colaborativos (menciones), Porcentaje de Releases colaborativas (menciones).
+[2025-05-15 21:28:41] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:33:58] [INFO]: Servidor corriendo en http://localhost:5000
+[2025-05-15 21:33:58] [ERROR]: Error al enviar index.html: ENOENT: no such file or directory, stat 'C:\proyectos\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\src\backend\frontend\dist\frontend\browser\index.html'
+[2025-05-15 21:33:58] [INFO]: Conectado a MongoDB
+[2025-05-15 21:34:07] [INFO]: Dueño del repositorio: lod1004
+[2025-05-15 21:34:07] [INFO]: Título del repositorio: GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub
+[2025-05-15 21:34:07] [INFO]: Fecha del primer commit: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
+[2025-05-15 21:34:07] [INFO]: Fecha del final commit: Wed May 14 2025 21:14:45 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:34:07] [INFO]: Fecha de inicio: Sun Mar 02 2025 21:25:39 GMT+0100 (hora estándar de Europa central)
+[2025-05-15 21:34:07] [INFO]: Fecha de fin: Wed May 14 2025 21:14:45 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:34:19] [INFO]: Issues abiertas: 5
+[2025-05-15 21:34:19] [INFO]: Issues cerradas: 35
+[2025-05-15 21:34:19] [INFO]: Total Issues (abiertas + cerradas): 40
+[2025-05-15 21:34:19] [INFO]: Media de Issues cerradas (cada 15 días): 7.00
+[2025-05-15 21:34:19] [INFO]: Tiempo medio de cierre de Issues (en días): 10.62
+[2025-05-15 21:34:19] [INFO]: % Issues con descripción: 100.00
+[2025-05-15 21:34:19] [INFO]: % Issues con imágenes: 32.50
+[2025-05-15 21:34:19] [INFO]: % Issues con comentarios: 87.50
+[2025-05-15 21:34:19] [INFO]: % Issues con personas asignadas: 92.50
+[2025-05-15 21:34:19] [INFO]: % Issues con etiquetas: 100.00
+[2025-05-15 21:34:19] [INFO]: % Issues con milestone: 45.00
+[2025-05-15 21:34:19] [INFO]: % Issues con Story Points: 0.00
+[2025-05-15 21:34:19] [INFO]: % Issues reabiertas: 12.50
+[2025-05-15 21:34:19] [INFO]: % Issues colaborativas: 12.50
+[2025-05-15 21:34:19] [INFO]: Usuarios que participaron en Issues: [object Object],[object Object]
+[2025-05-15 21:34:19] [INFO]: Total de Commits: 53
+[2025-05-15 21:34:19] [INFO]: % Commits con título personalizado: 69.81
+[2025-05-15 21:34:19] [INFO]: % Commits con descripción: 71.70
+[2025-05-15 21:34:19] [INFO]: % Commits con referencias a Issues o Pull Requests: 43.40
+[2025-05-15 21:34:19] [INFO]: % Commits colaborativos: 0.00
+[2025-05-15 21:34:19] [INFO]: Media de Commits (cada 15 días): 10.60
+[2025-05-15 21:34:19] [INFO]: Usuarios que participaron en Commits: [object Object]
+[2025-05-15 21:34:19] [INFO]: Pull requests abiertas: 0
+[2025-05-15 21:34:19] [INFO]: Pull requests cerradas: 2
+[2025-05-15 21:34:19] [INFO]: % PRs con reviewers: 0.00
+[2025-05-15 21:34:19] [INFO]: % PRs con assignees: 50.00
+[2025-05-15 21:34:19] [INFO]: % PRs con labels: 50.00
+[2025-05-15 21:34:19] [INFO]: % PRs con milestone: 0.00
+[2025-05-15 21:34:19] [INFO]: % PRs colaborativas: 0.00
+[2025-05-15 21:34:19] [INFO]: Media de PRs (cada 15 días): 0.40
+[2025-05-15 21:34:19] [INFO]: Usuarios que participaron en PRs: [object Object]
+[2025-05-15 21:34:20] [INFO]: No se encontraron workflows en .github/workflows.
+[2025-05-15 21:34:20] [INFO]: Total de Releases: 1
+[2025-05-15 21:34:20] [INFO]: Total de tags: 1
+[2025-05-15 21:34:20] [INFO]: % Releases con descripción: 100.00
+[2025-05-15 21:34:20] [INFO]: % Releases colaborativas: 0.00
+[2025-05-15 21:34:20] [INFO]: Media de Releases (cada 15 días): 0.20
+[2025-05-15 21:34:20] [INFO]: Usuarios que participaron en Releases: [object Object]
+[2025-05-15 21:34:20] [INFO]: Total de participantes únicos: 2
+[2025-05-15 21:34:20] [INFO]: Porcentaje de participación en Issues: 100.00
+[2025-05-15 21:34:20] [INFO]: Porcentaje de participación en Commits: 50.00
+[2025-05-15 21:34:20] [INFO]: Porcentaje de participación en PRs: 50.00
+[2025-05-15 21:34:20] [INFO]: Porcentaje de participación en Releases: 50.00
+[2025-05-15 21:34:20] [INFO]: Media de actividad por usuario (cada 15 días): 18.90
+[2025-05-15 21:34:21] [INFO]: Dueño del repositorio: Joaquin-GM
+[2025-05-15 21:34:21] [INFO]: Título del repositorio: GII_O_MA_19.07-Comparador-de-metricas-de-evolucion-en-repositorios-Software
+[2025-05-15 21:34:21] [INFO]: Fecha del primer commit: Sat Oct 23 2021 19:25:56 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:34:21] [INFO]: Fecha del final commit: Wed Jun 15 2022 13:40:09 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:34:21] [INFO]: Fecha de inicio: Sat Oct 23 2021 19:25:56 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:34:21] [INFO]: Fecha de fin: Wed Jun 15 2022 13:40:09 GMT+0200 (hora de verano de Europa central)
+[2025-05-15 21:34:44] [INFO]: Issues abiertas: 0
+[2025-05-15 21:34:44] [INFO]: Issues cerradas: 88
+[2025-05-15 21:34:44] [INFO]: Total Issues (abiertas + cerradas): 88
+[2025-05-15 21:34:44] [INFO]: Media de Issues cerradas (cada 15 días): 5.50
+[2025-05-15 21:34:44] [INFO]: Tiempo medio de cierre de Issues (en días): 66.06
+[2025-05-15 21:34:44] [INFO]: % Issues con descripción: 47.73
+[2025-05-15 21:34:44] [INFO]: % Issues con imágenes: 13.64
+[2025-05-15 21:34:44] [INFO]: % Issues con comentarios: 28.41
+[2025-05-15 21:34:44] [INFO]: % Issues con personas asignadas: 100.00
+[2025-05-15 21:34:44] [INFO]: % Issues con etiquetas: 100.00
+[2025-05-15 21:34:44] [INFO]: % Issues con milestone: 1.14
+[2025-05-15 21:34:44] [INFO]: % Issues con Story Points: 0.00
+[2025-05-15 21:34:44] [INFO]: % Issues reabiertas: 6.82
+[2025-05-15 21:34:44] [INFO]: % Issues colaborativas: 1.14
+[2025-05-15 21:34:44] [INFO]: Usuarios que participaron en Issues: [object Object],[object Object]
+[2025-05-15 21:34:44] [INFO]: Total de Commits: 100
+[2025-05-15 21:34:44] [INFO]: % Commits con título personalizado: 97.00
+[2025-05-15 21:34:44] [INFO]: % Commits con descripción: 0.00
+[2025-05-15 21:34:44] [INFO]: % Commits con referencias a Issues o Pull Requests: 57.00
+[2025-05-15 21:34:44] [INFO]: % Commits colaborativos: 0.00
+[2025-05-15 21:34:44] [INFO]: Media de Commits (cada 15 días): 6.25
+[2025-05-15 21:34:44] [INFO]: Usuarios que participaron en Commits: [object Object],[object Object],[object Object]
+[2025-05-15 21:34:44] [INFO]: No hay pull requests en el repositorio.
+[2025-05-15 21:34:45] [INFO]: Workflows creados dentro del rango: 1
+[2025-05-15 21:34:45] [INFO]: Ejecuciones totales de workflows: 0
+[2025-05-15 21:34:45] [INFO]: Workflows exitosos: 0.00%
+[2025-05-15 21:34:45] [INFO]: Frecuencia media de ejecución: 0 días
+[2025-05-15 21:34:46] [INFO]: Total de Releases: 3
+[2025-05-15 21:34:46] [INFO]: Total de tags: 3
+[2025-05-15 21:34:46] [INFO]: % Releases con descripción: 100.00
+[2025-05-15 21:34:46] [INFO]: % Releases colaborativas: 0.00
+[2025-05-15 21:34:46] [INFO]: Media de Releases (cada 15 días): 0.19
+[2025-05-15 21:34:46] [INFO]: Usuarios que participaron en Releases: [object Object]
+[2025-05-15 21:34:46] [INFO]: Total de participantes únicos: 3
+[2025-05-15 21:34:46] [INFO]: Porcentaje de participación en Issues: 66.67
+[2025-05-15 21:34:46] [INFO]: Porcentaje de participación en Commits: 100.00
+[2025-05-15 21:34:46] [INFO]: Porcentaje de participación en PRs: 0.00
+[2025-05-15 21:34:46] [INFO]: Porcentaje de participación en Releases: 33.33
+[2025-05-15 21:34:46] [INFO]: Media de actividad por usuario (cada 15 días): 6.46
+[2025-05-15 21:34:46] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
+[2025-05-15 21:34:46] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
+[2025-05-15 21:34:46] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:34:46] [INFO]: Expliación: El repositorio parece usar iteraciones, pero podría mejorar en: Porcentaje de Pull Requests con Milestones.
+[2025-05-15 21:34:46] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:34:46] [INFO]: Regla: DevOps - Automated Build
+[2025-05-15 21:34:46] [INFO]: Descripción: El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.
+[2025-05-15 21:34:46] [INFO]: Aprobada: Cero
+[2025-05-15 21:34:46] [INFO]: Expliación: El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización
+[2025-05-15 21:34:46] [INFO]: Detalles: [object Object]
+[2025-05-15 21:34:46] [INFO]: Regla: DevOps - Version Control
+[2025-05-15 21:34:46] [INFO]: Descripción: El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay Commits frecuentemente y estos contienen buenas características como descripción y referencias
+[2025-05-15 21:34:46] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:34:46] [INFO]: Expliación: El repositorio parece usar Commits y un control de versiones, pero podría mejorar en: Número de Commits, Porcentaje de Commits con título personalizado, Porcentaje de Commits con referencias.
+[2025-05-15 21:34:46] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:34:46] [INFO]: Regla: DevOps, Extreme Programming - Continuous integration
+[2025-05-15 21:34:46] [INFO]: Descripción: El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente
+[2025-05-15 21:34:46] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:34:46] [INFO]: Expliación: El repositorio parece usar integración continua, pero podría mejorar en: Frecuencia de ejecución de los ficheros workflow, Porcentaje de éxito de los ficheros workflow.
+[2025-05-15 21:34:46] [INFO]: Detalles: [object Object],[object Object],[object Object]
+[2025-05-15 21:34:46] [INFO]: Regla: Scrum - Definition of Done
+[2025-05-15 21:34:46] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
+[2025-05-15 21:34:46] [INFO]: Aprobada: Suspendida
+[2025-05-15 21:34:46] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
+[2025-05-15 21:34:46] [INFO]: Detalles: [object Object],[object Object],[object Object]
+[2025-05-15 21:34:46] [INFO]: Regla: Scrum - Backlog Quality
+[2025-05-15 21:34:46] [INFO]: Descripción: El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.
+[2025-05-15 21:34:46] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:34:46] [INFO]: Expliación: El backlog podría mejorar en: Número total de Issues, Número total de Issues cerradas, Porcentaje de Issues con personas asignadas.
+[2025-05-15 21:34:46] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:34:46] [INFO]: Regla: Extreme Programming - Velocity
+[2025-05-15 21:34:46] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
+[2025-05-15 21:34:46] [INFO]: Aprobada: Superada
+[2025-05-15 21:34:46] [INFO]: Expliación: El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.
+[2025-05-15 21:34:46] [INFO]: Detalles: 
+[2025-05-15 21:34:46] [INFO]: Regla: Extreme Programming - Frequent Releases
+[2025-05-15 21:34:46] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
+[2025-05-15 21:34:46] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:34:46] [INFO]: Expliación: El repositorio tiene Releases, pero podría mejorar en: Número de Releases.
+[2025-05-15 21:34:46] [INFO]: Detalles: [object Object],[object Object]
+[2025-05-15 21:34:46] [INFO]: Regla: Extreme Programming - Collective Ownership
+[2025-05-15 21:34:46] [INFO]: Descripción: Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...
+[2025-05-15 21:34:46] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:34:46] [INFO]: Expliación: Hay indicios de colaboración, pero podría mejorar en: Número de participantes, Porcentaje de participación en Commits.
+[2025-05-15 21:34:46] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
+[2025-05-15 21:34:46] [INFO]: Regla: Extreme Programming - Pair Programming
+[2025-05-15 21:34:46] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
+[2025-05-15 21:34:46] [INFO]: Aprobada: Parcialmente superada
+[2025-05-15 21:34:46] [INFO]: Expliación: Hay algunos indicios de colaboración, pero podría mejorar en: Porcentaje de Commits colaborativos (menciones en mensajes), Porcentaje de Pull Requests colaborativos (menciones), Porcentaje de Releases colaborativas (menciones).
+[2025-05-15 21:34:46] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]

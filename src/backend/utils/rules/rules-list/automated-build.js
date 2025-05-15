@@ -4,19 +4,20 @@ const logger = require('../../../logger');
 function evaluateAutomatedBuildsRule(mainRepo, comparisonRepos) {
   const ruleName = "DevOps - Automated Build";
   const description = "El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.";
+  const documentationUrl = "https://www.agilealliance.org/glossary/automated-build/";
 
   const statsToCompare = [
-    { key: 'action_stats.actionsCount', label: 'Número de ficheros workflow' },
+    { key: 'action_stats.actionsCount', label: 'Número de ficheros workflow', units: 'ficheros',},
   ];
 
-  const { status, resultDetails } = compareStats(mainRepo, comparisonRepos, statsToCompare);
+  const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'approved') {
+  if (status === 'Superada') {
     message = 'El repositorio usa de forma consistente la automatización proporcionada por GitHub Actions.';
-  } else if (status === 'failed') {
+  } else if (status === 'Suspendida') {
     message = 'El repositorio no tiene suficientes ficheros workflow';
-  } else if (status === 'zero') {
+  } else if (status === 'Cero') {
     message = 'El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización';
   } 
 
@@ -29,7 +30,10 @@ function evaluateAutomatedBuildsRule(mainRepo, comparisonRepos) {
   return {
     rule: ruleName,
     description,
+    documentationUrl,
     passed: status,
+    statsBetter,
+    totalStats,
     message,
     details: resultDetails
   };

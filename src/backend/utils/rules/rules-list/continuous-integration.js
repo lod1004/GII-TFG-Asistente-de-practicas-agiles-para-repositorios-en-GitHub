@@ -1,27 +1,28 @@
 const { compareStats } = require("../rule-comparator");
 const logger = require('../../../logger');
 
-function evaluateContinuousIntegrationRule(mainRepo, comparisonRepos) {
+function evaluateContinuousIntegrationRule(mainRepo, comparisonRepos, averageDays) {
   const ruleName = "DevOps, Extreme Programming - Continuous integration";
   const description = "El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente";
-
+  const documentationUrl = "https://www.agilealliance.org/glossary/continuous-integration/";
+  
   const statsToCompare = [
-    { key: 'action_stats.actionFrequency', label: 'Frecuencia de ejecución de los ficheros workflow' },
-    { key: 'action_stats.actionsSuccess', label: 'Porcentaje de éxito de los ficheros workflow' },
-    { key: 'pull_request_stats.averageClosedPr', label: 'Frecuencia de cierre de los Pull Requests' },
+    { key: 'action_stats.actionFrequency', label: 'Frecuencia de ejecución de los ficheros workflow', units: 'días',},
+    { key: 'action_stats.actionsSuccess', label: 'Porcentaje de éxito de los ficheros workflow', units: '%',},
+    { key: 'pull_request_stats.averageClosedPr', label: 'Media de Pull Requests cerradas cada ' + averageDays + ' días', units: 'Pull Requests cerradas',},
   ];
 
-  const { status, resultDetails } = compareStats(mainRepo, comparisonRepos, statsToCompare);
+  const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'approved') {
+  if (status === 'Superada') {
     message = 'El repositorio muestra un uso sólido de integración continua mediante workflows frecuentes, exitosos y buena actividad de Pull Requests.';
-  } else if (status === 'failed') {
+  } else if (status === 'Suspendida') {
     message = 'El repositorio no presenta suficientes señales de integración continua activa.';
-  } else if (status === 'zero') {
+  } else if (status === 'Cero') {
     message = 'El repositorio no tiene señales de integración continua: no hay workflows ni actividad reciente de Pull Requests.';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'worse' || d.evaluation === 'zero').map(d => d.label);
+    const problems = resultDetails.filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero').map(d => d.label);
     message = `El repositorio parece usar integración continua, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 
@@ -34,7 +35,10 @@ function evaluateContinuousIntegrationRule(mainRepo, comparisonRepos) {
   return {
     rule: ruleName,
     description,
+    documentationUrl,
     passed: status,
+    statsBetter,
+    totalStats,
     message,
     details: resultDetails
   };

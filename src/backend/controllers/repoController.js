@@ -207,7 +207,7 @@ const createRepository = async (req, res) => {
       });
     }
     
-    const rulesResults = evaluateAllRules(mainRepoStats, comparisonReposStats);
+    const rulesResults = evaluateAllRules(mainRepoStats, comparisonReposStats, averageDays);
 
     await RulesResult.deleteMany({});
     await RulesResult.insertMany(rulesResults);
