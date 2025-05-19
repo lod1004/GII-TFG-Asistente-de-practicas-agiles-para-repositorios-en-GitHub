@@ -6,12 +6,16 @@ import { RepositoryInputComponent } from '../modules/repository-input/repository
 import { StatisticsComponent } from '../modules/statistics/statistics.component';
 import { StatisticsListComponent } from '../modules/statistics/statistics-list/statistics-list.component';
 import { ResultsComponent } from '../modules/results/results.component';
+import { HeaderComponent } from '../modules/shared/header/header.component';
+import { HeaderTabsComponent } from '../modules/shared/header-tabs/header-tabs.component';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HeaderComponent,
+    HeaderTabsComponent,
     RepositoryInputComponent,
     ResultsComponent,
     StatisticsComponent,

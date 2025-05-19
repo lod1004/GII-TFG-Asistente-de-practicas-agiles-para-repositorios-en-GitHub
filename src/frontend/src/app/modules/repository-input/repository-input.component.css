@@ -1,0 +1,177 @@
+.content {
+    padding: 20rem;
+    padding-top: 2rem;
+}
+
+.url_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input_label {
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+}
+
+.input_label_2 {
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    margin-left: 0.5rem;
+}
+
+.url_input_container {
+    display: flex;
+}
+
+.url_input {
+    border-radius: 2rem;
+    padding: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 2rem;
+    width: 100%;
+}
+
+.add_url_button {
+    margin-left: -3rem;
+}
+
+.remove_url_button {
+    margin-left: -3rem;
+    margin-top: 1rem;
+}
+
+.add_icon {
+    color: #59C465;
+    background-color: #bfffc6;
+    border-radius: 100%;
+}
+
+.remove_icon {
+    color: #EB1B30;
+    background-color: #ffa7b0;
+    border-radius: 100%;
+}
+
+.arrow_icon {
+    color: #FFFFFF;
+    font-size: 2rem;
+    border-radius: 100%;
+}
+
+.add_icon:hover {
+    background-color: #CCCCCC;
+    border-radius: 100%;
+}
+
+.added_url {
+    background-color: #dedede;
+    height: 2rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    margin-left: 0.25rem;
+    padding-top: 0.55rem;
+}
+
+.added_url_text {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 5rem;
+}
+
+.parameters {
+    margin-top: 4rem;
+    background-color: #212121;
+    border-radius: 0.75rem;
+    padding-top: 0.25rem;
+}
+
+.parameters_title {
+    color: #FFFFFF;
+    margin-left: 42.5%;
+    font-size: 2rem;
+}
+
+.parameters_title_2 {
+    color: #FFFFFF;
+    margin-left: 35.5%;
+    font-size: 2rem;
+}
+
+.number_input {
+    border-radius: 1rem;
+    padding: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 2rem;
+    width: 60%;
+}
+
+.mandatory_parameters {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.optional_parameters {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-around;
+    margin-top: 1rem;
+    background-color: #212121;
+    border-radius: 0.75rem;
+    padding-top: 0.25rem;
+}
+
+.error_message {
+    color: red;
+    margin-left: 18rem;
+}
+
+.save_buton {
+    margin-left: 42%;
+    width: 10rem;
+    height: 2rem;
+    border-radius: 1rem;
+    color: #00a9a9;
+    background-color: #c3ffff;
+}
+
+.save_buton:hover {
+    cursor: pointer;
+    border: solid #00a9a9;
+}
+
+.save_buton:disabled {
+    cursor: not-allowed;
+    border: 0;
+    color: #919191;
+    background-color: #e0e0e0;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-message {
+  color: #00a9a9;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}

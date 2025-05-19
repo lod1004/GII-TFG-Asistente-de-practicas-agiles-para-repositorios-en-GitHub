@@ -1,0 +1,37 @@
+.change_repo {
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 15%;
+}
+
+.prev_next_button {
+    color: #00a9a9;
+    background-color: #c3ffff;
+    font-size: 1rem;
+    border-radius: 1rem;
+    width: 7rem;
+    height: 2rem;
+    display: flex;
+}
+
+.prev_next_button:hover {
+    cursor: pointer;
+    border: 1px solid #00a9a9;
+}
+
+.prev_next_button:disabled {
+    cursor: not-allowed;
+    border: 0;
+    color: #919191;
+    background-color: #e0e0e0;
+}
+
+.arrow_icon{
+    margin-top: -0.25rem;
+    padding-left: 0.25rem;
+}
+
+.stats_title  {
+color: #FFFFFF;
+}

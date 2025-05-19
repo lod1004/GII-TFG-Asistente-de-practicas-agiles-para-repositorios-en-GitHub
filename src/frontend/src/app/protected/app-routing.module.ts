@@ -3,24 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { RepositoryInputComponent } from '../modules/repository-input/repository-input.component';
 import { StatisticsComponent } from '../modules/statistics/statistics.component';
 import { ResultsComponent } from '../modules/results/results.component';
+import { HeaderTabsComponent } from '../modules/shared/header-tabs/header-tabs.component';
 
 const routes: Routes = [
   {
-    path: 'add-repositories',
+    path: 'start',
     component: RepositoryInputComponent,
   },
   {
     path: 'results',
-    component: ResultsComponent,
-  },
-  {
-    path: 'statistics',
-    component: StatisticsComponent,
+    component: HeaderTabsComponent,
   },
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: 'add-repositories'
+    redirectTo: 'start'
   }
 ];
 

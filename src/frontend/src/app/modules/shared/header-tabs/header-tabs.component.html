@@ -1,0 +1,11 @@
+<div class="tabs">
+    <div class="tab" [ngClass]="{'selected_tab': tab === 'rules'}" (click)="tab = 'rules'">
+        Reglas
+    </div>
+    <div class="tab" [ngClass]="{'selected_tab': tab === 'stats'}" (click)="tab = 'stats'">
+        Estadísticas
+    </div>
+</div>
+
+<app-results *ngIf="tab === 'rules'"></app-results>
+<app-statistics *ngIf="tab === 'stats'"></app-statistics>

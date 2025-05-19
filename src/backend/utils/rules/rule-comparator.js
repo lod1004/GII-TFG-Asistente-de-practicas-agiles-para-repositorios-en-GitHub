@@ -13,7 +13,7 @@ function compareStats(mainRepo, comparisonRepos, statsToCompare) {
 
     for (const compRepo of comparisonRepos) {
       const compValue = compRepo[category][field];
-      if (mainValue > compValue) higherCount++;
+      if (mainValue >= compValue && mainValue != 0) higherCount++;
       else if (mainValue < compValue) lowerCount++;
     }
 

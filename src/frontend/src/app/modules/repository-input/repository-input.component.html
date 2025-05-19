@@ -1,112 +1,160 @@
-<form [formGroup]="repositoryForm" (ngSubmit)="submitRepo()">
+<body>
+  <form [formGroup]="repositoryForm" class="content">
 
-  <div>
-    <label>URL del repositorio principal:</label>
-    <input id="mainRepositoryUrl" formControlName="mainRepositoryUrl" type="text"
-      placeholder="Introduce la URL del repositorio" style="width: 50rem;" />
-    <button type="button" (click)="addMainUrl()">-></button>
-  </div>
-
-  <div *ngIf="mainUrl">
-    <strong>Repositorio principal:</strong>
-    <p>{{ mainUrl }}</p>
-  </div>
-  <br>
-
-  <div>
-    <label>URL del repositorio de ejemplo para comparar:</label>
-    <input id="sourceRepositoryUrl" formControlName="sourceRepositoryUrl" type="text"
-      placeholder="Introduce la URL del repositorio" style="width: 50rem;" />
-    <button type="button" (click)="addExampleUrl()">-></button>
-  </div>
-
-  <div *ngIf="exampleUrls.length > 0">
-    <strong>Repositorios de ejemplo (Máximo 5):</strong>
-    <ul>
-      <li *ngFor="let url of exampleUrls; let i = index">
-        {{ url }}
-        <button type="button" (click)="removeExampleUrl(i)">Eliminar</button>
-      </li>
-    </ul>
-  </div>
-  <br>
-
-  <div>
-    <label>Número de días para calcular las medias:</label>
-    <input id="averageDays" formControlName="averageDays" type="number"
-      placeholder="Introduce la URL del repositorio" style="width: 50rem;" />
-  </div>
-
-  <div style="display: flex; flex-direction: row; justify-content: space-around;">
-    <div>
-      <input id="fullTimeAnalysis" type="radio" [value]="false" name="useTimeIntervals"
-        formControlName="useTimeIntervals">
-      <label class="custom-control-label" for="male">Analizar repositorios al completo</label>
+    <div class="url_container">
+      <label class="input_label_2">Introduce la URL de un repositorio para analizar</label>
+      <div class="url_input_container">
+        <input matInput id="mainRepositoryUrl" formControlName="mainRepositoryUrl" type="text"
+          placeholder="Introduce la URL del repositorio" class="url_input">
+        <button matSuffix mat-icon-button (click)="addMainUrl()" class="add_url_button">
+          <mat-icon class="add_icon">add</mat-icon>
+        </button>
+      </div>
     </div>
 
-    <div>
-      <input id="timeIntervalsAnalysis" type="radio" [value]="true" name="useTimeIntervals"
-        formControlName="useTimeIntervals">
-      <label class="custom-control-label" for="female">Analizar por intervalos de tiempo</label>
-    </div>
-  </div>
-  <br>
-
-  <div *ngIf="repositoryForm.controls.useTimeIntervals?.value == true">
-    <div>
-      <input id="useAbsolutes" type="radio" [value]="false" name="useRelativeDates" formControlName="useRelativeDates">
-      <label class="custom-control-label" for="female">Usar intervalos de tiempo absolutos</label>
-    </div>
-
-    <div>
-      <input id="useRelatives" type="radio" [value]="true" name="useRelativeDates" formControlName="useRelativeDates">
-      <label class="custom-control-label" for="male">Usar intervalos de tiempo relativos</label>
+    <div *ngIf="mainUrl" class="added_url">
+      <span class="added_url_text">{{ mainUrl }}</span>
     </div>
     <br>
 
-    <div>
-      <label *ngIf="repositoryForm.controls.useRelativeDates?.value == true">
-        Introduce el número de intervalos de tiempo
-        (Cada intervalo será 1/4 del tiempo de vida del repositorio):
-      </label>
-      <label *ngIf="repositoryForm.controls.useRelativeDates?.value == false">
-        Introduce el número de intervalos de tiempo
-        (Cada intervalo será 1 mes del tiempo de vida del repositorio):
-      </label>
-      <br>
-
-      <label>
-        <span>
-          Intervalo de inicio
-        </span>
-        <input id="startTimeInterval" formControlName="startTimeInterval" type="number" style="width: 10rem;" />
-      </label>
-      <br>
-
-      <label>
-        <span>
-          Intervalo de fin
-        </span>
-        <input id="endTimeInterval" formControlName="endTimeInterval" type="number" style="width: 10rem;" />
-      </label>
-      <br>
-
-      <mat-error *ngIf="relativeTimeIntervalsError" style="color: red;">
-        Solo se pueden seleccionar hasta 4 intervalos de tiempo relativos
-      </mat-error>
-      <mat-error *ngIf="timeIntervalsComparisonError" style="color: red;">
-        El intervalo de fin debe ser mayor que el intervalo de inicio
-      </mat-error>
-      <mat-error *ngIf="timeIntervalsValueError" style="color: red;">
-        Los intervalos de tiempo deben valer un número natural
-      </mat-error>
+    <div class="url_container" style="margin-top: 3rem;">
+      <label class="input_label_2">Introduce repositorios de referencia (Max 5)</label>
+      <div class="url_input_container">
+        <input matInput id="sourceRepositoryUrl" formControlName="sourceRepositoryUrl" type="text"
+          placeholder="Introduce la URL del repositorio" class="url_input" />
+        <button matSuffix mat-icon-button (click)="addExampleUrl()" class="add_url_button">
+          <mat-icon class="add_icon">add</mat-icon>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <br>
-  <button type="submit" [disabled]="!mainUrl || exampleUrls.length === 0 || 
+    <div *ngIf="exampleUrls.length > 0">
+      <ul>
+        <li *ngFor="let url of exampleUrls; let i = index">
+          <div style="display: flex;">
+            <div class="added_url">
+              <span class="added_url_text">{{ url }}</span>
+            </div>
+            <button matSuffix mat-icon-button (click)="removeExampleUrl(i)" class="remove_url_button">
+              <mat-icon class="remove_icon">delete</mat-icon>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <br>
+
+    <div class="parameters">
+      <span class="parameters_title">Parámetros</span>
+      <div class="mandatory_parameters">
+        <div class="url_container">
+          <label class="input_label_2">Número de días para calcular las medias:</label>
+          <input id="averageDays" formControlName="averageDays" type="number" class="number_input">
+          <mat-error *ngIf="daysNumberError" style="color: red; margin-top: 1rem;">
+            Se debe introducir un número de días mayor o igual que 1
+          </mat-error>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <label class="input_label_2">Modo de análisis</label>
+          <div>
+            <input id="fullTimeAnalysis" type="radio" [value]="false" name="useTimeIntervals"
+              formControlName="useTimeIntervals">
+            <label class="input_label" for="male">Analizar repositorios al completo</label>
+          </div>
+
+          <div>
+            <input id="timeIntervalsAnalysis" type="radio" [value]="true" name="useTimeIntervals"
+              formControlName="useTimeIntervals">
+            <label class="input_label" for="female">Analizar por intervalos de tiempo</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div *ngIf="repositoryForm.controls.useTimeIntervals?.value == true" class="parameters" style="margin-top: 1rem;">
+      <span class="parameters_title_2">Intervalos de tiempo</span>
+      <div class="optional_parameters">
+        <div style="width: 100%;">
+          <label class="input_label_2" style="margin-left: 37%;">
+            Tipo de intervalos de tiempo
+          </label>
+          <div style="display: flex; justify-content: space-around;">
+            <div>
+              <input id="useAbsolutes" type="radio" [value]="false" name="useRelativeDates"
+                formControlName="useRelativeDates">
+              <label class="input_label" for="female">Absolutos (Meses)</label>
+            </div>
+
+            <div>
+              <input id="useRelatives" type="radio" [value]="true" name="useRelativeDates"
+                formControlName="useRelativeDates">
+              <label class="input_label" for="male">Relativos (Cuartos)</label>
+            </div>
+          </div>
+          <br>
+        </div>
+
+        <div style="margin-left: -5rem; margin-top: 2rem;">
+          <div>
+            <label class="input_label_2" style="margin-left: 40%;">
+              Número de intervalos de tiempo
+            </label>
+            <br>
+            <label *ngIf="repositoryForm.controls.useRelativeDates?.value == true" class="input_label"
+              style="margin-left: 33%">
+              (Cada intervalo será 1/4 del tiempo de vida del repositorio):
+            </label>
+            <label *ngIf="repositoryForm.controls.useRelativeDates?.value == false" class="input_label"
+              style="margin-left: 33%">
+              (Cada intervalo será 1 mes del tiempo de vida del repositorio):
+            </label>
+          </div>
+          <br>
+
+          <div style="display: flex; justify-content: space-around; margin-left: 10rem;">
+            <div class="url_container">
+              <label class="input_label">
+                Intervalo de inicio
+                <input id="startTimeInterval" formControlName="startTimeInterval" type="number" class="number_input" />
+              </label>
+            </div>
+            <mat-icon class="arrow_icon" style="padding: 1.5rem; padding-right: 8rem;">arrow_forward</mat-icon>
+            <div class="url_container">
+              <label class="input_label">
+                Intervalo de fin
+                <input id="endTimeInterval" formControlName="endTimeInterval" type="number" class="number_input" />
+              </label>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <mat-error *ngIf="relativeTimeIntervalsError" class="error_message">
+          Solo se pueden seleccionar hasta 4 intervalos de tiempo relativos
+        </mat-error>
+        <mat-error *ngIf="timeIntervalsComparisonError && repositoryForm.controls.endTimeInterval.touched"
+          class="error_message">
+          El intervalo de fin debe ser mayor que el intervalo de inicio
+        </mat-error>
+        <mat-error *ngIf="timeIntervalsValueError" class="error_message">
+          Los intervalos de tiempo deben valer un número natural
+        </mat-error>
+      </div>
+    </div>
+
+
+    <br>
+    <button class="save_buton" (click)="submitRepo()" [disabled]="!mainUrl || exampleUrls.length === 0 || daysNumberError ||
     repositoryForm.controls.useTimeIntervals.value == true && 
     (timeIntervalsComparisonError || relativeTimeIntervalsError || timeIntervalsValueError)">
-    COMENZAR
-  </button>
-</form>
+      COMPARAR
+    </button>
+  </form>
+</body>
+
+<div *ngIf="loading" class="loading-overlay">
+  <mat-spinner></mat-spinner>
+  <p class="loading-message">{{ loadingMessage }}</p>
+</div>

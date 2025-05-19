@@ -8,6 +8,7 @@ import { MaterialModule } from '../shared/material.module';
 
 @Component({
   selector: 'app-repository-input',
+  styleUrl: 'repository-input.component.css',
   templateUrl: './repository-input.component.html',
   imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule, HttpClientModule]
 })
@@ -24,6 +25,9 @@ export class RepositoryInputComponent implements OnInit {
 
   mainUrl: string | null = null;
   exampleUrls: string[] = [];
+
+  loading: boolean = false;
+  loadingMessage: string = '';
 
   constructor(
     private repoService: RepositoryService,
@@ -54,6 +58,11 @@ export class RepositoryInputComponent implements OnInit {
     this.exampleUrls.splice(index, 1);
   }
 
+  get daysNumberError(): boolean {
+    const days = this.repositoryForm.controls.averageDays?.value;
+    return days != null && days < 1;
+  }
+
   get relativeTimeIntervalsError(): boolean {
     const useRelative = this.repositoryForm.controls.useRelativeDates?.value;
     const endInterval = this.repositoryForm.controls.endTimeInterval?.value;
@@ -81,36 +90,68 @@ export class RepositoryInputComponent implements OnInit {
     } else { return false }
   }
 
-  submitRepo(): void {
+submitRepo(): void {
+  let payload;
 
-    var payload;
-
-    if (this.repositoryForm.controls.useTimeIntervals?.value === true) {
-      payload = {
-        main: this.mainUrl!,
-        examples: this.exampleUrls,
-        useRelativeDates: this.repositoryForm.controls.useRelativeDates.value,
-        averageDays: this.repositoryForm.controls.averageDays.value,
-        startTimeInterval: this.repositoryForm.controls.startTimeInterval.value,
-        endTimeInterval: this.repositoryForm.controls.endTimeInterval.value
-      };
-    } else {
-      payload = {
-        main: this.mainUrl!,
-        examples: this.exampleUrls,
-        useRelativeDates: true,
-        averageDays: this.repositoryForm.controls.averageDays.value,
-        startTimeInterval: 0,
-        endTimeInterval: 4
-      };
-    }
-
-    this.repoService.sendRepositoryUrls(payload).subscribe({
-      next: (res) => {
-        console.log('Enviado correctamente:', res);
-        this.router.navigate(['results'])
-      },
-      error: (err) => console.error('Error al enviar las URLs:', err)
-    });
+  if (this.repositoryForm.controls.useTimeIntervals?.value === true) {
+    payload = {
+      main: this.mainUrl!,
+      examples: this.exampleUrls,
+      useRelativeDates: this.repositoryForm.controls.useRelativeDates.value,
+      averageDays: this.repositoryForm.controls.averageDays.value,
+      startTimeInterval: this.repositoryForm.controls.startTimeInterval.value,
+      endTimeInterval: this.repositoryForm.controls.endTimeInterval.value
+    };
+  } else {
+    payload = {
+      main: this.mainUrl!,
+      examples: this.exampleUrls,
+      useRelativeDates: true,
+      averageDays: this.repositoryForm.controls.averageDays.value,
+      startTimeInterval: 0,
+      endTimeInterval: 4
+    };
   }
+
+  this.loading = true;
+  this.loadingMessage = 'Preparando análisis...';
+
+  const main = this.mainUrl!;
+  const examples = this.exampleUrls;
+
+  let delay = 1000;
+
+  const spinnerPhases = ['Commits', 'Commits', 'Issues', 'Issues', 'Issues', 'Pull Requests', 'Releases', 'Workflows'];
+  for (const phase of spinnerPhases) {
+    setTimeout(() => {
+      this.loadingMessage = `Analizando ${phase} de ${main}...`;
+    }, delay);
+    delay += 1500;
+  }
+
+  for (const example of examples) {
+    for (const phase of spinnerPhases) {
+      setTimeout(() => {
+        this.loadingMessage = `Analizando ${phase} de ${example}...`;
+      }, delay);
+      delay += 1500;
+    }
+  }
+
+  setTimeout(() => {
+    this.loadingMessage = 'Generando estadísticas...';
+  }, delay);
+
+  this.repoService.sendRepositoryUrls(payload).subscribe({
+    next: (res) => {
+      this.loading = false;
+      this.router.navigate(['results']);
+    },
+    error: (err) => {
+      console.error('Error al enviar las URLs:', err);
+      this.loading = false;
+    }
+  });
+}
+
 }

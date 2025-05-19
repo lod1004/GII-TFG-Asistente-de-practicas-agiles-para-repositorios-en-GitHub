@@ -31,10 +31,10 @@ function evaluateDefinitionOfDoneRule(mainRepo, comparisonRepos) {
       );
 
       if (invert) {
-        if (mainValue < compValue) higherCount++;
+        if (mainValue <= compValue) higherCount++;
         else if (mainValue > compValue) lowerCount++;
       } else {
-        if (mainValue > compValue) higherCount++;
+        if (mainValue >= compValue && mainValue != 0) higherCount++;
         else if (mainValue < compValue) lowerCount++;
       }
     }

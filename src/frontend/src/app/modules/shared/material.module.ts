@@ -4,6 +4,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
@@ -15,6 +16,7 @@ import { MatTableModule } from "@angular/material/table";
     MatTableModule,
     MatExpansionModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     MatButtonModule,
   ],
   exports: [
@@ -23,6 +25,7 @@ import { MatTableModule } from "@angular/material/table";
     MatTableModule,
     MatExpansionModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     MatButtonModule
   ],
   bootstrap: []

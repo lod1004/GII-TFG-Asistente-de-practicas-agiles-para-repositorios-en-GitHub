@@ -1,42 +1,85 @@
-<h1>Resultados</h1>
-<mat-accordion>
+<body style="margin: 5rem;">
+  <mat-accordion>
     <mat-expansion-panel *ngFor="let rule of rulesResults">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{ rule.rule }}
-            </mat-panel-title>
-            <span>
-              {{ rule.passed }}
-            </span>
-          </mat-expansion-panel-header>
-  
+      <mat-expansion-panel-header>
+        <mat-panel-title [ngStyle]="{ color: getProgressColor(rule) }">
+          {{ rule.rule }}
+        </mat-panel-title>
+
+        <div class="passed">
+          <span [ngStyle]="{ color: getProgressColor(rule) }">
+            {{ rule.passed }}
+          </span>
+
+          <div class="rule_bar">
+            <div [ngStyle]="{
+            width: (rule.statsBetter / rule.totalStats * 100) + '%',
+            height: '100%',
+            backgroundColor: getProgressColor(rule)
+          }"></div>
+          </div>
+        </div>
+      </mat-expansion-panel-header>
+
+      <div style="margin: 1rem 0;">
+        <div class="expanded_rule_bar">
+          <div [ngStyle]="{
+          width: (rule.statsBetter / rule.totalStats * 100) + '%',
+          height: '100%',
+          backgroundColor: getProgressColor(rule)
+        }"></div>
+        </div>
+        <small>{{ rule.statsBetter }} de {{ rule.totalStats }} indicadores superados</small>
+      </div>
+
       <p><strong>Descripción:</strong> {{ rule.description }}</p>
       <p><strong>Explicación:</strong> {{ rule.message }}</p>
-  
+
+      <p *ngIf="rule.documentationUrl">
+        <strong>Documentación: </strong>
+        <a [href]="rule.documentationUrl" target="_blank">{{ rule.documentationUrl }}</a>
+      </p>
+
       <table mat-table [dataSource]="rule.details">
+
         <ng-container matColumnDef="label">
           <th mat-header-cell *matHeaderCellDef> Indicador </th>
           <td mat-cell *matCellDef="let detail"> {{ detail.label }} </td>
         </ng-container>
-  
+
         <ng-container matColumnDef="value">
           <th mat-header-cell *matHeaderCellDef> Valor </th>
           <td mat-cell *matCellDef="let detail"> {{ detail.value }} </td>
         </ng-container>
-  
+
         <ng-container matColumnDef="evaluation">
           <th mat-header-cell *matHeaderCellDef> Evaluación </th>
           <td mat-cell *matCellDef="let detail"> {{ detail.evaluation }} </td>
         </ng-container>
-  
+
         <ng-container matColumnDef="comparedWith">
           <th mat-header-cell *matHeaderCellDef> Comparado con </th>
           <td mat-cell *matCellDef="let detail"> {{ detail.comparedWith.join(', ') }} </td>
         </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="['label', 'value', 'evaluation', 'comparedWith']"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['label', 'value', 'evaluation', 'comparedWith'];"></tr>
+
+        <ng-container matColumnDef="progress">
+          <th mat-header-cell *matHeaderCellDef> Repositorios superados </th>
+          <td mat-cell *matCellDef="let detail">
+            <div style="width: 100px; height: 6px; border-radius: 3px; background: #ddd; overflow: hidden;">
+              <div [ngStyle]="{
+              width: (detail.surpassedCount / detail.totalCompared * 100) + '%',
+              height: '100%',
+              backgroundColor: getProgressColorFromRatio(detail.surpassedCount / detail.totalCompared)
+            }"></div>
+            </div>
+            <small>{{ detail.surpassedCount }} / {{ detail.totalCompared }}</small>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['label', 'value', 'evaluation', 'comparedWith', 'progress']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['label', 'value', 'evaluation', 'comparedWith', 'progress'];"></tr>
       </table>
     </mat-expansion-panel>
   </mat-accordion>
-  
+
+</body>
