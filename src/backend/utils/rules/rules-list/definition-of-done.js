@@ -2,7 +2,7 @@ const logger = require('../../../logger');
 
 function evaluateDefinitionOfDoneRule(mainRepo, comparisonRepos) {
   const ruleName = "Scrum - Definition of Done";
-  const description = "Se cierran las Issues de forma correcta y consistente";
+  const description = "Se cierran las Issues de forma correcta y consistente, logrando un avance en el desarrollo eficiente.";
   const documentationUrl = "https://www.agilealliance.org/glossary/definition-of-done/";
 
   const statsToCompare = [

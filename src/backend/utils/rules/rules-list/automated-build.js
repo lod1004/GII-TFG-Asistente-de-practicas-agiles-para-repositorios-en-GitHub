@@ -3,7 +3,7 @@ const logger = require('../../../logger');
 
 function evaluateAutomatedBuildsRule(mainRepo, comparisonRepos) {
   const ruleName = "DevOps - Automated Build";
-  const description = "El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo.";
+  const description = "El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo, ahorrando bastante tiempo de desarrollo y testing.";
   const documentationUrl = "https://www.agilealliance.org/glossary/automated-build/";
 
   const statsToCompare = [

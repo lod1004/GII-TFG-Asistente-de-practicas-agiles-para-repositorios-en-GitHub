@@ -3,7 +3,7 @@ const logger = require('../../../logger');
 
 function evaluateFrequentReleasesRule(mainRepo, comparisonRepos, averageDays) {
   const ruleName = "Extreme Programming - Frequent Releases";
-  const description = "El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.";
+  const description = "El repositorio incluye Releases y se van creando nuevas cada cierto tiempo. Esto es útil para ir ofreciendo versiones utilizables de software";
   const documentationUrl = "https://www.agilealliance.org/glossary/frequent-releases/";
   
   const statsToCompare = [

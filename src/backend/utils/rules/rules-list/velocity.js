@@ -2,7 +2,7 @@ const logger = require('../../../logger');
 
 function evaluateVelocityRule(mainRepo, comparisonRepos, averageDays) {
   const ruleName = "Extreme Programming - Velocity";
-  const description = "El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.";
+  const description = "El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues. Esto ofrece una forma de trabajo consistente que reducirá el tiempo necesario para el desarrollo";
   const documentationUrl = "https://www.agilealliance.org/glossary/velocity/";
   
   const statsToCompare = [

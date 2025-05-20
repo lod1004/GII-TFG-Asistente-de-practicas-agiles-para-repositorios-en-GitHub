@@ -3,7 +3,7 @@ const logger = require('../../../logger');
 
 function evaluatePairProgrammingRule(mainRepo, comparisonRepos) {
   const ruleName = "Extreme Programming - Pair Programming";
-  const description = "Los miembros del repositorio practican la programación por parejas.";
+  const description = "Los miembros del repositorio practican la programación por parejas, lo que facilita el desarrollo y el entendimiento del mismo por parte de todos los miembros";
   const documentationUrl = "https://www.agilealliance.org/glossary/pair-programming/";
 
   const statsToCompare = [

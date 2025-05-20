@@ -3,7 +3,7 @@ const logger = require('../../../logger');
 
 function evaluateBacklogQualityRule(mainRepo, comparisonRepos) {
   const ruleName = "Scrum - Backlog Quality";
-  const description = "El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto.";
+  const description = "El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto, lo que ayuda a dividir el trabajo en tareas.";
   const documentationUrl = "https://www.agilealliance.org/glossary/backlog/";
 
   const statsToCompare = [

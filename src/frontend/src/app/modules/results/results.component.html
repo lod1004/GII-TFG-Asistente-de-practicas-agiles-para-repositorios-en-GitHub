@@ -1,4 +1,11 @@
 <body style="margin: 5rem;">
+  <h3 class="tutorial">
+    Se presentan las siguientes reglas basadas en la metodología ágil.
+  </h3>
+  <h3 class="tutorial" style="margin-bottom: 3rem;">
+    En función de las características obtenidas de tu repositorio, usadas como parámetros y comparadas con las de los demás, 
+    estas reglas serán superadas, superadas parcialmente o suspendidas
+  </h3>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let rule of rulesResults">
       <mat-expansion-panel-header>
@@ -29,21 +36,24 @@
           backgroundColor: getProgressColor(rule)
         }"></div>
         </div>
-        <small>{{ rule.statsBetter }} de {{ rule.totalStats }} indicadores superados</small>
+        <small>{{ rule.statsBetter }} de {{ rule.totalStats }} parámetros superados</small>
       </div>
 
       <p><strong>Descripción:</strong> {{ rule.description }}</p>
-      <p><strong>Explicación:</strong> {{ rule.message }}</p>
 
       <p *ngIf="rule.documentationUrl">
         <strong>Documentación: </strong>
         <a [href]="rule.documentationUrl" target="_blank">{{ rule.documentationUrl }}</a>
       </p>
 
+      <p><strong>Resultado:</strong> {{ rule.message }}</p>
+
+
+
       <table mat-table [dataSource]="rule.details">
 
         <ng-container matColumnDef="label">
-          <th mat-header-cell *matHeaderCellDef> Indicador </th>
+          <th mat-header-cell *matHeaderCellDef> Parámetro </th>
           <td mat-cell *matCellDef="let detail"> {{ detail.label }} </td>
         </ng-container>
 
