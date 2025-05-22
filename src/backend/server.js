@@ -49,7 +49,6 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   logger.info(`Servidor corriendo en http://localhost:${PORT}`);
-  openurl.open(`http://localhost:${PORT}`);
 });
 
 process.on("uncaughtException", (err) => {
