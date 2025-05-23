@@ -6,8 +6,8 @@
 }
 
 .prev_next_button {
-    color: #00a9a9;
-    background-color: #c3ffff;
+    color: #3094ff;
+    background-color: #9eecff;
     font-size: 1rem;
     border-radius: 1rem;
     width: 7rem;
@@ -17,7 +17,7 @@
 
 .prev_next_button:hover {
     cursor: pointer;
-    border: 1px solid #00a9a9;
+    border: 1px solid #3094ff;
 }
 
 .prev_next_button:disabled {

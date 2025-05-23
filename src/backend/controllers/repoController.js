@@ -76,6 +76,7 @@ async function processRepository({ url, isMain, averageDays, useRelativeDates, s
 
   await Repository.create({
     id: repoId,
+    averageDays: averageDays,
     url,
     owner,
     repoTitle,

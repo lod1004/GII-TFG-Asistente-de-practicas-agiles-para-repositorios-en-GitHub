@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const repoSchema = new mongoose.Schema({
   id: { type: Number, required: true },
 
+  averageDays: { type: Number, required: true },
+
   url: { type: String, required: true },
   owner: { type: String, required: true },
   repoTitle: { type: String, required: true },

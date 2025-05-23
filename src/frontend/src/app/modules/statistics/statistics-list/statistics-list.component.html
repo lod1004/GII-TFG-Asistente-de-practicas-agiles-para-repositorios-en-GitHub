@@ -14,7 +14,7 @@
   <div class="stats_box">
     <strong>Actividad:</strong>
     <p>
-      <span>Media de actividad:</span>
+      <span>Media de participaciones cada {{repo.averageDays}} días:</span>
       <span [style.color]="getStatColor(repo.participantStats.averageUserActivity, comparisonRepo?.participantStats?.averageUserActivity)">
         {{ repo.participantStats.averageUserActivity }}
       </span>
@@ -25,7 +25,7 @@
   <div class="stats_box">
     <strong>Commits:</strong>
     <p><span>Nº de Commits:</span> <span [style.color]="getStatColor(repo.commitStats.commitCount, comparisonRepo?.commitStats?.commitCount)"> {{ repo.commitStats.commitCount }}</span></p>
-    <p><span>Media de Commits:</span> <span [style.color]="getStatColor(repo.commitStats.averageCommits, comparisonRepo?.commitStats?.averageCommits)"> {{ repo.commitStats.averageCommits }}</span></p>
+    <p><span>Media de Commits hechos cada {{repo.averageDays}} días:</span> <span [style.color]="getStatColor(repo.commitStats.averageCommits, comparisonRepo?.commitStats?.averageCommits)"> {{ repo.commitStats.averageCommits }}</span></p>
     <p><span>Commits con título personalizado:</span> <span [style.color]="getStatColor(repo.commitStats.titledCommitsPercent, comparisonRepo?.commitStats?.titledCommitsPercent)"> {{ repo.commitStats.titledCommitsPercent | number:'1.0-2' }}%</span></p>
     <p><span>Commits con descripción:</span> <span [style.color]="getStatColor(repo.commitStats.descriptionCommitsPercent, comparisonRepo?.commitStats?.descriptionCommitsPercent)"> {{ repo.commitStats.descriptionCommitsPercent | number:'1.0-2' }}%</span></p>
     <p><span>Commits con referencias a Issues y Pull Requests:</span> <span [style.color]="getStatColor(repo.commitStats.referencesCommitsPercent, comparisonRepo?.commitStats?.referencesCommitsPercent)"> {{ repo.commitStats.referencesCommitsPercent | number:'1.0-2' }}%</span></p>
@@ -39,7 +39,7 @@
     <strong>Issues:</strong>
     <p><span>Issues abiertos:</span> <span [style.color]="getStatColor(repo.issueStats.openIssuesCount, comparisonRepo?.issueStats?.openIssuesCount)"> {{ repo.issueStats.openIssuesCount }}</span></p>
     <p><span>Issues cerrados:</span> <span [style.color]="getStatColor(repo.issueStats.closedIssuesCount, comparisonRepo?.issueStats?.closedIssuesCount)"> {{ repo.issueStats.closedIssuesCount }}</span></p>
-    <p><span>Media de Issues cerrados:</span> <span [style.color]="getStatColor(repo.issueStats.averageClosedIssues, comparisonRepo?.issueStats?.averageClosedIssues)"> {{ repo.issueStats.averageClosedIssues }}</span></p>
+    <p><span>Media de Issues cerrados cada {{repo.averageDays}} días:</span> <span [style.color]="getStatColor(repo.issueStats.averageClosedIssues, comparisonRepo?.issueStats?.averageClosedIssues)"> {{ repo.issueStats.averageClosedIssues }}</span></p>
     <p><span>Issues con descripción:</span> <span [style.color]="getStatColor(repo.issueStats.descriptionIssuesPercent, comparisonRepo?.issueStats?.descriptionIssuesPercent)"> {{ repo.issueStats.descriptionIssuesPercent | number:'1.0-2' }}%</span></p>
     <p><span>Issues con comentarios:</span> <span [style.color]="getStatColor(repo.issueStats.commentedIssuesPercent, comparisonRepo?.issueStats?.commentedIssuesPercent)"> {{ repo.issueStats.commentedIssuesPercent | number:'1.0-2' }}%</span></p>
     <p><span>Issues con imágenes:</span> <span [style.color]="getStatColor(repo.issueStats.imagedIssuesPercent, comparisonRepo?.issueStats?.imagedIssuesPercent)"> {{ repo.issueStats.imagedIssuesPercent | number:'1.0-2' }}%</span></p>
@@ -58,7 +58,7 @@
     <strong>Pull Requests:</strong>
     <p><span>Pull Requests abiertas:</span> <span [style.color]="getStatColor(repo.pullRequestStats.openPrCount, comparisonRepo?.pullRequestStats?.openPrCount)"> {{ repo.pullRequestStats.openPrCount }}</span></p>
     <p><span>Pull Requests cerradas:</span> <span [style.color]="getStatColor(repo.pullRequestStats.closedPrCount, comparisonRepo?.pullRequestStats?.closedPrCount)"> {{ repo.pullRequestStats.closedPrCount }}</span></p>
-    <p><span>Media de Pull Requests cerradas:</span> <span [style.color]="getStatColor(repo.pullRequestStats.averageClosedPr, comparisonRepo?.pullRequestStats?.averageClosedPr)"> {{ repo.pullRequestStats.averageClosedPr }}</span></p>
+    <p><span>Media de Pull Requests cerradas cada {{repo.averageDays}} días:</span> <span [style.color]="getStatColor(repo.pullRequestStats.averageClosedPr, comparisonRepo?.pullRequestStats?.averageClosedPr)"> {{ repo.pullRequestStats.averageClosedPr }}</span></p>
     <p><span>Pull Requests con revisores:</span> <span [style.color]="getStatColor(repo.pullRequestStats.reviewersPrPercent, comparisonRepo?.pullRequestStats?.reviewersPrPercent)"> {{ repo.pullRequestStats.reviewersPrPercent | number:'1.0-2' }}%</span></p>
     <p><span>Pull Requests con personas asignadas:</span> <span [style.color]="getStatColor(repo.pullRequestStats.assigneesPrPercent, comparisonRepo?.pullRequestStats?.assigneesPrPercent)"> {{ repo.pullRequestStats.assigneesPrPercent | number:'1.0-2' }}%</span></p>
     <p><span>Pull Requests con etiquetas:</span> <span [style.color]="getStatColor(repo.pullRequestStats.labelsPrPercent, comparisonRepo?.pullRequestStats?.labelsPrPercent)"> {{ repo.pullRequestStats.labelsPrPercent | number:'1.0-2' }}%</span></p>
@@ -71,10 +71,10 @@
   <!-- ACTIONS -->
   <div class="stats_box">
     <strong>Actions:</strong>
-    <p><span>Nº de ficheros workflow de GitHub Actions:</span> <span style="color: #FFFFFF"> {{ repo.actionStats.actionsCount }}</span></p>
-    <p><span>Nº de ejecuciones de workflows:</span> <span style="color: #FFFFFF"> {{ repo.actionStats.actionsRuns }}</span></p>
+    <p><span>Nº de ficheros workflow de GitHub Actions:</span> <span [style.color]="getStatColor(repo.actionStats.actionsCount, comparisonRepo?.actionStats?.actionsCount)"> {{ repo.actionStats.actionsCount }}</span></p>
+    <p><span>Nº de ejecuciones de workflows:</span> <span [style.color]="getStatColor(repo.actionStats.actionsRuns, comparisonRepo?.actionStats?.actionsRuns)"> {{ repo.actionStats.actionsRuns }}</span></p>
     <p><span>Porcentaje de ejecuciones exitosas:</span> <span [style.color]="getStatColor(repo.actionStats.actionsSuccess, comparisonRepo?.actionStats?.actionsSuccess)"> {{ repo.actionStats.actionsSuccess | number:'1.0-2' }}%</span></p>
-    <p><span>Frecuencia media de ejecución de workflows:</span> <span [style.color]="getStatColor(repo.actionStats.actionFrequency, comparisonRepo?.actionStats?.actionFrequency)"> {{ repo.actionStats.actionFrequency }}</span></p>
+    <p><span>Frecuencia media de ejecución de workflows:</span> <span [style.color]="getStatColor(repo.actionStats.actionFrequency, comparisonRepo?.actionStats?.actionFrequency)"> {{ repo.actionStats.actionFrequency }} días</span></p>
     <br />
   </div>
 
@@ -82,10 +82,10 @@
   <div class="stats_box">
     <strong>Releases:</strong>
     <p><span>Nº de Releases:</span> <span [style.color]="getStatColor(repo.releaseStats.releasesCount, comparisonRepo?.releaseStats?.releasesCount)"> {{ repo.releaseStats.releasesCount }}</span></p>
-    <p><span>Media de Releases:</span> <span [style.color]="getStatColor(repo.releaseStats.averageReleases, comparisonRepo?.releaseStats?.averageReleases)"> {{ repo.releaseStats.averageReleases }}</span></p>
+    <p><span>Media de Releases subidas cada {{repo.averageDays}} días:</span> <span [style.color]="getStatColor(repo.releaseStats.averageReleases, comparisonRepo?.releaseStats?.averageReleases)"> {{ repo.releaseStats.averageReleases }}</span></p>
     <p><span>Releases con descripción:</span> <span [style.color]="getStatColor(repo.releaseStats.descriptionReleasesPercent, comparisonRepo?.releaseStats?.descriptionReleasesPercent)"> {{ repo.releaseStats.descriptionReleasesPercent | number:'1.0-2' }}%</span></p>
     <p><span>Releases con colaboraciones:</span> <span [style.color]="getStatColor(repo.releaseStats.collaborativeReleasesPercent, comparisonRepo?.releaseStats?.collaborativeReleasesPercent)"> {{ repo.releaseStats.collaborativeReleasesPercent | number:'1.0-2' }}%</span></p>
     <p><span>Participación de los miembros del repositorio en las Releases:</span> <span [style.color]="getStatColor(repo.participantStats.releaseParticipationPercent, comparisonRepo?.participantStats?.releaseParticipationPercent)"> {{ repo.participantStats.releaseParticipationPercent | number:'1.0-2' }}%</span></p>
-    <p><span>Nº de Tags:</span> <span style="color: #FFFFFF"> {{ repo.releaseStats.tagsCount }}</span></p>
+    <p><span>Nº de Tags:</span> <span [style.color]="getStatColor(repo.participantStats.tagsCount, comparisonRepo?.participantStats?.tagsCount)"> {{ repo.releaseStats.tagsCount }}</span></p>
   </div>
 </div>

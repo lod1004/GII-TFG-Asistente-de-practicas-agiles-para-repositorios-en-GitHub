@@ -45,8 +45,8 @@
 }
 
 .add_icon {
-    color: #59C465;
-    background-color: #bfffc6;
+    color: #248434;
+    background-color: #c0fcd4;
     border-radius: 100%;
 }
 
@@ -140,13 +140,13 @@
     width: 10rem;
     height: 2rem;
     border-radius: 1rem;
-    color: #00a9a9;
+    color: #3094ff;
     background-color: #c3ffff;
 }
 
 .save_buton:hover {
     cursor: pointer;
-    border: solid #00a9a9;
+    border: solid #3094ff;
 }
 
 .save_buton:disabled {
@@ -171,7 +171,7 @@
 }
 
 .loading-message {
-  color: #00a9a9;
+  color: #3094ff;
   font-size: 1.2rem;
   margin-top: 1rem;
 }

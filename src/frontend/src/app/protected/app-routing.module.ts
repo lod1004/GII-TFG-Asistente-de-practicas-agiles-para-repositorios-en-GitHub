@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RepositoryInputComponent } from '../modules/repository-input/repository-input.component';
 import { StatisticsComponent } from '../modules/statistics/statistics.component';
 import { ResultsComponent } from '../modules/results/results.component';
-import { HeaderTabsComponent } from '../modules/shared/header-tabs/header-tabs.component';
+import { HeaderTabsComponent } from '../modules/shared/header/header-tabs/header-tabs.component';
 
 const routes: Routes = [
   {
