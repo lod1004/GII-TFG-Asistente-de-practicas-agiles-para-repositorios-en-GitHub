@@ -86,6 +86,6 @@
     <p><span>Releases con descripción:</span> <span [style.color]="getStatColor(repo.releaseStats.descriptionReleasesPercent, comparisonRepo?.releaseStats?.descriptionReleasesPercent)"> {{ repo.releaseStats.descriptionReleasesPercent | number:'1.0-2' }}%</span></p>
     <p><span>Releases con colaboraciones:</span> <span [style.color]="getStatColor(repo.releaseStats.collaborativeReleasesPercent, comparisonRepo?.releaseStats?.collaborativeReleasesPercent)"> {{ repo.releaseStats.collaborativeReleasesPercent | number:'1.0-2' }}%</span></p>
     <p><span>Participación de los miembros del repositorio en las Releases:</span> <span [style.color]="getStatColor(repo.participantStats.releaseParticipationPercent, comparisonRepo?.participantStats?.releaseParticipationPercent)"> {{ repo.participantStats.releaseParticipationPercent | number:'1.0-2' }}%</span></p>
-    <p><span>Nº de Tags:</span> <span [style.color]="getStatColor(repo.participantStats.tagsCount, comparisonRepo?.participantStats?.tagsCount)"> {{ repo.releaseStats.tagsCount }}</span></p>
+    <p><span>Nº de Tags:</span> <span [style.color]="getStatColor(repo.releaseStats.tagsCount, comparisonRepo?.releaseStats?.tagsCount)"> {{ repo.releaseStats.tagsCount }}</span></p>
   </div>
 </div>
