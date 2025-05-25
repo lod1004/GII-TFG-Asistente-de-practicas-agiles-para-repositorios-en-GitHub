@@ -1,7 +1,7 @@
 {
-  "name": "asistente-buenas-practicas",
+  "name": "asistente-practicas-agiles",
   "version": "0.1.0",
-  "description": "Asistente de Buenas Prácticas para Proyectos en GitHub",
+  "description": "Asistente de prácticas ágiles para repositorios en GitHub",
   "author": "Lucas Olmedo Díez",
   "license": "ISC",
   "main": "server.js",

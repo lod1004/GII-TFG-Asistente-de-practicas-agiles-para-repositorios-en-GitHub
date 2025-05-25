@@ -3,31 +3,31 @@
         "days": true,
         "amount": 14
     },
-    "auditLog": "C:\\proyectos\\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\\src\\backend\\logs\\audit.json",
+    "auditLog": "C:\\proyectos\\GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub\\src\\backend\\logs\\audit.json",
     "files": [
         {
             "date": 1747249886166,
-            "name": "C:\\proyectos\\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\\src\\backend\\logs\\main-log-14-05-2025.log",
+            "name": "C:\\proyectos\\GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub\\src\\backend\\logs\\main-log-14-05-2025.log",
             "hash": "d2889889ed90c90b2532f25c9bbfcb8d12cdc540e0ee4efd50d70ea58495d539"
         },
         {
             "date": 1747328025042,
-            "name": "C:\\proyectos\\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\\src\\backend\\logs\\main-log-15-05-2025.log",
+            "name": "C:\\proyectos\\GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub\\src\\backend\\logs\\main-log-15-05-2025.log",
             "hash": "1bb5aec884c651563ee50b3f3be27cda63eba8eedc4545bf72ecb9f35ea29ee0"
         },
         {
             "date": 1747601249553,
-            "name": "C:\\proyectos\\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\\src\\backend\\logs\\main-log-18-05-2025.log",
+            "name": "C:\\proyectos\\GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub\\src\\backend\\logs\\main-log-18-05-2025.log",
             "hash": "a819b45d4b3c3852197c8b7c4a606e1186ab703ca1d86b1600feaa2a0460cb3f"
         },
         {
             "date": 1747606740402,
-            "name": "C:\\proyectos\\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\\src\\backend\\logs\\main-log-19-05-2025.log",
+            "name": "C:\\proyectos\\GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub\\src\\backend\\logs\\main-log-19-05-2025.log",
             "hash": "d5c55f0ab8c46e9f1f98fc8a73ad1f94e64ec90247e1b4638dafae3f5efa14ad"
         },
         {
             "date": 1747765294425,
-            "name": "C:\\proyectos\\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\\src\\backend\\logs\\main-log-20-05-2025.log",
+            "name": "C:\\proyectos\\GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub\\src\\backend\\logs\\main-log-20-05-2025.log",
             "hash": "92efcc01a41cbaab941bca451f650d199e0583864fdd8694848905abd459b67b"
         }
     ],
