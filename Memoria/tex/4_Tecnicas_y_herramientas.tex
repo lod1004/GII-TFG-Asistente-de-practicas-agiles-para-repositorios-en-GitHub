@@ -69,12 +69,27 @@ El diseño se ha centrado en la claridad y la simplicidad, mostrando los resulta
 
 El código fuente del proyecto se ha gestionado con \textbf{Git}, utilizando GitHub como repositorio remoto. Se ha trabajado con ramas para separar funcionalidades y mantener el código estable en la rama principal.
 
+\subsection{Despliegue continuo de la aplicación web durante el desarrollo}
+
+Para el testing y el desarrollo del proyecto se han utilizado dos herramientas que han permitido el despliegue continuo de la aplicación web a través de la integración continua lograda gracias a la compatibilidad entre estas dos herramientas y el repositorio de GitHub donde se ha ido subiendo el código del backend y el frontend
+
+\begin{itemize}
+  \item \textbf{Despliegue continuo del backend}: Se ha utilizado la herramienta de React para lograr el despliegue continuo del backend desde el repositorio de GitHub
+  
+  \item \textbf{Despliegue continuo del frontend}: Para el frontend se ha utilizado la herram,ienta de Vercel, que permite un despliegue continuo rápido y eficiente, que se puede probar desde cualquier dispositivo por cualquier persona gracias a la opción de usar despliegues de carácter público.
+  
+\end{itemize}
+
+Estas herramientas de despliegue han permitido el testeo de tanto el tutor como diferentes usuarios que han ayudado al desarrollo de la aplicación web, y a la búsqueda de errores y bugs.
+
 \section{Otras herramientas de apoyo}
 
 \begin{itemize}
   \item \textbf{Visual Studio Code}: Editor principal usado para escribir tanto el frontend como el backend.
   \item \textbf{LaTeX}: Utilizado para la redacción de esta memoria, por su capacidad de estructurar documentos técnicos de manera clara y profesional.
-  \item \textbf{Zube y GitHub}: Para documentar el código, organizar las tareas de desarrollo y las decisiones técnicas dentro del propio repositorio.
+  \item \textbf{Zube}: Para documentar el código, organizar las tareas de desarrollo y las decisiones técnicas dentro del propio repositorio se ha utilizado la herramienta de Zube, recomendada por el profesor y conectada con el repositorio de GitHub.
+  \item \textbf{GitHub Desktop}: Herramienta gráfica de GitHub que permite visualizar claramente los cambios realizados en todo el repositorio de forma individual y comparativa antes de subir todos los cambios con un solo Commit.
+  
 \end{itemize}
 
 \section{Comparativa de tecnologías evaluadas}
@@ -114,14 +129,14 @@ Spring Boot & Baja & Muy Alta & Muy completa \\
 \begin{center}
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Base de Datos} & \textbf{Facilidad de uso} & \textbf{Escalabilidad / Rendimiento} & \textbf{Documentación} \\
+\textbf{Base de Datos} & \textbf{Facilidad de uso} & \textbf{Rendimiento} & \textbf{Documentación} \\
 \hline
-MongoDB & Alta & Alta (NoSQL) & Muy completa \\
-MySQL & Media-Alta & Alta & Muy completa \\
-PostgreSQL & Media & Muy Alta & Muy completa \\
-SQLite & Alta & Media-Baja & Buena \\
-Firebase Realtime DB & Muy alta & Media & Buena \\
-Redis & Media & Muy Alta (caché) & Buena \\
+MongoDB & Alta & Alto (NoSQL) & Muy completa \\
+MySQL & Medio-Alta & Alto & Muy completa \\
+PostgreSQL & Media & Muy Alto & Muy completa \\
+SQLite & Alta & Medio-Bajo & Buena \\
+Firebase Realtime DB & Muy alta & Medio & Buena \\
+Redis & Media & Muy Alto (caché) & Buena \\
 \hline
 \end{tabular}
 \end{center}

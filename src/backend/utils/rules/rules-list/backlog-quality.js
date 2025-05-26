@@ -20,7 +20,7 @@ function evaluateBacklogQualityRule(mainRepo, comparisonRepos) {
   let message = '';
   if (status === 'Superada') {
     message = 'El repositorio cuenta con un backlog bien documentado y completo, gracias a su uso adecuado de issues.';
-  } else if (status === 'Suspendida') {
+  } else if (status === 'No superada') {
     message = 'El repositorio no tiene un backlog suficientemente sólido o bien documentado.';
   } else if (status === 'Cero') {
     message = 'El repositorio no contiene issues, por lo tanto, no tiene backlog.';

@@ -64,12 +64,12 @@ function evaluateVelocityRule(mainRepo, comparisonRepos, averageDays) {
   let status = 'Parcialmente superada';
   if (Bien === statsToCompare.length) status = 'Superada';
   else if (Cero === statsToCompare.length) status = 'Cero';
-  else if ((Mal + Cero) === statsToCompare.length) status = 'Suspendida';
+  else if ((Mal + Cero) === statsToCompare.length) status = 'No superada';
 
   let message = '';
   if (status === 'Superada') {
     message = 'El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.';
-  } else if (status === 'Suspendida') {
+  } else if (status === 'No superada') {
     message = 'No hay evidencia clara de que el repositorio mantenga la velocidad de trabajo.';
   } else if (status === 'Cero') {
     message = 'No se detectaron issues cerradas.';

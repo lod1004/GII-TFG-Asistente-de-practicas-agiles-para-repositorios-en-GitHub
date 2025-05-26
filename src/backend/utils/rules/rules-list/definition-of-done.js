@@ -66,12 +66,12 @@ function evaluateDefinitionOfDoneRule(mainRepo, comparisonRepos) {
   let status = 'Parcialmente superada';
   if (Bien === statsToCompare.length) status = 'Superada';
   else if (Cero === statsToCompare.length) status = 'Cero';
-  else if ((Mal + Cero) === statsToCompare.length) status = 'Suspendida';
+  else if ((Mal + Cero) === statsToCompare.length) status = 'No superada';
 
   let message = '';
   if (status === 'Superada') {
     message = 'La mayoría de las tareas se completan correctamente y rara vez o nunca se reabren.';
-  } else if (status === 'Suspendida') {
+  } else if (status === 'No superada') {
     message = 'Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".';
   } else if (status === 'Cero') {
     message = 'No hay Issues creadas en el repositorio, por lo que no puede evaluarse la definición de "Done".';

@@ -139,7 +139,11 @@ submitRepo(): void {
   }
 
   setTimeout(() => {
-    this.loadingMessage = 'Generando estadísticas...';
+    this.loadingMessage = 'Generando métricas de calidad de proceso...';
+  }, delay);
+
+    setTimeout(() => {
+    this.loadingMessage = 'Evaluando reglas de agilidad...';
   }, delay);
 
   this.repoService.sendRepositoryUrls(payload).subscribe({

@@ -107,7 +107,7 @@
 [2025-05-18 22:48:27] [INFO]: Media de actividad por usuario (cada 10 días): 17.94
 [2025-05-18 22:48:27] [INFO]: Regla: Scrum, Extreme Programming - Iteraciones
 [2025-05-18 22:48:27] [INFO]: Descripción: El repositorio se está desarrollando mediante iteraciones o Sprints
-[2025-05-18 22:48:27] [INFO]: Aprobada: Suspendida
+[2025-05-18 22:48:27] [INFO]: Aprobada: No superada
 [2025-05-18 22:48:27] [INFO]: Expliación: El repositorio no parece seguir una estrategia iterativa (Sprints). Se usan muy pocas Milestones o ninguna, y no hay suficientes Commits ni Releases
 [2025-05-18 22:48:27] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-18 22:48:27] [INFO]: Regla: DevOps - Automated Build
@@ -127,7 +127,7 @@
 [2025-05-18 22:48:27] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-18 22:48:27] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-18 22:48:27] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-18 22:48:27] [INFO]: Aprobada: Suspendida
+[2025-05-18 22:48:27] [INFO]: Aprobada: No superada
 [2025-05-18 22:48:27] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-18 22:48:27] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-18 22:48:27] [INFO]: Regla: Scrum - Backlog Quality
@@ -137,12 +137,12 @@
 [2025-05-18 22:48:27] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-18 22:48:27] [INFO]: Regla: Extreme Programming - Velocity
 [2025-05-18 22:48:27] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
-[2025-05-18 22:48:27] [INFO]: Aprobada: Suspendida
+[2025-05-18 22:48:27] [INFO]: Aprobada: No superada
 [2025-05-18 22:48:27] [INFO]: Expliación: No hay evidencia clara de que el repositorio mantenga la velocidad de trabajo.
 [2025-05-18 22:48:27] [INFO]: Detalles: 
 [2025-05-18 22:48:27] [INFO]: Regla: Extreme Programming - Frequent Releases
 [2025-05-18 22:48:27] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
-[2025-05-18 22:48:27] [INFO]: Aprobada: Suspendida
+[2025-05-18 22:48:27] [INFO]: Aprobada: No superada
 [2025-05-18 22:48:27] [INFO]: Expliación: El repositorio no publica Releases con suficiente frecuencia.
 [2025-05-18 22:48:27] [INFO]: Detalles: [object Object],[object Object]
 [2025-05-18 22:48:27] [INFO]: Regla: Extreme Programming - Collective Ownership
@@ -152,7 +152,7 @@
 [2025-05-18 22:48:27] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-18 22:48:27] [INFO]: Regla: Extreme Programming - Pair Programming
 [2025-05-18 22:48:27] [INFO]: Descripción: Los miembros del repositorio practican la programación por parejas.
-[2025-05-18 22:48:27] [INFO]: Aprobada: Suspendida
+[2025-05-18 22:48:27] [INFO]: Aprobada: No superada
 [2025-05-18 22:48:27] [INFO]: Expliación: No se observan suficientes evidencias de programación por parejas.
 [2025-05-18 22:48:27] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object]
 [2025-05-18 23:34:30] [INFO]: Dueño del repositorio: lod1004
@@ -885,7 +885,7 @@
 [2025-05-18 23:35:56] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-18 23:35:56] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-18 23:35:56] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-18 23:35:56] [INFO]: Aprobada: Suspendida
+[2025-05-18 23:35:56] [INFO]: Aprobada: No superada
 [2025-05-18 23:35:56] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-18 23:35:56] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-18 23:35:56] [INFO]: Regla: Scrum - Backlog Quality
@@ -951,7 +951,7 @@
 [2025-05-18 23:35:58] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-18 23:35:58] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-18 23:35:58] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-18 23:35:58] [INFO]: Aprobada: Suspendida
+[2025-05-18 23:35:58] [INFO]: Aprobada: No superada
 [2025-05-18 23:35:58] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-18 23:35:58] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-18 23:35:58] [INFO]: Regla: Scrum - Backlog Quality

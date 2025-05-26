@@ -16,7 +16,7 @@ function evaluateFrequentReleasesRule(mainRepo, comparisonRepos, averageDays) {
   let message = '';
   if (status === 'Superada') {
     message = 'El repositorio publica Releases de forma frecuente, lo cual es un buen indicio de entrega continua.';
-  } else if (status === 'Suspendida') {
+  } else if (status === 'No superada') {
     message = 'El repositorio no publica Releases con suficiente frecuencia.';
   } else if (status === 'Cero') {
     message = 'El repositorio no ha publicado ningún tipo de Release.';

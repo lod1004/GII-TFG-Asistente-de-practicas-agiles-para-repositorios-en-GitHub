@@ -20,7 +20,7 @@ function evaluateCollectiveOwnershipRule(mainRepo, comparisonRepos, averageDays)
   let message = '';
   if (status === 'Superada') {
     message = 'El repositorio refleja una fuerte propiedad colectiva. Todos los miembros participan en múltiples aspectos del desarrollo de forma activa.';
-  } else if (status === 'Suspendida') {
+  } else if (status === 'No superada') {
     message = 'No se detecta propiedad colectiva clara. La mayoría del trabajo está concentrado en los mismos pocos miembros.';
   } else if (status === 'Cero') {
     message = 'Los usuarios no han participado en nada en el repositorio';

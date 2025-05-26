@@ -18,7 +18,7 @@ function evaluatePairProgrammingRule(mainRepo, comparisonRepos) {
   let message = '';
   if (status === 'Superada') {
     message = 'Se observa una buena práctica de programación por parejas mediante colaboración activa en Issues, Pull Requests, Releases y Commits.';
-  } else if (status === 'Suspendida') {
+  } else if (status === 'No superada') {
     message = 'No se observan suficientes evidencias de programación por parejas.';
   } else if (status === 'Cero') {
     message = 'No hay ninguna actividad colaborativa que indique programación por parejas.';

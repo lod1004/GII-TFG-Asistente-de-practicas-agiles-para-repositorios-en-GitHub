@@ -43,7 +43,7 @@ function compareStats(mainRepo, comparisonRepos, statsToCompare) {
   let status = 'Parcialmente superada';
   if (Bien === statsToCompare.length) status = 'Superada';
   else if (Cero === statsToCompare.length) status = 'Cero';
-  else if ((Mal + Cero) === statsToCompare.length) status = 'Suspendida';
+  else if ((Mal + Cero) === statsToCompare.length) status = 'No superada';
 
   return { 
     status, 

@@ -19,7 +19,7 @@ function evaluateVersionControlRule(mainRepo, comparisonRepos, averageDays) {
   let message = '';
   if (status === 'Superada') {
     message = 'El repositorio tiene un buen control de versiones gracias a sus frecuentes Commits de calidad';
-  } else if (status === 'Suspendida') {
+  } else if (status === 'No superada') {
     message = 'El repositorio no tiene un buen control de versiones. No hay suficientes Commits ni incluyen título personalizado, descripción o referencias';
   } else if (status === 'Cero') {
     message = 'El repositorio no tiene Commits, lo que hace imposible el control de versiones';

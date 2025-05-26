@@ -637,7 +637,7 @@
 [2025-05-19 00:20:06] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 00:20:06] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-19 00:20:06] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-19 00:20:06] [INFO]: Aprobada: Suspendida
+[2025-05-19 00:20:06] [INFO]: Aprobada: No superada
 [2025-05-19 00:20:06] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-19 00:20:06] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 00:20:06] [INFO]: Regla: Scrum - Backlog Quality
@@ -1392,7 +1392,7 @@
 [2025-05-19 00:21:45] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 00:21:45] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-19 00:21:45] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-19 00:21:45] [INFO]: Aprobada: Suspendida
+[2025-05-19 00:21:45] [INFO]: Aprobada: No superada
 [2025-05-19 00:21:45] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-19 00:21:45] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 00:21:45] [INFO]: Regla: Scrum - Backlog Quality
@@ -2086,7 +2086,7 @@
 [2025-05-19 00:26:18] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 00:26:18] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-19 00:26:18] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-19 00:26:18] [INFO]: Aprobada: Suspendida
+[2025-05-19 00:26:18] [INFO]: Aprobada: No superada
 [2025-05-19 00:26:18] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-19 00:26:18] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 00:26:18] [INFO]: Regla: Scrum - Backlog Quality
@@ -2096,7 +2096,7 @@
 [2025-05-19 00:26:18] [INFO]: Detalles: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 [2025-05-19 00:26:18] [INFO]: Regla: Extreme Programming - Velocity
 [2025-05-19 00:26:18] [INFO]: Descripción: El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues.
-[2025-05-19 00:26:18] [INFO]: Aprobada: Suspendida
+[2025-05-19 00:26:18] [INFO]: Aprobada: No superada
 [2025-05-19 00:26:18] [INFO]: Expliación: No hay evidencia clara de que el repositorio mantenga la velocidad de trabajo.
 [2025-05-19 00:26:18] [INFO]: Detalles: 
 [2025-05-19 00:26:18] [INFO]: Regla: Extreme Programming - Frequent Releases
@@ -2319,7 +2319,7 @@
 [2025-05-19 19:12:12] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 19:12:12] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-19 19:12:12] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-19 19:12:12] [INFO]: Aprobada: Suspendida
+[2025-05-19 19:12:12] [INFO]: Aprobada: No superada
 [2025-05-19 19:12:12] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-19 19:12:12] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 19:12:12] [INFO]: Regla: Scrum - Backlog Quality
@@ -2548,7 +2548,7 @@
 [2025-05-19 20:50:13] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 20:50:13] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-19 20:50:13] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-19 20:50:13] [INFO]: Aprobada: Suspendida
+[2025-05-19 20:50:13] [INFO]: Aprobada: No superada
 [2025-05-19 20:50:13] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-19 20:50:13] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 20:50:13] [INFO]: Regla: Scrum - Backlog Quality
@@ -2933,7 +2933,7 @@
 [2025-05-19 21:05:03] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 21:05:03] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-19 21:05:03] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-19 21:05:03] [INFO]: Aprobada: Suspendida
+[2025-05-19 21:05:03] [INFO]: Aprobada: No superada
 [2025-05-19 21:05:03] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-19 21:05:03] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 21:05:03] [INFO]: Regla: Scrum - Backlog Quality
@@ -3744,7 +3744,7 @@
 [2025-05-19 21:29:31] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 21:29:31] [INFO]: Regla: Scrum - Definition of Done
 [2025-05-19 21:29:31] [INFO]: Descripción: Se cierran las Issues de forma correcta y consistente
-[2025-05-19 21:29:31] [INFO]: Aprobada: Suspendida
+[2025-05-19 21:29:31] [INFO]: Aprobada: No superada
 [2025-05-19 21:29:31] [INFO]: Expliación: Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".
 [2025-05-19 21:29:31] [INFO]: Detalles: [object Object],[object Object],[object Object]
 [2025-05-19 21:29:31] [INFO]: Regla: Scrum - Backlog Quality
@@ -3759,7 +3759,7 @@
 [2025-05-19 21:29:31] [INFO]: Detalles: 
 [2025-05-19 21:29:31] [INFO]: Regla: Extreme Programming - Frequent Releases
 [2025-05-19 21:29:31] [INFO]: Descripción: El repositorio incluye Releases y se van creando nuevas cada cierto tiempo.
-[2025-05-19 21:29:31] [INFO]: Aprobada: Suspendida
+[2025-05-19 21:29:31] [INFO]: Aprobada: No superada
 [2025-05-19 21:29:31] [INFO]: Expliación: El repositorio no publica Releases con suficiente frecuencia.
 [2025-05-19 21:29:31] [INFO]: Detalles: [object Object],[object Object]
 [2025-05-19 21:29:31] [INFO]: Regla: Extreme Programming - Collective Ownership

@@ -18,7 +18,7 @@ function evaluateIterationsRule(mainRepo, comparisonRepos, averageDays) {
   let message = '';
   if (status === 'Superada') {
     message = 'El repositorio sigue claramente una estrategia basada en iteraciones. Se usan Milestones y se hacen Commits y Releases con frecuencia';
-  } else if (status === 'Suspendida') {
+  } else if (status === 'No superada') {
     message = 'El repositorio no parece seguir una estrategia iterativa (Sprints). Se usan muy pocas Milestones o ninguna, y no hay suficientes Commits ni Releases';
   } else if (status === 'Cero') {
     message = 'El repositorio no sigue ningún tipo de estrategia iterativa (Sprints). No tiene Commits ni Releases, ni se usan Milestones';

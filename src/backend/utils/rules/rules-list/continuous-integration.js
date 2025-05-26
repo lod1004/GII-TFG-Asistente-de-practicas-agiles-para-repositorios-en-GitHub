@@ -17,7 +17,7 @@ function evaluateContinuousIntegrationRule(mainRepo, comparisonRepos, averageDay
   let message = '';
   if (status === 'Superada') {
     message = 'El repositorio muestra un uso sólido de integración continua mediante workflows frecuentes, exitosos y buena actividad de Pull Requests.';
-  } else if (status === 'Suspendida') {
+  } else if (status === 'No superada') {
     message = 'El repositorio no presenta suficientes señales de integración continua activa.';
   } else if (status === 'Cero') {
     message = 'El repositorio no tiene señales de integración continua: no hay workflows ni actividad reciente de Pull Requests.';

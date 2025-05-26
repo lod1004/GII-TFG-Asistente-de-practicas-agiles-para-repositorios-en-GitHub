@@ -1,43 +1,35 @@
 \capitulo{2}{Objetivos del proyecto} \label{sec:objetivos}
 
-% Este apartado explica de forma precisa y concisa cuales son los objetivos que se persiguen con la realización del proyecto. Se puede distinguir entre los objetivos marcados por los requisitos del software a construir y los objetivos de carácter técnico que plantea a la hora de llevar a la práctica el proyecto.
+Este apartado explica de forma precisa y concisa cuales son los objetivos que se persiguen con la realización del proyecto. Se puede distinguir entre los objetivos marcados por los requisitos del software a construir y los objetivos de carácter técnico que plantea a la hora de llevar a la práctica el proyecto.
 
-\section{Objetivos del software}
+\section{Objetivos funcionales}
 
 Estos objetivos se centran en las funcionalidades que debe ofrecer al usuario la aplicación \textit{Asistente de prácticas ágiles para repositorios en GitHub} para funcionar como se planteó correctamente, y ser una aplicación útil y fácil de usar
 
 \begin{itemize}
-    \item \textbf{Análisis en profundidad de los repositorios}: La aplicación analiza detalladamente y en profundidad todas las estadísticas y características que pueden resultar útiles de un repositorio. Esto ofrece al usuario una gran variedad de campos para mejorar su repositorio y facilitar su trabajo, por ejemplo, mejorando las decripciones y detalles de las Issues, o la frecuencia de subida de Commits.
+    \item \textbf{Análisis en profundidad de los repositorios}: La aplicación web analiza detalladamente y en profundidad todas las métricas de calidad de proceso y características que pueden resultar útiles de un repositorio durante el proceso de desarrollo de software. Esto ofrece al usuario una gran variedad de campos para mejorar su repositorio y facilitar su trabajo, por ejemplo, mejorando las decripciones y detalles de las Issues, o la frecuencia de subida de Commits.
 
-    \item \textbf{Personalización del análisis}: El usuario puede ajustar distintos parámetros del análisis que ofrece la aplicación para determinar en qué medida se analizarán los repositorios, como por ejemplo el intervalo de tiempo de vida de los repositorios que se analizará, o los días utilizados como parámetro para calcular estadísticas relacionadas con las frecuencias de colaboraciones del repositorio.
+    \item \textbf{Ajuste temporal del análisis}: El usuario puede ajustar distintos parámetros del análisis que ofrece la aplicación para determinar en qué medida se analizarán los repositorios, como por ejemplo el intervalo de tiempo de vida de los repositorios que se analizará, o los días utilizados como parámetro para calcular métricas de calidad de proceso relacionadas con las frecuencias de colaboraciones del repositorio.
     
-    \item \textbf{Uso de las estadísticas obtenidas de los repositorios}: La aplicación es capaz de, dadas todas las estadísticas sacadas del repositorio, ofrecer al usuario sugerencias para mejorar su repositorio y rendimiento. Esto se hace en forma de reglas, que indican de una manera muy visual en qué aspectos falla el repositorio y en qué aspectos está mejor, indicando detalladamente el por qué y qué apartados mejorar para solucionarlo
+    \item \textbf{Uso de las métricas de calidad de proceso obtenidas de los repositorios}: La aplicación es capaz de, dadas todas las métricas de calidad de proceso sacadas del repositorio, ofrecer al usuario sugerencias para mejorar su repositorio y rendimiento. Esto se hace en forma de reglas, que indican de una manera muy visual en qué aspectos falla el repositorio y en qué aspectos está mejor, indicando detalladamente el por qué y qué apartados mejorar para solucionarlo
     
-    \item \textbf{Puesta en práctica de las metodologías ágiles}: La aplicación utiliza las bases teóricas de las metodologías ágiles recogidas en \cite{agileSubwayMap} para basar los resultados ofrecidos al usuario tras analizar el repositorio. El usuario puede acceder a URLs con contenido explicativo breve sobre el por qué se analizan ciertas estadísticas de cierta forma para determinar si un repositorio aprueba o suspende una regla.
+    \item \textbf{Puesta en práctica de las metodologías ágiles}: La aplicación utiliza las bases teóricas de las metodologías ágiles recogidas en \cite{agileSubwayMap} para basar los resultados ofrecidos al usuario tras analizar el repositorio. El usuario puede acceder a URLs con contenido explicativo breve sobre el por qué se analizan ciertas métricas de calidad de proceso de cierta forma para determinar si un repositorio aprueba o suspende una regla.
+
+    \item \textbf{Asistencia a estudiantes}: Se debe ofrecer una herramienta útil para los alumnos que estén usando repositorios de GitHub, realizando sus TFG, o se encuentren en cualquier momento del proceso de desarrollo de software mediante la aplicación de la herramienta de GitHub. La aplicación ofrece al usuario diferentes maneras de mejorar el rendimiento y calidad de su trabajo, explicando al mismo el porque esas maneras son buenas y útiles para desarrollar su repositorio
     
 
 \end{itemize}
 
-\section{Objetivos técnicos}
+\section{Objetivos no funcionales}
 
 Estos objetivos abarcan los obstáculos requeridos de superar para desarrollar la aplicación, como la tecnología y herramientas utilizadas para la programación y producción, y las prácticas y metodologías de programación usadas.
 
 \begin{itemize}
-  \item \textbf{Usar frameworks FrontEnd y BackEnd flexibles y robustos:} Se ha optado por Angular por su arquitectura basada en componentes, su flexibilidad y facilidad para la maquetación y el diseño de interfaces, su integración con formularios reactivos y su estructura dividida en módulos reutilizables. Junto al uso del servicio HTTP para enviar y recibir datos al BackEnd asincrónicamente, gestionando respuestas y errores de forma controlada.
+  \item \textbf{Mantenibilidad, modularidad y modificabilidad }: Se ha optado por Angular por su arquitectura basada en componentes, su flexibilidad y facilidad para la maquetación y el diseño de interfaces, su integración con formularios reactivos y su estructura dividida en módulos reutilizables. Esto, junto al uso del servicio HTTP para enviar y recibir datos al BackEnd asincrónicamente, gestionando respuestas y errores de forma controlada han permitido diseñar una aplicación web fácil de mantener y modificar.
   
-  \item \textbf{Gestionar formularios de entrada complejos:} Implementación de formularios reactivos con validación dinámica y lógica condicional para distintos modos de análisis (por intervalos de tiempo, fechas relativas, etc.).
+  \item \textbf{Usabilidad de la aplicación web} La aplicación debe ser agradable a la vista y fácil de entender. Se busca una simplicidad que ofrezca al usuario una experiencia fácil y rápida de entender. Para ellos se busca indicar de forma clara y concisa al usuario lo que está pasando, qué es lo que está haciendo, y qué significa lo que está viendo en todo momento. Esto se logra mediante la implementación de formularios reactivos con validación dinámica y lógica condicional para distintos modos de análisis (por intervalos de tiempo, fechas relativas, etc.) entre otras características, como los tabs de navegación, que hagan la aplicación usable y cómoda para al usuario.
 
-  \item \textbf{Uso de buenas prácticas de desarrollo:} Aplicación de principios como DRY (Don't Repeat Yourself), SOLID (Especialmente el principio Open-Closed, por ejemplo para facilitar el añadido de estadísticas y reglas nuevas) y separación de responsabilidades, además del uso de TypeScript para mantener tipado estricto y detección temprana de errores.
+  \item \textbf{Reusabilidad}: Aplicación de principios como DRY (Don't Repeat Yourself), SOLID (Especialmente el principio Open-Closed, por ejemplo para facilitar el añadido de métricas de calidad de proceso y reglas nuevas) y separación de responsabilidades, además del uso de TypeScript para mantener tipado estricto y detección temprana de errores.
 
-\end{itemize}
 
-\section{Objetivos personales}
-
-Objetivos que caracterizan las partes del proyecto que, de forma personal, se han considerado importantes y necesarias de cumplir, a pesar de no tratarse de apartados técnicos o de requisitos funcionales.
-
-\begin{itemize}
-	\item \textbf{Usabilidad de la aplicación web} La aplicación debe ser agradable a la vista y fácil de entender. Se busca una simplicidad que ofrezca al usuario una experiencia fácil y rápida de entender. Para ellos se busca indicar de forma clara y concisa al usuario lo que está pasando, qué es lo que está haciendo, y qué significa lo que está viendo en todo momento.
-    
-	\item \textbf{Asistencia a estudiantes}: Se busca ofrecer una herramienta útil para los alumnos que estén usando repositorios de GitHub, o realizando sus TFG. La aplicación ofrece al usuario diferentes maneras de mejorar el rendimiento y calidad de su trabajo, explicando al mismo el porque esas maneras son buenas y útiles para desarrollar su repositorio
-    
 \end{itemize}
