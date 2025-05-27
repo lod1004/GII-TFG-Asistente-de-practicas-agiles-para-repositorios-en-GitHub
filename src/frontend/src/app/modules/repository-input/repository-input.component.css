@@ -135,7 +135,7 @@
     margin-left: 18rem;
 }
 
-.save_buton {
+.save_button {
     margin-left: 42%;
     width: 10rem;
     height: 2rem;
@@ -144,12 +144,12 @@
     background-color: #c3ffff;
 }
 
-.save_buton:hover {
+.save_button:hover {
     cursor: pointer;
     border: solid #3094ff;
 }
 
-.save_buton:disabled {
+.save_button:disabled {
     cursor: not-allowed;
     border: 0;
     color: #919191;

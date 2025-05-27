@@ -1,0 +1,50 @@
+<div class="container">
+
+    <div class="logo_container">
+        <img src='TFGlogo.png' alt="Mapa de prácticas ágiles" class="logo" />
+    </div>
+
+    <div class="auth_form">
+        <h1 style="color: #FFFFFF;">
+            <span *ngIf="router.url === '/login'">Inicio de sesión</span>
+            <span *ngIf="router.url === '/register'">Registro</span>
+            <span *ngIf="router.url === '/new-password'">Cambio de contraseña</span>
+        </h1>
+
+        <div class="auth_input">
+            <label class="auth_input_label">Usuario</label>
+            <div style="display: flex;">
+                <input matInput id="mainRepositoryUrl" formControlName="usernameCtrl" type="text"
+                    placeholder="Introduce aquí tu nombre de usuario" class="url_input">
+            </div>
+        </div>
+
+        <div class="auth_input">
+            <label *ngIf="router.url !== '/new-password'" class="auth_input_label">Contraseña</label>
+            <label *ngIf="router.url === '/new-password'" class="auth_input_label">Antigua contraseña</label>
+            <div style="display: flex;">
+                <input matInput id="mainRepositoryUrl" formControlName="passwordCtrl" type="text"
+                    placeholder="Introduce aquí tu contraseña" class="url_input">
+            </div>
+        </div>
+
+        <div class="auth_input" *ngIf="router.url === '/register' || router.url === '/new-password'">
+            <label *ngIf="router.url !== '/new-password'" class="auth_input_label">Repetir contraseña</label>
+            <label *ngIf="router.url === '/new-password'" class="auth_input_label">Nueva contraseña</label>
+            <div style="display: flex;">
+                <input matInput id="mainRepositoryUrl" formControlName="passwordCtrl" type="text"
+                    placeholder="Introduce aquí tu contraseña" class="url_input">
+            </div>
+        </div>
+
+        <span class="link" *ngIf="router.url === '/login'" [routerLink]="['/register']">¿No tienes una cuenta? Regístrate</span>
+        <span class="link" *ngIf="router.url === '/register'" [routerLink]="['/login']">¿Ya tienes una cuenta? Inicia sesión</span>
+
+        <button class="save_button" [disabled]="false">
+            <span *ngIf="router.url === '/login'">Iniciar de sesión</span>
+            <span *ngIf="router.url === '/register'">Registrarse</span>
+            <span *ngIf="router.url === '/new-password'">Cambiar contraseña</span>
+        </button>
+
+    </div>
+</div>

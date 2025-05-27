@@ -1,0 +1,90 @@
+.container {
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10rem;
+}
+
+.auth_form {
+    margin-top: 4%;
+    height: 30rem;
+    width: 25rem;
+    border-radius: 1rem;
+    background-color: #212121;
+    border: 2px solid #CCCCCC;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.logo_container {
+    height: 40rem;
+    width: 40rem;
+    border: 2px solid #CCCCCC;
+    border-radius: 1rem;
+}
+
+.logo {
+    border-radius: 1rem;
+    height: 100%;
+    width: 100%;
+}
+
+.url_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth_input_label {
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+}
+
+.url_input_container {
+    display: flex;
+}
+
+.url_input {
+    border-radius: 2rem;
+    padding: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 2rem;
+    width: 100%;
+}
+
+.save_button {
+    margin-top: auto;
+    width: 100%;
+    height: 2rem;
+    border-radius: 1rem;
+    color: #3094ff;
+    background-color: #c3ffff;
+}
+
+.save_button:hover {
+    cursor: pointer;
+    border: solid #3094ff;
+}
+
+.save_button:disabled {
+    cursor: not-allowed;
+    border: 0;
+    color: #919191;
+    background-color: #e0e0e0;
+}
+
+.link {
+    margin-top: -1.5rem;
+    margin-left: 0.3rem;
+    color: #3884e6;
+}
+
+.link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
