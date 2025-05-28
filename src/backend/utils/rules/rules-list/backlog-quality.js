@@ -22,10 +22,10 @@ function evaluateBacklogQualityRule(mainRepo, comparisonRepos) {
     message = 'El repositorio cuenta con un backlog bien documentado y completo, gracias a su uso adecuado de issues.';
   } else if (status === 'No superada') {
     message = 'El repositorio no tiene un backlog suficientemente sólido o bien documentado.';
-  } else if (status === 'Cero') {
+  } else if (status === 'Sin aplicar') {
     message = 'El repositorio no contiene issues, por lo tanto, no tiene backlog.';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero').map(d => d.label);
+    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
     message = `El backlog podría mejorar en: ${problems.join(', ')}.`;
   }
 

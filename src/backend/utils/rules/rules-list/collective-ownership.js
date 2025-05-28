@@ -22,10 +22,10 @@ function evaluateCollectiveOwnershipRule(mainRepo, comparisonRepos, averageDays)
     message = 'El repositorio refleja una fuerte propiedad colectiva. Todos los miembros participan en múltiples aspectos del desarrollo de forma activa.';
   } else if (status === 'No superada') {
     message = 'No se detecta propiedad colectiva clara. La mayoría del trabajo está concentrado en los mismos pocos miembros.';
-  } else if (status === 'Cero') {
+  } else if (status === 'Sin aplicar') {
     message = 'Los usuarios no han participado en nada en el repositorio';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero').map(d => d.label);
+    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
     message = `Hay indicios de colaboración, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 

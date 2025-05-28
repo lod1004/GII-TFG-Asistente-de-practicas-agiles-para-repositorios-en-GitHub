@@ -143,7 +143,7 @@ submitRepo(): void {
   }, delay);
 
     setTimeout(() => {
-    this.loadingMessage = 'Evaluando reglas de agilidad...';
+    this.loadingMessage = 'Evaluando prácticas ágiles';
   }, delay);
 
   this.repoService.sendRepositoryUrls(payload).subscribe({

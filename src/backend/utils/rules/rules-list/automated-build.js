@@ -17,7 +17,7 @@ function evaluateAutomatedBuildsRule(mainRepo, comparisonRepos) {
     message = 'El repositorio usa de forma consistente la automatización proporcionada por GitHub Actions.';
   } else if (status === 'No superada') {
     message = 'El repositorio no tiene suficientes ficheros workflow';
-  } else if (status === 'Cero') {
+  } else if (status === 'Sin aplicar') {
     message = 'El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización';
   } 
 

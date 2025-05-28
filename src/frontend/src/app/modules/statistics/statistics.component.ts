@@ -21,7 +21,6 @@ export class StatisticsComponent implements OnInit {
   ngOnInit(): void {
     this.repositoryService.getAllRepositories()
       .subscribe((res: any[]) => {
-        console.log(res)
         this.mainRepository = res.find(repo => repo.isMain);
         this.comparisonRepositories = res.filter(repo => !repo.isMain);
       })

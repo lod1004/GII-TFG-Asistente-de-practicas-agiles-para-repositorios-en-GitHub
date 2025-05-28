@@ -20,10 +20,10 @@ function evaluateIterationsRule(mainRepo, comparisonRepos, averageDays) {
     message = 'El repositorio sigue claramente una estrategia basada en iteraciones. Se usan Milestones y se hacen Commits y Releases con frecuencia';
   } else if (status === 'No superada') {
     message = 'El repositorio no parece seguir una estrategia iterativa (Sprints). Se usan muy pocas Milestones o ninguna, y no hay suficientes Commits ni Releases';
-  } else if (status === 'Cero') {
+  } else if (status === 'Sin aplicar') {
     message = 'El repositorio no sigue ningún tipo de estrategia iterativa (Sprints). No tiene Commits ni Releases, ni se usan Milestones';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero').map(d => d.label);
+    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
     message = `El repositorio parece usar iteraciones, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 

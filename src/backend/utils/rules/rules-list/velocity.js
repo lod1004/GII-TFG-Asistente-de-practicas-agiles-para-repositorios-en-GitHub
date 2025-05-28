@@ -11,8 +11,8 @@ function evaluateVelocityRule(mainRepo, comparisonRepos, averageDays) {
   ];
 
   const resultDetails = [];
-  let Bien = 0;
-  let Mal = 0;
+  let Completa = 0;
+  let Incompleta = 0;
   let Cero = 0;
 
   for (const stat of statsToCompare) {
@@ -40,14 +40,14 @@ function evaluateVelocityRule(mainRepo, comparisonRepos, averageDays) {
 
     let evaluation = 'average';
     if (mainValue === 0) {
-      evaluation = 'Cero';
+      evaluation = 'Sin aplicar';
       Cero++;
     } else if (higherCount >= lowerCount) {
-      evaluation = 'Bien';
-      Bien++;
+      evaluation = 'Completa';
+      Completa++;
     } else if (lowerCount > higherCount) {
-      evaluation = 'Mal';
-      Mal++;
+      evaluation = 'Incompleta';
+      Incompleta++;
     }
 
     resultDetails.push({
@@ -62,20 +62,20 @@ function evaluateVelocityRule(mainRepo, comparisonRepos, averageDays) {
   }
 
   let status = 'Parcialmente superada';
-  if (Bien === statsToCompare.length) status = 'Superada';
-  else if (Cero === statsToCompare.length) status = 'Cero';
-  else if ((Mal + Cero) === statsToCompare.length) status = 'No superada';
+  if (Completa === statsToCompare.length) status = 'Superada';
+  else if (Cero === statsToCompare.length) status = 'Sin aplicar';
+  else if ((Incompleta + Cero) === statsToCompare.length) status = 'No superada';
 
   let message = '';
   if (status === 'Superada') {
     message = 'El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.';
   } else if (status === 'No superada') {
     message = 'No hay evidencia clara de que el repositorio mantenga la velocidad de trabajo.';
-  } else if (status === 'Cero') {
+  } else if (status === 'Sin aplicar') {
     message = 'No se detectaron issues cerradas.';
   } else {
     const problems = resultDetails
-      .filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero')
+      .filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar')
       .map(d => d.label);
     message = `El repositorio podría mejorar la medición de velocidad en: ${problems.join(' + ')}.`;
   }
@@ -91,7 +91,7 @@ function evaluateVelocityRule(mainRepo, comparisonRepos, averageDays) {
     description,
     documentationUrl,
     passed: status,
-    statsBetter: Bien,
+    statsBetter: Completa,
     totalStats: statsToCompare.length,
     message,
     details: resultDetails

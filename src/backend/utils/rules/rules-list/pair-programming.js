@@ -20,10 +20,10 @@ function evaluatePairProgrammingRule(mainRepo, comparisonRepos) {
     message = 'Se observa una buena práctica de programación por parejas mediante colaboración activa en Issues, Pull Requests, Releases y Commits.';
   } else if (status === 'No superada') {
     message = 'No se observan suficientes evidencias de programación por parejas.';
-  } else if (status === 'Cero') {
+  } else if (status === 'Sin aplicar') {
     message = 'No hay ninguna actividad colaborativa que indique programación por parejas.';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero').map(d => d.label);
+    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
     message = `Hay algunos indicios de colaboración, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 

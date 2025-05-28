@@ -18,10 +18,10 @@ function evaluateFrequentReleasesRule(mainRepo, comparisonRepos, averageDays) {
     message = 'El repositorio publica Releases de forma frecuente, lo cual es un buen indicio de entrega continua.';
   } else if (status === 'No superada') {
     message = 'El repositorio no publica Releases con suficiente frecuencia.';
-  } else if (status === 'Cero') {
+  } else if (status === 'Sin aplicar') {
     message = 'El repositorio no ha publicado ningún tipo de Release.';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero').map(d => d.label);
+    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
     message = `El repositorio tiene Releases, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 

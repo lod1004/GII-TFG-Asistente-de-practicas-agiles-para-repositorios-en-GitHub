@@ -19,10 +19,10 @@ function evaluateContinuousIntegrationRule(mainRepo, comparisonRepos, averageDay
     message = 'El repositorio muestra un uso sólido de integración continua mediante workflows frecuentes, exitosos y buena actividad de Pull Requests.';
   } else if (status === 'No superada') {
     message = 'El repositorio no presenta suficientes señales de integración continua activa.';
-  } else if (status === 'Cero') {
+  } else if (status === 'Sin aplicar') {
     message = 'El repositorio no tiene señales de integración continua: no hay workflows ni actividad reciente de Pull Requests.';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero').map(d => d.label);
+    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
     message = `El repositorio parece usar integración continua, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 

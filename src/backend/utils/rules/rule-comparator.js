@@ -1,7 +1,7 @@
 function compareStats(mainRepo, comparisonRepos, statsToCompare) {
   const resultDetails = [];
-  let Bien = 0;
-  let Mal = 0;
+  let Completa = 0;
+  let Incompleta = 0;
   let Cero = 0;
 
   for (const stat of statsToCompare) {
@@ -19,14 +19,14 @@ function compareStats(mainRepo, comparisonRepos, statsToCompare) {
 
     let evaluation = 'average';
     if (mainValue === 0) {
-      evaluation = 'Cero';
+      evaluation = 'Sin aplicar';
       Cero++;
     } else if (higherCount >= lowerCount) {
-      evaluation = 'Bien';
-      Bien++;
+      evaluation = 'Completa';
+      Completa++;
     } else if (lowerCount > higherCount) {
-      evaluation = 'Mal';
-      Mal++;
+      evaluation = 'Incompleta';
+      Incompleta++;
     }
 
     resultDetails.push({
@@ -41,15 +41,15 @@ function compareStats(mainRepo, comparisonRepos, statsToCompare) {
   }
 
   let status = 'Parcialmente superada';
-  if (Bien === statsToCompare.length) status = 'Superada';
-  else if (Cero === statsToCompare.length) status = 'Cero';
-  else if ((Mal + Cero) === statsToCompare.length) status = 'No superada';
+  if (Completa === statsToCompare.length) status = 'Superada';
+  else if (Cero === statsToCompare.length) status = 'Sin aplicar';
+  else if ((Incompleta + Cero) === statsToCompare.length) status = 'No superada';
 
   return { 
     status, 
     resultDetails,    
     totalStats: statsToCompare.length,
-    statsBetter: Bien 
+    statsBetter: Completa 
   };
 }
 

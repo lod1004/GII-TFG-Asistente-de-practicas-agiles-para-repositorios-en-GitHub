@@ -5,7 +5,7 @@
       <label class="input_label_2">Introduce la URL de un repositorio para analizar</label>
       <div class="url_input_container">
         <input matInput id="mainRepositoryUrl" formControlName="mainRepositoryUrl" type="text"
-          placeholder="Introduce la URL del repositorio" class="url_input">
+          placeholder="https://github.com/autor/repositorio" class="url_input">
         <button matSuffix mat-icon-button (click)="addMainUrl()" class="add_url_button">
           <mat-icon class="add_icon">add</mat-icon>
         </button>
@@ -21,7 +21,7 @@
       <label class="input_label_2">Introduce repositorios de referencia (Max 5)</label>
       <div class="url_input_container">
         <input matInput id="sourceRepositoryUrl" formControlName="sourceRepositoryUrl" type="text"
-          placeholder="Introduce la URL del repositorio" class="url_input" />
+          placeholder="https://github.com/autor/repositorio" class="url_input" />
         <button matSuffix mat-icon-button (click)="addExampleUrl()" class="add_url_button">
           <mat-icon class="add_icon">add</mat-icon>
         </button>

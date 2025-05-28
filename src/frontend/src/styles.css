@@ -1,2 +1,38 @@
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #292929;}
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #292929;
+}
+
+.custom-success-button {
+    border-radius: 1rem;
+    color: #248434;
+    background-color: #c0fcd4;
+}
+
+.custom-success-button:hover {
+    cursor: pointer;
+    border: solid 1px #248434;
+    border-radius: 1rem;
+    color: #248434;
+    background-color: #c0fcd4;
+}
+
+.custom-error-button {
+    border-radius: 1rem;
+    color: #f26e6e;
+    background-color: #ffe5e3;
+}
+
+.custom-error-button:hover {
+    cursor: pointer;
+    border: solid 1px #f26e6e;
+    border-radius: 1rem;
+    color: #f26e6e;
+    background-color: #ffe5e3;
+}

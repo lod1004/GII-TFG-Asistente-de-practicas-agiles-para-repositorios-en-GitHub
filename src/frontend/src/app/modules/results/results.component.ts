@@ -17,7 +17,6 @@ export class ResultsComponent implements OnInit {
   ngOnInit(): void {
     this.repositoryService.getRulesResults()
       .subscribe((res: any) => {
-        console.log(res)
         this.rulesResults = res.rules;
       });
   }

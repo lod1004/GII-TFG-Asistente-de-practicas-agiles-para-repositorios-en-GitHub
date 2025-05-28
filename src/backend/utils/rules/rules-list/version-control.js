@@ -21,10 +21,10 @@ function evaluateVersionControlRule(mainRepo, comparisonRepos, averageDays) {
     message = 'El repositorio tiene un buen control de versiones gracias a sus frecuentes Commits de calidad';
   } else if (status === 'No superada') {
     message = 'El repositorio no tiene un buen control de versiones. No hay suficientes Commits ni incluyen título personalizado, descripción o referencias';
-  } else if (status === 'Cero') {
+  } else if (status === 'Sin aplicar') {
     message = 'El repositorio no tiene Commits, lo que hace imposible el control de versiones';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Mal' || d.evaluation === 'Cero').map(d => d.label);
+    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
     message = `El repositorio parece usar Commits y un control de versiones, pero podría mejorar en: ${problems.join(', ')}.`;
   }
 

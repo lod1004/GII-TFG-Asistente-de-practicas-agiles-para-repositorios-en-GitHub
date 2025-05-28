@@ -30,3 +30,8 @@
 [2025-05-19 21:18:48] [ERROR]: Error al enviar index.html: ENOENT: no such file or directory, stat 'C:\proyectos\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\src\backend\frontend\dist\frontend\browser\index.html'
 [2025-05-20 20:21:35] [ERROR]: Error al enviar index.html: ENOENT: no such file or directory, stat 'C:\proyectos\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\src\backend\frontend\dist\frontend\browser\index.html'
 [2025-05-20 20:21:35] [ERROR]: Error al enviar index.html: ENOENT: no such file or directory, stat 'C:\proyectos\GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub\src\backend\frontend\dist\frontend\browser\index.html'
+[2025-05-28 22:41:51] [ERROR]: Error en login: data and hash arguments required
+[2025-05-28 22:45:04] [ERROR]: Error en login: data and hash arguments required
+[2025-05-28 22:48:33] [ERROR]: Error en login: data and hash arguments required
+[2025-05-28 22:48:48] [ERROR]: Error en login: data and hash arguments required
+[2025-05-28 22:48:56] [ERROR]: Error en login: data and hash arguments required
