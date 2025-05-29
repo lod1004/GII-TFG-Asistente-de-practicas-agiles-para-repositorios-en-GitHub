@@ -48,7 +48,6 @@ const loginUser = async (req, res) => {
     const { username, password } = req.body;
     try {
         const user = await User.findOne({ username });
-        console.log(user)
         if (!user) return res.status(401).json({ message: 'Credenciales incorrectas' });
 
         const match = await bcrypt.compare(password, user.passwordHash);
@@ -64,17 +63,24 @@ const loginUser = async (req, res) => {
 };
 
 const changePassword = async (req, res) => {
-    const { username, password, repeatPassword } = req.body;
+    const { username, oldPassword, repeatPassword } = req.body;
+
     try {
         const user = await User.findOne({ username });
-        if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        const match = await bcrypt.compare(oldPassword, user.passwordHash);
+        if (!match) return res.status(401).json({ message: 'Credenciales incorrectas' });
 
         const hashedPassword = await bcrypt.hash(repeatPassword, SALT_ROUNDS);
-        user.password = hashedPassword;
+        user.passwordHash = hashedPassword;
         await user.save();
 
-        logger.info('Contraseña actualizada correctamente')
+        logger.info('Contraseña actualizada correctamente');
         res.json({ message: 'Contraseña actualizada correctamente' });
+
     } catch (error) {
         logger.error('Error al cambiar contraseña: ' + error.message);
         res.status(500).json({ message: 'Error del servidor' });

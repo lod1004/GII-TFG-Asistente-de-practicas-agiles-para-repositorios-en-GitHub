@@ -27,6 +27,7 @@ export class LoginComponent {
     this.authService.login(payload).subscribe({
       next: (res) => {
         this.authSuccess = true;
+        localStorage.setItem('loggedUser', data.username);
         Swal.fire({
           title: 'Sesión iniciada',
           text: 'Sesión iniciada correctamente.',

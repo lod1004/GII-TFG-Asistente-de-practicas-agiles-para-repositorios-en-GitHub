@@ -11,3 +11,26 @@
     justify-content: center;
     color: #FFFFFF;
 }
+
+.user_button {
+    color: #FFFFFF;
+    background-color: #1c2020;
+    font-size: 1rem;
+    width: 11.75rem;
+    height: 2.1rem;
+    margin-top: -2rem;
+    border-radius: 0;
+    margin-left: 2rem;
+    display: flex;
+}
+
+.user_button:hover {
+    cursor: pointer;
+    border: 1px solid #FFFFFF;
+}
+
+.user_icon {
+    margin-top: -0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.80rem;
+}

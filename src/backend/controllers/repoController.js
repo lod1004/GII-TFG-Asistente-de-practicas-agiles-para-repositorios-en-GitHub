@@ -9,6 +9,7 @@ const ActionStats = require("../models/action_stats");
 const ReleaseStats = require("../models/release_stats");
 const ParticipantStats = require("../models/participant_stats");
 const RulesResult = require("../models/rules_result");
+const User = require('../models/user');
 
 const { evaluateAllRules } = require("../utils/rules/rule-evaluator");
 
@@ -61,7 +62,7 @@ async function saveParticipantStats(repoId, data) {
   await ParticipantStats.create({ repoId, ...data });
 }
 
-async function processRepository({ url, isMain, averageDays, useRelativeDates, startTimeInterval, endTimeInterval }) {
+async function processRepository({ url, isMain, averageDays, useRelativeDates, startTimeInterval, endTimeInterval, userId }) {
   const parsed = await getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, endTimeInterval);
   if (!parsed) return null;
 
@@ -83,6 +84,7 @@ async function processRepository({ url, isMain, averageDays, useRelativeDates, s
     startDate,
     endDate,
     isMain,
+    userId,
     createdAt: new Date()
   });
 
@@ -148,7 +150,9 @@ const getRulesResults = async (req, res) => {
 };
 
 const createRepository = async (req, res) => {
-  const { main, examples, useRelativeDates, averageDays, startTimeInterval, endTimeInterval } = req.body;
+  const { main, examples, useRelativeDates, averageDays, startTimeInterval, endTimeInterval, username } = req.body;
+  const user = await User.findOne({ username });
+  const userId = user.id;
 
   if (!main || !Array.isArray(examples)) {
     return res.status(400).json({ message: "Se requiere una URL principal y una o varias URLs de ejemplo" });
@@ -171,7 +175,8 @@ const createRepository = async (req, res) => {
       averageDays,
       useRelativeDates,
       startTimeInterval,
-      endTimeInterval
+      endTimeInterval,
+      userId
     });
 
     const processedExamples = [];
@@ -182,7 +187,8 @@ const createRepository = async (req, res) => {
         averageDays,
         useRelativeDates,
         startTimeInterval,
-        endTimeInterval
+        endTimeInterval,
+        userId
       });
       if (result) processedExamples.push(result);
     }

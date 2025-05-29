@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-start-page',
@@ -60,8 +61,16 @@ export class StartPageComponent implements OnInit, OnChanges {
     const password = this.authForm.value.passwordCtrl;
     const repeatPassword = this.authForm.value.repeatPasswordCtrl;
 
-    if ((this.isRegistering || this.isChangingPassword) && password !== repeatPassword) {
-      alert('Las contraseñas no coinciden.');
+    if ((this.isRegistering) && password !== repeatPassword) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Las contraseñas no coinciden',
+          icon: 'error',
+          confirmButtonText: 'Intentar de nuevo',
+          customClass: {
+            confirmButton: 'custom-error-button'
+          }
+        });
       return;
     }
 

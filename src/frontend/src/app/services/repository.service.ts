@@ -11,7 +11,7 @@ export class RepositoryService {
 
   constructor(private http: HttpClient) {}
 
-  sendRepositoryUrls(payload: { main: string; examples: string[], useRelativeDates:any, averageDays: any, startTimeInterval: any, endTimeInterval: any }) {
+  sendRepositoryUrls(payload: { main: string; examples: string[], useRelativeDates:any, averageDays: any, startTimeInterval: any, endTimeInterval: any, username: any }) {
     return this.http.post(`${this.apiUrl}/repos`, payload);
   }
 

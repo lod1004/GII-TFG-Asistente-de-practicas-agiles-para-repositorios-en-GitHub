@@ -6,6 +6,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from "@angular/material/table";
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { MatTableModule } from "@angular/material/table";
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
+    MatMenuModule,
     MatExpansionModule,
     MatIconModule,
     MatProgressSpinnerModule,
@@ -23,6 +25,7 @@ import { MatTableModule } from "@angular/material/table";
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
+    MatMenuModule,
     MatExpansionModule,
     MatIconModule,
     MatProgressSpinnerModule,

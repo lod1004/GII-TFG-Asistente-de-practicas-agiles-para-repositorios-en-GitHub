@@ -92,6 +92,7 @@ export class RepositoryInputComponent implements OnInit {
 
 submitRepo(): void {
   let payload;
+  const username = localStorage.getItem('loggedUser');
 
   if (this.repositoryForm.controls.useTimeIntervals?.value === true) {
     payload = {
@@ -100,7 +101,8 @@ submitRepo(): void {
       useRelativeDates: this.repositoryForm.controls.useRelativeDates.value,
       averageDays: this.repositoryForm.controls.averageDays.value,
       startTimeInterval: this.repositoryForm.controls.startTimeInterval.value,
-      endTimeInterval: this.repositoryForm.controls.endTimeInterval.value
+      endTimeInterval: this.repositoryForm.controls.endTimeInterval.value,
+      username
     };
   } else {
     payload = {
@@ -109,7 +111,8 @@ submitRepo(): void {
       useRelativeDates: true,
       averageDays: this.repositoryForm.controls.averageDays.value,
       startTimeInterval: 0,
-      endTimeInterval: 4
+      endTimeInterval: 4,
+      username 
     };
   }
 
@@ -126,7 +129,7 @@ submitRepo(): void {
     setTimeout(() => {
       this.loadingMessage = `Analizando ${phase} de ${main}...`;
     }, delay);
-    delay += 1500;
+    delay += 1600;
   }
 
   for (const example of examples) {
@@ -134,7 +137,7 @@ submitRepo(): void {
       setTimeout(() => {
         this.loadingMessage = `Analizando ${phase} de ${example}...`;
       }, delay);
-      delay += 1500;
+      delay += 1600;
     }
   }
 

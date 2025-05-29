@@ -35,3 +35,13 @@
 [2025-05-28 22:48:33] [ERROR]: Error en login: data and hash arguments required
 [2025-05-28 22:48:48] [ERROR]: Error en login: data and hash arguments required
 [2025-05-28 22:48:56] [ERROR]: Error en login: data and hash arguments required
+[2025-05-29 21:03:24] [ERROR]: Error al cambiar contraseña: data and hash arguments required
+[2025-05-29 21:04:41] [ERROR]: Error al cambiar contraseña: data and hash arguments required
+[2025-05-29 21:04:59] [ERROR]: Error al cambiar contraseña: data and hash arguments required
+[2025-05-29 21:06:14] [ERROR]: Error al cambiar contraseña: data and hash arguments required
+[2025-05-29 21:06:17] [ERROR]: Error al cambiar contraseña: data and hash arguments required
+[2025-05-29 21:06:22] [ERROR]: Error al cambiar contraseña: data and hash arguments required
+[2025-05-29 21:07:20] [ERROR]: Error al cambiar contraseña: data and hash arguments required
+[2025-05-29 21:07:23] [ERROR]: Error al cambiar contraseña: data and hash arguments required
+[2025-05-29 21:07:46] [ERROR]: Error al cambiar contraseña: data and hash arguments required
+[2025-05-29 22:10:25] [ERROR]: Promesa no manejada: ReferenceError: User is not defined
