@@ -1,4 +1,4 @@
-# 🧠 GII-TFG-Asistente-de-prácticas-ágiles-para-repositorios-en-GitHub
+# GII-TFG-Asistente-de-prácticas-ágiles-para-repositorios-en-GitHub
 
 Aplicación web que analiza repositorios de GitHub con el fin de ofrecer recomendaciones y asistencia personalizada para la adopción de buenas prácticas de **metodologías ágiles**, centradas en el contexto académico (por ejemplo, para el desarrollo del TFG), aunque extensible a cualquier proyecto colaborativo en un repositorio de GitHub.
 
