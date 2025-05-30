@@ -1,21 +1,32 @@
 <div class="header">
-    <span class="header_title">
-        Asistente de prácticas ágiles para repositorios en GitHub
-    </span>
 
-    <button mat-icon-button *ngIf="username" [matMenuTriggerFor]="userMenu" class="user_button">
-        <mat-icon class="user_icon">person</mat-icon>
-        {{ username }}
-    </button>
+    <div>
+        <div [hidden]="router.url !== '/results'">
+            <button mat-icon-button (click)="goBack()" class="go_back">
+                <mat-icon class="arrow_icon">arrow_backwards</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="router.url === '/add-repositories'" style="height: 4rem;"></div>
+        <span class="header_title">
+            Asistente de prácticas ágiles para repositorios en GitHub
+        </span>
+    </div>
 
-    <mat-menu #userMenu="matMenu">
-        <button mat-menu-item (click)="goToNewPassword()">
-            <mat-icon>lock</mat-icon>
-            Cambiar contraseña
+    <div style="display: flex; justify-content: end;">
+        <button mat-icon-button *ngIf="username" [matMenuTriggerFor]="userMenu" class="user_button">
+            <mat-icon class="user_icon">person</mat-icon>
+            {{ username }}
         </button>
-        <button mat-menu-item (click)="logout()">
-            <mat-icon>logout</mat-icon>
-            Cerrar sesión
-        </button>
-    </mat-menu>
+
+        <mat-menu #userMenu="matMenu">
+            <button mat-menu-item (click)="goToNewPassword()">
+                <mat-icon>lock</mat-icon>
+                Cambiar contraseña
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                Cerrar sesión
+            </button>
+        </mat-menu>
+    </div>
 </div>

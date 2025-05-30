@@ -9,19 +9,19 @@ const { evaluateFrequentReleasesRule } = require("./rules-list/frequent-releases
 const { evaluateCollectiveOwnershipRule } = require("./rules-list/collective-ownership");
 const { evaluatePairProgrammingRule } = require("./rules-list/pair-programming");
 
-function evaluateAllRules(mainRepo, comparisonRepos, averageDays) {
+function evaluateAllRules(mainRepo, comparisonRepos, averageDays, mainRepoId) {
   const rules = [];
 
-  rules.push(evaluateIterationsRule(mainRepo, comparisonRepos, averageDays));
-  rules.push(evaluateAutomatedBuildsRule(mainRepo, comparisonRepos));
-  rules.push(evaluateVersionControlRule(mainRepo, comparisonRepos, averageDays));
-  rules.push(evaluateContinuousIntegrationRule(mainRepo, comparisonRepos, averageDays));
-  rules.push(evaluateDefinitionOfDoneRule(mainRepo, comparisonRepos));
-  rules.push(evaluateBacklogQualityRule(mainRepo, comparisonRepos));
-  rules.push(evaluateVelocityRule(mainRepo, comparisonRepos, averageDays));
-  rules.push(evaluateFrequentReleasesRule(mainRepo, comparisonRepos, averageDays));
-  rules.push(evaluateCollectiveOwnershipRule(mainRepo, comparisonRepos, averageDays));
-  rules.push(evaluatePairProgrammingRule(mainRepo, comparisonRepos));
+  rules.push(evaluateIterationsRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
+  rules.push(evaluateAutomatedBuildsRule(mainRepo, mainRepoId, comparisonRepos));
+  rules.push(evaluateVersionControlRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
+  rules.push(evaluateContinuousIntegrationRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
+  rules.push(evaluateDefinitionOfDoneRule(mainRepo, mainRepoId, comparisonRepos));
+  rules.push(evaluateBacklogQualityRule(mainRepo, mainRepoId, comparisonRepos));
+  rules.push(evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
+  rules.push(evaluateFrequentReleasesRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
+  rules.push(evaluateCollectiveOwnershipRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
+  rules.push(evaluatePairProgrammingRule(mainRepo, mainRepoId, comparisonRepos));
 
   return rules;
 }

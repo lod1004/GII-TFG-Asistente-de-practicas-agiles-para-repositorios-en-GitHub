@@ -8,6 +8,7 @@ const ruleResultSchema = new mongoose.Schema({
   statsBetter: Number,
   totalStats: Number,
   message: String,
+  mainRepoId: Number,
   details: [
     {
       label: String,

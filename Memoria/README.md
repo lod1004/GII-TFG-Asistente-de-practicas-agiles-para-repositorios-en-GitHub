@@ -1,3 +1,7 @@
+# 📁 memoria/
+
+Esta carpeta contiene la documentación del proyecto, compuesta por la memoria y anexos del TFG:
+
 # Plantilla LaTeX
 
 La plantilla se compone de dos documentos maestros: uno para la memoria y otro para los anexos.

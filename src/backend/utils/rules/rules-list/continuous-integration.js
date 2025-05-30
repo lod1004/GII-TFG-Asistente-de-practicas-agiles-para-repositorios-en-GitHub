@@ -1,7 +1,7 @@
 const { compareStats } = require("../rule-comparator");
 const logger = require('../../../logger');
 
-function evaluateContinuousIntegrationRule(mainRepo, comparisonRepos, averageDays) {
+function evaluateContinuousIntegrationRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "DevOps, Extreme Programming - Continuous integration";
   const description = "El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente, logrando un desarrollo de calidad.";
   const documentationUrl = "https://www.agilealliance.org/glossary/continuous-integration/";
@@ -40,6 +40,7 @@ function evaluateContinuousIntegrationRule(mainRepo, comparisonRepos, averageDay
     statsBetter,
     totalStats,
     message,
+    mainRepoId,
     details: resultDetails
   };
 }

@@ -4,6 +4,7 @@ import { RepositoryService } from '../../services/repository.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { MaterialModule } from '../shared/material.module';
 
 @Component({
@@ -90,75 +91,100 @@ export class RepositoryInputComponent implements OnInit {
     } else { return false }
   }
 
-submitRepo(): void {
-  let payload;
-  const username = localStorage.getItem('loggedUser');
+  submitRepo(): void {
+    const main = this.mainUrl!;
+    const examples = this.exampleUrls;
 
-  if (this.repositoryForm.controls.useTimeIntervals?.value === true) {
-    payload = {
-      main: this.mainUrl!,
-      examples: this.exampleUrls,
-      useRelativeDates: this.repositoryForm.controls.useRelativeDates.value,
-      averageDays: this.repositoryForm.controls.averageDays.value,
-      startTimeInterval: this.repositoryForm.controls.startTimeInterval.value,
-      endTimeInterval: this.repositoryForm.controls.endTimeInterval.value,
-      username
-    };
-  } else {
-    payload = {
-      main: this.mainUrl!,
-      examples: this.exampleUrls,
-      useRelativeDates: true,
-      averageDays: this.repositoryForm.controls.averageDays.value,
-      startTimeInterval: 0,
-      endTimeInterval: 4,
-      username 
-    };
+    this.repoService.checkUrls({ main, examples }).subscribe({
+      next: (checkRes) => {
+        if (checkRes.success) {
+          this.proceedWithAnalysis();
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: 'No se pudo verificar acceso a los repositorios. Asegúrate de que existen y son públicos.',
+            icon: 'error',
+            confirmButtonText: 'Intentar de nuevo',
+            customClass: {
+              confirmButton: 'custom-error-button'
+            }
+          });
+        }
+      },
+      error: (err) => {
+        Swal.fire({
+          title: 'Error al verificar las URLs.',
+          text: 'No se pudo verificar acceso a los repositorios. Asegúrate de que existen y son públicos.',
+          icon: 'error',
+          confirmButtonText: 'Intentar de nuevo',
+          customClass: {
+            confirmButton: 'custom-error-button'
+          }
+        });
+      }
+    });
   }
 
-  this.loading = true;
-  this.loadingMessage = 'Preparando análisis...';
 
-  const main = this.mainUrl!;
-  const examples = this.exampleUrls;
+  proceedWithAnalysis(): void {
+    let payload;
+    const username = localStorage.getItem('loggedUser');
 
-  let delay = 1000;
+    if (this.repositoryForm.controls.useTimeIntervals?.value === true) {
+      payload = {
+        main: this.mainUrl!,
+        examples: this.exampleUrls,
+        useRelativeDates: this.repositoryForm.controls.useRelativeDates.value,
+        averageDays: this.repositoryForm.controls.averageDays.value,
+        startTimeInterval: this.repositoryForm.controls.startTimeInterval.value,
+        endTimeInterval: this.repositoryForm.controls.endTimeInterval.value,
+        username
+      };
+    } else {
+      payload = {
+        main: this.mainUrl!,
+        examples: this.exampleUrls,
+        useRelativeDates: true,
+        averageDays: this.repositoryForm.controls.averageDays.value,
+        startTimeInterval: 0,
+        endTimeInterval: 4,
+        username
+      };
+    }
 
-  const spinnerPhases = ['Commits', 'Commits', 'Issues', 'Issues', 'Issues', 'Pull Requests', 'Releases', 'Workflows'];
-  for (const phase of spinnerPhases) {
+    this.loading = true;
+    this.loadingMessage = 'Preparando análisis...';
+
+    let delay = 1000;
+    const spinnerPhases = ['Commits', 'Commits', 'Issues', 'Issues', 'Issues', 'Pull Requests', 'Releases', 'Workflows'];
+
+    [this.mainUrl!, ...this.exampleUrls].forEach(repo => {
+      spinnerPhases.forEach(phase => {
+        setTimeout(() => {
+          this.loadingMessage = `Analizando ${phase} de ${repo}...`;
+        }, delay);
+        delay += 1600;
+      });
+    });
+
     setTimeout(() => {
-      this.loadingMessage = `Analizando ${phase} de ${main}...`;
+      this.loadingMessage = 'Generando métricas de calidad de proceso...';
     }, delay);
-    delay += 1600;
-  }
-
-  for (const example of examples) {
-    for (const phase of spinnerPhases) {
-      setTimeout(() => {
-        this.loadingMessage = `Analizando ${phase} de ${example}...`;
-      }, delay);
-      delay += 1600;
-    }
-  }
-
-  setTimeout(() => {
-    this.loadingMessage = 'Generando métricas de calidad de proceso...';
-  }, delay);
 
     setTimeout(() => {
-    this.loadingMessage = 'Evaluando prácticas ágiles';
-  }, delay);
+      this.loadingMessage = 'Evaluando prácticas ágiles';
+    }, delay + 1000);
 
-  this.repoService.sendRepositoryUrls(payload).subscribe({
-    next: (res) => {
-      this.loading = false;
-      this.router.navigate(['results']);
-    },
-    error: (err) => {
-      console.error('Error al enviar las URLs:', err);
-      this.loading = false;
-    }
-  });
-}
+    this.repoService.sendRepositoryUrls(payload).subscribe({
+      next: () => {
+        this.loading = false;
+        this.router.navigate(['results']);
+      },
+      error: (err) => {
+        console.error('Error al enviar las URLs:', err);
+        this.loading = false;
+      }
+    });
+  }
 
 }

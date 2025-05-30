@@ -1,7 +1,7 @@
 const { compareStats } = require("../rule-comparator");
 const logger = require('../../../logger');
 
-function evaluateVersionControlRule(mainRepo, comparisonRepos, averageDays) {
+function evaluateVersionControlRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "DevOps - Version Control";
   const description = "El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay Commits frecuentemente y estos contienen buenas características como descripción y referencias. Esto permite saber en cada Commit qué cambió y por qué, facilitando el volver a versiones anteriores en caso de error";
   const documentationUrl = "https://www.agilealliance.org/glossary/version-control/";
@@ -42,6 +42,7 @@ function evaluateVersionControlRule(mainRepo, comparisonRepos, averageDays) {
     statsBetter,
     totalStats,
     message,
+    mainRepoId,
     details: resultDetails
   };
 }

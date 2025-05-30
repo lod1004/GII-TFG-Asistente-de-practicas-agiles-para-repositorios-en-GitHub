@@ -12,6 +12,7 @@ const repoSchema = new mongoose.Schema({
   endDate: { type: Date, required: true },
   isMain: { type: Boolean, required: true },
   userId: { type: Number, required: true },
+  group: { type: Number, required: false },
   
   createdAt: { type: Date, default: Date.now }
 }/*, { timestamps: true }*/);

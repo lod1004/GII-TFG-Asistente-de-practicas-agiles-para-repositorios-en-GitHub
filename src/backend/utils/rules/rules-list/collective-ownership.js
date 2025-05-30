@@ -1,7 +1,7 @@
 const { compareStats } = require("../rule-comparator");
 const logger = require('../../../logger');
 
-function evaluateCollectiveOwnershipRule(mainRepo, comparisonRepos, averageDays) {
+function evaluateCollectiveOwnershipRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "Extreme Programming - Collective Ownership";
   const description = "Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...";
   const documentationUrl = "https://www.agilealliance.org/glossary/collective-ownership/";
@@ -43,6 +43,7 @@ function evaluateCollectiveOwnershipRule(mainRepo, comparisonRepos, averageDays)
     statsBetter,
     totalStats,
     message,
+    mainRepoId,
     details: resultDetails
   };
 }

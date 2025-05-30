@@ -19,7 +19,7 @@ export class StatisticsComponent implements OnInit {
   constructor(private repositoryService: RepositoryService) { }
 
   ngOnInit(): void {
-    this.repositoryService.getAllRepositories()
+    this.repositoryService.getRepositories()
       .subscribe((res: any[]) => {
         this.mainRepository = res.find(repo => repo.isMain);
         this.comparisonRepositories = res.filter(repo => !repo.isMain);

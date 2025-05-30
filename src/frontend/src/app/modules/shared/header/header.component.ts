@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class HeaderComponent implements OnInit {
   username: string | null = null;
 
-  constructor(private router: Router) { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
     this.username = localStorage.getItem('loggedUser');
@@ -41,5 +41,9 @@ export class HeaderComponent implements OnInit {
 
   goToNewPassword(): void {
     this.router.navigate(['/new-password']);
+  }
+
+  goBack(): void {
+    this.router.navigate(['/add-repositories']);
   }
 }
