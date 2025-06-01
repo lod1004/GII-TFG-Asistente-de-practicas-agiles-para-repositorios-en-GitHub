@@ -102,7 +102,7 @@ export class RepositoryInputComponent implements OnInit {
         } else {
           Swal.fire({
             title: 'Error',
-            text: 'No se pudo verificar acceso a los repositorios. Asegúrate de que existen y son públicos.',
+            text: 'No se pudo acceder a los repositorios. Verifique sus URLs y asegúrese de que existen y son públicos.',
             icon: 'error',
             confirmButtonText: 'Intentar de nuevo',
             customClass: {
@@ -114,7 +114,7 @@ export class RepositoryInputComponent implements OnInit {
       error: (err) => {
         Swal.fire({
           title: 'Error al verificar las URLs.',
-          text: 'No se pudo verificar acceso a los repositorios. Asegúrate de que existen y son públicos.',
+          text: 'No se pudo acceder a los repositorios. Verifique sus URLs y asegúrese de que existen y son públicos.',
           icon: 'error',
           confirmButtonText: 'Intentar de nuevo',
           customClass: {

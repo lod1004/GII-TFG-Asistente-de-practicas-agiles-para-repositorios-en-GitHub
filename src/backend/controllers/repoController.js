@@ -276,7 +276,7 @@ const checkUrls = async (req, res) => {
 
   try {
     for (const url of allRepos) {
-      const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
+      const match = url.match(/^https?:\/\/github\.com\/([^\/]+)\/([^\/]+)\/?$/);
       if (!match) {
         logger.error("URL malformada o no válida: " + url)
         return res.status(400).json({

@@ -1,28 +1,28 @@
 \capitulo{2}{Objetivos del proyecto} \label{sec:objetivos}
 
-Este apartado explica de forma precisa y concisa cuales son los objetivos que se persiguen con la realización del proyecto. Se puede distinguir entre los objetivos marcados por los requisitos del software a construir y los objetivos de carácter técnico que plantea a la hora de llevar a la práctica el proyecto.
+Este apartado explica de forma precisa y concisa cuales son los objetivos que se persiguen con la realización del proyecto. Se puede distinguir entre los objetivos marcados por los requisitos funcionales del software a construir y los objetivos no funcionales que se plantean a la hora de llevar a la práctica el proyecto.
 
 \section{Objetivos funcionales}
 
-Estos objetivos se centran en las funcionalidades que debe ofrecer al usuario la aplicación \textit{Asistente de prácticas ágiles para repositorios en GitHub} para funcionar como se planteó correctamente, y ser una aplicación útil y fácil de usar
+Estos objetivos se centran en las funcionalidades que debe ofrecer al usuario la aplicación \textit{Asistente de prácticas ágiles para repositorios en GitHub}.
 
 \begin{itemize}
-    \item \textbf{Análisis en profundidad de los repositorios}: La aplicación web analiza detalladamente y en profundidad todas las métricas de calidad de proceso y características que pueden resultar útiles de un repositorio durante el proceso de desarrollo de software. Esto ofrece al usuario una gran variedad de campos para mejorar su repositorio y facilitar su trabajo, por ejemplo, mejorando las decripciones y detalles de las Issues, o la frecuencia de subida de Commits.
+    \item \textbf{Análisis de métricas de calidad de proceso de software de los repositorios}: La aplicación web analiza detalladamente todas las métricas de calidad de proceso y características que pueden resultar útiles de un repositorio durante el proceso de desarrollo de software. Esto ofrece al usuario una gran variedad de sugerencias de mejora del proceso en su repositorio y facilitar su trabajo, por ejemplo, sugiriendo decripciones y detalles de las \textit{issues}, o la frecuencia de subida de \textit{commits}.
 
-    \item \textbf{Ajuste temporal del análisis}: El usuario puede ajustar distintos parámetros del análisis que ofrece la aplicación para determinar en qué medida se analizarán los repositorios, como por ejemplo el intervalo de tiempo de vida de los repositorios que se analizará, o los días utilizados como parámetro para calcular métricas de calidad de proceso relacionadas con las frecuencias de colaboraciones del repositorio.
+    \item \textbf{Ajuste temporal del análisis}: El usuario puede ajustar distintos parámetros termporales del análisis para elegir en qué etapas del desarrollo se analizarán los repositorios. Se puede elegir analizar con intervalos temporales tanto absolutos como relativos, por ejemplo, del primer mes de vida de repositorio al quinto, o desde el segundo cuarto de vida al tercero, respectivamente
     
-    \item \textbf{Uso de las métricas de calidad de proceso obtenidas de los repositorios}: La aplicación es capaz de, dadas todas las métricas de calidad de proceso sacadas del repositorio, ofrecer al usuario sugerencias para mejorar su repositorio y rendimiento. Esto se hace en forma de reglas, que indican de una manera muy visual en qué aspectos falla el repositorio y en qué aspectos está mejor, indicando detalladamente el por qué y qué apartados mejorar para solucionarlo
+    \item \textbf{Comparación de las métricas de calidad de proceso obtenidas de los repositorios de referencia}: La aplicación es capaz de, dadas todas las medidas de calidad de proceso de los repositorios que el usuario ha elegido como referencia, comparar para ofrecer al usuario. Esto se hace comparando de forma cuantitativa y visual la aplicación de prácticas de agilidad, que indican en qué aspectos falla el repositorio.
     
-    \item \textbf{Puesta en práctica de las metodologías ágiles}: La aplicación utiliza las bases teóricas de las metodologías ágiles recogidas en \cite{agileSubwayMap} para basar los resultados ofrecidos al usuario tras analizar el repositorio. El usuario puede acceder a URLs con contenido explicativo breve sobre el por qué se analizan ciertas métricas de calidad de proceso de cierta forma para determinar si un repositorio aprueba o suspende una regla.
+    \item \textbf{Prácticas ágiles y medidas de repositorios}: La aplicación utiliza las definiciones de prácticas ágiles recogidas en \cite{agileSubwayMap} para presentar los resultados al usuario tras analizar el repositorio. El usuario puede acceder a URLs con contenido explicativo breve sobre el por qué se analizan ciertas métricas de calidad de proceso para determinar si un repositorio aplica la práctica ágil en cuestión.
 
-    \item \textbf{Asistencia a estudiantes}: Se debe ofrecer una herramienta útil para los alumnos que estén usando repositorios de GitHub, realizando sus TFG, o se encuentren en cualquier momento del proceso de desarrollo de software mediante la aplicación de la herramienta de GitHub. La aplicación ofrece al usuario diferentes maneras de mejorar el rendimiento y calidad de su trabajo, explicando al mismo el porque esas maneras son buenas y útiles para desarrollar su repositorio
+    \item \textbf{Asistencia a estudiantes}: Se pueden utilizar otros TFGs púplicos realizados en la Universidad de Burgos como casos de estudio, introduciéndolos en la aplicación y que estos sirvan como referencia para los estudiantes a la hora de realizar sus propios TFG. Por ejemplo, para el desarrollo del repositorio del TFG que describe esta memoria, se han utilizado como referencia algunos proyectos de TFG que tratan sobre herramientas similares.
     
 
 \end{itemize}
 
 \section{Objetivos no funcionales}
 
-Estos objetivos abarcan los obstáculos requeridos de superar para desarrollar la aplicación, como la tecnología y herramientas utilizadas para la programación y producción, y las prácticas y metodologías de programación usadas.
+Estos objetivos incluyen características de calidad relacionadas con la mantenibilidad y aspectos tecnológicos del proyecto.
 
 \begin{itemize}
   \item \textbf{Mantenibilidad, modularidad y modificabilidad }: Se ha optado por Angular por su arquitectura basada en componentes, su flexibilidad y facilidad para la maquetación y el diseño de interfaces, su integración con formularios reactivos y su estructura dividida en módulos reutilizables. Esto, junto al uso del servicio HTTP para enviar y recibir datos al BackEnd asincrónicamente, gestionando respuestas y errores de forma controlada han permitido diseñar una aplicación web fácil de mantener y modificar.
