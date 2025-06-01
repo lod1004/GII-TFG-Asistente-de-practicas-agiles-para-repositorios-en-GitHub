@@ -15,6 +15,6 @@ const repoSchema = new mongoose.Schema({
   group: { type: Number, required: false },
   
   createdAt: { type: Date, default: Date.now }
-}/*, { timestamps: true }*/);
+}, { timestamps: false });
 
 module.exports = mongoose.model("Repository", repoSchema);

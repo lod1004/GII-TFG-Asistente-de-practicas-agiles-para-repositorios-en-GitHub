@@ -130,15 +130,21 @@ const getRepositories = async (req, res) => {
       return res.status(404).json({ message: "No se encontró repositorio principal para este usuario" });
     }
 
-    const lastComparison = await Repository.find({ userId: user.id, isMain: false, group: { $exists: true } })
-      .sort({ group: -1 })
-      .limit(1);
+    const newestGroupRepo = await Repository.findOne({
+      userId: user.id,
+      isMain: false,
+      group: { $exists: true }
+    }).sort({ createdAt: -1 });
 
-    const groupId = lastComparison[0]?.group;
+    const groupId = newestGroupRepo?.group;
 
     let comparisonRepos = [];
     if (groupId !== undefined) {
-      comparisonRepos = await Repository.find({ userId: user.id, isMain: false, group: groupId });
+      comparisonRepos = await Repository.find({
+        userId: user.id,
+        isMain: false,
+        group: groupId
+      });
     }
 
     const allRepos = [mainRepo, ...comparisonRepos];
@@ -197,7 +203,18 @@ const getRulesResults = async (req, res) => {
 };
 
 const createRepository = async (req, res) => {
-  const { main, examples, useRelativeDates, averageDays, startTimeInterval, endTimeInterval, username } = req.body;
+  const {
+    main,
+    examples,
+    useRelativeDates,
+    averageDays,
+    startTimeInterval,
+    endTimeInterval,
+    username,
+    useOldRepositories,
+    groupId
+  } = req.body;
+
   const user = await User.findOne({ username });
   const userId = user.id;
 
@@ -206,7 +223,6 @@ const createRepository = async (req, res) => {
   }
 
   try {
-
     const processedMain = await processRepository({
       url: main,
       isMain: true,
@@ -218,20 +234,33 @@ const createRepository = async (req, res) => {
       group: 0
     });
 
-    const comparisonGroupId = await getNextId("comparisonGroupId");
-    const processedExamples = [];
-    for (const url of examples) {
-      const result = await processRepository({
-        url,
-        isMain: false,
-        averageDays,
-        useRelativeDates,
-        startTimeInterval,
-        endTimeInterval,
-        userId,
-        group: comparisonGroupId
-      });
-      if (result) processedExamples.push(result);
+    let processedExamples = [];
+
+    if (useOldRepositories && groupId !== 0) {
+      const oldRepos = await Repository.find({ userId, group: groupId, isMain: false });
+
+      const now = new Date();
+      await Repository.updateMany(
+        { userId, group: groupId, isMain: false },
+        { $set: { createdAt: now } }
+      );
+
+      processedExamples = await Repository.find({ userId, group: groupId, isMain: false });
+    } else {
+      const comparisonGroupId = await getNextId("comparisonGroupId");
+      for (const url of examples) {
+        const result = await processRepository({
+          url,
+          isMain: false,
+          averageDays,
+          useRelativeDates,
+          startTimeInterval,
+          endTimeInterval,
+          userId,
+          group: comparisonGroupId
+        });
+        if (result) processedExamples.push(result);
+      }
     }
 
     const mainRepoStats = {
@@ -311,8 +340,40 @@ const checkUrls = async (req, res) => {
   }
 };
 
+const getRepositoryGroups = async (req, res) => {
+  const { username } = req.query;
+
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    const repos = await Repository.find({ userId: user.id, isMain: false, group: { $exists: true } });
+
+    const groupsMap = new Map();
+    for (const repo of repos) {
+      if (!groupsMap.has(repo.group)) {
+        groupsMap.set(repo.group, []);
+      }
+      groupsMap.get(repo.group).push(repo);
+    }
+
+    const groups = Array.from(groupsMap.entries()).map(([groupId, repos]) => ({
+      groupId,
+      repositories: repos
+    }));
+
+    res.json(groups);
+  } catch (error) {
+    logger.error("Error al obtener los grupos de comparación: " + error.message);
+    res.status(500).json({ message: "Error al obtener los grupos de comparación." });
+  }
+};
+
 module.exports = {
   getRepositories,
+  getRepositoryGroups,
   getRulesResults,
   createRepository,
   checkUrls

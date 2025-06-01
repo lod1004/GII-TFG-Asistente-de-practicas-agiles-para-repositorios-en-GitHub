@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { getRepositories, getRulesResults, createRepository, checkUrls} = require("../controllers/repoController");
+const { getRepositories, getRulesResults, createRepository, checkUrls, getRepositoryGroups} = require("../controllers/repoController");
 const { registerUser, loginUser, changePassword} = require("../controllers/authController");
 
 router.get("/repos", getRepositories);
+router.get("/repos/groups", getRepositoryGroups);
 router.get("/rules", getRulesResults);
 router.post("/repos", createRepository);
 router.post('/repos/check-urls', checkUrls);

@@ -6,8 +6,11 @@
       <div class="url_input_container">
         <input matInput id="mainRepositoryUrl" formControlName="mainRepositoryUrl" type="text"
           placeholder="https://github.com/autor/repositorio" class="url_input">
-        <button matSuffix mat-icon-button (click)="addMainUrl()" class="add_url_button">
-          <mat-icon class="add_icon">add</mat-icon>
+        <button matSuffix mat-icon-button [disabled]="!repositoryForm.get('mainRepositoryUrl')?.value"
+          (click)="addMainUrl()" class="add_url_button">
+          <mat-icon class="add_icon" [class.disabled]="!repositoryForm.get('mainRepositoryUrl')?.value">
+            add
+          </mat-icon>
         </button>
       </div>
     </div>
@@ -18,12 +21,18 @@
     <br>
 
     <div class="url_container" style="margin-top: 3rem;">
-      <label class="input_label_2">Introduce repositorios de referencia (Max 5)</label>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <label class="input_label_2">Introduce repositorios de referencia (Max 5)</label>
+        <button mat-button class="old_repos_button" (click)="openPreviousReposModal()">Repositorios guardados</button>
+      </div>
       <div class="url_input_container">
         <input matInput id="sourceRepositoryUrl" formControlName="sourceRepositoryUrl" type="text"
           placeholder="https://github.com/autor/repositorio" class="url_input" />
-        <button matSuffix mat-icon-button (click)="addExampleUrl()" class="add_url_button">
-          <mat-icon class="add_icon">add</mat-icon>
+        <button matSuffix mat-icon-button [disabled]="!repositoryForm.get('sourceRepositoryUrl')?.value"
+          (click)="addExampleUrl()" class="add_url_button">
+          <mat-icon class="add_icon" [class.disabled]="!repositoryForm.get('sourceRepositoryUrl')?.value">
+            add
+          </mat-icon>
         </button>
       </div>
     </div>
@@ -45,10 +54,22 @@
     <br>
 
     <div class="parameters">
-      <span class="parameters_title">Parámetros</span>
+      <div style="display: flex; flex-direction: column;">
+        <span class="parameters_title">Parámetros del análisis</span>
+        <div class="explanation_message">
+          <button *ngIf="useOldRepositories === true" (click)="changeParametersAplication()" class="explanation_button">
+            <span *ngIf="applyParametersToOldRepositories === false">
+              Aplicar solo al repositorio a analizar
+            </span>
+            <span *ngIf="applyParametersToOldRepositories === true">
+              Aplicar también a antiguos repositorios
+            </span>
+          </button>
+        </div>
+      </div>
       <div class="mandatory_parameters">
         <div class="url_container">
-          <label class="input_label_2">Número de días para calcular las medias:</label>
+          <label class="input_label_2">Días para calcular las métricas medias:</label>
           <input id="averageDays" formControlName="averageDays" type="number" class="number_input">
           <mat-error *ngIf="daysNumberError" style="color: red; margin-top: 1rem;">
             Se debe introducir un número de días mayor o igual que 1
@@ -73,11 +94,12 @@
     </div>
     <br>
 
-    <div *ngIf="repositoryForm.controls.useTimeIntervals?.value == true" class="parameters" style="margin-top: 1rem;">
-      <span class="parameters_title_2">Intervalos de tiempo</span>
+    <div *ngIf="repositoryForm.controls.useTimeIntervals?.value == true" class="parameters_2"
+      style="margin-top: 1rem;">
       <div class="optional_parameters">
-        <div style="width: 100%;">
-          <label class="input_label_2" style="margin-left: 37%;">
+        <div
+          style="width: 100%; background-color: #212121; border-radius: 1rem; display: flex; flex-direction: column;">
+          <label class="input_label_3" style="align-self: center; margin: 1rem;">
             Tipo de intervalos de tiempo
           </label>
           <div style="display: flex; justify-content: space-around;">
@@ -96,31 +118,33 @@
           <br>
         </div>
 
-        <div style="margin-left: -5rem; margin-top: 2rem;">
-          <div>
-            <label class="input_label_2" style="margin-left: 40%;">
+        <div
+          style="margin-top: 2rem; background-color: #212121; border-radius: 1rem; display: flex; flex-direction: column;">
+          <div style="display: flex; flex-direction: column; padding: 1rem;">
+            <label class="input_label_3" style="align-self: center;">
               Número de intervalos de tiempo
             </label>
-            <br>
             <label *ngIf="repositoryForm.controls.useRelativeDates?.value == true" class="input_label"
-              style="margin-left: 33%">
+              style="align-self: center;">
               (Cada intervalo será 1/4 del tiempo de vida del repositorio):
             </label>
             <label *ngIf="repositoryForm.controls.useRelativeDates?.value == false" class="input_label"
-              style="margin-left: 33%">
+              style="align-self: center;">
               (Cada intervalo será 1 mes del tiempo de vida del repositorio):
             </label>
           </div>
           <br>
 
-          <div style="display: flex; justify-content: space-around; margin-left: 10rem;">
+          <div style="display: flex; justify-content: space-around;">
             <div class="url_container">
               <label class="input_label">
                 Intervalo de inicio
                 <input id="startTimeInterval" formControlName="startTimeInterval" type="number" class="number_input" />
               </label>
             </div>
-            <mat-icon class="arrow_icon" style="padding: 1.5rem; padding-right: 8rem;">arrow_forward</mat-icon>
+            <div>
+              <mat-icon class="arrow_icon">arrow_forward</mat-icon>
+            </div>
             <div class="url_container">
               <label class="input_label">
                 Intervalo de fin
@@ -131,19 +155,20 @@
         </div>
         <br>
 
-        <mat-error *ngIf="relativeTimeIntervalsError" class="error_message">
-          Solo se pueden seleccionar hasta 4 intervalos de tiempo relativos
-        </mat-error>
-        <mat-error *ngIf="timeIntervalsComparisonError && repositoryForm.controls.endTimeInterval.touched"
-          class="error_message">
-          El intervalo de fin debe ser mayor que el intervalo de inicio
-        </mat-error>
-        <mat-error *ngIf="timeIntervalsValueError" class="error_message">
-          Los intervalos de tiempo deben valer un número natural
-        </mat-error>
+        <div style="display: flex; flex-direction: column;">
+          <mat-error *ngIf="relativeTimeIntervalsError" class="error_message">
+            Solo se pueden seleccionar hasta 4 intervalos de tiempo relativos
+          </mat-error>
+          <mat-error *ngIf="timeIntervalsComparisonError && repositoryForm.controls.endTimeInterval.touched"
+            class="error_message">
+            El intervalo de fin debe ser mayor que el intervalo de inicio
+          </mat-error>
+          <mat-error *ngIf="timeIntervalsValueError" class="error_message">
+            Los intervalos de tiempo deben ser números naturales
+          </mat-error>
+        </div>
       </div>
     </div>
-
 
     <br>
     <button class="save_button" (click)="submitRepo()" [disabled]="!mainUrl || exampleUrls.length === 0 || daysNumberError ||
@@ -152,7 +177,46 @@
       COMPARAR
     </button>
   </form>
+
+  <ng-template #previousReposModal>
+    <div class="modal_backdrop">
+      <div class="modal_content">
+        <h3 class="parameters_title">Grupos de repositorios de referencia guardados</h3>
+        <div style="display: flex; justify-content: space-around;" *ngIf="previousRepoGroups.length == 0">
+          <span class="parameters_title_2" style="color: #f26e6e; margin-bottom: 2rem;">
+            No tienes repositorios guardados
+          </span>
+        </div>
+        <ul *ngIf="previousRepoGroups.length != 0">
+          <li *ngFor="let group of previousRepoGroups" class="group_item" (click)="selectRepoGroup(group)">
+            <ul>
+              <li *ngFor="let repo of group.repositories" style="font-size: 0.9rem; margin-bottom: 0.5rem;">
+                <div><strong>{{ repo.repoTitle }}</strong></div>
+                <div style="font-size: 0.8rem; color: #666;">
+                  Analizado desde {{ repo.startDate | date:'dd/MM/yyyy' }} hasta {{ repo.endDate | date:'dd/MM/yyyy'
+                  }}<br>
+                </div>
+              </li>
+              <span>
+                Número de días para calcular las métricas medias: {{ group.repositories[0].averageDays }}<br>
+              </span>
+              <span>
+                Creado el: {{ group.repositories[0].createdAt | date:'dd/MM/yyyy' }} a las {{
+                group.repositories[0].createdAt | date:'h:mm:ss' }}
+              </span>
+            </ul>
+          </li>
+        </ul>
+        <button class="close_modal" style="color: #f26e6e;" (click)="closePreviousReposModal()">Cerrar</button>
+      </div>
+    </div>
+  </ng-template>
+
 </body>
+
+<ng-container *ngIf="showPreviousRepos">
+  <ng-container *ngTemplateOutlet="previousReposModal"></ng-container>
+</ng-container>
 
 <div *ngIf="loading" class="loading-overlay">
   <mat-spinner></mat-spinner>

@@ -2,3 +2,8 @@
 [2025-05-30 23:05:32] [ERROR]: URL malformada o no válida: a
 [2025-06-01 01:23:57] [ERROR]: URL malformada o no válida: https://github.com/lod1004/GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub/issues
 [2025-06-01 01:26:08] [ERROR]: URL malformada o no válida: https://github.com/lod1004/GII-TFG-Asistente-de-Buenas-Practicas-para-Proyectos-en-GitHub/issues
+[2025-06-01 22:38:16] [ERROR]: No se pudo obtener el commit para el workflow gke.yml:Request failed with status code 404
+[2025-06-01 22:38:16] [ERROR]: No se pudo obtener el commit para el workflow main.yml:Request failed with status code 404
+[2025-06-01 22:56:54] [ERROR]: Error al procesar las URLs: Repository validation failed: createdAt: Cast to date failed for value "[Function: now]" (type function) at path "createdAt" Repository validation failed: createdAt: Cast to date failed for value "[Function: now]" (type function) at path "createdAt"
+[2025-06-01 22:58:35] [ERROR]: Error al procesar las URLs: Repository validation failed: createdAt: Cast to date failed for value "[Function: now]" (type function) at path "createdAt" Repository validation failed: createdAt: Cast to date failed for value "[Function: now]" (type function) at path "createdAt"
+[2025-06-01 23:00:39] [ERROR]: Error al procesar las URLs: Repository validation failed: createdAt: Cast to date failed for value "[Function: now]" (type function) at path "createdAt" Repository validation failed: createdAt: Cast to date failed for value "[Function: now]" (type function) at path "createdAt"

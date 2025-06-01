@@ -30,6 +30,13 @@ export class RepositoryInputComponent implements OnInit {
   loading: boolean = false;
   loadingMessage: string = '';
 
+  previousRepoGroups: any[] = [];
+  showPreviousRepos = false;
+
+  groupId: any = 0
+  useOldRepositories = false;
+  applyParametersToOldRepositories = false;
+
   constructor(
     private repoService: RepositoryService,
     private router: Router,
@@ -48,6 +55,7 @@ export class RepositoryInputComponent implements OnInit {
   }
 
   addExampleUrl(): void {
+    this.useOldRepositories = false;
     const url = this.repositoryForm.get('sourceRepositoryUrl')?.value?.trim();
     if (url && this.exampleUrls.length < 5) {
       this.exampleUrls.push(url);
@@ -56,6 +64,7 @@ export class RepositoryInputComponent implements OnInit {
   }
 
   removeExampleUrl(index: number): void {
+    this.useOldRepositories = false;
     this.exampleUrls.splice(index, 1);
   }
 
@@ -130,6 +139,10 @@ export class RepositoryInputComponent implements OnInit {
     let payload;
     const username = localStorage.getItem('loggedUser');
 
+    if (this.applyParametersToOldRepositories === true) {
+      this.useOldRepositories = false;
+    }
+
     if (this.repositoryForm.controls.useTimeIntervals?.value === true) {
       payload = {
         main: this.mainUrl!,
@@ -138,7 +151,9 @@ export class RepositoryInputComponent implements OnInit {
         averageDays: this.repositoryForm.controls.averageDays.value,
         startTimeInterval: this.repositoryForm.controls.startTimeInterval.value,
         endTimeInterval: this.repositoryForm.controls.endTimeInterval.value,
-        username
+        username,
+        useOldRepositories: this.useOldRepositories,
+        groupId: this.groupId
       };
     } else {
       payload = {
@@ -148,7 +163,9 @@ export class RepositoryInputComponent implements OnInit {
         averageDays: this.repositoryForm.controls.averageDays.value,
         startTimeInterval: 0,
         endTimeInterval: 4,
-        username
+        username,
+        useOldRepositories: this.useOldRepositories,
+        groupId: this.groupId
       };
     }
 
@@ -158,14 +175,25 @@ export class RepositoryInputComponent implements OnInit {
     let delay = 1000;
     const spinnerPhases = ['Commits', 'Commits', 'Issues', 'Issues', 'Issues', 'Pull Requests', 'Releases', 'Workflows'];
 
-    [this.mainUrl!, ...this.exampleUrls].forEach(repo => {
-      spinnerPhases.forEach(phase => {
-        setTimeout(() => {
-          this.loadingMessage = `Analizando ${phase} de ${repo}...`;
-        }, delay);
-        delay += 1600;
+    if (this.useOldRepositories === false) {
+      [this.mainUrl!, ...this.exampleUrls].forEach(repo => {
+        spinnerPhases.forEach(phase => {
+          setTimeout(() => {
+            this.loadingMessage = `Analizando ${phase} de ${repo}...`;
+          }, delay);
+          delay += 1700;
+        });
       });
-    });
+    } else {
+      [this.mainUrl!].forEach(repo => {
+        spinnerPhases.forEach(phase => {
+          setTimeout(() => {
+            this.loadingMessage = `Analizando ${phase} de ${repo}...`;
+          }, delay);
+          delay += 1700;
+        });
+      });
+    }
 
     setTimeout(() => {
       this.loadingMessage = 'Generando métricas de calidad de proceso...';
@@ -181,10 +209,44 @@ export class RepositoryInputComponent implements OnInit {
         this.router.navigate(['results']);
       },
       error: (err) => {
-        console.error('Error al enviar las URLs:', err);
+        Swal.fire({
+          title: 'Error',
+          text: 'Error interno al enviar las URLs',
+          icon: 'error',
+          confirmButtonText: 'Intentar de nuevo',
+          customClass: {
+            confirmButton: 'custom-error-button'
+          }
+        });
         this.loading = false;
       }
     });
   }
 
+  openPreviousReposModal(): void {
+    this.repoService.getRepositoryGroups()
+      .subscribe((groups: any[]) => {
+        console.log(groups);
+        this.previousRepoGroups = groups;
+        this.showPreviousRepos = true;
+      });
+  }
+
+  closePreviousReposModal(): void {
+    this.showPreviousRepos = false;
+  }
+
+  selectRepoGroup(group: { groupId: number, repositories: string[] }): void {
+    this.groupId = group.groupId
+    this.exampleUrls = [];
+    group.repositories.forEach((repo: any) => {
+      this.exampleUrls.push(repo.url);
+    });
+    this.useOldRepositories = true
+    this.closePreviousReposModal();
+  }
+
+  changeParametersAplication() {
+    this.applyParametersToOldRepositories = !this.applyParametersToOldRepositories
+  }
 }
