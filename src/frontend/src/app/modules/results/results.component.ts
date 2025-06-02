@@ -11,12 +11,14 @@ import { MaterialModule } from '../shared/material.module';
 })
 export class ResultsComponent implements OnInit {
   rulesResults: any[] = [];
-
+  loading: boolean = false;
   constructor(private repositoryService: RepositoryService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.repositoryService.getRulesResults()
       .subscribe((res: any) => {
+        this.loading = false;
         this.rulesResults = res.rules;
       });
   }

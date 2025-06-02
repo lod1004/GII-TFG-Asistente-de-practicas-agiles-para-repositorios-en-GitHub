@@ -15,12 +15,15 @@ export class StatisticsComponent implements OnInit {
   mainRepository: any;
   comparisonRepositories: any[] = [];
   repoIndex: number = 0;
+  loading: boolean = false;
 
   constructor(private repositoryService: RepositoryService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.repositoryService.getRepositories()
       .subscribe((res: any[]) => {
+        this.loading = false;
         this.mainRepository = res.find(repo => repo.isMain);
         this.comparisonRepositories = res.filter(repo => !repo.isMain);
       })
