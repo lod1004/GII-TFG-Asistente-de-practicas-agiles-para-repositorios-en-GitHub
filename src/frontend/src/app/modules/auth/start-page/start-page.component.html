@@ -38,11 +38,17 @@
                 </div>
             </div>
 
+            <div *ngIf="authForm.get('repeatPasswordCtrl')?.errors?.['pattern'] && authForm.get('repeatPasswordCtrl')?.touched"
+                class="error_message">
+                La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.
+            </div>
+
             <span class="link" *ngIf="isLogin" [routerLink]="['/register']">¿No tienes una cuenta? Regístrate</span>
             <span class="link" *ngIf="isRegistering" [routerLink]="['/login']">¿Ya tienes una cuenta? Inicia
                 sesión</span>
 
-            <button type="submit" class="save_button" [disabled]="authForm.invalid">
+            <button type="submit" class="save_button" [disabled]="authForm.invalid"
+                [hidden]="authForm.get('repeatPasswordCtrl')?.errors?.['pattern'] && authForm.get('repeatPasswordCtrl')?.touched">
                 <span *ngIf="isLogin">Iniciar de sesión</span>
                 <span *ngIf="isRegistering">Registrarse</span>
                 <span *ngIf="isChangingPassword">Cambiar contraseña</span>

@@ -35,13 +35,20 @@ export class StartPageComponent implements OnInit, OnChanges {
 
   authForm!: FormGroup;
 
-  constructor(public router: Router, private fb: FormBuilder) {}
+  constructor(public router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    const passwordSecurityPattern = /^(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,})/;
+
     this.authForm = this.fb.group({
       usernameCtrl: ['', Validators.required],
       passwordCtrl: ['', Validators.required],
-      repeatPasswordCtrl: ['']
+      repeatPasswordCtrl: [
+        '',
+        this.isRegistering || this.isChangingPassword
+          ? [Validators.required, Validators.pattern(passwordSecurityPattern)]
+          : []
+      ]
     });
   }
 
@@ -62,15 +69,15 @@ export class StartPageComponent implements OnInit, OnChanges {
     const repeatPassword = this.authForm.value.repeatPasswordCtrl;
 
     if ((this.isRegistering) && password !== repeatPassword) {
-        Swal.fire({
-          title: 'Error',
-          text: 'Las contraseñas no coinciden',
-          icon: 'error',
-          confirmButtonText: 'Intentar de nuevo',
-          customClass: {
-            confirmButton: 'custom-error-button'
-          }
-        });
+      Swal.fire({
+        title: 'Error',
+        text: 'Las contraseñas no coinciden',
+        icon: 'error',
+        confirmButtonText: 'Intentar de nuevo',
+        customClass: {
+          confirmButton: 'custom-error-button'
+        }
+      });
       return;
     }
 

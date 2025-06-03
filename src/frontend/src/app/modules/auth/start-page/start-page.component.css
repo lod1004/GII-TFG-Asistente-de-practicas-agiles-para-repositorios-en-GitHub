@@ -88,3 +88,8 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.error_message {
+    color: red;
+    align-self: center;
+}

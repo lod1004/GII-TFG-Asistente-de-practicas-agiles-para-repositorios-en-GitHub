@@ -2,189 +2,392 @@
 
 \section{Introducción}
 
-Este apéndice recoge los requisitos funcionales del sistema propuesto para evaluar la adopción de prácticas ágiles en repositorios de GitHub utilizados en Trabajos de Fin de Grado (TFG). La aplicación web, desarrollada en Node.js y Angular, analizará automáticamente los repositorios y proporcionará recomendaciones basadas en métricas cuantitativas y reglas predefinidas.
-
-% Caso de Uso 1 -> Analizar repositorio de GitHub
-\begin{table}[p]
-	\centering
-	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
-		\toprule
-		\textbf{CU-1}    & Analizar repositorio de GitHub \\
-		\toprule
-		\textbf{Versión}              & 1.0 \\
-		\textbf{Autor}                & Lucas Olmedo Díez \\
-		\textbf{Requisitos asociados} & RF-01, RF-02, RF-03 \\
-		\textbf{Descripción}          & Permite al usuario introducir la URL de un repositorio para ser analizado. El sistema extrae y procesa datos relevantes. \\
-		\textbf{Precondición}         & El usuario debe tener acceso a la URL del repositorio público en GitHub. \\
-		\textbf{Acciones}             &
-		\begin{enumerate}
-			\item El usuario introduce la URL del repositorio.
-			\item El sistema accede a la API de GitHub y recopila la información del repositorio.
-			\item El sistema almacena temporalmente los datos extraídos.
-			\item El sistema analiza los datos y calcula las métricas necesarias.
-		\end{enumerate}\\
-		\textbf{Postcondición}        & El repositorio ha sido analizado y sus datos están disponibles para pdoer ser evaluados. \\
-		\textbf{Excepciones}          & La URL es incorrecta o no se tiene acceso al repositorio \\
-		\textbf{Importancia}          & Alta \\
-		\bottomrule
-	\end{tabularx}
-	\caption{CU-2 Generar informe de evaluación.}
-\end{table}
-
-% Caso de Uso 2 -> Generar informe de evaluación
-\begin{table}[p]
-	\centering
-	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
-		\toprule
-		\textbf{CU-2}    & Generar informe de evaluación \\
-		\toprule
-		\textbf{Versión}              & 1.0 \\
-		\textbf{Autor}                & Lucas Olmedo Díez \\
-		\textbf{Requisitos asociados} & RF-04, RF-05, RF-07, RF-08 \\
-		\textbf{Descripción}          & El sistema genera un informe visual y textual con los resultados del análisis, incluyendo recomendaciones. \\
-		\textbf{Precondición}         & El repositorio ha sido previamente analizado. \\
-		\textbf{Acciones}             &
-		\begin{enumerate}
-			\item El usuario accede a la vista de resultados.
-			\item El sistema presenta un informe con gráficas y estadísticas.
-			\item El informe incluye recomendaciones agrupadas por niveles.
-		\end{enumerate}\\
-		\textbf{Postcondición}        & El usuario ha visualizado el informe generado. \\
-		\textbf{Excepciones}          & Error en el análisis previo, datos incompletos. \\
-		\textbf{Importancia}          & Alta \\
-		\bottomrule
-	\end{tabularx}
-	\caption{CU-2 Generar informe de evaluación.}
-\end{table}
-
-% Caso de Uso 3 -> Comparar con repositorio de referencia
-\begin{table}[p]
-	\centering
-	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
-		\toprule
-		\textbf{CU-3}    & Comparar con repositorio de referencia \\
-		\toprule
-		\textbf{Versión}              & 1.0 \\
-		\textbf{Autor}                & Lucas Olmedo Díez \\
-		\textbf{Requisitos asociados} & RF-06, RF-09 \\
-		\textbf{Descripción}          & Permite comparar las métricas del repositorio analizado con otro considerado de referencia. \\
-		\textbf{Precondición}         & El repositorio original ha sido analizado y se dispone de al menos un repositorio de referencia. \\
-		\textbf{Acciones}             &
-		\begin{enumerate}
-			\item El sistema muestra la opción de comparación con modelo.
-			\item El usuario selecciona un repositorio de referencia.
-			\item El sistema realiza una comparación métrica entre ambos.
-			\item Se destacan áreas de mejora del repositorio del estudiante.
-		\end{enumerate}\\
-		\textbf{Postcondición}        & El usuario obtiene una visión comparativa útil. \\
-		\textbf{Excepciones}          & Repositorio de referencia no accesible o incompatible. \\
-		\textbf{Importancia}          & Media \\
-		\bottomrule
-	\end{tabularx}
-	\caption{CU-3 Comparar con repositorio de referencia.}
-\end{table}
-
-% Caso de Uso 4 -> Consultar detalle de métricas
-\begin{table}[p]
-	\centering
-	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
-		\toprule
-		\textbf{CU-4}    & Consultar detalle de métricas \\
-		\toprule
-		\textbf{Versión}              & 1.0 \\
-		\textbf{Autor}                & Lucas Olmedo Díez \\
-		\textbf{Requisitos asociados} & RF-10 \\
-		\textbf{Descripción}          & El usuario puede visualizar información detallada sobre cada métrica calculada. \\
-		\textbf{Precondición}         & Repositorio analizado y métricas disponibles. \\
-		\textbf{Acciones}             &
-		\begin{enumerate}
-			\item El usuario accede a la sección de métricas.
-			\item El sistema muestra una lista de métricas evaluadas.
-			\item El usuario selecciona una métrica para ver el detalle.
-		\end{enumerate}\\
-		\textbf{Postcondición}        & El usuario ha revisado información específica sobre la métrica seleccionada. \\
-		\textbf{Excepciones}          & Métrica no disponible por error de análisis. \\
-		\textbf{Importancia}          & Media \\
-		\bottomrule
-	\end{tabularx}
-	\caption{CU-4 Consultar detalle de métricas.}
-\end{table}
-
+Este apéndice recoge los requisitos funcionales de la aplicación propuesta en este proyecto para evaluar la adopción de prácticas ágiles en repositorios de GitHub utilizados por estudiantes para realizar diversos trabajos como, por ejemplo, Trabajos de Fin de Grado (TFG). Se incluyen los casos de uso posibles que podrá tener un usuario de la aplicación desarrollada, junto a tablas y diagramas que ayuden a comprender los mismos. Los casos de uso comprenderán cierto número de requisitos funcionales y no funcionales, listados y explicados más adelante en este apartado para especificar cláramente todas las formas que tiene el usuario de interactuar con el software propuesto. Además se incluirá el listado de objetivos generales del proyecto para ayudar a contextualizar tanto los casos de uso como los requisitos funcionales.
 
 \section{Objetivos generales}
+La visión general de este proyecto abarca los objetivos descritos a continuación:
 
 \begin{itemize}
-    \item Facilitar a los estudiantes la adopción de buenas prácticas ágiles en sus TFG.
-    \item Automatizar el análisis de repositorios GitHub mediante métricas objetivas en el contexto académico.
-    \item Generar recomendaciones personalizadas para mejorar el desarrollo, la gestión del repositorio y la documentación.
-    \item Clasificar y adaptar las recomendaciones según el contexto académico.
+
+\item \textbf{Análisis de métricas de calidad de proceso de software de los repositorios}: La aplicación web analiza detalladamente todas las métricas de calidad de proceso y características que pueden resultar útiles de un repositorio durante el proceso de desarrollo de software.
+
+\item \textbf{Ajuste temporal del análisis}: Consiste en la posibilidad de ajustar distintos parámetros termporales del análisis para elegir en qué etapas del desarrollo se analizarán los repositorios.
+
+\item \textbf{Comparación de las métricas de calidad de proceso obtenidas de los repositorios de referencia}: La aplicación es capaz de, dadas todas las medidas de calidad de proceso de los repositorios que el usuario ha elegido como referencia, compararlas para ofrecer al usuario una visualización clara de los diferentes valores de estas medidas en los distintos repositorios.
+
+\item \textbf{Prácticas ágiles y medidas de repositorios}: La aplicación utiliza las definiciones de prácticas ágiles recogidas en \cite{agileSubwayMap} para presentar los resultados al usuario tras analizar el repositorio.
+
+\item \textbf{Asistencia a estudiantes}: Se pueden utilizar otros TFGs púplicos realizados en la Universidad de Burgos como casos de estudio, introduciéndolos en la aplicación y que estos sirvan como referencia para los estudiantes a la hora de realizar sus propios TFG.
+
 \end{itemize}
 
-\section{Catálogo de requisitos}
+\section{Catálogo de requisitos funcionales}
+
+A continuación se puede observar un listado de todos los requisitos funcionales considerados para la aplicación realizada en este proyecto.
 
 \begin{itemize}
-    \item \textbf{RF-01} – Introducción de URL de repositorio
-    \item \textbf{RF-02} – Extracción de datos del repositorio
-    \item \textbf{RF-03} – Cálculo de métricas ágiles
-    \item \textbf{RF-04} – Evaluación con reglas generales
-    \item \textbf{RF-05} – Evaluación con reglas específicas del contexto docente
-    \item \textbf{RF-06} – Comparación con repositorios de referencia
-    \item \textbf{RF-07} – Generación de informe visual y textual
-    \item \textbf{RF-08} – Generación de recomendaciones
-    \item \textbf{RF-09} – Clasificación de recomendaciones por niveles
-    \item \textbf{RF-10} – Consulta detallada de métricas
-    \item \textbf{RF-11} – Interfaz web accesible
-    \item \textbf{RF-12} – Despliegue público de la aplicación
+    \item \textbf{RF-01} – Creación una cuenta para usar la aplicación.
+    
+    \item \textbf{RF-02} – Entrada  del perfil creado iniciando sesión.
+    
+    \item \textbf{RF-03} – Salida  del perfil creado cerrando sesión.
+    
+    \item \textbf{RF-04} – Cambio de la contraseña del perfil de la cuenta creada.
+    
+    \item \textbf{RF-05} – Cambio del idioma de la interfaz de usuario de la aplicación.
+    
+    \item \textbf{RF-06} – Introducción y validación de URLs de repositorios.
+    
+    \item \textbf{RF-07} – Elección del número de días para realizar el cálculo de las medidas de calidad temporales.
+    
+    \item \textbf{RF-08} – Elección del ámbito termporal de extracción de medidas de calidad de proceso de los repositorios.
+    
+    \item \textbf{RF-09} – Elección del tipo de intervalos de tiempo a usar para extraer las medidas de calidad de proceso de los repositorios introducidos.
+    
+    \item \textbf{RF-10} – Ajuste de los intervalos de tiempo específicos para elegir de qué momento en el tiempo de vida de los repositorios se extraerán las medidas de calidad de proceso.
+    
+    \item \textbf{RF-11} – Carga de grupos de repositorios usados como fuente de referencia en la aplicación con anterioridad.
+    
+    \item \textbf{RF-12} – Borrado de grupos de repositorios usados como fuente de referencia en la aplicación con anterioridad.
+    
+    \item \textbf{RF-13} – Visualización de la evaluación de la aplicación de prácticas ágiles por parte del repositorio a evaluar.
+    
+    \item \textbf{RF-14} – Visualización de la comparación de los valores numéricos de las medidas de calidad de proceso entre el repositorio a analizar y los repositorios de referencia.
 \end{itemize}
 
-\section{Especificación de requisitos}
+\section{Especificación de requisitos funcionales}
 
 A continuación se describen de forma detallada los requisitos funcionales del sistema.
 
-\subsection*{RF-01 – Introducción de URL de repositorio}
+\subsection*{RF-01 – Creación de una cuenta de usuario}
+El sistema debe permitir a los usuarios crear una cuenta personal mediante un formulario de registro. Esta funcionalidad es necesaria para garantizar la personalización de la experiencia, el almacenamiento de configuraciones y el acceso a funcionalidades avanzadas, como la carga de repositorios de referencia o la consulta del historial de análisis realizados; además de garantizar seguridad y control de acceso a la aplicación.
 
-La aplicación debe permitir al usuario introducir la URL de un repositorio público de GitHub. Esta URL servirá como punto de partida para el análisis automatizado del sistema. Se validará que la URL sea correcta y que el repositorio esté disponible para su lectura.
+\subsection*{RF-02 – Inicio  de sesión}
+Los usuarios registrados deben poder iniciar sesión en el sistema para acceder a sus perfiles y funcionalidades asociadas mediante un nombre de usuario único y una contraseña que se almacenará hasheada para garantizar la seguridad del almacenaje de perfiles de usuario en la base de datos.
 
-\subsection*{RF-02 – Extracción de datos del repositorio}
+\subsection*{RF-03 – Cierre de sesión}
+Los usuarios pueden cerrar sesión de forma segura al finalizar su uso, tanto para finalizar de forma segurasu actividad o cambiar de cuenta por diferentes motivos como el uso de varias cuentas personalizadas con diferentes ajustes y/o grupos de repositorios almacenados.
 
-Una vez introducida la URL, el sistema debe conectarse a la API de GitHub y extraer los datos necesarios para el análisis: commits, issues, pull requests, etiquetas (tags), releases, estructura de carpetas y archivos, entre otros. Esta información será procesada y almacenada temporalmente para su análisis posterior.
+\subsection*{RF-04 – Cambio de contraseña}
+El sistema debe permitir a los usuarios modificar la contraseña de su cuenta en cualquier momento, con el fin de mantener la seguridad y el control sobre su acceso. El proceso debe incluir medidas de validación para evitar contraseñas débiles o inseguras.
 
-\subsection*{RF-03 – Cálculo de métricas ágiles}
+\subsection*{RF-05 – Cambio de idioma de la interfaz}
+La interfaz de la aplicación debe ser multilingüe, permitiendo a los usuarios seleccionar el idioma que prefieran entre las opciones disponibles. Esto contribuye a la internacionalización del software, mejora la accesibilidad y facilita su uso en contextos internacionales o multilingües.
 
-Con los datos extraídos, el sistema calculará métricas asociadas a buenas prácticas ágiles, tales como la frecuencia y densidad de commits, número de issues abiertas/cerradas, releases realizadas, uso de etiquetas, calidad de los mensajes de commits y documentación asociada.
+\subsection*{RF-06 – Introducción y validación de URLs de repositorios}
+El sistema debe permitir a los usuarios introducir la URL de uno o varios repositorios públicos de GitHub. La aplicación validará que las URLs introducidas sean correctas, que los repositorios estén disponibles y que se pueda acceder a ellos para su análisis para infromar al usuario de que está introduciendo repositorios válidos y de manera correcta.
 
-\subsection*{RF-04 – Evaluación con reglas generales}
+\subsection*{RF-07 – Selección del número de días para métricas temporales}
+El sistema debe permitir al usuario definir un número de días a considerar como ventana temporal para el cálculo de medidas de calidad de proceso relacionadas con medias. Esta opción permite realizar análisis adaptados a periodos de mayor o menor longitud de actividad dentro del proyecto.
 
-El sistema aplicará un conjunto de reglas fijas basadas en buenas prácticas ágiles reconocidas (como las descritas en el recurso Subway Map to Agile Practices). Estas reglas incluyen, entre otras: uso adecuado de issues, mensajes descriptivos en commits, frecuencia de trabajo, y presencia de documentación básica.
+\subsection*{RF-08 – Selección del ámbito temporal del análisis}
+Los usuarios podrán definir si los repositorios se analizarán al completo, lo cual abarcaría todo su tiempo de vida desde elñ primer \textit{commit} hasta el último, o por intervalos de tiempo ajustables.
 
-\subsection*{RF-05 – Evaluación con reglas específicas del contexto docente}
+\subsection*{RF-09 – Selección del tipo de intervalos de tiempo}
+El sistema debe ofrecer la posibilidad de seleccionar el tipo de intervalo temporal para el análisis, ya sean intervalos relativos, que abarquen cuartos de la vida del repositorio, o intervalos absolutos que equivalgan a meses de vida. Esta opción facilita la visualización de tendencias y eficiencia de trabajo en distintas fases del desarrollo de software.
 
-Además de las reglas generales, se aplicarán reglas específicas definidas en función de los criterios de evaluación de los TFG de la Universidad de Burgos (UBU). Estas incluyen la estructura del repositorio, la documentación en LaTeX, la inclusión de prototipos, código fuente y pruebas.
+\subsection*{RF-10 – Ajuste manual de intervalos de tiempo}
+Además de seleccionar el tipo de intervalo, el usuario podrá definir manualmente los intervalos exactos de tiempo que desea analizar (Por ejemplo el primer y segundo cuarto, lo cual es equivalente a la primera mitad del repositorio para los intervalos relativos, o del tercer al sexto mes de vida del repositorio para los intervalos absolutos). Esta funcionalidad avanzada permite focalizar el análisis en momentos clave del desarrollo del proyecto.
 
-\subsection*{RF-06 – Comparación con repositorios de referencia}
+\subsection*{RF-11 – Carga de grupos de repositorios de referencia}
+La aplicación debe permitir al usuario cargar grupos de repositorios previamente definidos como referencia. Esto permite al usuario repetir comparaciones o realizar comparaciones muy similares evitando el tiempo de extracción de medidas de calidad de proceso.
 
-El sistema debe permitir comparar los resultados obtenidos con repositorios considerados como ejemplo o referencia. Esto permitirá contextualizar el nivel de adopción de buenas prácticas del estudiante respecto a un estándar definido o a proyectos anteriores bien evaluados.
+\subsection*{RF-12 – Eliminación de grupos de referencia cargados*}
+El usuario también debe tener la posibilidad de eliminar grupos de repositorios de referencia previamente cargados, con el fin de mantener organizada su área de trabajo y adaptar el análisis a nuevos contextos o criterios de comparación.
 
-\subsection*{RF-07 – Generación de informe visual y textual}
+\subsection*{RF-13 – Visualización de la evaluación de prácticas ágiles}
+Una vez realizado el análisis, el sistema debe mostrar una evaluación del repositorio analizado en función de su cumplimiento de buenas prácticas ágiles. Esta evaluación debe representarse de forma clara y comprensible en forma de reglas que indiquen visualmente en qué aspectos se usan de forma sólida las metodologías ágiles y en qué aspectos hay opción de mejora.
 
-A partir del análisis, se generará un informe completo con los resultados obtenidos, el cumplimiento de las reglas evaluadas, las métricas calculadas y gráficas visuales. Este informe debe ser claro, accesible y exportable, para su consulta por parte del estudiante y del tutor académico.
+\subsection*{RF-14 – Comparación con repositorios de referencia}
+La aplicación debe permitir comparar los valores de todas las métricas extraídas del repositorio analizado con los correspondientes valores de los repositorios de referencia seleccionados. Esta comparación se visualizará mediante listas que ayuden a respaldar la evaluación del uso de prácticas ágiles en los repositorios.
 
-\subsection*{RF-08 – Generación de recomendaciones}
 
-El sistema debe generar recomendaciones prácticas basadas en el análisis realizado. Estas recomendaciones estarán orientadas a la mejora del proceso de desarrollo, el cumplimiento de buenas prácticas ágiles y la mejora de la documentación y estructura del repositorio.
+\section{Catálogo de requisitos no funcionales}
 
-\subsection*{RF-09 – Clasificación de recomendaciones por niveles}
+A continuación se puede observar un listado de todos los requisitos no funcionales considerados para la aplicación realizada en este proyecto.
 
-Las recomendaciones generadas se clasificarán en distintos niveles en función de su prioridad, aplicabilidad y el grado de impacto. Esta clasificación facilitará a los estudiantes y tutores priorizar las acciones necesarias para mejorar la calidad del proyecto.
+\begin{itemize}
+    \item \textbf{RNF-01} Modularidad
 
-\subsection*{RF-10 – Consulta detallada de métricas}
+    \item \textbf{RNF-02} Usabildiad
 
-El usuario podrá consultar en detalle cada una de las métricas evaluadas. Esta información incluirá su definición, valor calculado, umbral de referencia y un análisis interpretativo de su significado en el contexto del proyecto evaluado.
+    \item \textbf{RNF-03} Reusabilidad
 
-\subsection*{RF-11 – Interfaz web accesible}
+    \item \textbf{RNF-04} Separación entre frontend y backend
 
-La aplicación debe ofrecer una interfaz web amigable e intuitiva, accesible desde distintos dispositivos, que permita a estudiantes y tutores acceder a las funcionalidades del sistema sin necesidad de conocimientos técnicos avanzados.
+    \item \textbf{RNF-05} Validaciones informativas
 
-\subsection*{RF-12 – Despliegue público de la aplicación}
+    \item \textbf{RNF-06} Navegación intuitiva
+\end{itemize}
 
-La aplicación debe estar disponible públicamente mediante un despliegue web accesible desde cualquier navegador. Asimismo, el código fuente estará publicado en un repositorio de acceso abierto para facilitar su revisión, mejora y reutilización en otros contextos educativos.
+\section{Especificación de requisitos no funcionales}
+
+A continuación se describen de forma detallada los requisitos no funcionales del sistema.
+
+\subsection*{RNF-01 – Modularidad}
+La aplicación debe estar diseñada utilizando una arquitectura modular basada en componentes reutilizables. Debe ser comparible con patrones de diseño modernos y fácil de escalar o modificar por partes sin afectar al conjutno total del software. Esta estructura permite que futuras modificaciones o ampliaciones (como la adición de nuevas métricas o funcionalidades) se integren de forma controlada y sencilla.
+
+\subsection*{RNF-02 – Usabildiad}
+La interfaz debe ser intuitiva, clara y fácil de usar. Los formularios deben presentar instrucciones comprensibles, validaciones dinámicas y retroalimentación inmediata ante errores o acciones del usuario. Se prioriza un diseño simple y directo que permita a usuarios no técnicos comprender la aplicación sin curva de aprendizaje.
+
+\subsection*{RNF-03 – Reusabilidad}
+El código debe seguir principios como DRY (Don’t Repeat Yourself) y SOLID, en particular el principio Open/Closed, que facilita la extensión de funcionalidades sin modificar el núcleo existente. La organización del código promueve la reutilización de servicios, componentes y lógica, favoreciendo la eficiencia en el desarrollo y la reducción de errores.
+
+\subsection*{RNF-04 –Separación entre frontend y backend}
+El sistema debe mantener una separación estricta entre las capas de presentación (frontend) y lógica de negocio (backend), utilizando servicios HTTP para el intercambio de datos de forma asíncrona. Esto mejora la escalabilidad y permite gestionar respuestas y errores de forma controlada desde la interfaz.
+
+\subsection*{RNF-05 – Validaciones informativas}
+Los formularios deben incorporar validación reactiva utilizando sistemas de formularios y alertas, proporcionando retroalimentación inmediata al usuario en caso de errores o datos incompletos. Esto reduce la frustración del usuario y mantiende informado al mismo, y además mejora la precisión y seguridad de los datos introducidos.
+
+\subsection*{RNF-06 – Navegación intuitiva}
+La aplicación debe organizar sus funcionalidades de forma jerárquica, utilizando tabs, rutas y botones de navegación claros que guíen al usuario durante el análisis. Los componentes de navegación deben ser reutilizables y consistentes en toda la aplicación para facilitar el acceso rápido a las diferentes secciones.
+
+\section{Casos de uso}
+
+En esta sección se expondrán los diferentes casos de uso que recogen los requisitos ya definidos anteriormente para cumplir con los objetivos de la aplicación establecidos.
+
+% Caso de Uso 1 -> Creación y acceso a la cuenta
+\clearpage
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{CU-1}    & \textbf{Creación y acceso a la cuenta} \\
+        \toprule
+        \textbf{Versión}              & 1.0 \\
+        \textbf{Autor}                & Lucas Olmedo Diéz \\
+        \textbf{Requisitos asociados} & RF-01, RF-02 \\
+        \textbf{Descripción}          & Permite al usuario crear una cuenta y acceder a la aplicación mediante inicio de sesión. \\
+        \textbf{Precondición}         & El usuario debe introducir un usuario único y una contraseña válida \\
+        \textbf{Acciones}             &
+        \begin{enumerate}
+            \def\labelenumi{\arabic{enumi}.}
+            \tightlist
+            \item El usuario accede a la página de registro o inicio de sesión.
+            \item El usuario introduce los datos necesarios (usuario y contraseña).
+            \item El sistema verifica la validez de los datos.
+            \item El sistema registra al usuario o permite el acceso según corresponda.
+        \end{enumerate}\\
+        \textbf{Postcondición}        & El usuario ha creado una cuenta o ha accedido a su perfil. \\
+        \textbf{Excepciones}          & Datos incorrectos o cuenta inexistente/ya registrada. \\
+        \textbf{Importancia}          & Alta \\
+        \bottomrule
+    \end{tabularx}
+    \caption{CU-1 Creación y acceso a la cuenta.}
+\end{table}
+
+% Caso de Uso 2 -> Configuración de la cuenta
+\clearpage
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{CU-2}    & Configuración de la cuenta \\
+        \midrule
+        \textbf{Versión}              & 1.0 \\
+        \textbf{Autor}                & Lucas Olmedo Diéz \\
+        \textbf{Requisitos asociados} & RF-02, RF-03 \\\
+        \textbf{Descripción}          & Permite al usuario cambiar la contraseña y modificar el idioma de la aplicación. \\
+        \textbf{Precondición}         & El usuario debe haber iniciado sesión. \\
+        \textbf{Acciones}             &
+        \begin{enumerate}
+            \def\labelenumi{\arabic{enumi}.}
+            \tightlist
+            \item El usuario accede a la sección de configuración.
+            \item Selecciona cambiar contraseña o idioma.
+            \item El sistema valida y aplica los cambios.
+        \end{enumerate}\\
+        \textbf{Postcondición}        & Se actualizan las preferencias del usuario. \\
+        \textbf{Excepciones}          & \\
+        \textbf{Importancia}          & Media \\
+        \bottomrule
+    \end{tabularx}
+    \caption{CU-2 Configuración de la cuenta.}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{img/DiagramaCU1-CU2.png}
+\caption{Diagrama de los Casos de Uso 1 y 2}
+\label{fig:DiagramaCU1-CU2}
+\end{figure}
+
+% Caso de Uso 3 -> Introducción y validación de URLs
+\clearpage
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{CU-3}    & Introducción y validación de URLs de repositorios \\
+        \midrule
+        \textbf{Versión}              & 1.0 \\
+        \textbf{Autor}                & Lucas Olmedo Diéz \\
+        \textbf{Requisitos asociados} & RF-04 \\
+        \textbf{Descripción}          & Permite al usuario introducir URLs de repositorios GitHub y valida su formato y accesibilidad. \\
+        \textbf{Precondición}         & El usuario ha iniciado sesión. \\
+        \textbf{Acciones}             &
+        \begin{enumerate}
+            \def\labelenumi{\arabic{enumi}.}
+            \tightlist
+            \item El usuario introduce una o varias URLs.
+            \item El sistema valida la estructura y el acceso.
+            \item Se informa al usuario del resultado.
+        \end{enumerate}\\
+        \textbf{Postcondición}        & Se aceptan o rechazan las URLs introducidas. \\
+        \textbf{Excepciones}          & URL malformada o repositorio no accesible. \\
+        \textbf{Importancia}          & Alta \\
+        \bottomrule
+    \end{tabularx}
+    \caption{CU-3 Introducción y validación de URLs de repositorios.}
+\end{table}
+
+% CU-4: Configurar análisis del repositorio
+\clearpage
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{CU-4} & Configurar análisis del repositorio \\
+        \midrule
+        \textbf{Versión} & 1.0 \\
+        \textbf{Autor} & Lucas Olmedo Díez \\
+        \textbf{Requisitos asociados} & RF-05, RF-06, RF-07,\ RF-08 \\
+        \textbf{Descripción} & Permite al usuario configurar cómo se analizarán los datos del repositorio: intervalos absolutos o relativos, número de días para calcular las métricas temporales, períodos de los intervalos. \\
+        \textbf{Precondición} & El usuario debe haber elegido la opción de "Analizar por intervalos de tiempo". \\
+        \textbf{Acciones} &
+        \begin{enumerate}
+            \def\labelenumi{\arabic{enumi}.}
+            \tightlist
+            \item El usuario selecciona si desea usar fechas absolutas o relativas.
+            \item Ajusta manualmente los intervalos de fechas específicos.
+            \item Elige el tipo de intervalos para segmentar la información.
+            \item (Opcional) Se cambia el númerod e días usado para obtener métricas de calidad temporales.
+        \end{enumerate}\\
+        \textbf{Postcondición} & El sistema ha almacenado la configuración de análisis para ser utilizada en el cálculo de métricas. \\
+        \textbf{Excepciones} & Intervalos inválidos, número de días no válido, configuración incompleta. \\
+        \textbf{Importancia} & Alta \\
+        \bottomrule
+    \end{tabularx}
+    \caption{CU-4 Configurar análisis del repositorio}
+\end{table}
+
+% CU-5: Gestionar grupos de repositorios de comparación
+\clearpage
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{CU-5} & Gestionar grupos de repositorios de comparación \\
+        \midrule
+        \textbf{Versión} & 1.0 \\
+        \textbf{Autor} & Lucas Olmedo Díez \\
+        \textbf{Requisitos asociados} & RF-09, RF-10 \\
+        \textbf{Descripción} & Permite al usuario cargar o borrar grupos de repositorios previamente guardados para usarlos como referencia comparativa en los análisis. \\
+        \textbf{Precondición} & El usuario debe haber hecho algún análisis previo con el que se guardaron repositorios de referencia. \\
+        \textbf{Acciones} &
+        \begin{enumerate}
+            \def\labelenumi{\arabic{enumi}.}
+            \tightlist
+            \item El usuario accede a la sección de gestión de repositorios guardados.
+            \item Selecciona un grupo de repositorios guardado previamente y lo carga.
+            \item (Opcional) Elimina uno o más grupos guardados si lo desea.
+        \end{enumerate}\\
+        \textbf{Postcondición} & Los grupos seleccionados han sido cargados o eliminados exitosamente. \\
+        \textbf{Excepciones} & No hay grupos guardados disponibles o error en la carga/borrado. \\
+        \textbf{Importancia} & Media \\
+        \bottomrule
+    \end{tabularx}
+    \caption{CU-5 Gestionar grupos de repositorios de comparación}
+\end{table}
+
+% CU-6: Visualizar evaluación de buenas prácticas ágiles
+\clearpage
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{CU-6} & Visualizar evaluación de buenas prácticas ágiles \\
+        \midrule
+        \textbf{Versión} & 1.0 \\
+        \textbf{Autor} & Lucas Olmedo Díez \\
+        \textbf{Requisitos asociados} & RF-11 \\
+        \textbf{Descripción} & Permite al usuario visualizar el grado de adopción de buenas prácticas ágiles evaluadas automáticamente por el sistema a partir de los datos del repositorio. \\
+        \textbf{Precondición} & Se han introducido URLS válidad y parámetros del análisis correctos. \\
+        \textbf{Acciones} &
+        \begin{enumerate}
+            \def\labelenumi{\arabic{enumi}.}
+            \tightlist
+            \item El sistema muestra los resultados del análisis de buenas prácticas en formato gráfico y textual.
+            \item El usuario puede consultar qué reglas se cumplen, cuáles no, y por qué.
+        \end{enumerate}\\
+        \textbf{Postcondición} & El usuario ha accedido a la información evaluada y entendible de las prácticas ágiles del repositorio. \\
+        \textbf{Excepciones} & No se han podido calcular algunas reglas por errores en añgún repositorio. \\
+        \textbf{Importancia} & Alta \\
+        \bottomrule
+    \end{tabularx}
+    \caption{CU-6 Visualizar evaluación de buenas prácticas ágiles}
+\end{table}
+
+% CU-7: Comparar medidas de calidad de proceso con repositorios de referencia
+\clearpage
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{CU-7} & Comparar medidas de calidad de proceso con repositorios de referencia \\
+        \midrule
+        \textbf{Versión} & 1.0 \\
+        \textbf{Autor} & Lucas Olmedo Díez \\
+        \textbf{Requisitos asociados} & RF-12 \\
+        \textbf{Descripción} & Permite comparar visualmente las métricas del repositorio analizado con las de los repositorios de referencia cargados. \\
+        \textbf{Precondición} & El repositorio analizado y al menos un grupo de referencia, junto a sus medidas de calidad deben estar cargados. \\
+        \textbf{Acciones} &
+        \begin{enumerate}
+            \def\labelenumi{\arabic{enumi}.}
+            \tightlist
+            \item El usuario accede a la sección de comparación.
+            \item El sistema genera y muestra listas comparativas de las métricas seleccionadas.
+            \item El usuario interpreta la comparación en función de los valores visualizados.
+        \end{enumerate}\\
+        \textbf{Postcondición} & El usuario obtiene una visión comparativa clara del estado de su proyecto. \\
+        \textbf{Excepciones} & Error al cargar los datos de referencia o métricas incomparables. \\
+        \textbf{Importancia} & Alta \\
+        \bottomrule
+    \end{tabularx}
+    \caption{CU-7 Comparar con repositorios de referencia}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{img/DiagramaCU3-CU4-CU6-CU7.png}
+\caption{Diagrama de los Casos de Uso 3, 4, 6 y 7}
+\label{fig:DiagramaCU3-CU4-CU6-CU7}
+\end{figure}
+
+% CU-8: Navegar por la aplicación
+\clearpage
+\begin{table}[p]
+    \centering
+    \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+        \toprule
+        \textbf{CU-8} & Navegar por la aplicación \\
+        \midrule
+        \textbf{Versión} & 1.0 \\
+        \textbf{Autor} & Lucas Olmedo Díez \\
+        \textbf{Requisitos asociados} & RF-11, RF-03 \\
+        \textbf{Descripción} & Permite al usuario desplazarse cómodamente por las diferentes secciones de la aplicación (login, análisis, comparación, configuración, etc.), garantizando una experiencia de usuario fluida. \\
+        \textbf{Precondición} & El usuario debe haber iniciado sesión. La aplicación debe estar desplegada correctamente. \\
+        \textbf{Acciones} &
+        \begin{enumerate}
+            \def\labelenumi{\arabic{enumi}.}
+            \tightlist
+            \item El usuario interactúa con los tabs y botones de navegación disponibles.
+            \item El sistema muestra el contenido correspondiente sin errores.
+        \end{enumerate}\\
+        \textbf{Postcondición} & El usuario ha accedido correctamente a las diferentes funcionalidades sin fricciones. \\
+        \textbf{Excepciones} & Error de carga, o comportamiento inesperado. \\
+        \textbf{Importancia} & Alta \\
+        \bottomrule
+    \end{tabularx}
+    \caption{CU-8 Navegar por la aplicación}
+\end{table}
