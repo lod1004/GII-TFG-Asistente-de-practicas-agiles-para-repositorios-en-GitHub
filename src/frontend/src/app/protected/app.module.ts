@@ -9,6 +9,8 @@ import { ResultsComponent } from '../modules/results/results.component';
 import { HeaderComponent } from '../modules/shared/header/header.component';
 import { HeaderTabsComponent } from '../modules/shared/header/header-tabs/header-tabs.component';
 import { FooterComponent } from '../modules/shared/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +23,9 @@ import { FooterComponent } from '../modules/shared/footer/footer.component';
     RepositoryInputComponent,
     ResultsComponent,
     StatisticsComponent,
-    StatisticsListComponent
+    StatisticsListComponent,
+    HttpClientModule,
+    TranslocoRootModule,
   ],
   bootstrap: [AppComponent]
 })

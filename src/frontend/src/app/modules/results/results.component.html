@@ -1,10 +1,9 @@
 <body style="margin: 5rem;">
   <h3 class="tutorial">
-    Se presentan las siguientes prácticas ágiles basadas en la metodología ágil.
+    {{ 'messages.rules_explanation' | transloco }}
   </h3>
   <h3 class="tutorial" style="margin-bottom: 3rem;">
-    En función de las características obtenidas de tu repositorio, usadas como parámetros y comparadas con las de los demás, 
-    estas prácticas ágiles serán superadas, superadas parcialmente o suspendidas
+    {{ 'messages.rules_explanation_2' | transloco }}
   </h3>
   <mat-accordion>
     <mat-expansion-panel *ngFor="let rule of rulesResults">
@@ -36,44 +35,44 @@
           backgroundColor: getProgressColor(rule)
         }"></div>
         </div>
-        <small>{{ rule.statsBetter }} de {{ rule.totalStats }} parámetros superados</small>
+        <small>{{ rule.statsBetter }} {{ 'success.of' | transloco }} {{ rule.totalStats }} {{ 'success.surpassed_parameters' | transloco }}</small>
       </div>
 
-      <p><strong>Descripción:</strong> {{ rule.description }}</p>
+      <p><strong>{{ 'rules.description' | transloco }}:</strong> {{ rule.description }}</p>
 
       <p *ngIf="rule.documentationUrl">
-        <strong>Documentación: </strong>
+        <strong>{{ 'rules.documentation' | transloco }}: </strong>
         <a [href]="rule.documentationUrl" target="_blank">{{ rule.documentationUrl }}</a>
       </p>
 
-      <p><strong>Resultado:</strong> {{ rule.message }}</p>
+      <p><strong>{{ 'rules.result' | transloco }}:</strong> {{ rule.message }}</p>
 
 
 
       <table mat-table [dataSource]="rule.details">
 
         <ng-container matColumnDef="label">
-          <th mat-header-cell *matHeaderCellDef> Parámetro </th>
+          <th mat-header-cell *matHeaderCellDef> {{ 'rules.parameter' | transloco }} </th>
           <td mat-cell *matCellDef="let detail"> {{ detail.label }} </td>
         </ng-container>
 
         <ng-container matColumnDef="value">
-          <th mat-header-cell *matHeaderCellDef> Valor </th>
+          <th mat-header-cell *matHeaderCellDef> {{ 'rules.value' | transloco }} </th>
           <td mat-cell *matCellDef="let detail"> {{ detail.value }} </td>
         </ng-container>
 
         <ng-container matColumnDef="evaluation">
-          <th mat-header-cell *matHeaderCellDef> Evaluación </th>
+          <th mat-header-cell *matHeaderCellDef> {{ 'rules.evaluation' | transloco }} </th>
           <td mat-cell *matCellDef="let detail"> {{ detail.evaluation }} </td>
         </ng-container>
 
         <ng-container matColumnDef="comparedWith">
-          <th mat-header-cell *matHeaderCellDef> Comparado con </th>
+          <th mat-header-cell *matHeaderCellDef> {{ 'rules.compared_with' | transloco }} </th>
           <td mat-cell *matCellDef="let detail"> {{ detail.comparedWith.join(', ') }} </td>
         </ng-container>
 
         <ng-container matColumnDef="progress">
-          <th mat-header-cell *matHeaderCellDef> Repositorios superados </th>
+          <th mat-header-cell *matHeaderCellDef> {{ 'rules.surpassed_repositories' | transloco }} </th>
           <td mat-cell *matCellDef="let detail">
             <div style="width: 100px; height: 6px; border-radius: 3px; background: #ddd; overflow: hidden;">
               <div [ngStyle]="{

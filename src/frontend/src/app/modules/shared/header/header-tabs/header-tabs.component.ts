@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../material.module';
 import { StatisticsListComponent } from '../../../statistics/statistics-list/statistics-list.component';
 import { StatisticsComponent } from '../../../statistics/statistics.component';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-header-tabs',
-  imports: [ResultsComponent, StatisticsComponent, CommonModule, MaterialModule],
+  imports: [ResultsComponent, StatisticsComponent, TranslocoModule, CommonModule, MaterialModule],
   templateUrl: './header-tabs.component.html',
   styleUrl: './header-tabs.component.css'
 })

@@ -8,7 +8,7 @@
         </div>
         <div *ngIf="router.url === '/add-repositories'" style="height: 4rem;"></div>
         <span class="header_title">
-            Asistente de prácticas ágiles para repositorios en GitHub
+            {{'labels.app_title' | transloco }}
         </span>
     </div>
 
@@ -18,14 +18,25 @@
             {{ username }}
         </button>
 
+        <div class="flag_container" *ngIf="languageCode == 'es'">
+            <button class="flag_button" (click)="changeLanguage('en')">
+                <img src='spain.png' alt="Español" class="flag" />
+            </button>
+        </div>
+        <div class="flag_container" *ngIf="languageCode == 'en'">
+            <button class="flag_button" (click)="changeLanguage('es')">
+                <img src='united-kingdom.png' alt="Español" class="flag" />
+            </button>
+        </div>
+
         <mat-menu #userMenu="matMenu">
             <button mat-menu-item (click)="goToNewPassword()">
                 <mat-icon>lock</mat-icon>
-                Cambiar contraseña
+                {{'buttons.change_password' | transloco }}
             </button>
             <button mat-menu-item (click)="logout()">
                 <mat-icon>logout</mat-icon>
-                Cerrar sesión
+                {{'buttons.logout' | transloco }}
             </button>
         </mat-menu>
     </div>

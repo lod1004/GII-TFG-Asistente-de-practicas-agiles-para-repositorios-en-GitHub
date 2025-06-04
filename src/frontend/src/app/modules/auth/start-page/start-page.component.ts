@@ -13,11 +13,12 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-start-page',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, TranslocoModule, RouterLink, ReactiveFormsModule],
   templateUrl: './start-page.component.html',
   styleUrl: './start-page.component.css'
 })
@@ -35,7 +36,11 @@ export class StartPageComponent implements OnInit, OnChanges {
 
   authForm!: FormGroup;
 
-  constructor(public router: Router, private fb: FormBuilder) { }
+  languageCode: string = 'es';
+
+  constructor(public router: Router, private fb: FormBuilder, private translocoService: TranslocoService) {
+    this.languageCode = localStorage.getItem('languageCode')!;
+  }
 
   ngOnInit(): void {
     const passwordSecurityPattern = /^(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,})/;
@@ -59,21 +64,16 @@ export class StartPageComponent implements OnInit, OnChanges {
   }
 
   onSubmit(): void {
-    if (this.authForm.invalid) {
-      alert('Por favor, completa todos los campos.');
-      return;
-    }
-
     const username = this.authForm.value.usernameCtrl;
     const password = this.authForm.value.passwordCtrl;
     const repeatPassword = this.authForm.value.repeatPasswordCtrl;
 
     if ((this.isRegistering) && password !== repeatPassword) {
       Swal.fire({
-        title: 'Error',
-        text: 'Las contraseñas no coinciden',
+        title: this.translocoService.translate('errors.error'),
+        text: this.translocoService.translate('errors.password_match_error'),
         icon: 'error',
-        confirmButtonText: 'Intentar de nuevo',
+        confirmButtonText: this.translocoService.translate('buttons.try_again'),
         customClass: {
           confirmButton: 'custom-error-button'
         }

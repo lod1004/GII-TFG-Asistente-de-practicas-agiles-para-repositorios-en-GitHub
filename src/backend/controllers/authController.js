@@ -31,7 +31,8 @@ const registerUser = async (req, res) => {
         const newUser = new User({
             id: newId,
             username,
-            passwordHash
+            passwordHash,
+            languageCode: 'es'
         });
 
         await newUser.save();
@@ -54,7 +55,10 @@ const loginUser = async (req, res) => {
         if (!match) return res.status(401).json({ message: 'Credenciales incorrectas' });
 
         const token = jwt.sign({ userId: user._id, username }, JWT_SECRET, { expiresIn: '1h' });
-        res.json({ token });
+        res.json({
+            token,
+            languageCode: user.languageCode
+        });
         logger.info('Sesión iniciada correctamente')
     } catch (error) {
         logger.error('Error en login: ' + error.message);
@@ -87,8 +91,30 @@ const changePassword = async (req, res) => {
     }
 };
 
+const changeLanguage = async (req, res) => {
+    const { username, languageCode } = req.body;
+
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        user.languageCode = languageCode;
+        await user.save();
+
+        logger.info('Idioma actualizado correctamente');
+        res.json({ message: 'Idioma actualizado correctamente' });
+
+    } catch (error) {
+        logger.error('Error al cambiar el idioma: ' + error.message);
+        res.status(500).json({ message: 'Error del servidor' });
+    }
+};
+
 module.exports = {
     registerUser,
     loginUser,
-    changePassword
+    changePassword,
+    changeLanguage
 };

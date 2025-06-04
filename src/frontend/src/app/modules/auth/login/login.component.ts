@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { StartPageComponent } from '../start-page/start-page.component';
 import { AuthService } from '../../../services/auth.service';
 import Swal from 'sweetalert2'
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [StartPageComponent],
+  imports: [StartPageComponent, TranslocoModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -14,7 +15,7 @@ export class LoginComponent {
 
   authSuccess = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private translocoService: TranslocoService) { }
 
   onLoginSubmit(data: { username: string; password: string }) {
     console.log('Datos recibidos en Login:', data);
@@ -28,11 +29,12 @@ export class LoginComponent {
       next: (res) => {
         this.authSuccess = true;
         localStorage.setItem('loggedUser', data.username);
+        localStorage.setItem('languageCode', res.languageCode);
         Swal.fire({
-          title: 'Sesión iniciada',
-          text: 'Sesión iniciada correctamente.',
+          title: this.translocoService.translate('messages.login'),
+          text: this.translocoService.translate('success.login_success'),
           icon: 'success',
-          confirmButtonText: 'Continuar',
+          confirmButtonText: this.translocoService.translate('buttons.continue'),
           customClass: {
             confirmButton: 'custom-success-button'
           }
@@ -41,10 +43,10 @@ export class LoginComponent {
       error: (err) => {
         console.error('Error en login:', err);
         Swal.fire({
-          title: 'Error',
-          text: 'Usuario o contraseña incorrectos.',
+          title: this.translocoService.translate('errors.error'),
+          text: this.translocoService.translate('errors.username_password_error'),
           icon: 'error',
-          confirmButtonText: 'Intentar de nuevo',
+          confirmButtonText: this.translocoService.translate('buttons.try_again'),
           customClass: {
             confirmButton: 'custom-error-button'
           }

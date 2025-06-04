@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from '../../services/repository.service';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../shared/material.module';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-results',
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, TranslocoModule, MaterialModule],
   templateUrl: './results.component.html',
   styleUrl: './results.component.css',
 })

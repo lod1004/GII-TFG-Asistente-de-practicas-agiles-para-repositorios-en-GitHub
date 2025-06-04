@@ -20,7 +20,7 @@
     height: 2.1rem;
     margin-top: -2.25rem;
     border-radius: 0;
-    margin-right: 10rem;
+    margin-right: 6rem;
     display: flex;
 }
 
@@ -45,4 +45,30 @@
 
 .arrow_icon {
     font-size: 1.5rem;
+}
+
+.flag_container {
+    margin-top: -3.5rem;
+    padding-right: 0.11rem;
+    height: 5rem;
+    width: 5rem;
+}
+
+.flag {
+    border-radius: 1rem;
+    height: 100%;
+    width: 100%;
+}
+
+.flag_button {
+    border: #00000000;
+    border-radius: 0.8rem;
+    height: 5rem;
+    width: 5rem;
+    background-color: #212121;
+}
+
+.flag_button:hover {
+    cursor: pointer;
+    background-color: #6b6b6b;
 }

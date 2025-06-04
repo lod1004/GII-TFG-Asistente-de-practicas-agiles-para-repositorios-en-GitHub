@@ -1,57 +1,63 @@
 <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
     <div class="container">
 
-        <div class="logo_container">
+        <div class="logo_container" *ngIf="languageCode == 'es'">
             <img src='TFGlogo.png' alt="Mapa de prácticas ágiles" class="logo" />
+        </div>
+
+        <div class="logo_container" *ngIf="languageCode == 'en'">
+            <img src='TFGlogo-EN.png' alt="Mapa de prácticas ágiles" class="logo" />
         </div>
 
         <div class="auth_form">
             <h1 style="color: #FFFFFF;">
-                <span *ngIf="isLogin">Inicio de sesión</span>
-                <span *ngIf="isRegistering">Registro</span>
-                <span *ngIf="isChangingPassword">Cambio de contraseña</span>
+                <span *ngIf="isLogin">{{ 'login.login' | transloco }}</span>
+                <span *ngIf="isRegistering">{{ 'login.register' | transloco }}</span>
+                <span *ngIf="isChangingPassword">{{ 'login.new_password' | transloco }}</span>
             </h1>
 
             <div class="auth_input">
-                <label class="auth_input_label">Usuario</label>
+                <label class="auth_input_label">{{ 'login.username' | transloco }}</label>
                 <div style="display: flex;">
-                    <input matInput id="username" formControlName="usernameCtrl" type="text"
-                        placeholder="Introduce aquí tu nombre de usuario" class="url_input">
+                    <input matInput id="username" formControlName="usernameCtrl" type="text" class="url_input">
                 </div>
             </div>
 
             <div class="auth_input">
-                <label *ngIf="!isChangingPassword" class="auth_input_label">Contraseña</label>
-                <label *ngIf="isChangingPassword" class="auth_input_label">Antigua contraseña</label>
+                <label *ngIf="!isChangingPassword" class="auth_input_label">{{ 'login.password' | transloco }}</label>
+                <label *ngIf="isChangingPassword" class="auth_input_label">{{ 'login.old_password' | transloco
+                    }}</label>
                 <div style="display: flex;">
-                    <input matInput id="password" formControlName="passwordCtrl" type="password"
-                        placeholder="Introduce aquí tu contraseña" class="url_input">
+                    <input matInput id="password" formControlName="passwordCtrl" type="password" class="url_input">
                 </div>
             </div>
 
             <div class="auth_input" *ngIf="isRegistering || isChangingPassword">
-                <label *ngIf="!isChangingPassword" class="auth_input_label">Repetir contraseña</label>
-                <label *ngIf="isChangingPassword" class="auth_input_label">Nueva contraseña</label>
+                <label *ngIf="!isChangingPassword" class="auth_input_label">{{ 'login.repeat_password' | transloco
+                    }}</label>
+                <label *ngIf="isChangingPassword" class="auth_input_label">{{ 'login.new_password' | transloco
+                    }}</label>
                 <div style="display: flex;">
                     <input matInput id="repeatPassword" formControlName="repeatPasswordCtrl" type="password"
-                        placeholder="Repite tu contraseña" class="url_input">
+                        class="url_input">
                 </div>
             </div>
 
             <div *ngIf="authForm.get('repeatPasswordCtrl')?.errors?.['pattern'] && authForm.get('repeatPasswordCtrl')?.touched"
                 class="error_message">
-                La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.
+                {{ 'login.invalid_password' | transloco }}
             </div>
 
-            <span class="link" *ngIf="isLogin" [routerLink]="['/register']">¿No tienes una cuenta? Regístrate</span>
-            <span class="link" *ngIf="isRegistering" [routerLink]="['/login']">¿Ya tienes una cuenta? Inicia
-                sesión</span>
+            <span class="link" *ngIf="isLogin" [routerLink]="['/register']">{{ 'buttons.goto_register' | transloco
+                }}</span>
+            <span class="link" *ngIf="isRegistering" [routerLink]="['/login']">{{ 'buttons.goto_login' | transloco
+                }}</span>
 
             <button type="submit" class="save_button" [disabled]="authForm.invalid"
                 [hidden]="authForm.get('repeatPasswordCtrl')?.errors?.['pattern'] && authForm.get('repeatPasswordCtrl')?.touched">
-                <span *ngIf="isLogin">Iniciar de sesión</span>
-                <span *ngIf="isRegistering">Registrarse</span>
-                <span *ngIf="isChangingPassword">Cambiar contraseña</span>
+                <span *ngIf="isLogin">{{ 'buttons.login' | transloco }}</span>
+                <span *ngIf="isRegistering">{{ 'buttons.register' | transloco }}</span>
+                <span *ngIf="isChangingPassword">{{ 'buttons.change_password' | transloco }}</span>
             </button>
 
         </div>

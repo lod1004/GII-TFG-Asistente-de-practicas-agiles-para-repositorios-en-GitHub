@@ -6,12 +6,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MaterialModule } from '../shared/material.module';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-repository-input',
   styleUrl: 'repository-input.component.css',
   templateUrl: './repository-input.component.html',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule, HttpClientModule]
+  imports: [CommonModule, FormsModule, TranslocoModule, ReactiveFormsModule, MaterialModule, HttpClientModule]
 })
 export class RepositoryInputComponent implements OnInit {
   repositoryForm = new FormGroup({
@@ -40,6 +41,7 @@ export class RepositoryInputComponent implements OnInit {
   constructor(
     private repoService: RepositoryService,
     private router: Router,
+    private translocoService: TranslocoService
   ) { }
 
   ngOnInit(): void {
@@ -110,10 +112,10 @@ export class RepositoryInputComponent implements OnInit {
           this.proceedWithAnalysis();
         } else {
           Swal.fire({
-            title: 'Error',
-            text: 'No se pudo acceder a los repositorios. Verifique sus URLs y asegúrese de que existen y son públicos.',
+            title: this.translocoService.translate('errors.error'),
+            text: this.translocoService.translate('errors.url_error'),
             icon: 'error',
-            confirmButtonText: 'Intentar de nuevo',
+            confirmButtonText: this.translocoService.translate('buttons.try_again'),
             customClass: {
               confirmButton: 'custom-error-button'
             }
@@ -122,10 +124,10 @@ export class RepositoryInputComponent implements OnInit {
       },
       error: (err) => {
         Swal.fire({
-          title: 'Error al verificar las URLs.',
-          text: 'No se pudo acceder a los repositorios. Verifique sus URLs y asegúrese de que existen y son públicos.',
+          title: this.translocoService.translate('errors.url_error'),
+          text: this.translocoService.translate('errors.url_error'),
           icon: 'error',
-          confirmButtonText: 'Intentar de nuevo',
+          confirmButtonText: this.translocoService.translate('buttons.try_again'),
           customClass: {
             confirmButton: 'custom-error-button'
           }
@@ -170,7 +172,7 @@ export class RepositoryInputComponent implements OnInit {
     }
 
     this.loading = true;
-    this.loadingMessage = 'Preparando análisis...';
+    this.loadingMessage = this.translocoService.translate('success.preparing_analysis');
 
     let delay = 1000;
     const spinnerPhases = ['Commits', 'Commits', 'Issues', 'Issues', 'Issues', 'Pull Requests', 'Releases', 'Workflows'];
@@ -179,7 +181,7 @@ export class RepositoryInputComponent implements OnInit {
       [this.mainUrl!, ...this.exampleUrls].forEach(repo => {
         spinnerPhases.forEach(phase => {
           setTimeout(() => {
-            this.loadingMessage = `Analizando ${phase} de ${repo}...`;
+            this.loadingMessage = this.translocoService.translate('success.analyzing') + ` ${phase} ` + this.translocoService.translate('success.of') + ` ${repo}...`;
           }, delay);
           delay += 1700;
         });
@@ -188,7 +190,7 @@ export class RepositoryInputComponent implements OnInit {
       [this.mainUrl!].forEach(repo => {
         spinnerPhases.forEach(phase => {
           setTimeout(() => {
-            this.loadingMessage = `Analizando ${phase} de ${repo}...`;
+            this.loadingMessage = this.translocoService.translate('success.analyzing') + ` ${phase}` + this.translocoService.translate('success.of') + `${repo}...`;
           }, delay);
           delay += 1700;
         });
@@ -196,11 +198,11 @@ export class RepositoryInputComponent implements OnInit {
     }
 
     setTimeout(() => {
-      this.loadingMessage = 'Generando métricas de calidad de proceso...';
+      this.loadingMessage = this.translocoService.translate('success.generating_metrics');
     }, delay);
 
     setTimeout(() => {
-      this.loadingMessage = 'Evaluando prácticas ágiles';
+      this.loadingMessage = this.translocoService.translate('success.evaluating_rules');
     }, delay + 1000);
 
     this.repoService.sendRepositoryUrls(payload).subscribe({
@@ -210,10 +212,10 @@ export class RepositoryInputComponent implements OnInit {
       },
       error: (err) => {
         Swal.fire({
-          title: 'Error',
-          text: 'Error interno al enviar las URLs',
+          title: this.translocoService.translate('errors.error'),
+          text: this.translocoService.translate('errors.internal_error_url_verification'),
           icon: 'error',
-          confirmButtonText: 'Intentar de nuevo',
+          confirmButtonText: this.translocoService.translate('buttons.try_again'),
           customClass: {
             confirmButton: 'custom-error-button'
           }

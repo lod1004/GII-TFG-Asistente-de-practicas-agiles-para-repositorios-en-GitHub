@@ -2,10 +2,10 @@
   <form [formGroup]="repositoryForm" class="content">
 
     <div class="url_container">
-      <label class="input_label_2">Introduce la URL de un repositorio para analizar</label>
+      <label class="input_label_2">{{'messages.input_main_url'| transloco}}</label>
       <div class="url_input_container">
         <input matInput id="mainRepositoryUrl" formControlName="mainRepositoryUrl" type="text"
-          placeholder="https://github.com/autor/repositorio" class="url_input">
+          placeholder="https://github.com/'author'/'repository'" class="url_input">
         <button matSuffix mat-icon-button [disabled]="!repositoryForm.get('mainRepositoryUrl')?.value"
           (click)="addMainUrl()" class="add_url_button">
           <mat-icon class="add_icon" [class.disabled]="!repositoryForm.get('mainRepositoryUrl')?.value">
@@ -22,12 +22,12 @@
 
     <div class="url_container" style="margin-top: 3rem;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <label class="input_label_2">Introduce repositorios de referencia (Max 5)</label>
-        <button mat-button class="old_repos_button" (click)="openPreviousReposModal()">Repositorios guardados</button>
+        <label class="input_label_2">{{'messages.input_references_url'| transloco}}</label>
+        <button mat-button class="old_repos_button" (click)="openPreviousReposModal()">{{ 'buttons.saved_repositories' | transloco }}</button>
       </div>
       <div class="url_input_container">
         <input matInput id="sourceRepositoryUrl" formControlName="sourceRepositoryUrl" type="text"
-          placeholder="https://github.com/autor/repositorio" class="url_input" />
+          placeholder="https://github.com/'author'/'repository'" class="url_input" />
         <button matSuffix mat-icon-button [disabled]="!repositoryForm.get('sourceRepositoryUrl')?.value"
           (click)="addExampleUrl()" class="add_url_button">
           <mat-icon class="add_icon" [class.disabled]="!repositoryForm.get('sourceRepositoryUrl')?.value">
@@ -55,39 +55,39 @@
 
     <div class="parameters">
       <div style="display: flex; flex-direction: column;">
-        <span class="parameters_title">Parámetros del análisis</span>
+        <span class="parameters_title">{{ 'parameters.parameters' | transloco }}</span>
         <div class="explanation_message">
           <button *ngIf="useOldRepositories === true" (click)="changeParametersAplication()" class="explanation_button">
             <span *ngIf="applyParametersToOldRepositories === false">
-              Aplicar solo al repositorio a analizar
+              {{ 'buttons.apply_only_main_repo' | transloco }}
             </span>
             <span *ngIf="applyParametersToOldRepositories === true">
-              Aplicar también a antiguos repositorios
+              {{ 'buttons.apply_all_repos' | transloco }}
             </span>
           </button>
         </div>
       </div>
       <div class="mandatory_parameters">
         <div class="url_container">
-          <label class="input_label_2">Días para calcular las métricas medias:</label>
+          <label class="input_label_2">{{ 'parameters.days_number_short' | transloco }}:</label>
           <input id="averageDays" formControlName="averageDays" type="number" class="number_input">
           <mat-error *ngIf="daysNumberError" style="color: red; margin-top: 1rem;">
-            Se debe introducir un número de días mayor o igual que 1
+            {{ 'errors.natural_days_number_error' | transloco }}
           </mat-error>
         </div>
 
         <div style="display: flex; flex-direction: column;">
-          <label class="input_label_2">Modo de análisis</label>
+          <label class="input_label_2">{{ 'parameters.analysis_mode' | transloco }}</label>
           <div>
             <input id="fullTimeAnalysis" type="radio" [value]="false" name="useTimeIntervals"
               formControlName="useTimeIntervals">
-            <label class="input_label" for="male">Analizar repositorios al completo</label>
+            <label class="input_label" for="male">{{ 'parameters.full_analysis' | transloco }}</label>
           </div>
 
           <div>
             <input id="timeIntervalsAnalysis" type="radio" [value]="true" name="useTimeIntervals"
               formControlName="useTimeIntervals">
-            <label class="input_label" for="female">Analizar por intervalos de tiempo</label>
+            <label class="input_label" for="female">{{ 'parameters.intervals_analysis' | transloco }}</label>
           </div>
         </div>
       </div>
@@ -100,19 +100,19 @@
         <div
           style="width: 100%; background-color: #212121; border-radius: 1rem; display: flex; flex-direction: column;">
           <label class="input_label_3" style="align-self: center; margin: 1rem;">
-            Tipo de intervalos de tiempo
+            {{ 'parameters.intervals_type' | transloco }}
           </label>
           <div style="display: flex; justify-content: space-around;">
             <div>
               <input id="useAbsolutes" type="radio" [value]="false" name="useRelativeDates"
                 formControlName="useRelativeDates">
-              <label class="input_label" for="female">Absolutos (Meses)</label>
+              <label class="input_label" for="female">{{ 'parameters.absolute_type' | transloco }}</label>
             </div>
 
             <div>
               <input id="useRelatives" type="radio" [value]="true" name="useRelativeDates"
                 formControlName="useRelativeDates">
-              <label class="input_label" for="male">Relativos (Cuartos)</label>
+              <label class="input_label" for="male">{{ 'parameters.relative_type' | transloco }}</label>
             </div>
           </div>
           <br>
@@ -122,15 +122,15 @@
           style="margin-top: 2rem; background-color: #212121; border-radius: 1rem; display: flex; flex-direction: column;">
           <div style="display: flex; flex-direction: column; padding: 1rem;">
             <label class="input_label_3" style="align-self: center;">
-              Número de intervalos de tiempo
+              {{ 'parameters.intervals_number' | transloco }}
             </label>
             <label *ngIf="repositoryForm.controls.useRelativeDates?.value == true" class="input_label"
               style="align-self: center;">
-              (Cada intervalo será 1/4 del tiempo de vida del repositorio):
+              {{ 'parameters.intervals_number_explanation' | transloco }}
             </label>
             <label *ngIf="repositoryForm.controls.useRelativeDates?.value == false" class="input_label"
               style="align-self: center;">
-              (Cada intervalo será 1 mes del tiempo de vida del repositorio):
+              {{ 'parameters.intervals_number_explanation_2' | transloco }}
             </label>
           </div>
           <br>
@@ -138,7 +138,7 @@
           <div style="display: flex; justify-content: space-around;">
             <div class="url_container">
               <label class="input_label">
-                Intervalo de inicio
+                {{ 'parameters.start_interval' | transloco }}
                 <input id="startTimeInterval" formControlName="startTimeInterval" type="number" class="number_input" />
               </label>
             </div>
@@ -147,7 +147,7 @@
             </div>
             <div class="url_container">
               <label class="input_label">
-                Intervalo de fin
+                {{ 'parameters.end_interval' | transloco }}
                 <input id="endTimeInterval" formControlName="endTimeInterval" type="number" class="number_input" />
               </label>
             </div>
@@ -157,14 +157,14 @@
 
         <div style="display: flex; flex-direction: column;">
           <mat-error *ngIf="relativeTimeIntervalsError" class="error_message">
-            Solo se pueden seleccionar hasta 4 intervalos de tiempo relativos
+            {{ 'errors.more_than_4_relative_error' | transloco }}
           </mat-error>
           <mat-error *ngIf="timeIntervalsComparisonError && repositoryForm.controls.endTimeInterval.touched"
             class="error_message">
-            El intervalo de fin debe ser mayor que el intervalo de inicio
+            {{ 'errors.start_interval_greater_error' | transloco }}
           </mat-error>
           <mat-error *ngIf="timeIntervalsValueError" class="error_message">
-            Los intervalos de tiempo deben ser números naturales
+            {{ 'errors.natural_intervals_error' | transloco }}
           </mat-error>
         </div>
       </div>
@@ -174,17 +174,17 @@
     <button class="save_button" (click)="submitRepo()" [disabled]="!mainUrl || exampleUrls.length === 0 || daysNumberError ||
     repositoryForm.controls.useTimeIntervals.value == true && 
     (timeIntervalsComparisonError || relativeTimeIntervalsError || timeIntervalsValueError)">
-      COMPARAR
+      {{ 'buttons.compare' | transloco }}
     </button>
   </form>
 
   <ng-template #previousReposModal>
     <div class="modal_backdrop">
       <div class="modal_content">
-        <h3 class="parameters_title">Grupos de repositorios de referencia guardados</h3>
+        <h3 class="parameters_title">{{ 'labels.saved_repositories' | transloco }}</h3>
         <div style="display: flex; justify-content: space-around;" *ngIf="previousRepoGroups.length == 0">
           <span class="parameters_title_2" style="color: #f26e6e; margin-bottom: 2rem;">
-            No tienes repositorios guardados
+            {{ 'messages.no_saved_repositories' | transloco }}
           </span>
         </div>
         <ul *ngIf="previousRepoGroups.length != 0">
@@ -193,21 +193,21 @@
               <li *ngFor="let repo of group.repositories" style="font-size: 0.9rem; margin-bottom: 0.5rem;">
                 <div><strong>{{ repo.repoTitle }}</strong></div>
                 <div style="font-size: 0.8rem; color: #666;">
-                  Analizado desde {{ repo.startDate | date:'dd/MM/yyyy' }} hasta {{ repo.endDate | date:'dd/MM/yyyy'
+                  {{ 'messages.analyzed_from' | transloco }} {{ repo.startDate | date:'dd/MM/yyyy' }} {{ 'messages.to' | transloco }} {{ repo.endDate | date:'dd/MM/yyyy'
                   }}<br>
                 </div>
               </li>
               <span>
-                Número de días para calcular las métricas medias: {{ group.repositories[0].averageDays }}<br>
+                {{ 'parameters.days_number' | transloco }}: {{ group.repositories[0].averageDays }}<br>
               </span>
               <span>
-                Creado el: {{ group.repositories[0].createdAt | date:'dd/MM/yyyy' }} a las {{
+                {{ 'messages.created_on' | transloco }}: {{ group.repositories[0].createdAt | date:'dd/MM/yyyy' }} {{ 'messages.at' | transloco }} {{
                 group.repositories[0].createdAt | date:'h:mm:ss' }}
               </span>
             </ul>
           </li>
         </ul>
-        <button class="close_modal" style="color: #f26e6e;" (click)="closePreviousReposModal()">Cerrar</button>
+        <button class="close_modal" style="color: #f26e6e;" (click)="closePreviousReposModal()">{{'buttons.close' | transloco }}</button>
       </div>
     </div>
   </ng-template>

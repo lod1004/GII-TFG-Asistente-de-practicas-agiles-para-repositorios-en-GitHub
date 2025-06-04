@@ -1,36 +1,36 @@
-<div style="margin-top: 2rem;">
+    <div style="margin-top: 2rem;">
 
-    <div style="display: flex; justify-content: space-between;">
-        <div style="width: 50%; margin-left: 7%;">
-            <div class="stats_title" style="margin-bottom: 4.5rem;">
-                <h1>Repositorio Principal</h1>
+        <div style="display: flex; justify-content: space-between;">
+            <div style="width: 50%; margin-left: 7%;">
+                <div class="stats_title" style="margin-bottom: 4.5rem;">
+                    <h1>{{ 'metrics.main_repo' | transloco }}</h1>
+                </div>
+                <app-statistics-list [repo]="mainRepository" [comparisonRepo]="showedRepo"></app-statistics-list>
             </div>
-            <app-statistics-list [repo]="mainRepository" [comparisonRepo]="showedRepo"></app-statistics-list>
+
+            <div style="width: 50%; margin-left: 7%;">
+                <div class="stats_title">
+                    <h1>{{ 'metrics.reference_repo' | transloco }}</h1>
+                </div>
+
+                <div class="change_repo">
+                    <button mat-icon-button class="prev_next_button" (click)="prevRepo()" [disabled]="repoIndex === 0">
+                        <mat-icon class="arrow_icon">arrow_backwards</mat-icon>
+                        {{ 'metrics.previous_repo' | transloco }}
+                    </button>
+                    <button mat-icon-button class="prev_next_button" (click)="nextRepo()"
+                        [disabled]="repoIndex === comparisonRepositories.length - 1">
+                        {{ 'metrics.next_repo' | transloco }}
+                        <mat-icon class="arrow_icon">arrow_forward</mat-icon>
+                    </button>
+                </div>
+
+                <app-statistics-list [repo]="showedRepo" [comparisonRepo]="mainRepository"></app-statistics-list>
+            </div>
+
         </div>
-
-        <div style="width: 50%; margin-left: 7%;">
-            <div class="stats_title">
-                <h1>Repositorio Comparado</h1>
-            </div>
-
-            <div class="change_repo">
-                <button mat-icon-button class="prev_next_button" (click)="prevRepo()" [disabled]="repoIndex === 0">
-                    <mat-icon class="arrow_icon">arrow_backwards</mat-icon>
-                    Anterior
-                </button>
-                <button mat-icon-button class="prev_next_button" (click)="nextRepo()"
-                    [disabled]="repoIndex === comparisonRepositories.length - 1">
-                    Siguiente
-                    <mat-icon class="arrow_icon">arrow_forward</mat-icon>
-                </button>
-            </div>
-
-            <app-statistics-list [repo]="showedRepo" [comparisonRepo]="mainRepository"></app-statistics-list>
-        </div>
-
     </div>
-</div>
 
 <div *ngIf="loading" class="loading-overlay">
-  <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner>
 </div>

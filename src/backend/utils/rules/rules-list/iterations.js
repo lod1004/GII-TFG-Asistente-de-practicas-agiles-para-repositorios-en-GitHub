@@ -2,7 +2,7 @@ const { compareStats } = require("../rule-comparator");
 const logger = require('../../../logger');
 
 function evaluateIterationsRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
-  const ruleName = "Scrum, Extreme Programming - Iteraciones";
+  const ruleName = "Scrum, Extreme Programming - Iterations";
   const description = "El repositorio se está desarrollando mediante iteraciones o Sprints. Esto es extremadamente útil para asignar tareas y lograr un desarrollo eficiente";
   const documentationUrl = "https://www.agilealliance.org/glossary/iteration/";
   

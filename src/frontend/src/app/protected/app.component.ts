@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Component({
   standalone: false,
@@ -10,5 +11,10 @@ import { Router, RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'Asistente de prácticas ágiles para repositorios en GitHub';
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private translocoService: TranslocoService) {
+    const savedLang = localStorage.getItem('languageCode');
+    if (savedLang) {
+      this.translocoService.setActiveLang(savedLang);
+    }
+  }
 }

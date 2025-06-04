@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MaterialModule } from '../../shared/material.module';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-statistics-list',
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, TranslocoModule, MaterialModule],
   templateUrl: './statistics-list.component.html',
   styleUrl: './statistics-list.component.css',
   standalone: true

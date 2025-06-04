@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +27,8 @@ export class AuthService {
   changePassword(payload: { username: string, oldPassword: string, repeatPassword: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/change-password`, payload);
   }
-}
+
+    changeLanguage(payload: { username: string, languageCode: string }): Observable<any> {
+      return this.http.post(`${this.apiUrl}/auth/change-language`, payload);
+    }
+  }
