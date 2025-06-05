@@ -3,28 +3,30 @@ const logger = require('../../../logger');
 
 function evaluateIterationsRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "Scrum, Extreme Programming - Iterations";
-  const description = "El repositorio se está desarrollando mediante iteraciones o Sprints. Esto es extremadamente útil para asignar tareas y lograr un desarrollo eficiente";
+  const description = "details.iterations_description";
   const documentationUrl = "https://www.agilealliance.org/glossary/iteration/";
-  
+  var problems = [];
+
   const statsToCompare = [
-    { key: 'issue_stats.milestonedIssuesPercent', label: 'Porcentaje de Issues con Milestones', units: '%',},
-    { key: 'pull_request_stats.milestonedPrPercent', label: 'Porcentaje de Pull Requests con Milestones', units: '%',},
-    { key: 'commit_stats.averageCommits', label: 'Media de Commits hechos cada ' + averageDays + ' días', units: 'Commits',},
-    { key: 'release_stats.averageReleases', label: 'Media de Releases subidas cada ' + averageDays + ' días', units: 'Releases',},
+    { key: 'issue_stats.milestonedIssuesPercent', label: 'metrics.milestoned_issues', units: 'units.percentaje',},
+    { key: 'pull_request_stats.milestonedPrPercent', label: 'metrics.milestoned_pr', units: 'units.percentaje',},
+    { key: 'commit_stats.averageCommits', label: 'metrics.average_commits', units: 'units.commits',},
+    { key: 'release_stats.averageReleases', label: 'metrics.average_releases', units: 'units.releases',},
   ];
 
   const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'Superada') {
-    message = 'El repositorio sigue claramente una estrategia basada en iteraciones. Se usan Milestones y se hacen Commits y Releases con frecuencia';
-  } else if (status === 'No superada') {
-    message = 'El repositorio no parece seguir una estrategia iterativa (Sprints). Se usan muy pocas Milestones o ninguna, y no hay suficientes Commits ni Releases';
-  } else if (status === 'Sin aplicar') {
-    message = 'El repositorio no sigue ningún tipo de estrategia iterativa (Sprints). No tiene Commits ni Releases, ni se usan Milestones';
+  if (status === 'details.surpassed') {
+    message = 'details.iterations_surpassed_message';
+  } else if (status === 'details.not_surpassed') {
+    message = 'details.iterations_not_surpassed_message';
+  } else if (status === 'details.not_applied') {
+    message = 'details.iterations_not_applied_message';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
-    message = `El repositorio parece usar iteraciones, pero podría mejorar en: ${problems.join(', ')}.`;
+problems = resultDetails
+  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+  .map(d => ({ label: d.label }));    message = `details.iterations_partially_surpassed_message`;
   }
 
   logger.info('Regla: ' + ruleName)
@@ -42,7 +44,9 @@ function evaluateIterationsRule(mainRepo, mainRepoId, comparisonRepos, averageDa
     totalStats,
     message,
     mainRepoId,
-    details: resultDetails
+    averageDays: averageDays,
+    details: resultDetails,
+    problems: problems
   };
 }
 

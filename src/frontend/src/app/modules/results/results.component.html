@@ -14,7 +14,7 @@
 
         <div class="passed">
           <span [ngStyle]="{ color: getProgressColor(rule) }">
-            {{ rule.passed }}
+            {{ rule.passed | transloco }}
           </span>
 
           <div class="rule_bar">
@@ -35,17 +35,24 @@
           backgroundColor: getProgressColor(rule)
         }"></div>
         </div>
-        <small>{{ rule.statsBetter }} {{ 'success.of' | transloco }} {{ rule.totalStats }} {{ 'success.surpassed_parameters' | transloco }}</small>
+        <small>{{ rule.statsBetter }} {{ 'success.of' | transloco }} {{ rule.totalStats }} {{
+          'rules.surpassed_parameters' | transloco }}</small>
       </div>
 
-      <p><strong>{{ 'rules.description' | transloco }}:</strong> {{ rule.description }}</p>
+      <p><strong>{{ 'rules.description' | transloco }}:</strong> {{ rule.description | transloco }}</p>
 
       <p *ngIf="rule.documentationUrl">
         <strong>{{ 'rules.documentation' | transloco }}: </strong>
         <a [href]="rule.documentationUrl" target="_blank">{{ rule.documentationUrl }}</a>
       </p>
 
-      <p><strong>{{ 'rules.result' | transloco }}:</strong> {{ rule.message }}</p>
+      <p><strong>{{ 'rules.result' | transloco }}:</strong> {{ rule.message | transloco }}</p>
+
+      <ul *ngIf="rule.problems?.length">
+        <li *ngFor="let problem of rule.problems">
+          {{ problem.label | transloco }}
+        </li>
+      </ul>
 
 
 
@@ -53,22 +60,22 @@
 
         <ng-container matColumnDef="label">
           <th mat-header-cell *matHeaderCellDef> {{ 'rules.parameter' | transloco }} </th>
-          <td mat-cell *matCellDef="let detail"> {{ detail.label }} </td>
+          <td mat-cell *matCellDef="let detail"> {{ detail.label | transloco: {days: rule.averageDays} }} </td>
         </ng-container>
 
         <ng-container matColumnDef="value">
           <th mat-header-cell *matHeaderCellDef> {{ 'rules.value' | transloco }} </th>
-          <td mat-cell *matCellDef="let detail"> {{ detail.value }} </td>
+          <td mat-cell *matCellDef="let detail"> {{ detail.value }} {{ detail.unit |transloco }} </td>
         </ng-container>
 
         <ng-container matColumnDef="evaluation">
           <th mat-header-cell *matHeaderCellDef> {{ 'rules.evaluation' | transloco }} </th>
-          <td mat-cell *matCellDef="let detail"> {{ detail.evaluation }} </td>
+          <td mat-cell *matCellDef="let detail"> {{ detail.evaluation | transloco }} </td>
         </ng-container>
 
         <ng-container matColumnDef="comparedWith">
           <th mat-header-cell *matHeaderCellDef> {{ 'rules.compared_with' | transloco }} </th>
-          <td mat-cell *matCellDef="let detail"> {{ detail.comparedWith.join(', ') }} </td>
+          <td mat-cell *matCellDef="let detail"> {{ detail.comparedWith.join(', ') }} {{ detail.unit |transloco }}</td>
         </ng-container>
 
         <ng-container matColumnDef="progress">

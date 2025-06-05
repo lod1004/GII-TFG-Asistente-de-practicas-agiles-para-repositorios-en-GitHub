@@ -1,14 +1,15 @@
 const logger = require('../../../logger');
 
-function evaluateDefinitionOfDoneRule(mainRepo, mainRepoId, comparisonRepos) {
+function evaluateDefinitionOfDoneRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "Scrum - Definition of Done";
-  const description = "Se cierran las Issues de forma correcta y consistente, logrando un avance en el desarrollo eficiente.";
+  const description = "details.done_description";
   const documentationUrl = "https://www.agilealliance.org/glossary/definition-of-done/";
+  var problems = [];
 
   const statsToCompare = [
-    { key: 'issue_stats.openIssuesCount', label: 'Número de Issues abiertas', units: 'Issues abiertas', },
-    { key: 'issue_stats.closedIssuesCount', label: 'Número de Issues cerradas', units: 'Issues cerradas', },
-    { key: 'issue_stats.reopenedIssuesPercent', label: 'Porcentaje de Issues que alguna vez fueron reabiertas', units: '%', },
+    { key: 'issue_stats.openIssuesCount', label: 'metrics.open_issues', units: 'units.open_issues', },
+    { key: 'issue_stats.closedIssuesCount', label: 'metrics.closed_issues', units: 'units.closed_issues', },
+    { key: 'issue_stats.reopenedIssuesPercent', label: 'metrics.reopened_issues', units: 'units.percentaje', },
   ];
 
   const resultDetails = [];
@@ -42,13 +43,13 @@ function evaluateDefinitionOfDoneRule(mainRepo, mainRepoId, comparisonRepos) {
 
     let evaluation = 'average';
     if (mainValue === 0) {
-      evaluation = 'Sin aplicar';
+      evaluation = 'details.not_applied';
       Cero++;
     } else if (higherCount >= lowerCount) {
-      evaluation = 'Completa';
+      evaluation = 'details.completed';
       Completa++;
     } else if (lowerCount > higherCount) {
-      evaluation = 'Incompleta';
+      evaluation = 'details.not_completed';
       Incompleta++;
     }
 
@@ -63,21 +64,22 @@ function evaluateDefinitionOfDoneRule(mainRepo, mainRepoId, comparisonRepos) {
     });
   }
 
-  let status = 'Parcialmente superada';
-  if (Completa === statsToCompare.length) status = 'Superada';
-  else if (Cero === statsToCompare.length) status = 'Sin aplicar';
-  else if ((Incompleta + Cero) === statsToCompare.length) status = 'No superada';
+  let status = 'details.partialy_surpassed';
+  if (Completa === statsToCompare.length) status = 'details.surpassed';
+  else if (Cero === statsToCompare.length) status = 'details.not_applied';
+  else if ((Incompleta + Cero) === statsToCompare.length) status = 'details.not_surpassed';
 
   let message = '';
-  if (status === 'Superada') {
-    message = 'La mayoría de las tareas se completan correctamente y rara vez o nunca se reabren.';
-  } else if (status === 'No superada') {
-    message = 'Hay muchas tareas sin cerrar o se reabren con demasiada frecuencia, lo cual indica que no se respeta una definición clara de "Done".';
-  } else if (status === 'Sin aplicar') {
-    message = 'No hay Issues creadas en el repositorio, por lo que no puede evaluarse la definición de "Done".';
+  if (status === 'details.surpassed') {
+    message = 'details.done_surpassed_message';
+  } else if (status === 'details.not_surpassed') {
+    message = 'details.done_not_surpassed_message';
+  } else if (status === 'details.not_applied') {
+    message = 'details.done_not_applied_message';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
-    message = `El repositorio parece usar integración continua, pero podría mejorar en: ${problems.join(', ')}.`;
+problems = resultDetails
+  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+  .map(d => ({ label: d.label }));    message = `details.done_partially_surpassed_message`;
   }
 
   logger.info('Regla: ' + ruleName)
@@ -95,7 +97,9 @@ function evaluateDefinitionOfDoneRule(mainRepo, mainRepoId, comparisonRepos) {
     totalStats: statsToCompare.length,
     message,
     mainRepoId,
-    details: resultDetails
+    averageDays: averageDays,
+    details: resultDetails,
+    problems
   };
 }
 

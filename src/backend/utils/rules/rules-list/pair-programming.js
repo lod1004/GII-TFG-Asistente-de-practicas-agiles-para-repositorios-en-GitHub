@@ -1,30 +1,32 @@
 const { compareStats } = require("../rule-comparator");
 const logger = require('../../../logger');
 
-function evaluatePairProgrammingRule(mainRepo, mainRepoId, comparisonRepos) {
+function evaluatePairProgrammingRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "Extreme Programming - Pair Programming";
-  const description = "Los miembros del repositorio practican la programación por parejas, lo que facilita el desarrollo y el entendimiento del mismo por parte de todos los miembros";
+  const description = "details.pair_description";
   const documentationUrl = "https://www.agilealliance.org/glossary/pair-programming/";
+  var problems = [];
 
   const statsToCompare = [
-    { key: 'commit_stats.collaborativeCommitsPercent', label: 'Porcentaje de Commits colaborativos (menciones en mensajes)', units: '%', },
-    { key: 'pull_request_stats.collaborativePrPercent', label: 'Porcentaje de Pull Requests colaborativos (menciones)', units: '%', },
-    { key: 'issue_stats.collaborativeIssuesPercent', label: 'Porcentaje de Issues colaborativos (varios asignados o menciones)', units: '%', },
-    { key: 'release_stats.collaborativeReleasesPercent', label: 'Porcentaje de Releases colaborativas (menciones)', units: '%', },
+    { key: 'commit_stats.collaborativeCommitsPercent', label: 'metrics.collaborative_commits', units: 'units.percentaje', },
+    { key: 'pull_request_stats.collaborativePrPercent', label: 'metrics.collaborative_pr', units: 'units.percentaje', },
+    { key: 'issue_stats.collaborativeIssuesPercent', label: 'metrics.collaborative_issues', units: 'units.percentaje', },
+    { key: 'release_stats.collaborativeReleasesPercent', label: 'metrics.collaborative_releases', units: 'units.percentaje', },
   ];
 
   const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'Superada') {
-    message = 'Se observa una buena práctica de programación por parejas mediante colaboración activa en Issues, Pull Requests, Releases y Commits.';
-  } else if (status === 'No superada') {
-    message = 'No se observan suficientes evidencias de programación por parejas.';
-  } else if (status === 'Sin aplicar') {
-    message = 'No hay ninguna actividad colaborativa que indique programación por parejas.';
+  if (status === 'details.surpassed') {
+    message = 'details.pair_surpassed_message';
+  } else if (status === 'details.not_surpassed') {
+    message = 'details.pair_not_surpassed_message';
+  } else if (status === 'details.not_applied') {
+    message = 'details.pair_not_applied_message';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
-    message = `Hay algunos indicios de colaboración, pero podría mejorar en: ${problems.join(', ')}.`;
+problems = resultDetails
+  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+  .map(d => ({ label: d.label }));    message = `details.pair_partially_surpassed_message`;
   }
 
   logger.info('Regla: ' + ruleName)
@@ -42,7 +44,9 @@ function evaluatePairProgrammingRule(mainRepo, mainRepoId, comparisonRepos) {
     totalStats,
     message,
     mainRepoId,
-    details: resultDetails
+    averageDays: averageDays,
+    details: resultDetails,
+    problems
   };
 }
 

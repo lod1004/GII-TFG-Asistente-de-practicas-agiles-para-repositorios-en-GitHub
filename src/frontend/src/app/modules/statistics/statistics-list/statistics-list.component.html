@@ -14,7 +14,7 @@
   <div class="stats_box">
     <strong>{{ 'metrics.activity' | transloco }}:</strong>
     <p>
-      <span>{{ 'metrics.average_acttivity' | transloco }} {{repo.averageDays}} {{ 'metrics.days' | transloco }}:</span>
+      <span>{{ 'metrics.average_activity' | transloco: { days: repo.averageDays } }}:</span>
       <span [style.color]="getStatColor(repo.participantStats.averageUserActivity, comparisonRepo?.participantStats?.averageUserActivity)">
         {{ repo.participantStats.averageUserActivity }}
       </span>
@@ -25,7 +25,7 @@
   <div class="stats_box">
     <strong>Commits:</strong>
     <p><span>{{ 'metrics.number_of_commits' | transloco }}:</span> <span [style.color]="getStatColor(repo.commitStats.commitCount, comparisonRepo?.commitStats?.commitCount)"> {{ repo.commitStats.commitCount }}</span></p>
-    <p><span>{{ 'metrics.average_commits' | transloco }} {{repo.averageDays}} {{ 'metrics.days' | transloco }}:</span> <span [style.color]="getStatColor(repo.commitStats.averageCommits, comparisonRepo?.commitStats?.averageCommits)"> {{ repo.commitStats.averageCommits }}</span></p>
+    <p><span>{{ 'metrics.average_commits' | transloco: { days: repo.averageDays } }}:</span> <span [style.color]="getStatColor(repo.commitStats.averageCommits, comparisonRepo?.commitStats?.averageCommits)"> {{ repo.commitStats.averageCommits }}</span></p>
     <p><span>{{ 'metrics.titled_commits' | transloco }}:</span> <span [style.color]="getStatColor(repo.commitStats.titledCommitsPercent, comparisonRepo?.commitStats?.titledCommitsPercent)"> {{ repo.commitStats.titledCommitsPercent | number:'1.0-2' }}%</span></p>
     <p><span>{{ 'metrics.described_commits' | transloco }}:</span> <span [style.color]="getStatColor(repo.commitStats.descriptionCommitsPercent, comparisonRepo?.commitStats?.descriptionCommitsPercent)"> {{ repo.commitStats.descriptionCommitsPercent | number:'1.0-2' }}%</span></p>
     <p><span>{{ 'metrics.referenced_commits' | transloco }}:</span> <span [style.color]="getStatColor(repo.commitStats.referencesCommitsPercent, comparisonRepo?.commitStats?.referencesCommitsPercent)"> {{ repo.commitStats.referencesCommitsPercent | number:'1.0-2' }}%</span></p>
@@ -39,7 +39,8 @@
     <strong>Issues:</strong>
     <p><span>{{ 'metrics.open_issues' | transloco }}:</span> <span [style.color]="getStatColor(repo.issueStats.openIssuesCount, comparisonRepo?.issueStats?.openIssuesCount)"> {{ repo.issueStats.openIssuesCount }}</span></p>
     <p><span>{{ 'metrics.closed_issues' | transloco }}:</span> <span [style.color]="getStatColor(repo.issueStats.closedIssuesCount, comparisonRepo?.issueStats?.closedIssuesCount)"> {{ repo.issueStats.closedIssuesCount }}</span></p>
-    <p><span>{{ 'metrics.average_closed_issues' | transloco }} {{repo.averageDays}} {{ 'metrics.days' | transloco }}:</span> <span [style.color]="getStatColor(repo.issueStats.averageClosedIssues, comparisonRepo?.issueStats?.averageClosedIssues)"> {{ repo.issueStats.averageClosedIssues }}</span></p>
+    <p><span>{{ 'metrics.average_closed_issues' | transloco: { days: repo.averageDays } }}:</span> <span [style.color]="getStatColor(repo.issueStats.averageClosedIssues, comparisonRepo?.issueStats?.averageClosedIssues)"> {{ repo.issueStats.averageClosedIssues }}</span></p>
+    <p><span>{{ 'metrics.average_close_time' | transloco }} {{repo.averageCloseTime}} {{ 'metrics.days' | transloco }}:</span> <span [style.color]="getStatColor(repo.issueStats.averageClosedIssues, comparisonRepo?.issueStats?.averageClosedIssues)"> {{ repo.issueStats.averageCloseTime }} {{ 'metrics.days' | transloco }}</span></p>
     <p><span>{{ 'metrics.described_issues' | transloco }}:</span> <span [style.color]="getStatColor(repo.issueStats.descriptionIssuesPercent, comparisonRepo?.issueStats?.descriptionIssuesPercent)"> {{ repo.issueStats.descriptionIssuesPercent | number:'1.0-2' }}%</span></p>
     <p><span>{{ 'metrics.commented_issues' | transloco }}:</span> <span [style.color]="getStatColor(repo.issueStats.commentedIssuesPercent, comparisonRepo?.issueStats?.commentedIssuesPercent)"> {{ repo.issueStats.commentedIssuesPercent | number:'1.0-2' }}%</span></p>
     <p><span>{{ 'metrics.imaged_issues' | transloco }}:</span> <span [style.color]="getStatColor(repo.issueStats.imagedIssuesPercent, comparisonRepo?.issueStats?.imagedIssuesPercent)"> {{ repo.issueStats.imagedIssuesPercent | number:'1.0-2' }}%</span></p>
@@ -58,7 +59,7 @@
     <strong>Pull Requests:</strong>
     <p><span>{{ 'metrics.open_pr' | transloco }}:</span> <span [style.color]="getStatColor(repo.pullRequestStats.openPrCount, comparisonRepo?.pullRequestStats?.openPrCount)"> {{ repo.pullRequestStats.openPrCount }}</span></p>
     <p><span>{{ 'metrics.closed_pr' | transloco }}:</span> <span [style.color]="getStatColor(repo.pullRequestStats.closedPrCount, comparisonRepo?.pullRequestStats?.closedPrCount)"> {{ repo.pullRequestStats.closedPrCount }}</span></p>
-    <p><span>{{ 'metrics.average_closed_pr' | transloco }} {{repo.averageDays}} {{ 'metrics.days' | transloco }}:</span> <span [style.color]="getStatColor(repo.pullRequestStats.averageClosedPr, comparisonRepo?.pullRequestStats?.averageClosedPr)"> {{ repo.pullRequestStats.averageClosedPr }}</span></p>
+    <p><span>{{ 'metrics.average_closed_pr' | transloco: { days: repo.averageDays } }}:</span> <span [style.color]="getStatColor(repo.pullRequestStats.averageClosedPr, comparisonRepo?.pullRequestStats?.averageClosedPr)"> {{ repo.pullRequestStats.averageClosedPr }}</span></p>
     <p><span>{{ 'metrics.reviewed_pr' | transloco }}:</span> <span [style.color]="getStatColor(repo.pullRequestStats.reviewersPrPercent, comparisonRepo?.pullRequestStats?.reviewersPrPercent)"> {{ repo.pullRequestStats.reviewersPrPercent | number:'1.0-2' }}%</span></p>
     <p><span>{{ 'metrics.assigned_pr' | transloco }}:</span> <span [style.color]="getStatColor(repo.pullRequestStats.assigneesPrPercent, comparisonRepo?.pullRequestStats?.assigneesPrPercent)"> {{ repo.pullRequestStats.assigneesPrPercent | number:'1.0-2' }}%</span></p>
     <p><span>{{ 'metrics.labeled_pr' | transloco }}:</span> <span [style.color]="getStatColor(repo.pullRequestStats.labelsPrPercent, comparisonRepo?.pullRequestStats?.labelsPrPercent)"> {{ repo.pullRequestStats.labelsPrPercent | number:'1.0-2' }}%</span></p>
@@ -82,7 +83,7 @@
   <div class="stats_box">
     <strong>Releases:</strong>
     <p><span>{{ 'metrics.releases_count' | transloco }}:</span> <span [style.color]="getStatColor(repo.releaseStats.releasesCount, comparisonRepo?.releaseStats?.releasesCount)"> {{ repo.releaseStats.releasesCount }}</span></p>
-    <p><span>{{ 'metrics.average_releases' | transloco }} {{repo.averageDays}} {{ 'metrics.days' | transloco }}:</span> <span [style.color]="getStatColor(repo.releaseStats.averageReleases, comparisonRepo?.releaseStats?.averageReleases)"> {{ repo.releaseStats.averageReleases }}</span></p>
+    <p><span>{{ 'metrics.average_releases' | transloco: { days: repo.averageDays } }}:</span> <span [style.color]="getStatColor(repo.releaseStats.averageReleases, comparisonRepo?.releaseStats?.averageReleases)"> {{ repo.releaseStats.averageReleases }}</span></p>
     <p><span>{{ 'metrics.described_releases' | transloco }}:</span> <span [style.color]="getStatColor(repo.releaseStats.descriptionReleasesPercent, comparisonRepo?.releaseStats?.descriptionReleasesPercent)"> {{ repo.releaseStats.descriptionReleasesPercent | number:'1.0-2' }}%</span></p>
     <p><span>{{ 'metrics.collaborative_releases' | transloco }}:</span> <span [style.color]="getStatColor(repo.releaseStats.collaborativeReleasesPercent, comparisonRepo?.releaseStats?.collaborativeReleasesPercent)"> {{ repo.releaseStats.collaborativeReleasesPercent | number:'1.0-2' }}%</span></p>
     <p><span>{{ 'metrics.release_participation' | transloco }}:</span> <span [style.color]="getStatColor(repo.participantStats.releaseParticipationPercent, comparisonRepo?.participantStats?.releaseParticipationPercent)"> {{ repo.participantStats.releaseParticipationPercent | number:'1.0-2' }}%</span></p>

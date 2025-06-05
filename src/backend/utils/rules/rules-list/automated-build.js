@@ -1,24 +1,25 @@
 const { compareStats } = require("../rule-comparator");
 const logger = require('../../../logger');
 
-function evaluateAutomatedBuildsRule(mainRepo, mainRepoId, comparisonRepos) {
+function evaluateAutomatedBuildsRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "DevOps - Automated Build";
-  const description = "El repositorio incluye ficheros workflows de GitHub Actions que automaticen el desarrollo, ahorrando bastante tiempo de desarrollo y testing.";
+  const description = "details.automated_description";
   const documentationUrl = "https://www.agilealliance.org/glossary/automated-build/";
+  var problems = [];
 
   const statsToCompare = [
-    { key: 'action_stats.actionsCount', label: 'Número de ficheros workflow', units: 'ficheros',},
+    { key: 'action_stats.actionsCount', label: 'metrics.workflow_files', units: 'units.files',},
   ];
 
   const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'Superada') {
-    message = 'El repositorio usa de forma consistente la automatización proporcionada por GitHub Actions.';
-  } else if (status === 'No superada') {
-    message = 'El repositorio no tiene suficientes ficheros workflow';
-  } else if (status === 'Sin aplicar') {
-    message = 'El repositorio no usa ningún fichero workflow de GitHub Actions, por lo que no hay ningún tipo de automatización';
+  if (status === 'details.surpassed') {
+    message = 'details.automated_surpassed_message';
+  } else if (status === 'details.not_surpassed') {
+    message = 'details.automated_not_surpassed_message';
+  } else if (status === 'details.not_applied') {
+    message = 'details.automated_not_applied_message';
   } 
 
   logger.info('Regla: ' + ruleName)
@@ -36,7 +37,9 @@ function evaluateAutomatedBuildsRule(mainRepo, mainRepoId, comparisonRepos) {
     totalStats,
     message,
     mainRepoId,
-    details: resultDetails
+    averageDays: averageDays,
+    details: resultDetails,
+    problems
   };
 }
 

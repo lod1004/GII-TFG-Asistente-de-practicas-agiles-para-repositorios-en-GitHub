@@ -2,12 +2,13 @@ const logger = require('../../../logger');
 
 function evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "Extreme Programming - Velocity";
-  const description = "El repositorio tiene indicios de medición de velocidad de trabajo mediante un buen ritmo de cierre de issues. Esto ofrece una forma de trabajo consistente que reducirá el tiempo necesario para el desarrollo";
+  const description = "details.velocity_description";
   const documentationUrl = "https://www.agilealliance.org/glossary/velocity/";
-  
+  var problems = [];
+
   const statsToCompare = [
-    { key: 'issue_stats.averageClosedIssues', label: 'Media de Issues cerradas cada ' + averageDays + ' días', units: 'Issues cerradas',},
-    { key: 'issue_stats.averageCloseTime', label: 'Media de días necesarios para cerrar una Issue', units: 'días',},
+    { key: 'issue_stats.averageClosedIssues', label: 'metrics.average_closed_issues', units: 'units.closed_issues', },
+    { key: 'issue_stats.averageCloseTime', label: 'metrics.average_close_time', units: 'units.days', },
   ];
 
   const resultDetails = [];
@@ -40,13 +41,13 @@ function evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays
 
     let evaluation = 'average';
     if (mainValue === 0) {
-      evaluation = 'Sin aplicar';
+      evaluation = 'details.not_applied';
       Cero++;
     } else if (higherCount >= lowerCount) {
-      evaluation = 'Completa';
+      evaluation = 'details.completed';
       Completa++;
     } else if (lowerCount > higherCount) {
-      evaluation = 'Incompleta';
+      evaluation = 'details.not_completed';
       Incompleta++;
     }
 
@@ -61,23 +62,23 @@ function evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays
     });
   }
 
-  let status = 'Parcialmente superada';
-  if (Completa === statsToCompare.length) status = 'Superada';
-  else if (Cero === statsToCompare.length) status = 'Sin aplicar';
-  else if ((Incompleta + Cero) === statsToCompare.length) status = 'No superada';
+  let status = 'details.partialy_surpassed';
+  if (Completa === statsToCompare.length) status = 'details.surpassed';
+  else if (Cero === statsToCompare.length) status = 'details.not_applied';
+  else if ((Incompleta + Cero) === statsToCompare.length) status = 'details.not_surpassed';
 
   let message = '';
-  if (status === 'Superada') {
-    message = 'El repositorio mantiene la velocidad de trabajo mediante el cierre frecuente de issues.';
-  } else if (status === 'No superada') {
-    message = 'No hay evidencia clara de que el repositorio mantenga la velocidad de trabajo.';
-  } else if (status === 'Sin aplicar') {
-    message = 'No se detectaron issues cerradas.';
+  if (status === 'details.surpassed') {
+    message = 'details.velocity_surpassed_message';
+  } else if (status === 'details.not_surpassed') {
+    message = 'details.velocity_not_surpassed_message';
+  } else if (status === 'details.not_applied') {
+    message = 'details.velocity_not_applied_message';
   } else {
-    const problems = resultDetails
-      .filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar')
-      .map(d => d.label);
-    message = `El repositorio podría mejorar la medición de velocidad en: ${problems.join(' + ')}.`;
+problems = resultDetails
+  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+  .map(d => ({ label: d.label }));
+    message = `details.velocity_partially_surpassed_message`;
   }
 
   logger.info('Regla: ' + ruleName);
@@ -95,7 +96,9 @@ function evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays
     totalStats: statsToCompare.length,
     message,
     mainRepoId,
-    details: resultDetails
+    averageDays: averageDays,
+    details: resultDetails,
+    problems
   };
 }
 

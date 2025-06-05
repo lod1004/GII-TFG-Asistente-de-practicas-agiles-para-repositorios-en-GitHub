@@ -3,26 +3,28 @@ const logger = require('../../../logger');
 
 function evaluateFrequentReleasesRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "Extreme Programming - Frequent Releases";
-  const description = "El repositorio incluye Releases y se van creando nuevas cada cierto tiempo. Esto es útil para ir ofreciendo versiones utilizables de software";
+  const description = "details.automated_description";
   const documentationUrl = "https://www.agilealliance.org/glossary/frequent-releases/";
-  
+  var problems = [];
+
   const statsToCompare = [
-    { key: 'release_stats.releasesCount', label: 'Número de Releases', units: 'Releases',},
-    { key: 'release_stats.averageReleases', label: 'Media de Releases subidas cada ' + averageDays + ' días', units: 'Releases',},
+    { key: 'release_stats.releasesCount', label: 'metrics.releases_count', units: 'units.releases', },
+    { key: 'release_stats.averageReleases', label: 'metrics.average_releases', units: 'units.releases', },
   ];
 
   const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'Superada') {
-    message = 'El repositorio publica Releases de forma frecuente, lo cual es un buen indicio de entrega continua.';
-  } else if (status === 'No superada') {
-    message = 'El repositorio no publica Releases con suficiente frecuencia.';
-  } else if (status === 'Sin aplicar') {
-    message = 'El repositorio no ha publicado ningún tipo de Release.';
+  if (status === 'details.surpassed') {
+    message = 'details.frequent_surpassed_message';
+  } else if (status === 'details.not_surpassed') {
+    message = 'details.frequent_not_surpassed_message';
+  } else if (status === 'details.not_applied') {
+    message = 'details.frequent_not_applied_message';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
-    message = `El repositorio tiene Releases, pero podría mejorar en: ${problems.join(', ')}.`;
+problems = resultDetails
+  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+  .map(d => ({ label: d.label }));    message = `details.frequent_partially_surpassed_message`;
   }
 
   logger.info('Regla: ' + ruleName)
@@ -40,7 +42,9 @@ function evaluateFrequentReleasesRule(mainRepo, mainRepoId, comparisonRepos, ave
     totalStats,
     message,
     mainRepoId,
-    details: resultDetails
+    averageDays: averageDays,
+    details: resultDetails,
+    problems
   };
 }
 

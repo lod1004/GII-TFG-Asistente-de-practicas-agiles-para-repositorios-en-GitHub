@@ -9,6 +9,7 @@ const ruleResultSchema = new mongoose.Schema({
   totalStats: Number,
   message: String,
   mainRepoId: Number,
+  averageDays: Number,
   details: [
     {
       label: String,
@@ -18,8 +19,13 @@ const ruleResultSchema = new mongoose.Schema({
       surpassedCount: Number,
       totalCompared: Number,
       comparedWith: [mongoose.Schema.Types.Mixed]
-    }
-  ]
+    },
+  ],
+    problems: [
+      {
+        label: String
+      }
+    ]
 }, { timestamps: true });
 
 module.exports = mongoose.model("RuleResult", ruleResultSchema);

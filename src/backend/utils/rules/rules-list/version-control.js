@@ -3,29 +3,31 @@ const logger = require('../../../logger');
 
 function evaluateVersionControlRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "DevOps - Version Control";
-  const description = "El repositorio aprovecha en todo lo posible las herramientas de GitHub para el control de versiones. Hay Commits frecuentemente y estos contienen buenas características como descripción y referencias. Esto permite saber en cada Commit qué cambió y por qué, facilitando el volver a versiones anteriores en caso de error";
+  const description = "details.version_description";
   const documentationUrl = "https://www.agilealliance.org/glossary/version-control/";
-  
+  var problems = [];
+
   const statsToCompare = [
-    { key: 'commit_stats.commitCount', label: 'Número de Commits', units: 'Commits',},
-    { key: 'commit_stats.averageCommits', label: 'Media de Commits hechos cada ' + averageDays + ' días', units: 'Commits',},
-    { key: 'commit_stats.titledCommitsPercent', label: 'Porcentaje de Commits con título personalizado', units: '%',},
-    { key: 'commit_stats.descriptionCommitsPercent', label: 'Porcentaje de Commits con descripción', units: '%',},
-    { key: 'commit_stats.referencesCommitsPercent', label: 'Porcentaje de Commits con referencias', units: '%',},
+    { key: 'commit_stats.commitCount', label: 'metrics.number_of_commits', units: 'units.commits', },
+    { key: 'commit_stats.averageCommits', label: 'metrics.average_commits', units: 'units.commits', },
+    { key: 'commit_stats.titledCommitsPercent', label: 'metrics.titled_commits', units: 'units.percentaje', },
+    { key: 'commit_stats.descriptionCommitsPercent', label: 'metrics.described_commits', units: 'units.percentaje', },
+    { key: 'commit_stats.referencesCommitsPercent', label: 'metrics.referenced_commits', units: 'units.percentaje', },
   ];
 
   const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
-  let message = '';
-  if (status === 'Superada') {
-    message = 'El repositorio tiene un buen control de versiones gracias a sus frecuentes Commits de calidad';
-  } else if (status === 'No superada') {
-    message = 'El repositorio no tiene un buen control de versiones. No hay suficientes Commits ni incluyen título personalizado, descripción o referencias';
-  } else if (status === 'Sin aplicar') {
-    message = 'El repositorio no tiene Commits, lo que hace imposible el control de versiones';
+  let message = 'details.';
+  if (status === 'details.surpassed') {
+    message = 'details.version_surpassed_message';
+  } else if (status === 'details.not_surpassed') {
+    message = 'details.version_not_surpassed_message';
+  } else if (status === 'details.not_applied') {
+    message = 'details.version_not_applied_message';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
-    message = `El repositorio parece usar Commits y un control de versiones, pero podría mejorar en: ${problems.join(', ')}.`;
+problems = resultDetails
+  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+  .map(d => ({ label: d.label }));    message = `details.version_partially_surpassed_message`;
   }
 
   logger.info('Regla: ' + ruleName)
@@ -43,10 +45,12 @@ function evaluateVersionControlRule(mainRepo, mainRepoId, comparisonRepos, avera
     totalStats,
     message,
     mainRepoId,
-    details: resultDetails
+    averageDays: averageDays,
+    details: resultDetails,
+    problems
   };
 }
 
 module.exports = {
-    evaluateVersionControlRule
+  evaluateVersionControlRule
 };

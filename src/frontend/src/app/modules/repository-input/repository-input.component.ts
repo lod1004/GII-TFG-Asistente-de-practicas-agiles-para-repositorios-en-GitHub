@@ -56,14 +56,31 @@ export class RepositoryInputComponent implements OnInit {
     }
   }
 
-  addExampleUrl(): void {
-    this.useOldRepositories = false;
-    const url = this.repositoryForm.get('sourceRepositoryUrl')?.value?.trim();
-    if (url && this.exampleUrls.length < 5) {
-      this.exampleUrls.push(url);
-      this.repositoryForm.get('sourceRepositoryUrl')?.reset();
-    }
+addExampleUrl(): void {
+  this.useOldRepositories = false;
+  const url = this.repositoryForm.get('sourceRepositoryUrl')?.value?.trim();
+
+  if (!url) return;
+
+  const alreadyExists = this.exampleUrls.includes(url);
+  if (alreadyExists) {
+    Swal.fire({
+      title: this.translocoService.translate('errors.error'),
+      text: this.translocoService.translate('errors.repeated_url'),
+      icon: 'error',
+      confirmButtonText: this.translocoService.translate('buttons.try_again'),
+      customClass: {
+        confirmButton: 'custom-error-button'
+      }
+    });
+    return;
   }
+
+  if (this.exampleUrls.length < 5) {
+    this.exampleUrls.push(url);
+    this.repositoryForm.get('sourceRepositoryUrl')?.reset();
+  }
+}
 
   removeExampleUrl(index: number): void {
     this.useOldRepositories = false;

@@ -3,27 +3,29 @@ const logger = require('../../../logger');
 
 function evaluateContinuousIntegrationRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "DevOps, Extreme Programming - Continuous integration";
-  const description = "El repositorio tiene señales de integración continua activa. Se cierran Pull Requests de forma consistente a lo largo del tiempo y los ficheros workflow se ejecutan con éxito frecuentemente, logrando un desarrollo de calidad.";
+  const description = "details.continuous_description";
   const documentationUrl = "https://www.agilealliance.org/glossary/continuous-integration/";
-  
+    var problems = [];
+
   const statsToCompare = [
-    { key: 'action_stats.actionFrequency', label: 'Frecuencia de ejecución de los ficheros workflow', units: 'días',},
-    { key: 'action_stats.actionsSuccess', label: 'Porcentaje de éxito de los ficheros workflow', units: '%',},
-    { key: 'pull_request_stats.averageClosedPr', label: 'Media de Pull Requests cerradas cada ' + averageDays + ' días', units: 'Pull Requests cerradas',},
+    { key: 'action_stats.actionFrequency', label: 'metrics.workflow_frequency', units: 'units.days',},
+    { key: 'action_stats.actionsSuccess', label: 'metrics.successful_runs', units: 'units.percentaje',},
+    { key: 'pull_request_stats.averageClosedPr', label: 'metrics.average_closed_pr', units: 'units.closed_prs',},
   ];
 
   const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'Superada') {
-    message = 'El repositorio muestra un uso sólido de integración continua mediante workflows frecuentes, exitosos y buena actividad de Pull Requests.';
-  } else if (status === 'No superada') {
-    message = 'El repositorio no presenta suficientes señales de integración continua activa.';
-  } else if (status === 'Sin aplicar') {
-    message = 'El repositorio no tiene señales de integración continua: no hay workflows ni actividad reciente de Pull Requests.';
+  if (status === 'details.surpassed') {
+    message = 'details.continuous_surpassed_message';
+  } else if (status === 'details.not_surpassed') {
+    message = 'details.continuous_not_surpassed_message';
+  } else if (status === 'details.not_applied') {
+    message = 'details.continuous_not_applied_message';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
-    message = `El repositorio parece usar integración continua, pero podría mejorar en: ${problems.join(', ')}.`;
+problems = resultDetails
+  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+  .map(d => ({ label: d.label }));    message = `details.continuous_partially_surpassed_message`;
   }
 
   logger.info('Regla: ' + ruleName)
@@ -41,7 +43,9 @@ function evaluateContinuousIntegrationRule(mainRepo, mainRepoId, comparisonRepos
     totalStats,
     message,
     mainRepoId,
-    details: resultDetails
+    averageDays: averageDays,
+    details: resultDetails,
+    problems
   };
 }
 

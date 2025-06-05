@@ -1,32 +1,34 @@
 const { compareStats } = require("../rule-comparator");
 const logger = require('../../../logger');
 
-function evaluateBacklogQualityRule(mainRepo, mainRepoId, comparisonRepos) {
+function evaluateBacklogQualityRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "Scrum - Backlog Quality";
-  const description = "El repositorio incluye numerosas issues y de calidad para formar el backlog del proyecto, lo que ayuda a dividir el trabajo en tareas.";
+  const description = "details.backlog_description";
   const documentationUrl = "https://www.agilealliance.org/glossary/backlog/";
+  var problems = [];
 
   const statsToCompare = [
-    { key: 'issue_stats.issuesCount', label: 'Número total de Issues', units: 'Issues',},
-    { key: 'issue_stats.closedIssuesCount', label: 'Número total de Issues cerradas', units: 'Issues cerradas',},
-    { key: 'issue_stats.descriptionIssuesPercent', label: 'Porcentaje de Issues con descripción', units: '%',},
-    { key: 'issue_stats.imagedIssuesPercent', label: 'Porcentaje de Issues con imágenes', units: '%',},
-    { key: 'issue_stats.assignedIssuesPercent', label: 'Porcentaje de Issues con personas asignadas', units: '%',},
-    { key: 'issue_stats.labeledIssuesPercent', label: 'Porcentaje de Issues con etiquetas', units: '%',},
+    { key: 'issue_stats.issuesCount', label: 'metrics.total_issues', units: 'units.issues',},
+    { key: 'issue_stats.closedIssuesCount', label: 'metrics.closed_issues', units: 'units.closed_issues',},
+    { key: 'issue_stats.descriptionIssuesPercent', label: 'metrics.described_issues', units: 'units.percentaje',},
+    { key: 'issue_stats.imagedIssuesPercent', label: 'metrics.imaged_issues', units: 'units.percentaje',},
+    { key: 'issue_stats.assignedIssuesPercent', label: 'metrics.assigned_issues', units: 'units.percentaje',},
+    { key: 'issue_stats.labeledIssuesPercent', label: 'metrics.labeled_issues', units: 'units.percentaje',},
   ];
 
   const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'Superada') {
-    message = 'El repositorio cuenta con un backlog bien documentado y completo, gracias a su uso adecuado de issues.';
-  } else if (status === 'No superada') {
-    message = 'El repositorio no tiene un backlog suficientemente sólido o bien documentado.';
-  } else if (status === 'Sin aplicar') {
-    message = 'El repositorio no contiene issues, por lo tanto, no tiene backlog.';
+  if (status === 'details.surpassed') {
+    message = 'details.backlog_surpassed_message';
+  } else if (status === 'details.not_surpassed') {
+    message = 'details.backlog_not_surpassed_message';
+  } else if (status === 'details.not_applied') {
+    message = 'details.backlog_not_applied_message';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
-    message = `El backlog podría mejorar en: ${problems.join(', ')}.`;
+problems = resultDetails
+  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+  .map(d => ({ label: d.label }));    message = `details.backlog_partially_surpassed_message`;
   }
 
   logger.info('Regla: ' + ruleName)
@@ -44,7 +46,9 @@ function evaluateBacklogQualityRule(mainRepo, mainRepoId, comparisonRepos) {
     totalStats,
     message,
     mainRepoId,
-    details: resultDetails
+    averageDays: averageDays,
+    details: resultDetails,
+    problems
   };
 }
 

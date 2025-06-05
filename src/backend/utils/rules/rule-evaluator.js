@@ -13,15 +13,15 @@ function evaluateAllRules(mainRepo, comparisonRepos, averageDays, mainRepoId) {
   const rules = [];
 
   rules.push(evaluateIterationsRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
-  rules.push(evaluateAutomatedBuildsRule(mainRepo, mainRepoId, comparisonRepos));
+  rules.push(evaluateAutomatedBuildsRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
   rules.push(evaluateVersionControlRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
   rules.push(evaluateContinuousIntegrationRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
-  rules.push(evaluateDefinitionOfDoneRule(mainRepo, mainRepoId, comparisonRepos));
-  rules.push(evaluateBacklogQualityRule(mainRepo, mainRepoId, comparisonRepos));
+  rules.push(evaluateDefinitionOfDoneRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
+  rules.push(evaluateBacklogQualityRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
   rules.push(evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
   rules.push(evaluateFrequentReleasesRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
   rules.push(evaluateCollectiveOwnershipRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
-  rules.push(evaluatePairProgrammingRule(mainRepo, mainRepoId, comparisonRepos));
+  rules.push(evaluatePairProgrammingRule(mainRepo, mainRepoId, comparisonRepos, averageDays));
 
   return rules;
 }

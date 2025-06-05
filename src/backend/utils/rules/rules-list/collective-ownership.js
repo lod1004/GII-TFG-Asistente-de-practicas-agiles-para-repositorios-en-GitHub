@@ -3,30 +3,32 @@ const logger = require('../../../logger');
 
 function evaluateCollectiveOwnershipRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
   const ruleName = "Extreme Programming - Collective Ownership";
-  const description = "Todos los miembros del equipo modifican de forma activa cualquier parte del repositorio. Todos se encargan de todo: hacer Commits, Issues, Pull Requests...";
+  const description = "details.collective_description";
   const documentationUrl = "https://www.agilealliance.org/glossary/collective-ownership/";
-  
+    var problems = [];
+
   const statsToCompare = [
-    { key: 'participant_stats.totalParticipants', label: 'Número de participantes', units: 'participantes',},
-    { key: 'participant_stats.issueParticipationPercent', label: 'Porcentaje de participación en Issues', units: '%',},
-    { key: 'participant_stats.commitParticipationPercent', label: 'Porcentaje de participación en Commits', units: '%',},
-    { key: 'participant_stats.prParticipationPercent', label: 'Porcentaje de participación en Pull Requests', units: '%',},
-    { key: 'participant_stats.releaseParticipationPercent', label: 'Porcentaje de participación en Releases', units: '%',},
-    { key: 'participant_stats.averageUserActivity', label: 'Actividad media de los usuarios cada ' + averageDays + ' días', units: 'participaciones',},
+    { key: 'participant_stats.totalParticipants', label: 'metrics.total_participants', units: 'units.participants',},
+    { key: 'participant_stats.issueParticipationPercent', label: 'metrics.issue_participation', units: 'units.percentaje',},
+    { key: 'participant_stats.commitParticipationPercent', label: 'metrics.commit_participation', units: 'units.percentaje',},
+    { key: 'participant_stats.prParticipationPercent', label: 'metrics.pr_participation', units: 'units.percentaje',},
+    { key: 'participant_stats.releaseParticipationPercent', label: 'metrics.release_participation', units: 'units.percentaje',},
+    { key: 'participant_stats.averageUserActivity', label: 'metrics.average_activity', units: 'units.participations',},
   ];
 
   const { status, resultDetails, totalStats, statsBetter } = compareStats(mainRepo, comparisonRepos, statsToCompare);
 
   let message = '';
-  if (status === 'Superada') {
-    message = 'El repositorio refleja una fuerte propiedad colectiva. Todos los miembros participan en múltiples aspectos del desarrollo de forma activa.';
-  } else if (status === 'No superada') {
-    message = 'No se detecta propiedad colectiva clara. La mayoría del trabajo está concentrado en los mismos pocos miembros.';
-  } else if (status === 'Sin aplicar') {
-    message = 'Los usuarios no han participado en nada en el repositorio';
+  if (status === 'details.surpassed') {
+    message = 'details.collective_surpassed_message';
+  } else if (status === 'details.not_surpassed') {
+    message = 'details.collective_not_surpassed_message';
+  } else if (status === 'details.not_applied') {
+    message = 'details.collective_not_applied_message';
   } else {
-    const problems = resultDetails.filter(d => d.evaluation === 'Incompleta' || d.evaluation === 'Sin aplicar').map(d => d.label);
-    message = `Hay indicios de colaboración, pero podría mejorar en: ${problems.join(', ')}.`;
+problems = resultDetails
+  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+  .map(d => ({ label: d.label }));    message = `details.collective_partially_surpassed_message`;
   }
 
   logger.info('Regla: ' + ruleName)
@@ -44,7 +46,9 @@ function evaluateCollectiveOwnershipRule(mainRepo, mainRepoId, comparisonRepos, 
     totalStats,
     message,
     mainRepoId,
-    details: resultDetails
+    averageDays: averageDays,
+    details: resultDetails,
+    problems
   };
 }
 

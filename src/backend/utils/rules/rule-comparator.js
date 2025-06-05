@@ -19,13 +19,13 @@ function compareStats(mainRepo, comparisonRepos, statsToCompare) {
 
     let evaluation = 'average';
     if (mainValue === 0) {
-      evaluation = 'Sin aplicar';
+      evaluation = 'details.not_applied';
       Cero++;
     } else if (higherCount >= lowerCount) {
-      evaluation = 'Completa';
+      evaluation = 'details.completed';
       Completa++;
     } else if (lowerCount > higherCount) {
-      evaluation = 'Incompleta';
+      evaluation = 'details.not_completed';
       Incompleta++;
     }
 
@@ -40,10 +40,10 @@ function compareStats(mainRepo, comparisonRepos, statsToCompare) {
     });
   }
 
-  let status = 'Parcialmente superada';
-  if (Completa === statsToCompare.length) status = 'Superada';
-  else if (Cero === statsToCompare.length) status = 'Sin aplicar';
-  else if ((Incompleta + Cero) === statsToCompare.length) status = 'No superada';
+  let status = 'details.partialy_surpassed';
+  if (Completa === statsToCompare.length) status = 'details.surpassed';
+  else if (Cero === statsToCompare.length) status = 'details.not_applied';
+  else if ((Incompleta + Cero) === statsToCompare.length) status = 'details.not_surpassed';
 
   return { 
     status, 

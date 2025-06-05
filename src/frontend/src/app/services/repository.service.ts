@@ -12,6 +12,7 @@ export class RepositoryService {
   constructor(private http: HttpClient) { }
 
   checkUrls(payload: { main: string; examples: string[] }) {
+    console.log("a")
     return this.http.post<{ success: boolean }>(`${this.apiUrl}/repos/check-urls`, payload);
   }
 
