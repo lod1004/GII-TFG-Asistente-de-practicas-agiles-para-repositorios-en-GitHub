@@ -2,10 +2,11 @@
     "labels": {
         "app_title": "Agile practices wizard for GitHub repositories",
         "project_wiki": "Project Wiki",
-        "footer": "Bachelor’s Degree in Computer Engineering – University of Burgos",
+        "footer": "Bachelor's Degree in Computer Engineering - University of Burgos",
         "saved_repositories": "Saved reference repository groups",
         "agile_practices": "Agile practices",
-        "quality_metrics": "Process metrics comparison"
+        "quality_metrics": "Process metrics comparison",
+        "url_format": "https://github.com/author/repository"
     },
     "login": {
         "login": "Login",
@@ -143,6 +144,8 @@
         "url_verification_error": "Error verifying URLs.",
         "internal_error_url_verification": "Internal error sending the URLs",
         "url_error": "Could not access the repositories. Check the URLs and make sure they exist and are public.",
+        "invalid_url_format": "The URL must be a valid GitHub repository (https://github.com/author/repository).",
+        "more_than_5_urls_en": "You can't add more than 5 URLs.",
         "repeated_url": "You already added that repository",
         "password_match_error": "Passwords do not match",
         "username_duplicated_error": "Invalid username",

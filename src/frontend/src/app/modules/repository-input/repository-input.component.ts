@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { MaterialModule } from '../shared/material.module';
+import { MaterialModule } from '../../protected/material.module';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 @Component({
@@ -50,37 +50,79 @@ export class RepositoryInputComponent implements OnInit {
 
   addMainUrl(): void {
     const url = this.repositoryForm.get('mainRepositoryUrl')?.value?.trim();
+
+    if (!url) return;
+
+    const match = url.match(/^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/);
+    if (!match) {
+      Swal.fire({
+        title: this.translocoService.translate('errors.error'),
+        text: this.translocoService.translate('errors.invalid_url_format'),
+        icon: 'error',
+        confirmButtonText: this.translocoService.translate('buttons.try_again'),
+        customClass: {
+          confirmButton: 'custom-error-button'
+        }
+      });
+      return;
+    }
+
     if (url) {
       this.mainUrl = url;
       this.repositoryForm.get('mainRepositoryUrl')?.reset();
     }
   }
 
-addExampleUrl(): void {
-  this.useOldRepositories = false;
-  const url = this.repositoryForm.get('sourceRepositoryUrl')?.value?.trim();
+  addExampleUrl(): void {
+    this.useOldRepositories = false;
+    const url = this.repositoryForm.get('sourceRepositoryUrl')?.value?.trim();
 
-  if (!url) return;
+    if (!url) return;
 
-  const alreadyExists = this.exampleUrls.includes(url);
-  if (alreadyExists) {
-    Swal.fire({
-      title: this.translocoService.translate('errors.error'),
-      text: this.translocoService.translate('errors.repeated_url'),
-      icon: 'error',
-      confirmButtonText: this.translocoService.translate('buttons.try_again'),
-      customClass: {
-        confirmButton: 'custom-error-button'
-      }
-    });
-    return;
+    const match = url.match(/^https?:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/);
+    if (!match) {
+      Swal.fire({
+        title: this.translocoService.translate('errors.error'),
+        text: this.translocoService.translate('errors.invalid_url_format'),
+        icon: 'error',
+        confirmButtonText: this.translocoService.translate('buttons.try_again'),
+        customClass: {
+          confirmButton: 'custom-error-button'
+        }
+      });
+      return;
+    }
+
+    const alreadyExists = this.exampleUrls.includes(url);
+    if (alreadyExists) {
+      Swal.fire({
+        title: this.translocoService.translate('errors.error'),
+        text: this.translocoService.translate('errors.repeated_url'),
+        icon: 'error',
+        confirmButtonText: this.translocoService.translate('buttons.try_again'),
+        customClass: {
+          confirmButton: 'custom-error-button'
+        }
+      });
+      return;
+    }
+
+    if (this.exampleUrls.length < 5) {
+      this.exampleUrls.push(url);
+      this.repositoryForm.get('sourceRepositoryUrl')?.reset();
+    } else {
+      Swal.fire({
+        title: this.translocoService.translate('errors.error'),
+        text: this.translocoService.translate('errors.more_than_5_urls'),
+        icon: 'error',
+        confirmButtonText: this.translocoService.translate('buttons.try_again'),
+        customClass: {
+          confirmButton: 'custom-error-button'
+        }
+      });
+    }
   }
 
-  if (this.exampleUrls.length < 5) {
-    this.exampleUrls.push(url);
-    this.repositoryForm.get('sourceRepositoryUrl')?.reset();
-  }
-}
 
   removeExampleUrl(index: number): void {
     this.useOldRepositories = false;

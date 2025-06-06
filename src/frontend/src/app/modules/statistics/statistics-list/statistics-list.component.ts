@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { MaterialModule } from '../../shared/material.module';
+import { MaterialModule } from '../../../protected/material.module';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({

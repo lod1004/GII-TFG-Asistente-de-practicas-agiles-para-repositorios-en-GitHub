@@ -31,8 +31,13 @@
                 <label *ngIf="!isChangingPassword" class="auth_input_label">{{ 'login.password' | transloco }}</label>
                 <label *ngIf="isChangingPassword" class="auth_input_label">{{ 'login.old_password' | transloco
                     }}</label>
-                <div style="display: flex;">
-                    <input matInput id="password" formControlName="passwordCtrl" type="password" class="url_input">
+                <div style="display: flex; position: relative;">
+                    <input matInput [type]="showPassword ? 'text' : 'password'" id="password"
+                        formControlName="passwordCtrl" class="url_input">
+                    <button type="button" (click)="togglePasswordVisibility()"
+                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+                        <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
                 </div>
             </div>
 
@@ -41,9 +46,13 @@
                     }}</label>
                 <label *ngIf="isChangingPassword" class="auth_input_label">{{ 'login.new_password' | transloco
                     }}</label>
-                <div style="display: flex;">
-                    <input matInput id="repeatPassword" formControlName="repeatPasswordCtrl" type="password"
-                        class="url_input">
+                <div style="display: flex; position: relative;">
+                    <input matInput [type]="showRepeatPassword ? 'text' : 'password'" id="repeatPassword"
+                        formControlName="repeatPasswordCtrl" class="url_input">
+                    <button type="button" (click)="toggleRepeatPasswordVisibility()"
+                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
+                        <mat-icon>{{ showRepeatPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MaterialModule } from '../material.module';
+import { MaterialModule } from '../../../protected/material.module';
 import Swal from 'sweetalert2';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { AuthService } from '../../../services/auth.service';

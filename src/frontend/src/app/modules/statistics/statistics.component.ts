@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from '../../services/repository.service';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../shared/material.module';
+import { MaterialModule } from '../../protected/material.module';
 import { StatisticsListComponent } from './statistics-list/statistics-list.component';
 import { TranslocoModule } from '@jsverse/transloco';
 

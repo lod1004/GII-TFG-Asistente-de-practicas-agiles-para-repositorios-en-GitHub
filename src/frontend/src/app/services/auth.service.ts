@@ -28,7 +28,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/auth/change-password`, payload);
   }
 
-    changeLanguage(payload: { username: string, languageCode: string }): Observable<any> {
-      return this.http.post(`${this.apiUrl}/auth/change-language`, payload);
-    }
+  changeLanguage(payload: { username: string, languageCode: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/change-language`, payload);
   }
+}

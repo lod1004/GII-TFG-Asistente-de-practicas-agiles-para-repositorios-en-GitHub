@@ -5,7 +5,7 @@
       <label class="input_label_2">{{'messages.input_main_url'| transloco}}</label>
       <div class="url_input_container">
         <input matInput id="mainRepositoryUrl" formControlName="mainRepositoryUrl" type="text"
-          placeholder="https://github.com/'author'/'repository'" class="url_input">
+          placeholder="{{'labels.url_format' | transloco}}" class="url_input">
         <button matSuffix mat-icon-button [disabled]="!repositoryForm.get('mainRepositoryUrl')?.value"
           (click)="addMainUrl()" class="add_url_button">
           <mat-icon class="add_icon" [class.disabled]="!repositoryForm.get('mainRepositoryUrl')?.value">
@@ -27,7 +27,7 @@
       </div>
       <div class="url_input_container">
         <input matInput id="sourceRepositoryUrl" formControlName="sourceRepositoryUrl" type="text"
-          placeholder="https://github.com/'author'/'repository'" class="url_input" />
+          placeholder="{{'labels.url_format' | transloco}}" class="url_input" />
         <button matSuffix mat-icon-button [disabled]="!repositoryForm.get('sourceRepositoryUrl')?.value"
           (click)="addExampleUrl()" class="add_url_button">
           <mat-icon class="add_icon" [class.disabled]="!repositoryForm.get('sourceRepositoryUrl')?.value">

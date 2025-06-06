@@ -5,7 +5,8 @@
         "footer": "Grado en ingeniería informática - Universidad de Burgos",
         "saved_repositories": "Grupos de repositorios de referencia guardados",
         "agile_practices": "Prácticas ágiles",
-        "quality_metrics": "Comparación de métricas de proceso"
+        "quality_metrics": "Comparación de métricas de proceso",
+        "url_format": "https://github.com/autor/repositorio"
     },
     "login": {
         "login": "Inicio de sesión",
@@ -143,6 +144,8 @@
         "url_verification_error": "Error al verificar las URLs.",
         "internal_error_url_verification": "Error interno al enviar las URLs",
         "url_error": "No se pudo acceder a los repositorios. Verifique sus URLs y asegúrese de que existen y son públicos.",
+        "invalid_url_format": "La URL debe ser un repositorio válido de GitHub (https://github.com/autor/repositorio).",
+        "more_than_5_urls": "No puedes añadir más de 5 URLs.",
         "repeated_url": "Ya has añadido ese repositorio",
         "password_match_error": "Las contraseñas no coinciden",
         "username_duplicated_error": "Nombre de usuario no válido",

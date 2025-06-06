@@ -14,11 +14,12 @@ import { RouterLink } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { MaterialModule } from '../../../protected/material.module';
 
 @Component({
   selector: 'app-start-page',
   standalone: true,
-  imports: [CommonModule, TranslocoModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, TranslocoModule, MaterialModule, RouterLink, ReactiveFormsModule],
   templateUrl: './start-page.component.html',
   styleUrl: './start-page.component.css'
 })
@@ -27,6 +28,9 @@ export class StartPageComponent implements OnInit, OnChanges {
   @Input() isRegistering = false;
   @Input() isChangingPassword = false;
   @Input() authSuccess: boolean = false;
+
+  showPassword: boolean = false;
+  showRepeatPassword: boolean = false;
 
   @Output() formSubmitted = new EventEmitter<{
     username: string;
@@ -82,5 +86,13 @@ export class StartPageComponent implements OnInit, OnChanges {
     }
 
     this.formSubmitted.emit({ username, password, repeatPassword });
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleRepeatPasswordVisibility() {
+    this.showRepeatPassword = !this.showRepeatPassword;
   }
 }
