@@ -94,7 +94,7 @@
         "intervals_number_explanation": "(Cada intervalo será 1 mes del tiempo de vida del repositorio)",
         "intervals_number_explanation_2": "(Cada intervalo será 1/4 del tiempo de vida del repositorio)",
         "start_interval": "Intervalo de inicio",
-        "end_interval": "Intervalño de fin",
+        "end_interval": "Intervalo de fin",
         "days_number": "Número de días para calcular las métricas medias",
         "days_number_short": "Días para calcular las métricas medias"
     },
@@ -117,6 +117,11 @@
         "close": "Cerrar"
     },
     "messages": {
+        "username_input": "Introduce aquí tu nombre de usuario",
+        "password_input": "Introduce aquí tu contraseña",
+        "old_password_input": "Introduce aquí tu contraseña actual",
+        "new_password_input": "Introduce aquí tu nueva contraseña",
+        "repeat_password_input": "Repite la contraseña",
         "input_main_url": "Introduce la URL de un repositorio para analizar",
         "input_references_url": "Introduce repositorios de referencia (Max 5)",
         "analyzed_from": "Analizado desde",

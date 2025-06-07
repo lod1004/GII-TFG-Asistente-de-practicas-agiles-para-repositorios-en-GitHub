@@ -23,7 +23,8 @@
             <div class="auth_input">
                 <label class="auth_input_label">{{ 'login.username' | transloco }}</label>
                 <div style="display: flex;">
-                    <input matInput id="username" formControlName="usernameCtrl" type="text" class="url_input">
+                    <input matInput id="username" formControlName="usernameCtrl" type="text" class="url_input"
+                        [placeholder]="'messages.username_input' | transloco">
                 </div>
             </div>
 
@@ -33,7 +34,8 @@
                     }}</label>
                 <div style="display: flex; position: relative;">
                     <input matInput [type]="showPassword ? 'text' : 'password'" id="password"
-                        formControlName="passwordCtrl" class="url_input">
+                        formControlName="passwordCtrl" class="url_input"
+                        [placeholder]="isChangingPassword ? ('messages.old_password_input' | transloco) : ('messages.password_input' | transloco)">
                     <button type="button" (click)="togglePasswordVisibility()"
                         style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
                         <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
@@ -48,13 +50,15 @@
                     }}</label>
                 <div style="display: flex; position: relative;">
                     <input matInput [type]="showRepeatPassword ? 'text' : 'password'" id="repeatPassword"
-                        formControlName="repeatPasswordCtrl" class="url_input">
+                        formControlName="repeatPasswordCtrl" class="url_input"
+                        [placeholder]="isChangingPassword ? ('messages.new_password_input' | transloco) : ('messages.repeat_password_input' | transloco)">
                     <button type="button" (click)="toggleRepeatPasswordVisibility()"
                         style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
                         <mat-icon>{{ showRepeatPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
                     </button>
                 </div>
             </div>
+
 
             <div *ngIf="authForm.get('repeatPasswordCtrl')?.errors?.['pattern'] && authForm.get('repeatPasswordCtrl')?.touched"
                 class="error_message">

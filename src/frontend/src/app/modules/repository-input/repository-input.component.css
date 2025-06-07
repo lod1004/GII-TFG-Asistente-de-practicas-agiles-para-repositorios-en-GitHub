@@ -58,8 +58,8 @@
 }
 
 .add_icon.disabled {
-  color: #888888;
-  background-color: #e0e0e0;
+    color: #888888;
+    background-color: #e0e0e0;
 }
 
 .remove_icon {
@@ -70,10 +70,9 @@
 
 .arrow_icon {
     color: #FFFFFF;
-    height: 5rem;
-    width: 5rem;
-    font-size: 4rem;
-    border-radius: 100%;
+    align-self: center;
+    margin-right: 0.5rem;
+    transform: scale(2);
 }
 
 .add_icon:hover {
@@ -220,11 +219,12 @@
 }
 
 .group_item {
+    margin-left: -1.5rem;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     background: #c7c7c7;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 1rem;
 }
 
 .group_item:hover {
@@ -249,4 +249,32 @@
 .explanation_button:hover {
     cursor: pointer;
     background-color: #383838;
+}
+
+.group_item_container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.group_item {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.delete_group_button {
+    border-radius: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.delete_group_button:hover {
+    background-color: #CCCCCC;
+}
+
+.material-icons {
+    font-size: 1.5rem;
 }

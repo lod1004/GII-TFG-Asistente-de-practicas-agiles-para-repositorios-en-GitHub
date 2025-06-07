@@ -307,6 +307,10 @@ export class RepositoryInputComponent implements OnInit {
     this.closePreviousReposModal();
   }
 
+  deleteRepoGroup(groupToDelete: any): void {
+    this.previousRepoGroups = this.previousRepoGroups.filter(group => group !== groupToDelete);
+  }
+
   changeParametersAplication() {
     this.applyParametersToOldRepositories = !this.applyParametersToOldRepositories
   }

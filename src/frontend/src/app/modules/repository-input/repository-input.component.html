@@ -23,7 +23,8 @@
     <div class="url_container" style="margin-top: 3rem;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <label class="input_label_2">{{'messages.input_references_url'| transloco}}</label>
-        <button mat-button class="old_repos_button" (click)="openPreviousReposModal()">{{ 'buttons.saved_repositories' | transloco }}</button>
+        <button mat-button class="old_repos_button" (click)="openPreviousReposModal()">{{ 'buttons.saved_repositories' |
+          transloco }}</button>
       </div>
       <div class="url_input_container">
         <input matInput id="sourceRepositoryUrl" formControlName="sourceRepositoryUrl" type="text"
@@ -94,8 +95,7 @@
     </div>
     <br>
 
-    <div *ngIf="repositoryForm.controls.useTimeIntervals?.value == true" class="parameters_2"
-      style="margin-top: 1rem;">
+    <div *ngIf="repositoryForm.controls.useTimeIntervals?.value == true" class="parameters_2" style="margin-top: 1rem;">
       <div class="optional_parameters">
         <div
           style="width: 100%; background-color: #212121; border-radius: 1rem; display: flex; flex-direction: column;">
@@ -135,14 +135,14 @@
           </div>
           <br>
 
-          <div style="display: flex; justify-content: space-around;">
+          <div style="display: flex; justify-content: space-around; margin-bottom: 1rem;">
             <div class="url_container">
               <label class="input_label">
                 {{ 'parameters.start_interval' | transloco }}
                 <input id="startTimeInterval" formControlName="startTimeInterval" type="number" class="number_input" />
               </label>
             </div>
-            <div>
+            <div style="display: flex;">
               <mat-icon class="arrow_icon">arrow_forward</mat-icon>
             </div>
             <div class="url_container">
@@ -188,26 +188,37 @@
           </span>
         </div>
         <ul *ngIf="previousRepoGroups.length != 0">
-          <li *ngFor="let group of previousRepoGroups" class="group_item" (click)="selectRepoGroup(group)">
-            <ul>
-              <li *ngFor="let repo of group.repositories" style="font-size: 0.9rem; margin-bottom: 0.5rem;">
-                <div><strong>{{ repo.repoTitle }}</strong></div>
-                <div style="font-size: 0.8rem; color: #666;">
-                  {{ 'messages.analyzed_from' | transloco }} {{ repo.startDate | date:'dd/MM/yyyy' }} {{ 'messages.to' | transloco }} {{ repo.endDate | date:'dd/MM/yyyy'
-                  }}<br>
-                </div>
-              </li>
-              <span>
-                {{ 'parameters.days_number' | transloco }}: {{ group.repositories[0].averageDays }}<br>
-              </span>
-              <span>
-                {{ 'messages.created_on' | transloco }}: {{ group.repositories[0].createdAt | date:'dd/MM/yyyy' }} {{ 'messages.at' | transloco }} {{
-                group.repositories[0].createdAt | date:'h:mm:ss' }}
-              </span>
-            </ul>
+          <li *ngFor="let group of previousRepoGroups" class="group_item_container">
+            <div class="group_item">
+
+              <button class="delete_group_button" (click)="deleteRepoGroup(group); $event.stopPropagation()">
+                <i class="material-icons" style="color: #f26e6e;">delete</i>
+              </button>
+
+              <div (click)="selectRepoGroup(group)">
+                <ul>
+                  <li *ngFor="let repo of group.repositories" style="font-size: 0.9rem; margin-bottom: 0.5rem;">
+                    <div><strong>{{ repo.repoTitle }}</strong></div>
+                    <div style="font-size: 0.8rem; color: #666;">
+                      {{ 'messages.analyzed_from' | transloco }} {{ repo.startDate | date:'dd/MM/yyyy' }}
+                      {{ 'messages.to' | transloco }} {{ repo.endDate | date:'dd/MM/yyyy' }}<br>
+                    </div>
+                  </li>
+                  <span>
+                    {{ 'parameters.days_number' | transloco }}: {{ group.repositories[0].averageDays }}<br>
+                  </span>
+                  <span>
+                    {{ 'messages.created_on' | transloco }}: {{ group.repositories[0].createdAt | date:'dd/MM/yyyy' }}
+                    {{ 'messages.at' | transloco }} {{ group.repositories[0].createdAt | date:'h:mm:ss' }}
+                  </span>
+                </ul>
+              </div>
+            </div>
           </li>
         </ul>
-        <button class="close_modal" style="color: #f26e6e;" (click)="closePreviousReposModal()">{{'buttons.close' | transloco }}</button>
+
+        <button class="close_modal" style="color: #f26e6e;" (click)="closePreviousReposModal()">{{'buttons.close' |
+          transloco }}</button>
       </div>
     </div>
   </ng-template>

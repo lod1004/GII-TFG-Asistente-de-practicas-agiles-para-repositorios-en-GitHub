@@ -117,6 +117,11 @@
         "close": "Close"
     },
     "messages": {
+        "username_input": "Enter your username here",
+        "password_input": "Enter your password here",
+        "old_password_input": "Enter your current password here",
+        "new_password_input": "Enter your new password here",
+        "repeat_password_input": "Repeat the password",
         "input_main_url": "Enter a repository URL to analyze",
         "input_references_url": "Enter reference repositories (Max 5)",
         "analyzed_from": "Analyzed from",
