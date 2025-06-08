@@ -21,8 +21,9 @@ La visión general de este proyecto abarca los objetivos descritos a continuaci�
 
 \end{itemize}
 
-\section{Catálogo de requisitos funcionales}
+\section{Catálogo de requisitos}
 
+\subsection{Requisitos funcionales}
 A continuación se puede observar un listado de todos los requisitos funcionales considerados para la aplicación realizada en este proyecto.
 
 \begin{itemize}
@@ -55,56 +56,9 @@ A continuación se puede observar un listado de todos los requisitos funcionales
     \item \textbf{RF-14} – Visualización de la comparación de los valores numéricos de las medidas de calidad de proceso entre el repositorio a analizar y los repositorios de referencia.
 \end{itemize}
 
-\section{Especificación de requisitos funcionales}
+\subsection{Requisitos no funcionales}
 
-A continuación se describen de forma detallada los requisitos funcionales del sistema.
-
-\subsection*{RF-01 – Creación de una cuenta de usuario}
-El sistema debe permitir a los usuarios crear una cuenta personal mediante un formulario de registro. Esta funcionalidad es necesaria para garantizar la personalización de la experiencia, el almacenamiento de configuraciones y el acceso a funcionalidades avanzadas, como la carga de repositorios de referencia o la consulta del historial de análisis realizados; además de garantizar seguridad y control de acceso a la aplicación.
-
-\subsection*{RF-02 – Inicio  de sesión}
-Los usuarios registrados deben poder iniciar sesión en el sistema para acceder a sus perfiles y funcionalidades asociadas mediante un nombre de usuario único y una contraseña que se almacenará hasheada para garantizar la seguridad del almacenaje de perfiles de usuario en la base de datos.
-
-\subsection*{RF-03 – Cierre de sesión}
-Los usuarios pueden cerrar sesión de forma segura al finalizar su uso, tanto para finalizar de forma segurasu actividad o cambiar de cuenta por diferentes motivos como el uso de varias cuentas personalizadas con diferentes ajustes y/o grupos de repositorios almacenados.
-
-\subsection*{RF-04 – Cambio de contraseña}
-El sistema debe permitir a los usuarios modificar la contraseña de su cuenta en cualquier momento, con el fin de mantener la seguridad y el control sobre su acceso. El proceso debe incluir medidas de validación para evitar contraseñas débiles o inseguras.
-
-\subsection*{RF-05 – Cambio de idioma de la interfaz}
-La interfaz de la aplicación debe ser multilingüe, permitiendo a los usuarios seleccionar el idioma que prefieran entre las opciones disponibles. Esto contribuye a la internacionalización del software, mejora la accesibilidad y facilita su uso en contextos internacionales o multilingües.
-
-\subsection*{RF-06 – Introducción y validación de URLs de repositorios}
-El sistema debe permitir a los usuarios introducir la URL de uno o varios repositorios públicos de GitHub. La aplicación validará que las URLs introducidas sean correctas, que los repositorios estén disponibles y que se pueda acceder a ellos para su análisis para infromar al usuario de que está introduciendo repositorios válidos y de manera correcta.
-
-\subsection*{RF-07 – Selección del número de días para métricas temporales}
-El sistema debe permitir al usuario definir un número de días a considerar como ventana temporal para el cálculo de medidas de calidad de proceso relacionadas con medias. Esta opción permite realizar análisis adaptados a periodos de mayor o menor longitud de actividad dentro del proyecto.
-
-\subsection*{RF-08 – Selección del ámbito temporal del análisis}
-Los usuarios podrán definir si los repositorios se analizarán al completo, lo cual abarcaría todo su tiempo de vida desde elñ primer \textit{commit} hasta el último, o por intervalos de tiempo ajustables.
-
-\subsection*{RF-09 – Selección del tipo de intervalos de tiempo}
-El sistema debe ofrecer la posibilidad de seleccionar el tipo de intervalo temporal para el análisis, ya sean intervalos relativos, que abarquen cuartos de la vida del repositorio, o intervalos absolutos que equivalgan a meses de vida. Esta opción facilita la visualización de tendencias y eficiencia de trabajo en distintas fases del desarrollo de software.
-
-\subsection*{RF-10 – Ajuste manual de intervalos de tiempo}
-Además de seleccionar el tipo de intervalo, el usuario podrá definir manualmente los intervalos exactos de tiempo que desea analizar (Por ejemplo el primer y segundo cuarto, lo cual es equivalente a la primera mitad del repositorio para los intervalos relativos, o del tercer al sexto mes de vida del repositorio para los intervalos absolutos). Esta funcionalidad avanzada permite focalizar el análisis en momentos clave del desarrollo del proyecto.
-
-\subsection*{RF-11 – Carga de grupos de repositorios de referencia}
-La aplicación debe permitir al usuario cargar grupos de repositorios previamente definidos como referencia. Esto permite al usuario repetir comparaciones o realizar comparaciones muy similares evitando el tiempo de extracción de medidas de calidad de proceso.
-
-\subsection*{RF-12 – Eliminación de grupos de referencia cargados*}
-El usuario también debe tener la posibilidad de eliminar grupos de repositorios de referencia previamente cargados, con el fin de mantener organizada su área de trabajo y adaptar el análisis a nuevos contextos o criterios de comparación.
-
-\subsection*{RF-13 – Visualización de la evaluación de prácticas ágiles}
-Una vez realizado el análisis, el sistema debe mostrar una evaluación del repositorio analizado en función de su cumplimiento de buenas prácticas ágiles. Esta evaluación debe representarse de forma clara y comprensible en forma de reglas que indiquen visualmente en qué aspectos se usan de forma sólida las metodologías ágiles y en qué aspectos hay opción de mejora.
-
-\subsection*{RF-14 – Comparación con repositorios de referencia}
-La aplicación debe permitir comparar los valores de todas las métricas extraídas del repositorio analizado con los correspondientes valores de los repositorios de referencia seleccionados. Esta comparación se visualizará mediante listas que ayuden a respaldar la evaluación del uso de prácticas ágiles en los repositorios.
-
-
-\section{Catálogo de requisitos no funcionales}
-
-A continuación se puede observar un listado de todos los requisitos no funcionales considerados para la aplicación realizada en este proyecto.
+Continuando los requisistos del proyecto, más adelante se encuentra un listado de todos los requisitos no funcionales considerados para la aplicación realizada en este proyecto.
 
 \begin{itemize}
     \item \textbf{RNF-01} Modularidad
@@ -120,29 +74,84 @@ A continuación se puede observar un listado de todos los requisitos no funciona
     \item \textbf{RNF-06} Navegación intuitiva
 \end{itemize}
 
-\section{Especificación de requisitos no funcionales}
+\section{Especificación de requisitos}
+
+\subsection{Requisitos funcionales}
+
+A continuación se describen de forma detallada los requisitos funcionales del sistema.
+
+\begin{itemize}
+
+    \item *{RF-01 – Creación de una cuenta de usuario}
+    El sistema debe permitir a los usuarios crear una cuenta personal mediante un formulario de registro. Esta funcionalidad es necesaria para garantizar la personalización de la experiencia, el almacenamiento de configuraciones y el acceso a funcionalidades avanzadas, como la carga de repositorios de referencia o la consulta del historial de análisis realizados; además de garantizar seguridad y control de acceso a la aplicación.
+    
+    \item*{RF-02 – Inicio  de sesión}
+    Los usuarios registrados deben poder iniciar sesión en el sistema para acceder a sus perfiles y funcionalidades asociadas mediante un nombre de usuario único y una contraseña que se almacenará hasheada para garantizar la seguridad del almacenaje de perfiles de usuario en la base de datos.
+    
+    \item*{RF-03 – Cierre de sesión}
+    Los usuarios pueden cerrar sesión de forma segura al finalizar su uso, tanto para finalizar de forma segurasu actividad o cambiar de cuenta por diferentes motivos como el uso de varias cuentas personalizadas con diferentes ajustes y/o grupos de repositorios almacenados.
+    
+    \item*{RF-04 – Cambio de contraseña}
+    El sistema debe permitir a los usuarios modificar la contraseña de su cuenta en cualquier momento, con el fin de mantener la seguridad y el control sobre su acceso. El proceso debe incluir medidas de validación para evitar contraseñas débiles o inseguras.
+    
+    \item*{RF-05 – Cambio de idioma de la interfaz}
+    La interfaz de la aplicación debe ser multilingüe, permitiendo a los usuarios seleccionar el idioma que prefieran entre las opciones disponibles. Esto contribuye a la internacionalización del software, mejora la accesibilidad y facilita su uso en contextos internacionales o multilingües.
+    
+    \item*{RF-06 – Introducción y validación de URLs de repositorios}
+    El sistema debe permitir a los usuarios introducir la URL de uno o varios repositorios públicos de GitHub. La aplicación validará que las URLs introducidas sean correctas, que los repositorios estén disponibles y que se pueda acceder a ellos para su análisis para infromar al usuario de que está introduciendo repositorios válidos y de manera correcta.
+    
+    \item*{RF-07 – Selección del número de días para métricas temporales}
+    El sistema debe permitir al usuario definir un número de días a considerar como ventana temporal para el cálculo de medidas de calidad de proceso relacionadas con medias. Esta opción permite realizar análisis adaptados a periodos de mayor o menor longitud de actividad dentro del proyecto.
+    
+    \item*{RF-08 – Selección del ámbito temporal del análisis}
+    Los usuarios podrán definir si los repositorios se analizarán al completo, lo cual abarcaría todo su tiempo de vida desde elñ primer \textit{commit} hasta el último, o por intervalos de tiempo ajustables.
+    
+    \item*{RF-09 – Selección del tipo de intervalos de tiempo}
+    El sistema debe ofrecer la posibilidad de seleccionar el tipo de intervalo temporal para el análisis, ya sean intervalos relativos, que abarquen cuartos de la vida del repositorio, o intervalos absolutos que equivalgan a meses de vida. Esta opción facilita la visualización de tendencias y eficiencia de trabajo en distintas fases del desarrollo de software.
+    
+    \item*{RF-10 – Ajuste manual de intervalos de tiempo}
+    Además de seleccionar el tipo de intervalo, el usuario podrá definir manualmente los intervalos exactos de tiempo que desea analizar (Por ejemplo el primer y segundo cuarto, lo cual es equivalente a la primera mitad del repositorio para los intervalos relativos, o del tercer al sexto mes de vida del repositorio para los intervalos absolutos). Esta funcionalidad avanzada permite focalizar el análisis en momentos clave del desarrollo del proyecto.
+    
+    \item*{RF-11 – Carga de grupos de repositorios de referencia}
+    La aplicación debe permitir al usuario cargar grupos de repositorios previamente definidos como referencia. Esto permite al usuario repetir comparaciones o realizar comparaciones muy similares evitando el tiempo de extracción de medidas de calidad de proceso.
+    
+    \item*{RF-12 – Eliminación de grupos de referencia cargados*}
+    El usuario también debe tener la posibilidad de eliminar grupos de repositorios de referencia previamente cargados, con el fin de mantener organizada su área de trabajo y adaptar el análisis a nuevos contextos o criterios de comparación.
+    
+    \item*{RF-13 – Visualización de la evaluación de prácticas ágiles}
+    Una vez realizado el análisis, el sistema debe mostrar una evaluación del repositorio analizado en función de su cumplimiento de buenas prácticas ágiles. Esta evaluación debe representarse de forma clara y comprensible en forma de reglas que indiquen visualmente en qué aspectos se usan de forma sólida las metodologías ágiles y en qué aspectos hay opción de mejora.
+    
+    \item*{RF-14 – Comparación con repositorios de referencia}
+    La aplicación debe permitir comparar los valores de todas las métricas extraídas del repositorio analizado con los correspondientes valores de los repositorios de referencia seleccionados. Esta comparación se visualizará mediante listas que ayuden a respaldar la evaluación del uso de prácticas ágiles en los repositorios.
+\end{itemize}
+
+\subsection{Requisitos no funcionales}
 
 A continuación se describen de forma detallada los requisitos no funcionales del sistema.
 
-\subsection*{RNF-01 – Modularidad}
-La aplicación debe estar diseñada utilizando una arquitectura modular basada en componentes reutilizables. Debe ser comparible con patrones de diseño modernos y fácil de escalar o modificar por partes sin afectar al conjutno total del software. Esta estructura permite que futuras modificaciones o ampliaciones (como la adición de nuevas métricas o funcionalidades) se integren de forma controlada y sencilla.
+\begin{itemize}
 
-\subsection*{RNF-02 – Usabildiad}
-La interfaz debe ser intuitiva, clara y fácil de usar. Los formularios deben presentar instrucciones comprensibles, validaciones dinámicas y retroalimentación inmediata ante errores o acciones del usuario. Se prioriza un diseño simple y directo que permita a usuarios no técnicos comprender la aplicación sin curva de aprendizaje.
+    \item*{RNF-01 – Modularidad}
+    La aplicación debe estar diseñada utilizando una arquitectura modular basada en componentes reutilizables. Debe ser comparible con patrones de diseño modernos y fácil de escalar o modificar por partes sin afectar al conjutno total del software. Esta estructura permite que futuras modificaciones o ampliaciones (como la adición de nuevas métricas o funcionalidades) se integren de forma controlada y sencilla.
+    
+    \item*{RNF-02 – Usabildiad}
+    La interfaz debe ser intuitiva, clara y fácil de usar. Los formularios deben presentar instrucciones comprensibles, validaciones dinámicas y retroalimentación inmediata ante errores o acciones del usuario. Se prioriza un diseño simple y directo que permita a usuarios no técnicos comprender la aplicación sin curva de aprendizaje.
+    
+    \item*{RNF-03 – Reusabilidad}
+    El código debe seguir principios como DRY (Don’t Repeat Yourself) y SOLID, en particular el principio Open/Closed, que facilita la extensión de funcionalidades sin modificar el núcleo existente. La organización del código promueve la reutilización de servicios, componentes y lógica, favoreciendo la eficiencia en el desarrollo y la reducción de errores.
+    
+    \item*{RNF-04 –Separación entre frontend y backend}
+    El sistema debe mantener una separación estricta entre las capas de presentación (frontend) y lógica de negocio (backend), utilizando servicios HTTP para el intercambio de datos de forma asíncrona. Esto mejora la escalabilidad y permite gestionar respuestas y errores de forma controlada desde la interfaz.
+    
+    \item*{RNF-05 – Validaciones informativas}
+    Los formularios deben incorporar validación reactiva utilizando sistemas de formularios y alertas, proporcionando retroalimentación inmediata al usuario en caso de errores o datos incompletos. Esto reduce la frustración del usuario y mantiende informado al mismo, y además mejora la precisión y seguridad de los datos introducidos.
+    
+    \item*{RNF-06 – Navegación intuitiva}
+    La aplicación debe organizar sus funcionalidades de forma jerárquica, utilizando tabs, rutas y botones de navegación claros que guíen al usuario durante el análisis. Los componentes de navegación deben ser reutilizables y consistentes en toda la aplicación para facilitar el acceso rápido a las diferentes secciones.
 
-\subsection*{RNF-03 – Reusabilidad}
-El código debe seguir principios como DRY (Don’t Repeat Yourself) y SOLID, en particular el principio Open/Closed, que facilita la extensión de funcionalidades sin modificar el núcleo existente. La organización del código promueve la reutilización de servicios, componentes y lógica, favoreciendo la eficiencia en el desarrollo y la reducción de errores.
+\end{itemize}
 
-\subsection*{RNF-04 –Separación entre frontend y backend}
-El sistema debe mantener una separación estricta entre las capas de presentación (frontend) y lógica de negocio (backend), utilizando servicios HTTP para el intercambio de datos de forma asíncrona. Esto mejora la escalabilidad y permite gestionar respuestas y errores de forma controlada desde la interfaz.
-
-\subsection*{RNF-05 – Validaciones informativas}
-Los formularios deben incorporar validación reactiva utilizando sistemas de formularios y alertas, proporcionando retroalimentación inmediata al usuario en caso de errores o datos incompletos. Esto reduce la frustración del usuario y mantiende informado al mismo, y además mejora la precisión y seguridad de los datos introducidos.
-
-\subsection*{RNF-06 – Navegación intuitiva}
-La aplicación debe organizar sus funcionalidades de forma jerárquica, utilizando tabs, rutas y botones de navegación claros que guíen al usuario durante el análisis. Los componentes de navegación deben ser reutilizables y consistentes en toda la aplicación para facilitar el acceso rápido a las diferentes secciones.
-
-\section{Casos de uso}
+\subsection{}{Casos de uso}
 
 En esta sección se expondrán los diferentes casos de uso que recogen los requisitos ya definidos anteriormente para cumplir con los objetivos de la aplicación establecidos.
 

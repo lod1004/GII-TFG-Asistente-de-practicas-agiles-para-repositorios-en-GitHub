@@ -2,10 +2,132 @@
 
 \section{Introducción}
 
+Este apartado del anexo detalla una guía técnica completa orientada a desarolladores software que quieran trabajar o utilizar la aplicación de Asistente de prácticas ágiles para repositorios en GitHub. Se incluye una guía para clonar el entorno de desarrollo, compilar y ejecutar la aplicación, detallando los pasos necesarios a realizar en la configuración del proyecto para lograrlo.
+
 \section{Estructura de directorios}
+A continuación se detalla la estructura de ficheros de todo el proyecto, incluyendo tanto el código fuente de la aplicación desarrollada como la documentación, y readmes.
+\begin{itemize}
+	
+	\item \textbf{/}: Directorio raíz. Contiene el resto de directorios, junto al fichero gitignore y el fichero readme.d principal del proyecto.
+	
+    \item \textbf{/Memoria/}: Directorio que contiene la documentación del proyecto. En su interior se encuentran:
+
+    \begin{itemize}
+        \item Directorio tex/ con los archivos \LaTeX{} que componen la memoria principal y el anexo.
+        \item Contiene el fichero \LaTeX{} principal de la memoria y el fichero \LaTeX{} principal del anexo
+        \item Ficheros PDF generados correspondientes a la memoria y al anexo.
+        \item Carpeta /img con las imágenes utilizadas en los documentos.
+        \item Un archivo \texttt{.gitignore} específico para esta carpeta.
+        \item Un fichero \texttt{README.md} con información sobre la plantilla utilizada para redactar la documentación.
+    \end{itemize}
+    
+    \item \textbf{/src/}: Carpeta principal que contiene el código fuente de la aplicación web desarrollada. Dentro de este directorio se encuentran:
+    
+    \begin{itemize}
+          \item La carpeta \texttt{frontend/}, que contiene el código de la interfaz de usuario.
+          \item La carpeta \texttt{backend/}, que incluye la lógica de servidor y la API, y los modelos de las tablas de la base de datos.
+          \item Una copia de la carpeta \texttt{node\_modules/} con las dependencias necesarias.
+          \item Un archivo \texttt{README.md} que proporciona una guía sobre la organización del código y cómo distinguir entre el backend y el frontend.
+        \end{itemize}
+    	
+    \end{itemize}
 
 \section{Manual del programador}
 
+Esta sección tiene el objetivo de ser utilizada por desarrolladores de software, programadores o personas interesadas en trabajar en el proyecto para guiar a los mismos a la hora de configurar el entorno de desarrollo y compilar y ejecutar el código fuente para poder probar el mismo. Para ello se numeran los siguientes puntos a tener en cuenta.
+
+\subsection{Entorno de desarrollo}
+
+Para configurar el entorno de desarrollo del proyecto, se sugiere utilizar las herramientas listadas a continuación:
+
+\begin{itemize}
+	\item \textbf{Visual Studio Code:} Se trata de un editor de código fuente gratuito, ligero y versátil. Es una herramienta útil para escribir, editar, depurar y gestionar código en una amplia variedad de lenguajes de programación. Se caracteriza por su flexibilidad, extensibilidad y capacidad para integrarse con diversas herramientas y extensiones. 
+	\item \textbf{Copilot (Opcional):} Es una extensión de \textit{Visual Studio Code} que asiste al programador con una inteligencia artificial a través de sugerencias de código, lo que acelera mucho el proceso de desarrollo.
+	\item \textbf{MongoDBCompass:} Una aplicación de escritorio desde la cual gestionar la conexión y contenidos de la base de datos ubicada en \textbf{Mongo DB Atlas}.
+    \item \textbf{GitHubDesktop:} Un entorno gráfico de GitHub de gran utilidad gracias a la infromación visual que brinda sobre los ficheros del repositorio modificados, añadidos o borrados. Ofrece una gran ayuda para hacer \textit{commits}, \textit{pull requests} y \textit{merges} de calidad.
+\end{itemize}
+
+\subsection{Obtención del código fuente}
+
+El código fuente del proyecto está disponible en el repositorio en GitHub \url{https://github.com/lod1004/GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub}. Es necesario clonar el proyecto para trabajar en él de forma activa. A continuación se describen dos formas para lograrlo:
+
+\begin{itemize}
+    \item Descargar e instalar \textbf{GitHub Desktop} desde \url{https://desktop.github.com/} si se prefiere clonar el proyecto gráficamente.
+
+	\item Clonar el repositorio del proyecto desde GitHub de una de las siguientes formas:
+	\begin{itemize}
+		\item \textbf{Opción 1 - Gráfica (recomendada para usuarios sin experiencia con Git):} Abrir GitHub Desktop, hacer clic en \textit{"File > Clone repository"}, pegar la URL del repositorio y elegir una ubicación en el disco local.
+		\item \textbf{Opción 2 - Terminal:} Ejecutar \texttt{git clone \textit{URL-del-repositorio}} en una terminal ubicada en la carpeta donde se desea clonar el repositorio.
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Pasos para configurar el entorno}
+
+Una vez clonado el repositorio en una carpeta local, para instalar y configurar el entorno del proyecto correctamente se recomienda seguir los pasos numerados a continuación:
+
+\begin{enumerate}
+
+	\item Descargar e instalar \textbf{Visual Studio Code} desde \url{https://code.visualstudio.com/}.
+
+	\item Descargar e instalar \textbf{Node.js} desde \url{https://nodejs.org/en/download}. Se recomienda la versión LTS más reciente.
+
+	\item Instalar Angular CLI ejecutando en una terminal uno de los siguientes comandos:
+	\begin{itemize}
+		\item De forma global: \textbf{npm install -g @angular/cli@19.2.3}
+		\item O bien, de forma local en la carpeta del proyecto: \textbf{npm install @angular/cli@19.2.3}
+	\end{itemize}
+
+    \item Descargar e instalar \textbf{MongoDB Compass} desde \url{https://www.mongodb.com/products/compass}, para visualizar y gestionar la base de datos de forma gráfica.
+
+\end{enumerate}
+
+Además del entorno base, Visual Studio Code permite instalar algunas extensiones que pueden facilitar significativamente el desarrollo, mejorar la productividad y proporcionar soporte inteligente durante la programación. Una de las más destacadas es la ya mencionada extensión de Copilot, una extensión basada en inteligencia artificial que sugiere automáticamente líneas completas de código y funciones enteras a partir del contexto del proyecto y de los comentarios escritos por el programador. Esto resulta especialmente útil en entornos colaborativos o cuando se trabaja con estructuras repetitivas. También se sugiere instalar extensiones como ESLint, que ayuda a mantener un estilo de código coherente y libre de errores comunes, Prettier para el formateo automático del código, y Angular Language Service, que proporciona autocompletado y detección de errores específicos de Angular en tiempo real. Para entornos backend con Node.js y MongoDB, extensiones como MongoDB for VS Code permiten realizar consultas directamente desde el editor y visualizar colecciones, lo cual es muy conveniente durante el desarrollo y depuración. Estas herramientas integradas en el editor permiten una experiencia de desarrollo más fluida, profesional y eficiente.
+
 \section{Compilación, instalación y ejecución del proyecto}
+\label{sec:compilacion}
+
+Una vez configurado el entorno del proyecto y los sercios externos, se detallan los siguientes pasos a seguir necesarios para compilar e instalar lo necesario para poder ejecutar la aplicación.
+
+\begin{enumerate}
+
+	\item Desde la raíz del repositorio clonado, navegar a la carpeta \textbf{src/backend} y ejecutar los siguientes comandos en una terminal:
+	\begin{itemize}
+		\item \textbf{npm install} para instalar las dependencias del servidor.
+		\item En el fichero .env del back se debe incluir una token de GitHub para poder hacer las peticiones a través de la API. Se puede ver más información sobre las token de GitHub en el siguiente enlace: \url{https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens}. 
+        \item También puede ser necesario añadir una conexión de MongoDB Atlas o, en su defecto, dejar la que ya está y usar la base de datos existente.
+		\item Ejecutar el backend con \textbf{npm run dev} o \textbf{node server.js}, según lo especificado en la documentación del proyecto.
+	\end{itemize}
+
+	\item En una nueva terminal, navegar a \textbf{src/frontend} y ejecutar:
+	\begin{itemize}
+		\item \textbf{npm install} para instalar las dependencias del cliente.
+		\item \textbf{ng serve -o} para iniciar la aplicación Angular en el navegador y que la pestaña se abra de forma automática.
+        \item \textbf{Importante} asegurarse de que los servicios del frontEnd (AuthService y RepositoryService) utilicen el environment correcto. ('../../environments/environment' para ejecutar en local o '../../environments/environment.prod' para acceder al BAckend subido en el despliegue continuo en \textbf{React})
+	\end{itemize}
+\end{enumerate}
 
 \section{Pruebas del sistema}
+
+El sistema fue sometido a diversas pruebas para garantizar su correcto funcionamiento, mayoritariamente manuales, por parte del autor, tutor, y usuarios externos. Debido a la ventaja de división de código en componentes de Angular, la mayoría de cambios de la aplicación eran añadidos al código, y rara vez modificaban lo hecho previamente, lo que ahorró mucho tiempo de pruebas. SIn embargo, hay dos tipos de pruebas relevantes que se hicieron durante el desarrollo del sistema.
+
+\subsection{Prueba general del sistema}
+
+La prueba general principal usada para comprobar el funcionamiento completo del sistema fue la de comparar un repositorio consigo mismo. Esta prueba garantiza que tanto la recopilación de métricas como la lógica de comparación funcionan de forma coherente.
+
+Según la lógica interna de la aplicación, al comparar un repositorio consigo mismo en los mismos intervalos de tiempo, se espera que los resultados se comporten de la siguiente forma:
+
+\begin{itemize}
+    \item Las medidas de calidad de proceso deben ser idénticas en ambos repositorios, dado que se trata del mismo repositorio y el análisis se realiza bajo las mismas condiciones y fechas.
+    
+    \item En la evaluación de prácticas ágiles, todas las medidas que sean aplicables deben considerarse superadas, ya que no hay diferencias entre los repositorios comparados. Las únicas medidas que podrían no superarse son aquellas que no se aplican al repositorio (por ejemplo, por falta de datos), ya que estas se contabilizan como "no completadas", incluso si en el repositorio comparado tampoco se aplican.
+\end{itemize}
+
+Esta prueba es útil no solo para verificar que el sistema se comporta como se espera en condiciones ideales, sino también para validar la integridad de los datos obtenidos desde GitHub, el cálculo de métricas y la aplicación de las reglas de evaluación automatizadas.
+
+\subsection{Pruebas con SonarCloud}
+
+Además de la lógica interna de evaluación y comparación, el proyecto hace uso de \textbf{SonarCloud}, integrado en el repositorio de GitHub como plataforma de análisis de calidad del código. SonarCloud permite detectar de forma automatizada problemas como errores de seguridad, código duplicado, malas prácticas y código que no sigue los estándares recomendados.
+
+La integración con SonarCloud ha resultado esencial para mantener un código de alta calidad y detectar posibles refactorizaciones necesarias de forma rápida y visual.
+
+Gracias a esta herramienta se ha podido reforzar la seguridad, mantenibilidad y fiabilidad del proyecto, así como evitar la duplicación de código y las posibles vulnerabilidades que puedan surgir durante el proceso de desarrollo software
