@@ -1,4 +1,4 @@
-const { compareStats } = require("../rule-comparator");
+const { compareStats, validateAverageDays } = require("../rule-comparator");
 const logger = require('../../../logger');
 
 function evaluateBacklogQualityRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
@@ -7,10 +7,7 @@ function evaluateBacklogQualityRule(mainRepo, mainRepoId, comparisonRepos, avera
   const documentationUrl = "https://www.agilealliance.org/glossary/backlog/";
   var problems = [];
 
-  const backlogAverageDays = parseInt(averageDays, 10);
-  if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("El número de días debe ser un número entero positivo (BacklogQuality).");
-  }
+  const backlogAverageDays = validateAverageDays(averageDays);
 
   const statsToCompare = [
     { key: 'issue_stats.issuesCount', label: 'metrics.total_issues', units: 'units.issues',},

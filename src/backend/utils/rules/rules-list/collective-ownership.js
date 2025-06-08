@@ -1,4 +1,4 @@
-const { compareStats } = require("../rule-comparator");
+const { compareStats, validateAverageDays } = require("../rule-comparator");
 const logger = require('../../../logger');
 
 function evaluateCollectiveOwnershipRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
@@ -7,10 +7,7 @@ function evaluateCollectiveOwnershipRule(mainRepo, mainRepoId, comparisonRepos, 
   const documentationUrl = "https://www.agilealliance.org/glossary/collective-ownership/";
     var problems = [];
 
-  const collectiveOwnershipAverageDays = parseInt(averageDays, 10);
-  if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("El número de días debe ser un número entero positivo (Collective Ownership).");
-  }
+  const collectiveOwnershipAverageDays = validateAverageDays(averageDays);
 
   const statsToCompare = [
     { key: 'participant_stats.totalParticipants', label: 'metrics.total_participants', units: 'units.participants',},

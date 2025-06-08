@@ -1,4 +1,4 @@
-const { compareStats } = require("../rule-comparator");
+const { compareStats, validateAverageDays } = require("../rule-comparator");
 const logger = require('../../../logger');
 
 function evaluateContinuousIntegrationRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
@@ -7,10 +7,7 @@ function evaluateContinuousIntegrationRule(mainRepo, mainRepoId, comparisonRepos
   const documentationUrl = "https://www.agilealliance.org/glossary/continuous-integration/";
     var problems = [];
 
-  const continuousIntegrationAverageDays = parseInt(averageDays, 10);
-  if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("El número de días debe ser un número entero positivo (Continuous Integration).");
-  }
+  const continuousIntegrationAverageDays = validateAverageDays(averageDays);
 
   const statsToCompare = [
     { key: 'action_stats.actionFrequency', label: 'metrics.workflow_frequency', units: 'units.days',},

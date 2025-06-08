@@ -45,14 +45,23 @@ function compareStats(mainRepo, comparisonRepos, statsToCompare) {
   else if (Cero === statsToCompare.length) status = 'details.not_applied';
   else if ((Incompleta + Cero) === statsToCompare.length) status = 'details.not_surpassed';
 
-  return { 
-    status, 
-    resultDetails,    
+  return {
+    status,
+    resultDetails,
     totalStats: statsToCompare.length,
-    statsBetter: Completa 
+    statsBetter: Completa
   };
 }
 
+function validateAverageDays(averageDays) {
+  const validatedAverageDays = parseInt(averageDays, 10);
+  if (isNaN(averageDays) || averageDays <= 0) {
+    throw new Error("El número de días debe ser un número entero positivo.");
+  }
+  return validatedAverageDays;
+}
+
 module.exports = {
-  compareStats
+  compareStats,
+  validateAverageDays
 };

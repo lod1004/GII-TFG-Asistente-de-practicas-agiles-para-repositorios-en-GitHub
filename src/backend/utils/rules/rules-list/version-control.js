@@ -7,10 +7,7 @@ function evaluateVersionControlRule(mainRepo, mainRepoId, comparisonRepos, avera
   const documentationUrl = "https://www.agilealliance.org/glossary/version-control/";
   var problems = [];
 
-  const versionControlAverageDays = parseInt(averageDays, 10);
-  if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("El número de días debe ser un número entero positivo (Version control).");
-  }
+  const versionControlAverageDays = validateAverageDays(averageDays);
 
   const statsToCompare = [
     { key: 'commit_stats.commitCount', label: 'metrics.number_of_commits', units: 'units.commits', },

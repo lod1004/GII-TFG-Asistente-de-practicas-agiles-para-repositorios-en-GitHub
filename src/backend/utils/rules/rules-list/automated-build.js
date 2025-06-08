@@ -1,4 +1,4 @@
-const { compareStats } = require("../rule-comparator");
+const { compareStats, validateAverageDays } = require("../rule-comparator");
 const logger = require('../../../logger');
 
 function evaluateAutomatedBuildsRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
@@ -7,10 +7,7 @@ function evaluateAutomatedBuildsRule(mainRepo, mainRepoId, comparisonRepos, aver
   const documentationUrl = "https://www.agilealliance.org/glossary/automated-build/";
   var problems = [];
 
-  const automatedBuildAverageDays = parseInt(averageDays, 10);
-  if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("El número de días debe ser un número entero positivo (Automated build).");
-  }
+  const automatedBuildAverageDays = validateAverageDays(averageDays);
 
   const statsToCompare = [
     { key: 'action_stats.actionsCount', label: 'metrics.workflow_files', units: 'units.files',},

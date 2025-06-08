@@ -1,4 +1,4 @@
-const { compareStats } = require("../rule-comparator");
+const { compareStats, validateAverageDays } = require("../rule-comparator");
 const logger = require('../../../logger');
 
 function evaluateIterationsRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
@@ -7,10 +7,7 @@ function evaluateIterationsRule(mainRepo, mainRepoId, comparisonRepos, averageDa
   const documentationUrl = "https://www.agilealliance.org/glossary/iteration/";
   var problems = [];
 
-  const iterationsAverageDays = parseInt(averageDays, 10);
-  if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("El número de días debe ser un número entero positivo (Iterations).");
-  }
+  const iterationsAverageDays = validateAverageDays(averageDays);
 
   const statsToCompare = [
     { key: 'issue_stats.milestonedIssuesPercent', label: 'metrics.milestoned_issues', units: 'units.percentaje',},

@@ -1,4 +1,4 @@
-const { compareStats } = require("../rule-comparator");
+const { compareStats, validateAverageDays } = require("../rule-comparator");
 const logger = require('../../../logger');
 
 function evaluateFrequentReleasesRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
@@ -7,10 +7,7 @@ function evaluateFrequentReleasesRule(mainRepo, mainRepoId, comparisonRepos, ave
   const documentationUrl = "https://www.agilealliance.org/glossary/frequent-releases/";
   var problems = [];
 
-  const frequentReleasesAverageDays = parseInt(averageDays, 10);
-  if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("El número de días debe ser un número entero positivo (Frequent releases).");
-  }
+  const frequentReleasesAverageDays = validateAverageDays(averageDays);
 
   const statsToCompare = [
     { key: 'release_stats.releasesCount', label: 'metrics.releases_count', units: 'units.releases', },

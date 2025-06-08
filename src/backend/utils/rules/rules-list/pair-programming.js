@@ -1,4 +1,4 @@
-const { compareStats } = require("../rule-comparator");
+const { compareStats, validateAverageDays } = require("../rule-comparator");
 const logger = require('../../../logger');
 
 function evaluatePairProgrammingRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
@@ -7,11 +7,7 @@ function evaluatePairProgrammingRule(mainRepo, mainRepoId, comparisonRepos, aver
   const documentationUrl = "https://www.agilealliance.org/glossary/pair-programming/";
   var problems = [];
 
-  const pairProgrammingAverageDays = parseInt(averageDays, 10);
-  if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("El número de días debe ser un número entero positivo (Pair programming).");
-  }
-
+  const pairProgrammingAverageDays = validateAverageDays(averageDays);
   const statsToCompare = [
     { key: 'commit_stats.collaborativeCommitsPercent', label: 'metrics.collaborative_commits', units: 'units.percentaje', },
     { key: 'pull_request_stats.collaborativePrPercent', label: 'metrics.collaborative_pr', units: 'units.percentaje', },
