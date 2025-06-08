@@ -83,7 +83,7 @@ router.post("/auth/loginUser",
 router.post("/auth/change-password",
   body("username").trim().notEmpty(),
   body("oldPassword").notEmpty(),
-  body("newPassword").isLength({ min: 6 }),
+  body("repeatPassword").isLength({ min: 6 }),
   validate,
   changePassword
 );

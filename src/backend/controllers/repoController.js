@@ -125,8 +125,13 @@ const getRepositories = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { username } = req.query;
-  const user = await User.findOne({ username });
+  const username = req.query.username?.toString().trim();
+
+  if (typeof username !== "string" || username === "") {
+    return res.status(400).json({ message: "Nombre de usuario inválido." });
+  }
+
+  const user = await User.findOne({ username: { $eq: username } });
   if (!user) {
     return res.status(404).json({ message: "Usuario no encontrado" });
   }
@@ -193,10 +198,14 @@ const getRulesResults = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { username } = req.query;
-
   try {
-    const user = await User.findOne({ username });
+    const username = req.query.username?.toString().trim();
+
+    if (typeof username !== "string" || username === "") {
+      return res.status(400).json({ message: "Nombre de usuario inválido." });
+    }
+
+    const user = await User.findOne({ username: { $eq: username } });
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
@@ -229,12 +238,17 @@ const createRepository = async (req, res) => {
     averageDays,
     startTimeInterval,
     endTimeInterval,
-    username,
     useOldRepositories,
     groupId
   } = req.body;
 
-  const user = await User.findOne({ username });
+  const username = req.body.username?.toString().trim();
+
+  if (typeof username !== "string" || username === "") {
+    return res.status(400).json({ message: "Nombre de usuario inválido." });
+  }
+
+  const user = await User.findOne({ username: { $eq: username } });
   const userId = user.id;
 
   if (!main || !Array.isArray(examples)) {
@@ -375,7 +389,13 @@ const getRepositoryGroups = async (req, res) => {
   const { username } = req.query;
 
   try {
-    const user = await User.findOne({ username });
+    const username = req.query.username?.toString().trim();
+
+    if (typeof username !== "string" || username === "") {
+      return res.status(400).json({ message: "Nombre de usuario inválido." });
+    }
+
+    const user = await User.findOne({ username: { $eq: username } });
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
@@ -421,6 +441,12 @@ const deleteGroup = async (req, res) => {
   }
 
   try {
+    const username = req.query.username?.toString().trim();
+
+    if (typeof username !== "string" || username === "") {
+      return res.status(400).json({ message: "Nombre de usuario inválido." });
+    }
+
     const user = await User.findOne({ username: { $eq: username } });
 
     if (!user) {

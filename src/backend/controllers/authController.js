@@ -28,7 +28,13 @@ const registerUser = async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const existing = await User.findOne({ username });
+        const username = req.body.username?.toString().trim();
+
+        if (typeof username !== "string" || username === "") {
+            return res.status(400).json({ message: "Nombre de usuario inválido." });
+        }
+
+        const existing = await User.findOne({ username: { $eq: username } });
         if (existing) {
             return res.status(409).json({ message: "Nombre de usuario ya existe" });
         }
@@ -62,7 +68,13 @@ const loginUser = async (req, res) => {
 
     const { username, password } = req.body;
     try {
-        const user = await User.findOne({ username });
+        const username = req.body.username?.toString().trim();
+
+        if (typeof username !== "string" || username === "") {
+            return res.status(400).json({ message: "Nombre de usuario inválido." });
+        }
+
+        const user = await User.findOne({ username: { $eq: username } });
         if (!user) return res.status(401).json({ message: 'Credenciales incorrectas' });
 
         const match = await bcrypt.compare(password, user.passwordHash);
@@ -90,7 +102,13 @@ const changePassword = async (req, res) => {
     const { username, oldPassword, repeatPassword } = req.body;
 
     try {
-        const user = await User.findOne({ username });
+        const username = req.body.username?.toString().trim();
+
+        if (typeof username !== "string" || username === "") {
+            return res.status(400).json({ message: "Nombre de usuario inválido." });
+        }
+
+        const user = await User.findOne({ username: { $eq: username } });
         if (!user) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
@@ -121,7 +139,13 @@ const changeLanguage = async (req, res) => {
     const { username, languageCode } = req.body;
 
     try {
-        const user = await User.findOne({ username });
+        const username = req.body.username?.toString().trim();
+
+        if (typeof username !== "string" || username === "") {
+            return res.status(400).json({ message: "Nombre de usuario inválido." });
+        }
+
+        const user = await User.findOne({ username: { $eq: username } });
         if (!user) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
