@@ -7,6 +7,11 @@ function evaluateIterationsRule(mainRepo, mainRepoId, comparisonRepos, averageDa
   const documentationUrl = "https://www.agilealliance.org/glossary/iteration/";
   var problems = [];
 
+  const ruleAverageDays = parseInt(averageDays, 10);
+  if (isNaN(averageDays) || averageDays <= 0) {
+    throw new Error("averageDays debe ser un número entero positivo.");
+  }
+
   const statsToCompare = [
     { key: 'issue_stats.milestonedIssuesPercent', label: 'metrics.milestoned_issues', units: 'units.percentaje',},
     { key: 'pull_request_stats.milestonedPrPercent', label: 'metrics.milestoned_pr', units: 'units.percentaje',},
@@ -44,7 +49,7 @@ problems = resultDetails
     totalStats,
     message,
     mainRepoId,
-    averageDays: averageDays,
+    averageDays: ruleAverageDays,
     details: resultDetails,
     problems: problems
   };

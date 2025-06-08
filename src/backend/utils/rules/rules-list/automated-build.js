@@ -7,6 +7,11 @@ function evaluateAutomatedBuildsRule(mainRepo, mainRepoId, comparisonRepos, aver
   const documentationUrl = "https://www.agilealliance.org/glossary/automated-build/";
   var problems = [];
 
+  const ruleAverageDays = parseInt(averageDays, 10);
+  if (isNaN(averageDays) || averageDays <= 0) {
+    throw new Error("averageDays debe ser un número entero positivo.");
+  }
+
   const statsToCompare = [
     { key: 'action_stats.actionsCount', label: 'metrics.workflow_files', units: 'units.files',},
   ];
@@ -37,7 +42,7 @@ function evaluateAutomatedBuildsRule(mainRepo, mainRepoId, comparisonRepos, aver
     totalStats,
     message,
     mainRepoId,
-    averageDays: averageDays,
+    averageDays: ruleAverageDays,
     details: resultDetails,
     problems
   };

@@ -66,37 +66,66 @@ async function saveParticipantStats(repoId, data) {
   await ParticipantStats.create({ repoId, ...data });
 }
 
-async function processRepository({ url, isMain, averageDays, useRelativeDates, startTimeInterval, endTimeInterval, userId, group }) {
+async function processRepository({
+  url,
+  isMain,
+  averageDays,
+  useRelativeDates,
+  startTimeInterval,
+  endTimeInterval,
+  userId,
+  group
+}) {
+  if (typeof url !== "string" || !/^https?:\/\/.+/.test(url)) {
+    throw new Error("URL inválida");
+  }
+
+  const isMainBool = Boolean(isMain);
+  const averageDaysInt = parseInt(averageDays, 10);
+  if (isNaN(averageDaysInt) || averageDaysInt <= 0) {
+    throw new Error("averageDays debe ser un número positivo");
+  }
+
+  const userIdSanitized = String(userId).trim();
+  if (userIdSanitized === "") {
+    throw new Error("userId inválido");
+  }
+
+  const parsedGroup = parseInt(group, 10);
+  if (isNaN(parsedGroup)) {
+    throw new Error("Group debe ser un número");
+  }
+
   const parsed = await getRepoPrimaryStats(url, useRelativeDates, startTimeInterval, endTimeInterval);
   if (!parsed) return null;
 
   const repoId = await getNextId("repositoryId");
   const { owner, repoTitle, startDate, endDate } = parsed;
 
-  const issueStats = await getIssueStats(owner, repoTitle, averageDays, startDate, endDate);
-  const commitStats = await getCommitStats(owner, repoTitle, averageDays, startDate, endDate);
-  const prStats = await getPullRequestStats(owner, repoTitle, averageDays, startDate, endDate);
-  const actionStats = await getActionsStats(owner, repoTitle, startDate, endDate);
-  const releaseStats = await getReleaseStats(owner, repoTitle, averageDays, startDate, endDate);
-
   const repoData = {
     id: repoId,
-    averageDays,
-    url,
-    owner,
-    repoTitle,
+    averageDays: averageDaysInt,
+    url: url.trim(),
+    owner: String(owner).trim(),
+    repoTitle: String(repoTitle).trim(),
     startDate,
     endDate,
-    isMain,
-    userId,
+    isMain: isMainBool,
+    userId: userIdSanitized,
     createdAt: new Date()
   };
 
-  if (group != 0) {
-    repoData.group = group;
+  if (parsedGroup !== 0) {
+    repoData.group = parsedGroup;
   }
 
   await Repository.create(repoData);
+
+  const issueStats = await getIssueStats(owner, repoTitle, averageDaysInt, startDate, endDate);
+  const commitStats = await getCommitStats(owner, repoTitle, averageDaysInt, startDate, endDate);
+  const prStats = await getPullRequestStats(owner, repoTitle, averageDaysInt, startDate, endDate);
+  const actionStats = await getActionsStats(owner, repoTitle, startDate, endDate);
+  const releaseStats = await getReleaseStats(owner, repoTitle, averageDaysInt, startDate, endDate);
 
   const issueParticipants = await saveIssueStats(repoId, issueStats);
   const commitParticipants = await saveCommitStats(repoId, commitStats);
@@ -109,13 +138,13 @@ async function processRepository({ url, isMain, averageDays, useRelativeDates, s
     commitParticipants,
     prParticipants,
     releaseParticipants,
-    averageDays,
+    averageDaysInt,
     startDate,
     endDate
   );
   await saveParticipantStats(repoId, participantStats);
 
-  return { id: repoId, url };
+  return { id: repoId, url: url.trim() };
 }
 
 const getRepositories = async (req, res) => {

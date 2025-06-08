@@ -7,6 +7,11 @@ function evaluateBacklogQualityRule(mainRepo, mainRepoId, comparisonRepos, avera
   const documentationUrl = "https://www.agilealliance.org/glossary/backlog/";
   var problems = [];
 
+  const ruleAverageDays = parseInt(averageDays, 10);
+  if (isNaN(averageDays) || averageDays <= 0) {
+    throw new Error("averageDays debe ser un número entero positivo.");
+  }
+
   const statsToCompare = [
     { key: 'issue_stats.issuesCount', label: 'metrics.total_issues', units: 'units.issues',},
     { key: 'issue_stats.closedIssuesCount', label: 'metrics.closed_issues', units: 'units.closed_issues',},
@@ -46,7 +51,7 @@ problems = resultDetails
     totalStats,
     message,
     mainRepoId,
-    averageDays: averageDays,
+    averageDays: ruleAverageDays,
     details: resultDetails,
     problems
   };

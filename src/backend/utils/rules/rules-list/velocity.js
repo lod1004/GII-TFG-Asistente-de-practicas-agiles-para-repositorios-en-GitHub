@@ -6,6 +6,11 @@ function evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays
   const documentationUrl = "https://www.agilealliance.org/glossary/velocity/";
   var problems = [];
 
+  const ruleAverageDays = parseInt(averageDays, 10);
+  if (isNaN(averageDays) || averageDays <= 0) {
+    throw new Error("averageDays debe ser un número entero positivo.");
+  }
+
   const statsToCompare = [
     { key: 'issue_stats.averageClosedIssues', label: 'metrics.average_closed_issues', units: 'units.closed_issues', },
     { key: 'issue_stats.averageCloseTime', label: 'metrics.average_close_time', units: 'units.days', },
@@ -75,9 +80,9 @@ function evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays
   } else if (status === 'details.not_applied') {
     message = 'details.velocity_not_applied_message';
   } else {
-problems = resultDetails
-  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
-  .map(d => ({ label: d.label }));
+    problems = resultDetails
+      .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+      .map(d => ({ label: d.label }));
     message = `details.velocity_partially_surpassed_message`;
   }
 
@@ -96,7 +101,7 @@ problems = resultDetails
     totalStats: statsToCompare.length,
     message,
     mainRepoId,
-    averageDays: averageDays,
+    averageDays: ruleAverageDays,
     details: resultDetails,
     problems
   };

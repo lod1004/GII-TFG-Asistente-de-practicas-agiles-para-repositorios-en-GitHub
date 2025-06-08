@@ -7,6 +7,11 @@ function evaluateVersionControlRule(mainRepo, mainRepoId, comparisonRepos, avera
   const documentationUrl = "https://www.agilealliance.org/glossary/version-control/";
   var problems = [];
 
+  const ruleAverageDays = parseInt(averageDays, 10);
+  if (isNaN(averageDays) || averageDays <= 0) {
+    throw new Error("averageDays debe ser un número entero positivo.");
+  }
+
   const statsToCompare = [
     { key: 'commit_stats.commitCount', label: 'metrics.number_of_commits', units: 'units.commits', },
     { key: 'commit_stats.averageCommits', label: 'metrics.average_commits', units: 'units.commits', },
@@ -25,9 +30,9 @@ function evaluateVersionControlRule(mainRepo, mainRepoId, comparisonRepos, avera
   } else if (status === 'details.not_applied') {
     message = 'details.version_not_applied_message';
   } else {
-problems = resultDetails
-  .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
-  .map(d => ({ label: d.label }));    message = `details.version_partially_surpassed_message`;
+    problems = resultDetails
+      .filter(d => d.evaluation === 'details.not_completed' || d.evaluation === 'details.not_applied')
+      .map(d => ({ label: d.label })); message = `details.version_partially_surpassed_message`;
   }
 
   logger.info('Regla: ' + ruleName)
@@ -45,7 +50,7 @@ problems = resultDetails
     totalStats,
     message,
     mainRepoId,
-    averageDays: averageDays,
+    averageDays: ruleAverageDays,
     details: resultDetails,
     problems
   };

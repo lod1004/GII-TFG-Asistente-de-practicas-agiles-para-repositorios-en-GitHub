@@ -6,6 +6,11 @@ function evaluateDefinitionOfDoneRule(mainRepo, mainRepoId, comparisonRepos, ave
   const documentationUrl = "https://www.agilealliance.org/glossary/definition-of-done/";
   var problems = [];
 
+  const ruleAverageDays = parseInt(averageDays, 10);
+  if (isNaN(averageDays) || averageDays <= 0) {
+    throw new Error("averageDays debe ser un número entero positivo.");
+  }
+
   const statsToCompare = [
     { key: 'issue_stats.openIssuesCount', label: 'metrics.open_issues', units: 'units.open_issues', },
     { key: 'issue_stats.closedIssuesCount', label: 'metrics.closed_issues', units: 'units.closed_issues', },
@@ -97,7 +102,7 @@ problems = resultDetails
     totalStats: statsToCompare.length,
     message,
     mainRepoId,
-    averageDays: averageDays,
+    averageDays: ruleAverageDays,
     details: resultDetails,
     problems
   };

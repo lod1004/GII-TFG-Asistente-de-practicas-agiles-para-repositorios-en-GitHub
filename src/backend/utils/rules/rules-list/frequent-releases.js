@@ -7,6 +7,11 @@ function evaluateFrequentReleasesRule(mainRepo, mainRepoId, comparisonRepos, ave
   const documentationUrl = "https://www.agilealliance.org/glossary/frequent-releases/";
   var problems = [];
 
+  const ruleAverageDays = parseInt(averageDays, 10);
+  if (isNaN(averageDays) || averageDays <= 0) {
+    throw new Error("averageDays debe ser un número entero positivo.");
+  }
+
   const statsToCompare = [
     { key: 'release_stats.releasesCount', label: 'metrics.releases_count', units: 'units.releases', },
     { key: 'release_stats.averageReleases', label: 'metrics.average_releases', units: 'units.releases', },
@@ -42,7 +47,7 @@ problems = resultDetails
     totalStats,
     message,
     mainRepoId,
-    averageDays: averageDays,
+    averageDays: ruleAverageDays,
     details: resultDetails,
     problems
   };

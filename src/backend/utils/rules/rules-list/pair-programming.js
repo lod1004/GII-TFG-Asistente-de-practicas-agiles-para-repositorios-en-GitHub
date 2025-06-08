@@ -7,6 +7,11 @@ function evaluatePairProgrammingRule(mainRepo, mainRepoId, comparisonRepos, aver
   const documentationUrl = "https://www.agilealliance.org/glossary/pair-programming/";
   var problems = [];
 
+  const ruleAverageDays = parseInt(averageDays, 10);
+  if (isNaN(averageDays) || averageDays <= 0) {
+    throw new Error("averageDays debe ser un número entero positivo.");
+  }
+
   const statsToCompare = [
     { key: 'commit_stats.collaborativeCommitsPercent', label: 'metrics.collaborative_commits', units: 'units.percentaje', },
     { key: 'pull_request_stats.collaborativePrPercent', label: 'metrics.collaborative_pr', units: 'units.percentaje', },
@@ -44,7 +49,7 @@ problems = resultDetails
     totalStats,
     message,
     mainRepoId,
-    averageDays: averageDays,
+    averageDays: ruleAverageDays,
     details: resultDetails,
     problems
   };
