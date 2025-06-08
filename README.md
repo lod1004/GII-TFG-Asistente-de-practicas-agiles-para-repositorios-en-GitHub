@@ -1,4 +1,17 @@
-# GII-TFG-Asistente-de-prácticas-ágiles-para-repositorios-en-GitHub
+# GII TFG Asistente de prácticas ágiles para repositorios en GitHub
+
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub&metric=alert_status)](https://sonarcloud.io/dashboard?id=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub&metric=security_rating)](https://sonarcloud.io/dashboard?id=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub&metric=bugs)](https://sonarcloud.io/dashboard?id=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=lod1004_GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub)
+
+[![GitHub Wiki](https://img.shields.io/badge/wiki-available-brightgreen?style=flat-square)](https://github.com/lod1004/GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub/wiki)
+[![:contentReference[oaicite:2]{index=2}](https://deploy-badge.vercel.app/?url=https://gii-tfg-asistente-de-practicas-agiles-para-repositor-idxbpcutk.vercel.app/&name=app)](https://vercel.com/)
+[![Issues Closed](https://img.shields.io/github/issues-closed/lod1004/GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub?style=flat-square)](https://github.com/lod1004/GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub/issues?q=is%3Aissue+is%3Aclosed)
+[![:contentReference[oaicite:3]{index=3}](https://img.shields.io/badge/built%20with-react-blue?style=flat-square&logo=react)](https://reactjs.org)
+[![Zube](https://img.shields.io/badge/Managed%20with-Zube-blueviolet?logo=zube)](https://zube.io/lod1004/tfg/w/workspace-1)
 
 Aplicación web que analiza repositorios de GitHub con el fin de ofrecer recomendaciones y asistencia personalizada para la adopción de buenas prácticas de **metodologías ágiles**, centradas en el contexto académico (por ejemplo, para el desarrollo del TFG), aunque extensible a cualquier proyecto colaborativo en un repositorio de GitHub.
 
@@ -88,6 +101,10 @@ Inspiradas en el [_Subway Map to Agile Practices_](https://www.agilealliance.org
 # Clona el repositorio
 git clone https://github.com/<usuario>/GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub.git
 cd GII-TFG-Asistente-de-practicas-agiles-para-repositorios-en-GitHub
+
+# Instalar:
+Angular 19.2.3
+Node 22.14.0
 
 # Instala dependencias del backend
 cd backend
