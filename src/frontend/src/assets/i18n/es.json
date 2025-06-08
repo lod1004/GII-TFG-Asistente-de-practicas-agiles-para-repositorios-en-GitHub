@@ -102,6 +102,7 @@
         "change_password": "Cambiar contraseña",
         "logout": "Cerrar sesión",
         "confirm_logout": "Sí, cerrar sesión",
+        "confirm_delete_group": "Sí, borrar grupo de repositorios",
         "login": "Iniciar sesión",
         "register": "Registrarse",
         "goto_register": "¿No tienes una cuenta? Regístrate",
@@ -117,6 +118,8 @@
         "close": "Cerrar"
     },
     "messages": {
+        "delete_group_confirm": "¿Seguro que quieres borrar este grupo de repositorios?",
+        "deleted_group_success": "Grupo de repositorios borrado con éxito",
         "username_input": "Introduce aquí tu nombre de usuario",
         "password_input": "Introduce aquí tu contraseña",
         "old_password_input": "Introduce aquí tu contraseña actual",
@@ -159,7 +162,8 @@
         "more_than_4_relative_error": "Solo se pueden seleccionar hasta 4 intervalos de tiempo relativos",
         "start_interval_greater_error": "El intervalo de fin debe ser mayor que el intervalo de inicio",
         "natural_intervals_error": "Los intervalos de tiempo deben ser números naturales",
-        "invalid_password": "La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial."
+        "invalid_password": "La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.",
+        "deleted_group_error": "Error al borrar el grupo de repositorios"
     },
     "units": {
         "releases": "Releases",

@@ -18,7 +18,6 @@ export class LoginComponent {
   constructor(private authService: AuthService, private translocoService: TranslocoService) { }
 
   onLoginSubmit(data: { username: string; password: string }) {
-    console.log('Datos recibidos en Login:', data);
 
     const payload = {
       username: data.username,

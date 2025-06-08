@@ -12,7 +12,6 @@ export class RepositoryService {
   constructor(private http: HttpClient) { }
 
   checkUrls(payload: { main: string; examples: string[] }) {
-    console.log("a")
     return this.http.post<{ success: boolean }>(`${this.apiUrl}/repos/check-urls`, payload);
   }
 
@@ -31,6 +30,13 @@ export class RepositoryService {
     const username: any = localStorage.getItem('loggedUser');
     return this.http.get(`${this.apiUrl}/repos/groups`, {
       params: { username }
+    });
+  }
+
+  deleteGroup(groupId: string): Observable<any> {
+    const username: any = localStorage.getItem('loggedUser');
+    return this.http.delete(`${this.apiUrl}/repos/groups`, {
+      params: { username, groupId }
     });
   }
 

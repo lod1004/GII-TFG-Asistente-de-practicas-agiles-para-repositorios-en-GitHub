@@ -18,7 +18,6 @@ export class NewPasswordComponent {
   constructor(private authService: AuthService, private translocoService: TranslocoService) {}
 
   onPasswordChange(data: { username: string; password: string; repeatPassword: string }) {
-    console.log('Datos recibidos para cambio de contraseña:', data);
     let payload;
     payload = {
       username: data.username,

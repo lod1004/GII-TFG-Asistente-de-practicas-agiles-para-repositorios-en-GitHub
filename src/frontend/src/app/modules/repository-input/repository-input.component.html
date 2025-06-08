@@ -2,7 +2,7 @@
   <form [formGroup]="repositoryForm" class="content">
 
     <div class="url_container">
-      <label class="input_label_2">{{'messages.input_main_url'| transloco}}</label>
+      <label for="mainRepositoryUrl" class="input_label_2">{{'messages.input_main_url'| transloco}}</label>
       <div class="url_input_container">
         <input matInput id="mainRepositoryUrl" formControlName="mainRepositoryUrl" type="text"
           placeholder="{{'labels.url_format' | transloco}}" class="url_input">
@@ -22,7 +22,7 @@
 
     <div class="url_container" style="margin-top: 3rem;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <label class="input_label_2">{{'messages.input_references_url'| transloco}}</label>
+        <label for="sourceRepositoryUrl" class="input_label_2">{{'messages.input_references_url'| transloco}}</label>
         <button mat-button class="old_repos_button" (click)="openPreviousReposModal()">{{ 'buttons.saved_repositories' |
           transloco }}</button>
       </div>
@@ -70,7 +70,7 @@
       </div>
       <div class="mandatory_parameters">
         <div class="url_container">
-          <label class="input_label_2">{{ 'parameters.days_number_short' | transloco }}:</label>
+          <label for="averageDays" class="input_label_2">{{ 'parameters.days_number_short' | transloco }}:</label>
           <input id="averageDays" formControlName="averageDays" type="number" class="number_input">
           <mat-error *ngIf="daysNumberError" style="color: red; margin-top: 1rem;">
             {{ 'errors.natural_days_number_error' | transloco }}
@@ -78,17 +78,17 @@
         </div>
 
         <div style="display: flex; flex-direction: column;">
-          <label class="input_label_2">{{ 'parameters.analysis_mode' | transloco }}</label>
+          <label for="fullTimeAnalysis" class="input_label_2">{{ 'parameters.analysis_mode' | transloco }}</label>
           <div>
             <input id="fullTimeAnalysis" type="radio" [value]="false" name="useTimeIntervals"
               formControlName="useTimeIntervals">
-            <label class="input_label" for="male">{{ 'parameters.full_analysis' | transloco }}</label>
+            <label class="input_label" for="fullTimeAnalysis">{{ 'parameters.full_analysis' | transloco }}</label>
           </div>
 
           <div>
             <input id="timeIntervalsAnalysis" type="radio" [value]="true" name="useTimeIntervals"
               formControlName="useTimeIntervals">
-            <label class="input_label" for="female">{{ 'parameters.intervals_analysis' | transloco }}</label>
+            <label class="input_label" for="timeIntervalsAnalysis">{{ 'parameters.intervals_analysis' | transloco }}</label>
           </div>
         </div>
       </div>
@@ -99,20 +99,20 @@
       <div class="optional_parameters">
         <div
           style="width: 100%; background-color: #212121; border-radius: 1rem; display: flex; flex-direction: column;">
-          <label class="input_label_3" style="align-self: center; margin: 1rem;">
+          <label for="useAbsolutes" class="input_label_3" style="align-self: center; margin: 1rem;">
             {{ 'parameters.intervals_type' | transloco }}
           </label>
           <div style="display: flex; justify-content: space-around;">
             <div>
               <input id="useAbsolutes" type="radio" [value]="false" name="useRelativeDates"
                 formControlName="useRelativeDates">
-              <label class="input_label" for="female">{{ 'parameters.absolute_type' | transloco }}</label>
+              <label class="input_label" for="useAbsolutes">{{ 'parameters.absolute_type' | transloco }}</label>
             </div>
 
             <div>
               <input id="useRelatives" type="radio" [value]="true" name="useRelativeDates"
                 formControlName="useRelativeDates">
-              <label class="input_label" for="male">{{ 'parameters.relative_type' | transloco }}</label>
+              <label class="input_label" for="useRelatives">{{ 'parameters.relative_type' | transloco }}</label>
             </div>
           </div>
           <br>
@@ -121,23 +121,23 @@
         <div
           style="margin-top: 2rem; background-color: #212121; border-radius: 1rem; display: flex; flex-direction: column;">
           <div style="display: flex; flex-direction: column; padding: 1rem;">
-            <label class="input_label_3" style="align-self: center;">
+            <span class="input_label_3" style="align-self: center;">
               {{ 'parameters.intervals_number' | transloco }}
-            </label>
-            <label *ngIf="repositoryForm.controls.useRelativeDates?.value == true" class="input_label"
+            </span>
+            <span *ngIf="repositoryForm.controls.useRelativeDates?.value == true" class="input_label"
               style="align-self: center;">
               {{ 'parameters.intervals_number_explanation' | transloco }}
-            </label>
-            <label *ngIf="repositoryForm.controls.useRelativeDates?.value == false" class="input_label"
+            </span>
+            <span *ngIf="repositoryForm.controls.useRelativeDates?.value == false" class="input_label"
               style="align-self: center;">
               {{ 'parameters.intervals_number_explanation_2' | transloco }}
-            </label>
+            </span>
           </div>
           <br>
 
           <div style="display: flex; justify-content: space-around; margin-bottom: 1rem;">
             <div class="url_container">
-              <label class="input_label">
+              <label for="startTimeInterval" class="input_label">
                 {{ 'parameters.start_interval' | transloco }}
                 <input id="startTimeInterval" formControlName="startTimeInterval" type="number" class="number_input" />
               </label>
@@ -146,7 +146,7 @@
               <mat-icon class="arrow_icon">arrow_forward</mat-icon>
             </div>
             <div class="url_container">
-              <label class="input_label">
+              <label for="endTimeInterval" class="input_label">
                 {{ 'parameters.end_interval' | transloco }}
                 <input id="endTimeInterval" formControlName="endTimeInterval" type="number" class="number_input" />
               </label>

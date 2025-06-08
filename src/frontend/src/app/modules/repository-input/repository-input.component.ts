@@ -307,8 +307,47 @@ export class RepositoryInputComponent implements OnInit {
     this.closePreviousReposModal();
   }
 
-  deleteRepoGroup(groupToDelete: any): void {
-    this.previousRepoGroups = this.previousRepoGroups.filter(group => group !== groupToDelete);
+  deleteRepoGroup(group: any): void {
+
+    Swal.fire({
+      title: this.translocoService.translate('messages.delete_group_confirm'),
+      showDenyButton: true,
+      denyButtonText: this.translocoService.translate('buttons.no_go_back'),
+      confirmButtonText: this.translocoService.translate('buttons.confirm_delete_group'),
+      reverseButtons: true,
+      customClass: {
+        confirmButton: 'custom-success-button',
+        denyButton: 'custom-error-button'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.repoService.deleteGroup(group.groupId).subscribe({
+          next: () => {
+            this.openPreviousReposModal()
+            Swal.fire({
+              title: this.translocoService.translate('messages.deleted_group_success'),
+              icon: 'success',
+              confirmButtonText: this.translocoService.translate('buttons.continue'),
+              customClass: {
+                confirmButton: 'custom-success-button'
+              }
+            });
+          },
+          error: (err) => {
+            Swal.fire({
+              title: this.translocoService.translate('errors.error'),
+              text: this.translocoService.translate('errors.deleted_group_error'),
+              icon: 'error',
+              confirmButtonText: this.translocoService.translate('buttons.try_again'),
+              customClass: {
+                confirmButton: 'custom-error-button'
+              }
+            });
+            this.loading = false;
+          }
+        });
+      } else if (result.isDenied) { }
+    });
   }
 
   changeParametersAplication() {

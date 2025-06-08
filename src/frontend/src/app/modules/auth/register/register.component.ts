@@ -18,7 +18,6 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private translocoService: TranslocoService) { }
 
   onRegisterSubmit(data: { username: string; password: string; repeatPassword?: string }) {
-    console.log('Datos recibidos en Registro:', data);
     let payload;
     payload = {
       username: data.username,

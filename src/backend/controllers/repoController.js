@@ -371,9 +371,45 @@ const getRepositoryGroups = async (req, res) => {
   }
 };
 
+const deleteGroup = async (req, res) => {
+  const { username, groupId } = req.query;
+
+  if (!username || !groupId) {
+    return res.status(400).json({ message: "Faltan parámetros requeridos." });
+  }
+
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado." });
+    }
+
+    const numericGroupId = Number(groupId);
+
+    if (isNaN(numericGroupId)) {
+      return res.status(400).json({ message: "El groupId debe ser un número válido." });
+    }
+
+    const result = await Repository.deleteMany({ group: numericGroupId });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "No se encontraron repositorios con ese groupId." });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: `Grupo eliminado correctamente (${result.deletedCount} repositorios eliminados).`
+    });
+  } catch (error) {
+    logger.error("Error al eliminar el grupo: " + error.message);
+    res.status(500).json({ message: "Error al eliminar el grupo." });
+  }
+};
+
 module.exports = {
   getRepositories,
   getRepositoryGroups,
+  deleteGroup,
   getRulesResults,
   createRepository,
   checkUrls
