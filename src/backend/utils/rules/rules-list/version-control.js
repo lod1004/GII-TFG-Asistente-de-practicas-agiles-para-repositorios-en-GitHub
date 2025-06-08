@@ -1,4 +1,4 @@
-const { compareStats } = require("../rule-comparator");
+const { compareStats, validateAverageDays } = require("../rule-comparator");
 const logger = require('../../../logger');
 
 function evaluateVersionControlRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
