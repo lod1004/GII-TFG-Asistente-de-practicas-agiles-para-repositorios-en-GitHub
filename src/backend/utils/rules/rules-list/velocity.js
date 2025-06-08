@@ -1,3 +1,4 @@
+const { validateAverageDays } = require("../rule-comparator");
 const logger = require('../../../logger');
 
 function evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays) {
@@ -6,10 +7,7 @@ function evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays
   const documentationUrl = "https://www.agilealliance.org/glossary/velocity/";
   var problems = [];
 
-  const velocityAverageDays = parseInt(averageDays, 10);
-  if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("El número de días debe ser un número entero positivo (Velocity).");
-  }
+  const velocityAverageDays = validateAverageDays(averageDays);
 
   const statsToCompare = [
     { key: 'issue_stats.averageClosedIssues', label: 'metrics.average_closed_issues', units: 'units.closed_issues', },
