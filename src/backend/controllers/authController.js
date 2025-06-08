@@ -1,8 +1,10 @@
 const bcrypt = require('bcrypt');
-const Counter = require("../models/counter");
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
 const logger = require('../logger');
+const { validationResult } = require("express-validator");
+
+const User = require('../models/user');
+const Counter = require("../models/counter");
 
 const SALT_ROUNDS = 10;
 const JWT_SECRET = process.env.JWT_SECRET || 'default_jwt_secret';
@@ -17,6 +19,12 @@ const getNextId = async (sequenceName) => {
 };
 
 const registerUser = async (req, res) => {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { username, password } = req.body;
 
     try {
@@ -46,6 +54,12 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { username, password } = req.body;
     try {
         const user = await User.findOne({ username });
@@ -67,6 +81,12 @@ const loginUser = async (req, res) => {
 };
 
 const changePassword = async (req, res) => {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { username, oldPassword, repeatPassword } = req.body;
 
     try {
@@ -92,6 +112,12 @@ const changePassword = async (req, res) => {
 };
 
 const changeLanguage = async (req, res) => {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     const { username, languageCode } = req.body;
 
     try {

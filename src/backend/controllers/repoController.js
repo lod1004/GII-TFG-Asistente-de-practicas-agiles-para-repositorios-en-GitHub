@@ -1,4 +1,5 @@
 const logger = require('../logger');
+const { validationResult } = require("express-validator");
 
 const axios = require('axios');
 const { getHeaders } = require("../utils/stats/github");
@@ -118,6 +119,12 @@ async function processRepository({ url, isMain, averageDays, useRelativeDates, s
 }
 
 const getRepositories = async (req, res) => {
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { username } = req.query;
   const user = await User.findOne({ username });
   if (!user) {
@@ -180,6 +187,12 @@ const getRepositories = async (req, res) => {
 };
 
 const getRulesResults = async (req, res) => {
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { username } = req.query;
 
   try {
@@ -203,6 +216,12 @@ const getRulesResults = async (req, res) => {
 };
 
 const createRepository = async (req, res) => {
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const {
     main,
     examples,
@@ -300,6 +319,12 @@ const createRepository = async (req, res) => {
 };
 
 const checkUrls = async (req, res) => {
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { main, examples } = req.body;
   const allRepos = [main, ...examples];
 
@@ -341,6 +366,12 @@ const checkUrls = async (req, res) => {
 };
 
 const getRepositoryGroups = async (req, res) => {
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { username } = req.query;
 
   try {
@@ -372,6 +403,12 @@ const getRepositoryGroups = async (req, res) => {
 };
 
 const deleteGroup = async (req, res) => {
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { username, groupId } = req.query;
 
   if (!username || !groupId) {

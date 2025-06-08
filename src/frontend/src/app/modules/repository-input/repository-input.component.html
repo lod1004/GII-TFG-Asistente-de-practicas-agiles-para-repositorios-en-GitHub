@@ -88,7 +88,8 @@
           <div>
             <input id="timeIntervalsAnalysis" type="radio" [value]="true" name="useTimeIntervals"
               formControlName="useTimeIntervals">
-            <label class="input_label" for="timeIntervalsAnalysis">{{ 'parameters.intervals_analysis' | transloco }}</label>
+            <label class="input_label" for="timeIntervalsAnalysis">{{ 'parameters.intervals_analysis' | transloco
+              }}</label>
           </div>
         </div>
       </div>
@@ -181,6 +182,10 @@
   <ng-template #previousReposModal>
     <div class="modal_backdrop">
       <div class="modal_content">
+
+        <button class="close_modal" style="color: #f26e6e;" (click)="closePreviousReposModal()">
+          <mat-icon>close</mat-icon>
+        </button>
         <h3 class="parameters_title">{{ 'labels.saved_repositories' | transloco }}</h3>
         <div style="display: flex; justify-content: space-around;" *ngIf="previousRepoGroups.length == 0">
           <span class="parameters_title_2" style="color: #f26e6e; margin-bottom: 2rem;">
@@ -195,7 +200,7 @@
                 <i class="material-icons" style="color: #f26e6e;">delete</i>
               </button>
 
-              <div (click)="selectRepoGroup(group)">
+              <div tabindex="0" (keydown.enter)="selectRepoGroup(group)" (click)="selectRepoGroup(group)">
                 <ul>
                   <li *ngFor="let repo of group.repositories" style="font-size: 0.9rem; margin-bottom: 0.5rem;">
                     <div><strong>{{ repo.repoTitle }}</strong></div>
@@ -216,9 +221,6 @@
             </div>
           </li>
         </ul>
-
-        <button class="close_modal" style="color: #f26e6e;" (click)="closePreviousReposModal()">{{'buttons.close' |
-          transloco }}</button>
       </div>
     </div>
   </ng-template>

@@ -202,8 +202,7 @@
 
 .close_modal {
     height: 2rem;
-    width: 6rem;
-    align-self: center;
+    align-self: flex-end;
     justify-content: center;
     border-radius: 1rem;
     color: #f26e6e;

@@ -1,11 +1,11 @@
 <div class="tabs">
-    <div class="tab" [ngClass]="{'selected_tab': tab === 'rules'}" tabindex="0" (click)="tab = 'rules'"
-        (keydown.enter)="tab = 'rules'" (keydown.space)="tab = 'rules'">
+    <div class="tab" [ngClass]="{'selected_tab': tab === 'rules'}" tabindex="0" (keydown.enter)="tab = 'rules'"
+        (keydown.space)="tab = 'rules'" (click)="tab = 'rules'">
         {{ 'labels.agile_practices' | transloco }}
     </div>
 
-    <div class="tab" [ngClass]="{'selected_tab': tab === 'stats'}" tabindex="0" (click)="tab = 'stats'"
-        (keydown.enter)="tab = 'stats'" (keydown.space)="tab = 'stats'">
+    <div class="tab" [ngClass]="{'selected_tab': tab === 'stats'}" tabindex="0" (keydown.enter)="tab = 'stats'"
+        (keydown.space)="tab = 'stats'" (click)="tab = 'stats'">
         {{ 'labels.quality_metrics' | transloco }}
     </div>
 </div>
