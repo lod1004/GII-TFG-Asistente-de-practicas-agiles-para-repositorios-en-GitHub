@@ -403,31 +403,31 @@ const getRepositoryGroups = async (req, res) => {
 };
 
 const deleteGroup = async (req, res) => {
-
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { username, groupId } = req.query;
+  const username = req.query.username?.toString().trim();
+  const groupIdRaw = req.query.groupId;
 
-  if (!username || !groupId) {
+  if (!username || !groupIdRaw) {
     return res.status(400).json({ message: "Faltan parámetros requeridos." });
   }
 
+  const groupId = parseInt(groupIdRaw, 10);
+  if (isNaN(groupId)) {
+    return res.status(400).json({ message: "El groupId debe ser un número válido." });
+  }
+
   try {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username: { $eq: username } });
+
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado." });
     }
 
-    const numericGroupId = Number(groupId);
-
-    if (isNaN(numericGroupId)) {
-      return res.status(400).json({ message: "El groupId debe ser un número válido." });
-    }
-
-    const result = await Repository.deleteMany({ group: numericGroupId });
+    const result = await Repository.deleteMany({ group: { $eq: groupId } });
 
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: "No se encontraron repositorios con ese groupId." });
