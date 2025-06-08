@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { StartPageComponent } from '../start-page/start-page.component';
 import { AuthService } from '../../../services/auth.service';
-import Swal from 'sweetalert2';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-register',
@@ -15,42 +14,23 @@ export class RegisterComponent {
 
   authSuccess = false;
 
-  constructor(private authService: AuthService, private translocoService: TranslocoService) { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
-  onRegisterSubmit(data: { username: string; password: string; repeatPassword?: string }) {
-    let payload;
-    payload = {
-      username: data.username,
-      password: data.password
-    };
+  onRegisterSubmit(data: { username: string; password: string }) {
+    const payload = { username: data.username, password: data.password };
+
     this.authService.register(payload).subscribe({
-      next: (res) => {
+      next: () => {
         this.authSuccess = true;
-        localStorage.setItem('loggedUser', data.username);
-        localStorage.setItem('languageCode', 'es');
-        Swal.fire({
-          title: this.translocoService.translate('success.register_success'),
-          text: this.translocoService.translate('success.register_success'),
-          icon: 'success',
-          confirmButtonText: this.translocoService.translate('buttons.continue'),
-          customClass: {
-            confirmButton: 'custom-success-button'
-          }
-        });
+        this.authService.saveLoginData(data.username);
+        this.authService.showSuccess('success.register_success', 'success.register_success');
       },
       error: (err) => {
-        console.error('Error en login:', err);
-        Swal.fire({
-          title: this.translocoService.translate('errors.error'),
-          text: this.translocoService.translate('errors.username_duplicated_error'),
-          icon: 'error',
-          confirmButtonText: this.translocoService.translate('buttons.try_again'),
-          customClass: {
-            confirmButton: 'custom-error-button'
-          }
-        });
+        console.error('Error en registro:', err);
+        this.authService.showError('errors.error', 'errors.username_duplicated_error');
       }
     });
   }
-
 }
