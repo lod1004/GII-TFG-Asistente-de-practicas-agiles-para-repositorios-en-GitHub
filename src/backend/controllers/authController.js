@@ -18,6 +18,16 @@ const getNextId = async (sequenceName) => {
     return counter.value;
 };
 
+function validateUser(username) {
+
+    if (typeof username !== "string" || username === "") {
+        return res.status(400).json({ message: "Nombre de usuario inválido." });
+    }
+
+    const validatedUsername = User.findOne({ username: { $eq: username } });
+    return validatedUsername
+}
+
 const registerUser = async (req, res) => {
 
     const errors = validationResult(req);
@@ -30,11 +40,7 @@ const registerUser = async (req, res) => {
     try {
         const username = req.body.username?.toString().trim();
 
-        if (typeof username !== "string" || username === "") {
-            return res.status(400).json({ message: "Nombre de usuario inválido." });
-        }
-
-        const existing = await User.findOne({ username: { $eq: username } });
+        const existing = await validateUser(username)
         if (existing) {
             return res.status(409).json({ message: "Nombre de usuario ya existe" });
         }
@@ -70,11 +76,7 @@ const loginUser = async (req, res) => {
     try {
         const username = req.body.username?.toString().trim();
 
-        if (typeof username !== "string" || username === "") {
-            return res.status(400).json({ message: "Nombre de usuario inválido." });
-        }
-
-        const user = await User.findOne({ username: { $eq: username } });
+        const user = await validateUser(username)
         if (!user) return res.status(401).json({ message: 'Credenciales incorrectas' });
 
         const match = await bcrypt.compare(password, user.passwordHash);
@@ -104,11 +106,7 @@ const changePassword = async (req, res) => {
     try {
         const username = req.body.username?.toString().trim();
 
-        if (typeof username !== "string" || username === "") {
-            return res.status(400).json({ message: "Nombre de usuario inválido." });
-        }
-
-        const user = await User.findOne({ username: { $eq: username } });
+        const user = await validateUser(username)
         if (!user) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
@@ -141,11 +139,7 @@ const changeLanguage = async (req, res) => {
     try {
         const username = req.body.username?.toString().trim();
 
-        if (typeof username !== "string" || username === "") {
-            return res.status(400).json({ message: "Nombre de usuario inválido." });
-        }
-
-        const user = await User.findOne({ username: { $eq: username } });
+        const user = await validateUser(username)
         if (!user) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
