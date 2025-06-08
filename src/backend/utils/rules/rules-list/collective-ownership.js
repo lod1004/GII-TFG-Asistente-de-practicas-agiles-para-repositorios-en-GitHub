@@ -7,9 +7,9 @@ function evaluateCollectiveOwnershipRule(mainRepo, mainRepoId, comparisonRepos, 
   const documentationUrl = "https://www.agilealliance.org/glossary/collective-ownership/";
     var problems = [];
 
-  const ruleAverageDays = parseInt(averageDays, 10);
+  const collectiveOwnershipAverageDays = parseInt(averageDays, 10);
   if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("averageDays debe ser un número entero positivo.");
+    throw new Error("El número de días debe ser un número entero positivo (Collective Ownership).");
   }
 
   const statsToCompare = [
@@ -51,7 +51,7 @@ problems = resultDetails
     totalStats,
     message,
     mainRepoId,
-    averageDays: ruleAverageDays,
+    averageDays: collectiveOwnershipAverageDays,
     details: resultDetails,
     problems
   };

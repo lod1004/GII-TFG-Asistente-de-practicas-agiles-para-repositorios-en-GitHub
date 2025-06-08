@@ -6,9 +6,9 @@ function evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays
   const documentationUrl = "https://www.agilealliance.org/glossary/velocity/";
   var problems = [];
 
-  const ruleAverageDays = parseInt(averageDays, 10);
+  const velocityAverageDays = parseInt(averageDays, 10);
   if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("averageDays debe ser un número entero positivo.");
+    throw new Error("El número de días debe ser un número entero positivo (Velocity).");
   }
 
   const statsToCompare = [
@@ -101,7 +101,7 @@ function evaluateVelocityRule(mainRepo, mainRepoId, comparisonRepos, averageDays
     totalStats: statsToCompare.length,
     message,
     mainRepoId,
-    averageDays: ruleAverageDays,
+    averageDays: velocityAverageDays,
     details: resultDetails,
     problems
   };

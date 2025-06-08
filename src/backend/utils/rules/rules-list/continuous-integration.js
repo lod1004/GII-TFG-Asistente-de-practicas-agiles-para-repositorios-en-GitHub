@@ -7,9 +7,9 @@ function evaluateContinuousIntegrationRule(mainRepo, mainRepoId, comparisonRepos
   const documentationUrl = "https://www.agilealliance.org/glossary/continuous-integration/";
     var problems = [];
 
-  const ruleAverageDays = parseInt(averageDays, 10);
+  const continuousIntegrationAverageDays = parseInt(averageDays, 10);
   if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("averageDays debe ser un número entero positivo.");
+    throw new Error("El número de días debe ser un número entero positivo (Continuous Integration).");
   }
 
   const statsToCompare = [
@@ -48,7 +48,7 @@ problems = resultDetails
     totalStats,
     message,
     mainRepoId,
-    averageDays: ruleAverageDays,
+    averageDays: continuousIntegrationAverageDays,
     details: resultDetails,
     problems
   };

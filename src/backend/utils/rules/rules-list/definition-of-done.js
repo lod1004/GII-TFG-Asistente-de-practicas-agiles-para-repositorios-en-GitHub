@@ -6,9 +6,9 @@ function evaluateDefinitionOfDoneRule(mainRepo, mainRepoId, comparisonRepos, ave
   const documentationUrl = "https://www.agilealliance.org/glossary/definition-of-done/";
   var problems = [];
 
-  const ruleAverageDays = parseInt(averageDays, 10);
+  const doneAverageDays = parseInt(averageDays, 10);
   if (isNaN(averageDays) || averageDays <= 0) {
-    throw new Error("averageDays debe ser un número entero positivo.");
+    throw new Error("El número de días debe ser un número entero positivo (Definition of Done).");
   }
 
   const statsToCompare = [
@@ -102,7 +102,7 @@ problems = resultDetails
     totalStats: statsToCompare.length,
     message,
     mainRepoId,
-    averageDays: ruleAverageDays,
+    averageDays: doneAverageDays,
     details: resultDetails,
     problems
   };
