@@ -13,7 +13,9 @@
 [![:contentReference[oaicite:3]{index=3}](https://img.shields.io/badge/built%20with-react-blue?style=flat-square&logo=react)](https://reactjs.org)
 [![Zube](https://img.shields.io/badge/Managed%20with-Zube-blueviolet?logo=zube)](https://zube.io/lod1004/tfg/w/workspace-1)
 
-Aplicación web que analiza repositorios de GitHub con el fin de ofrecer recomendaciones y asistencia personalizada para la adopción de buenas prácticas de **metodologías ágiles**, centradas en el contexto académico (por ejemplo, para el desarrollo del TFG), aunque extensible a cualquier proyecto colaborativo en un repositorio de GitHub. Se puede acceder a su despliegue a través de la URL, no requiriendo de ninguna instalacíon o ejecución de algún programa externo.
+Aplicación web que analiza repositorios de GitHub con el fin de ofrecer recomendaciones y asistencia personalizada para la adopción de buenas prácticas de **metodologías ágiles**, centradas en el contexto académico (por ejemplo, para el desarrollo del TFG), aunque extensible a cualquier proyecto colaborativo en un repositorio de GitHub. 
+
+Se puede acceder a su despliegue a través de la URL, no requiriendo de ninguna instalacíon o ejecución de algún programa externo.
 
 URL de acceso a la aplicación: https://gii-tfg-asistente-de-practicas-agiles-para-repositor-f3z9mn3lt.vercel.app/
 
