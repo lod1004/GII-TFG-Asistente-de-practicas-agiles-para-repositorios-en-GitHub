@@ -15,6 +15,8 @@
 
 Aplicación web que analiza repositorios de GitHub con el fin de ofrecer recomendaciones y asistencia personalizada para la adopción de buenas prácticas de **metodologías ágiles**, centradas en el contexto académico (por ejemplo, para el desarrollo del TFG), aunque extensible a cualquier proyecto colaborativo en un repositorio de GitHub.
 
+URL de acceso a la aplicación: https://gii-tfg-asistente-de-practicas-agiles-para-repositor-f3z9mn3lt.vercel.app/
+
 ---
 
 ## 🚀 Funcionalidades principales
@@ -92,8 +94,9 @@ Inspiradas en el [_Subway Map to Agile Practices_](https://www.agilealliance.org
 ## 🖥️ Uso
 
 - No requiere de instalación
-- La aplicación puede ser usada desde "Production" en el apartado de "Deployments" de la página principal del repositorio
-
+- La aplicación puede ser usada desde "Production" en el apartado de "Deployments" de la página principal del repositorio o desde la siguiente URL:
+  
+https://gii-tfg-asistente-de-practicas-agiles-para-repositor-f3z9mn3lt.vercel.app/
 
 ## 📌 Instalación (modo local)
 
