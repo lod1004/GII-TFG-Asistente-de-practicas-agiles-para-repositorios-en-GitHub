@@ -1,9 +1,9 @@
 \apendice{Especificación de diseño}
 
 \section{Introducción}
-En este apartado del anexo se van a documentar todos los aspectos relacionados al diseño del proyecto, y por consecuencia, de la aplicación desarrollada en el mismo. Se describirán los componentes y entidades que forman el proyecto, y cómo estos se relacionan entre sí, con el objetivo de detallar cómo logran implementar los objetivos del proyecto ya mencionados.
+En este apartado del anexo se van a documentar todos los aspectos relacionados al diseño del proyecto, y como consecuencia, de la aplicación desarrollada en el mismo. Se describirán los componentes y entidades que forman el proyecto, y cómo estos se relacionan entre sí, con el objetivo de detallar cómo logran implementar los objetivos del proyecto ya mencionados.
 
-La manera principal a través de la cual se van a explicar los componentes, datos y entidades del diseño del proyecto será la de varios diagramas que ayuden a comprender el funcionamiento y relaciones que existen entre los mismos, incluyendo sus atributos y características.
+La manera principal de explicar los componentes, datos y entidades del diseño del proyecto será la de varios diagramas que ayuden a comprender el funcionamiento y relaciones que existen entre los mismos, incluyendo sus atributos y características.
 
 \section{Diseño de datos}
 
@@ -63,7 +63,7 @@ En esta sección se describirá el diseño de los datos del sistema. Para ello s
 	\item \textbf{Métricas (\textit{Commit}, \textit{Issue}, \textit{Pull Request}, \textit{Release}, \textit{Action}, \textit{Participaciones}}: Cada una de estas entidades representa métricas agregadas de su tipo específico, siempre vinculadas a un único repositorio mediante la clave \textbf{repoId}.
 		\begin{itemize}
 			\item \textbf{repoId}: Repositorio al que pertenece la métrica.
-			\item \textbf{metricCount}: Total numérico de la métrica (Por ejemplo commitCount).
+			\item \textbf{metricCount}: Total numérico de la métrica (Por ejemplo \textit{commitCount}).
 			\item \textbf{averageMetrics}: Promedio de aparición o cierre de la métrica (Por ejemplo averageClosedIssues).
 			\item \textbf{qualityMetrics}: Atributos que reflejan medidas de calidad de proceso que dependen del tipo de métrica (Por ejemplo el porcentaje de issues con imágenes, o el número de ficheros workflow ejecutados con éxito).
 			\item \textbf{collaborativeMetricsPercent}: Porcentaje de instancias de la métrica realizadas de forma colaborativa.
@@ -93,13 +93,13 @@ En esta sección se describirá el diseño de los datos del sistema. Para ello s
 
 \section{Diseño arquitectónico}
 
-El diseño de la arquitectura de la aplicación se divide en 2 partes fundamentales: un frontend de Angular dividido en componentes y servicios, y un backend de Node js que usa controladores para ejecutar funciones y modelos para la base de datos. La separación del frontEnd y el backend garantiza la separación de responsabilidades, lo que se ve reforzado por los componentes del frontend y los controladores del bakend, que separan aún más las reponsabilidades internamente. Los componentes y controladores siguen el principio \textit{Open-Closed} de programación, permitiendo añadir nuevas funcionalidades sin necesidad de alterar el resto del código (Por ejemplo añadir nuevas pantallas o reglas).
+El diseño de la arquitectura de la aplicación se divide en 2 partes fundamentales: un frontend de Angular dividido en componentes y servicios, y un backend de Node js que usa controladores para ejecutar funciones y modelos para la base de datos. La separación del frontEnd y el backend garantiza la separación de responsabilidades, lo que se ve reforzado por los componentes del frontend y los controladores del backend, que separan aún más las reponsabilidades internamente. Los componentes y controladores siguen el principio \textit{Open-Closed} de programación, permitiendo añadir nuevas funcionalidades sin necesidad de alterar el resto del código (Por ejemplo añadir nuevas pantallas o reglas).
 
 Esta arquitectura y sus divisones en directorios se muestran de una forma más detallada y visual en la siguiente figura:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{img/Diagrama-directorios.png}
+\includegraphics[width=0.8\textwidth]{img/Diagrama-paquetes.png}
 \caption{Diagrama del diseño arquitectónico}
 \label{fig:DiagramaDirectorios}
 \end{figure}
@@ -107,10 +107,10 @@ Esta arquitectura y sus divisones en directorios se muestran de una forma más d
 A continuación se detallará en mayor medida las funcionalidades de cada parte tanto del backend como el frontend
 
 \begin{itemize}
-    \item \textbf{Fontend}:
+    \item \textbf{Frontend}:
     \begin{itemize}
-    	\item \textbf{Guards}: Inluye el fichero auth-guard.guard.ts, que se encarga de reforzar la seguridad de acceso a la aplicación bloqueando accesos a las distintas URLs sin haber iniciado sesión
-    	\item \textbf{Modules}: Contiene casi toda la lógica del fontend, incluyendo todos los componentes .ts, .html y .css de cada parte de la página web, encargándose estos de componer la lógica, estructura de la página y estilos de maquetación de la misma, respectivamente. Se puede apreciar una mejor representación de su estructura en la figura siguiente. Se compone de las siguientes carpetas:
+    	\item \textbf{Guards}: Incluye el fichero auth-guard.guard.ts, que se encarga de reforzar la seguridad de acceso a la aplicación bloqueando accesos a las distintas URLs sin haber iniciado sesión
+    	\item \textbf{Modules}: Contiene casi toda la lógica del fontend, incluyendo todos los componentes .ts, .html y .css de cada parte de la página web, encargándose estos de definir la lógica, estructura de la página y estilos de maquetación de la misma, respectivamente. Se puede apreciar una mejor representación de su estructura en la figura siguiente. Se compone de las siguientes carpetas:
             \begin{itemize}
                 \item \textbf{auth}: Da forma a la pantalla de inicio y usa sus componentes hijos para cambiar entre formulario de registro, inicio de sesión o cambio de contraseña.
                 \item \textbf{repository-input}: Se encarga de la pantalla donde el usuario introduce los repositorios y configura el análisis.
@@ -134,17 +134,17 @@ A continuación se detallará en mayor medida las funcionalidades de cada parte 
     	\item \textbf{controllers}: Se compone de authController.js y repoController.js, que son los ficheros con las funciones principales que definen la lógica general del código relacionado con la autentificación de usuarios y el manejo de repositorios, respectivamente. Para ello utilizarán los modelos definidos en "Models" y las funciones menores definidad en "utils"
         \item \textbf{routes}: Su fichero repoRoutes.js define las rutas que usarán los servicios del frontend para acceder a las funciones de los controllers.
     	\item \textbf{models}: Contiene los ficheros que definen cada tabla de la base de datos a través de la librería mongoose.
-    	\item \textbf{utils}: Contiene las funciones secundarias necesarias que usará repoController.js. Hay un fichero y función pequeña para cada tabla de métricas (\textit{commits}, \textit{issues}, etc), junto a un fichero github.js que obtiene datos del repositorio importantes como el título y autort; y para cada práctica ágil definida (Version control, Iterations, etc), además de algunas funciones de ayuda comorule-comparator.js, que compara las medidas de calidad de proceso entre el repositorio principal y los repositorios de referencia para evaluar las reglas
+    	\item \textbf{utils}: Contiene las funciones secundarias necesarias que usará repoController.js. Hay un fichero y función pequeña para cada tabla de métricas (\textit{commits}, \textit{issues}, etc), junto a un fichero github.js que obtiene datos del repositorio importantes como el título y autor; y para cada práctica ágil definida (Version control, Iterations, etc), además de algunas funciones de ayuda comorule-comparator.js, que compara las medidas de calidad de proceso entre el repositorio principal y los repositorios de referencia para evaluar las reglas
     \end{itemize}
 \end{itemize}
 
-La particularidad de haber dividido el código por frontend y backend refuerza enormemente la flexibilidad y la escalabilidad del diseño, así como la legilibilidad y mantenimiento del código.
+La particularidad de haber dividido el código entre frontend y backend refuerza enormemente la flexibilidad y la escalabilidad del diseño, así como la legibilidad y mantenimiento del código.
 
 \subsection{Patrones de diseño}
 
-No toda la flexibilidad, ecalabilidad y robustez se deben sólo a la estructura interna del código, sino también a los patrones de diseño aplicados. Estos patrones mejoran de la calidad del código y la reutilización de componentes, y refuerzan la legibilidad y mantenibilidad, así como una comunicación más clara entre desarrolladores o, en el caso del desarrollo de este proyecto, la comunicación entre el alumno autor y el tutor del TFG. 
+No toda la flexibilidad, escalabilidad y robustez se deben sólo a la estructura interna del código, sino también a los patrones de diseño \cite{gamma1994design} aplicados. Estos patrones mejoran de la calidad del código y la reutilización de componentes, y refuerzan la legibilidad y mantenibilidad, así como una comunicación más clara entre desarrolladores o, en el caso del desarrollo de este proyecto, la comunicación entre el alumno autor y el tutor del TFG. 
 
-Para el diseño de este proyecto se han tenido en cuenta unos principios (SOLID) y patrones de diseño concretos que han sido de especial utilidad en una arquitectura como lo es la ya descrita de este proyecto. A continuación se detallan los patrones y principios de diseño más relevantes considerados:
+Para el diseño de este proyecto se han tenido en cuenta los principios SOLID \cite{solid_principles} que, junto a ciertos patrones de diseño concretos, han sido de especial utilidad en una arquitectura como lo es la ya descrita de este proyecto. A continuación se detallan los patrones y principios de diseño más relevantes considerados:
 
 \begin{itemize}
     \item \textbf{Patrón fachada}: Este patrón se aplica especialmente en la comunicación entre el frontend y el backend a través de los servicios (AuthService, RepositoryService). Estos actúan como una "fachada" que simplifica el acceso a múltiples funciones complejas del backend.
@@ -186,7 +186,7 @@ Para el diseño de este proyecto se han tenido en cuenta unos principios (SOLID)
         \item \textbf{Beneficio}: Favorece el desacoplamiento entre la lógica de negocio y la lógica de acceso a datos.
     \end{itemize}
     
-    \item \textbf{patrón decorador}: En Angular se emplea el patrón decorador mediante anotaciones como @Component, @Injectable, @Input, @Output, que permiten añadir información a las clases, propiedades o métodos sin modificar directamente su implementación.
+    \item \textbf{Patrón decorador}: En Angular se emplea el patrón decorador mediante anotaciones como @Component, @Injectable, @Input, @Output, que permiten añadir información a las clases, propiedades o métodos sin modificar directamente su implementación.
     \begin{itemize}
         \item \textbf{Beneficio}: Permite extender funcionalidades de manera flexible sin modificar el código original.
         \item \textbf{Beneficio}: Aumenta la legibilidad y organización del código, permitiendo declarar claramente el propósito de cada clase o propiedad.
@@ -242,10 +242,10 @@ Este caso de uso permite al usuario introducir una o más URLs de repositorios G
 \begin{enumerate}
   \item El usuario introduce una o varias URLs.
   \item El sistema valida su formato y accesibilidad.
-  \item Si las URLs no son correctamente validadas saltará un mensaje de error. En caso contrario se iniciará el análisis cuando el usuario pulse el botón.
+  \item Si las URLs no son correctamente validadas saltará un mensaje de error. En caso contrario, el análisis se iniciará cuando el usuario pulse el botón..
 \end{enumerate}
 
-\subsection*{CU4 - Configurar análisis del repositorio}
+\subsection*{CU4 - Configuración del análisis de repositorios}
 
 Este caso de uso permite definir cómo se analizarán los datos de los repositorios previamente introducidos. El usuario puede personalizar fechas, tipos de intervalos y métricas. Cada paso incluye validaciones, y al final se habilita la opción de comparar (ver figura~\ref{fig:DiagramaCU4}).
 
@@ -253,7 +253,7 @@ Este caso de uso permite definir cómo se analizarán los datos de los repositor
 \begin{enumerate}
   \item El usuario elige el número de días sobre el cual se basarán las medidas de calidad que reflejan medias estadísticas.
   \item El usuario elige entre analizar los repositorios al completo o por intervalos de tiempo.
-  \item El usuario elige en qué intervalos de tiempo relizar el análisis.
+  \item El usuario elige en qué intervalos de tiempo realizar el análisis.
   \item Se validan las entradas y se habilita el botón \textit{Comparar}.
 \end{enumerate}
 
@@ -264,7 +264,7 @@ Este caso de uso permite definir cómo se analizarán los datos de los repositor
 \label{fig:DiagramaCU4}
 \end{figure}
 
-\subsection*{CU5 - Gestionar grupos de repositorios de comparación}
+\subsection*{CU5 - Gestión de grupos de repositorios de referencia}
 
 Este caso de uso permite gestionar grupos de repositorios previamente guardados como referencia comparativa. El usuario puede cargarlos o eliminarlos, siempre y cuando tenga al menos un grupo guardado. (Ver figura~\ref{fig:DiagramaCU5})
 
@@ -282,7 +282,7 @@ Este caso de uso permite gestionar grupos de repositorios previamente guardados 
 \label{fig:DiagramaCU5}
 \end{figure}
 
-\subsection*{CU6 - Visualizar evaluación de buenas prácticas ágiles}
+\subsection*{CU6 - Visualización de prácticas ágiles}
 
 Permite al usuario visualizar los resultados de un análisis automático de prácticas ágiles basado en las medidas de calidad de proceso extraídas de los repositorios. Se presentan los resultados en forma gráfica y textual, indicando qué prácticas se cumplen, en qué medida, y en qué aspectos hay lugar para mejoras. Esto puede observarse en la figura~\ref{fig:DiagramaCU3-CU6-CU7}, junto a la posibilidad de que el usuario cambie de pantalla y vuelva a la de este caso de uso o pase a la del CU7.
 
@@ -292,7 +292,7 @@ Permite al usuario visualizar los resultados de un análisis automático de prá
   \item El usuario revisa qué prácticas de agilidad se cumplen, cuáles no, y los motivos.
 \end{enumerate}
 
-\subsection*{CU7 - Comparar medidas de calidad de proceso con repositorios de referencia}
+\subsection*{CU7 - Comparación de medidas de calidad de proceso}
 
 Este caso de uso permite al usuario comparar visualmente las métricas de calidad de su repositorio analizado con aquellas de uno o más repositorios de referencia previamente cargados. El sistema genera listas comparativas para facilitar la interpretación. Esta funcionalidad, junto a las de los casos de uso CU3 y CU6 se detalla gráficamente en la figura~\ref{fig:DiagramaCU7} siguiendo un flujo detallado del proceso de validación de URLs de repositorios para después ver los resultados.
 

@@ -2,7 +2,7 @@
 
 \section{Introducción}
 
-Este apéndice recoge los requisitos funcionales de la aplicación propuesta en este proyecto para evaluar la adopción de prácticas ágiles en repositorios de GitHub utilizados por estudiantes para realizar diversos trabajos como, por ejemplo, Trabajos de Fin de Grado (TFG). Se incluyen los casos de uso posibles que podrá tener un usuario de la aplicación desarrollada, junto a tablas y diagramas que ayuden a comprender los mismos. Los casos de uso comprenderán cierto número de requisitos funcionales y no funcionales, listados y explicados más adelante en este apartado para especificar cláramente todas las formas que tiene el usuario de interactuar con el software propuesto. Además se incluirá el listado de objetivos generales del proyecto para ayudar a contextualizar tanto los casos de uso como los requisitos funcionales.
+Este apéndice recoge los requisitos funcionales de la aplicación propuesta en este proyecto para evaluar la adopción de prácticas ágiles en repositorios de GitHub utilizados por estudiantes para realizar diversos trabajos como, por ejemplo, Trabajos de Fin de Grado (TFG). Se incluyen los casos de uso posibles que podrá tener un usuario de la aplicación desarrollada, junto a tablas y diagramas que ayuden a comprender los mismos. Los casos de uso comprenderán cierto número de requisitos funcionales y no funcionales, listados y explicados más adelante en este apartado para especificar claramente todas las formas que tiene el usuario de interactuar con el software propuesto. Además se incluirá el listado de objetivos generales del proyecto para ayudar a contextualizar tanto los casos de uso como los requisitos funcionales.
 
 \section{Objetivos generales}
 La visión general de este proyecto abarca los objetivos descritos a continuación:
@@ -11,13 +11,13 @@ La visión general de este proyecto abarca los objetivos descritos a continuaci�
 
 \item \textbf{Análisis de métricas de calidad de proceso de software de los repositorios}: La aplicación web analiza detalladamente todas las métricas de calidad de proceso y características que pueden resultar útiles de un repositorio durante el proceso de desarrollo de software.
 
-\item \textbf{Ajuste temporal del análisis}: Consiste en la posibilidad de ajustar distintos parámetros termporales del análisis para elegir en qué etapas del desarrollo se analizarán los repositorios.
+\item \textbf{Ajuste temporal del análisis}: Consiste en la posibilidad de ajustar distintos parámetros temporales del análisis para elegir en qué etapas del desarrollo se analizarán los repositorios.
 
 \item \textbf{Comparación de las métricas de calidad de proceso obtenidas de los repositorios de referencia}: La aplicación es capaz de, dadas todas las medidas de calidad de proceso de los repositorios que el usuario ha elegido como referencia, compararlas para ofrecer al usuario una visualización clara de los diferentes valores de estas medidas en los distintos repositorios.
 
 \item \textbf{Prácticas ágiles y medidas de repositorios}: La aplicación utiliza las definiciones de prácticas ágiles recogidas en \cite{agileSubwayMap} para presentar los resultados al usuario tras analizar el repositorio.
 
-\item \textbf{Asistencia a estudiantes}: Se pueden utilizar otros TFGs púplicos realizados en la Universidad de Burgos como casos de estudio, introduciéndolos en la aplicación y que estos sirvan como referencia para los estudiantes a la hora de realizar sus propios TFG.
+\item \textbf{Asistencia a estudiantes}: Se pueden utilizar otros TFGs públicos realizados en la Universidad de Burgos como casos de estudio, introduciéndolos en la aplicación y que estos sirvan como referencia para los estudiantes a la hora de realizar sus propios TFG.
 
 \end{itemize}
 
@@ -29,7 +29,7 @@ A continuación se puede observar un listado de todos los requisitos funcionales
 \begin{itemize}
     \item \textbf{RF-01} – Creación una cuenta para usar la aplicación.
     
-    \item \textbf{RF-02} – Entrada  del perfil creado iniciando sesión.
+    \item \textbf{RF-02} – Entrada al perfil creado iniciando sesión.
     
     \item \textbf{RF-03} – Salida  del perfil creado cerrando sesión.
     
@@ -58,12 +58,12 @@ A continuación se puede observar un listado de todos los requisitos funcionales
 
 \subsection{Requisitos no funcionales}
 
-Continuando los requisistos del proyecto, más adelante se encuentra un listado de todos los requisitos no funcionales considerados para la aplicación realizada en este proyecto.
+Continuando los requisitos del proyecto, más adelante se encuentra un listado de todos los requisitos no funcionales considerados para la aplicación realizada en este proyecto.
 
 \begin{itemize}
     \item \textbf{RNF-01} Modularidad
 
-    \item \textbf{RNF-02} Usabildiad
+    \item \textbf{RNF-02} Usabilidad
 
     \item \textbf{RNF-03} Reusabilidad
 
@@ -86,10 +86,10 @@ A continuación se describen de forma detallada los requisitos funcionales del s
     El sistema debe permitir a los usuarios crear una cuenta personal mediante un formulario de registro. Esta funcionalidad es necesaria para garantizar la personalización de la experiencia, el almacenamiento de configuraciones y el acceso a funcionalidades avanzadas, como la carga de repositorios de referencia o la consulta del historial de análisis realizados; además de garantizar seguridad y control de acceso a la aplicación.
     
     \item*{RF-02 – Inicio  de sesión}
-    Los usuarios registrados deben poder iniciar sesión en el sistema para acceder a sus perfiles y funcionalidades asociadas mediante un nombre de usuario único y una contraseña que se almacenará hasheada para garantizar la seguridad del almacenaje de perfiles de usuario en la base de datos.
+    Los usuarios registrados deben poder iniciar sesión en el sistema para acceder a sus perfiles y funcionalidades asociadas mediante un nombre de usuario único y una contraseña que se almacenará encriptada para garantizar la seguridad del almacenaje de perfiles de usuario en la base de datos.
     
     \item*{RF-03 – Cierre de sesión}
-    Los usuarios pueden cerrar sesión de forma segura al finalizar su uso, tanto para finalizar de forma segurasu actividad o cambiar de cuenta por diferentes motivos como el uso de varias cuentas personalizadas con diferentes ajustes y/o grupos de repositorios almacenados.
+    Los usuarios pueden cerrar sesión de forma segura al finalizar su uso, tanto para finalizar de forma segura su actividad o cambiar de cuenta por diferentes motivos como el uso de varias cuentas personalizadas con diferentes ajustes y/o grupos de repositorios almacenados.
     
     \item*{RF-04 – Cambio de contraseña}
     El sistema debe permitir a los usuarios modificar la contraseña de su cuenta en cualquier momento, con el fin de mantener la seguridad y el control sobre su acceso. El proceso debe incluir medidas de validación para evitar contraseñas débiles o inseguras.
@@ -98,13 +98,13 @@ A continuación se describen de forma detallada los requisitos funcionales del s
     La interfaz de la aplicación debe ser multilingüe, permitiendo a los usuarios seleccionar el idioma que prefieran entre las opciones disponibles. Esto contribuye a la internacionalización del software, mejora la accesibilidad y facilita su uso en contextos internacionales o multilingües.
     
     \item*{RF-06 – Introducción y validación de URLs de repositorios}
-    El sistema debe permitir a los usuarios introducir la URL de uno o varios repositorios públicos de GitHub. La aplicación validará que las URLs introducidas sean correctas, que los repositorios estén disponibles y que se pueda acceder a ellos para su análisis para infromar al usuario de que está introduciendo repositorios válidos y de manera correcta.
+    El sistema debe permitir a los usuarios introducir la URL de uno o varios repositorios públicos de GitHub. La aplicación validará que las URLs introducidas sean correctas, que los repositorios estén disponibles y que se pueda acceder a ellos para su análisis para informar al usuario de que está introduciendo repositorios válidos y de manera correcta.
     
     \item*{RF-07 – Selección del número de días para métricas temporales}
     El sistema debe permitir al usuario definir un número de días a considerar como ventana temporal para el cálculo de medidas de calidad de proceso relacionadas con medias. Esta opción permite realizar análisis adaptados a periodos de mayor o menor longitud de actividad dentro del proyecto.
     
     \item*{RF-08 – Selección del ámbito temporal del análisis}
-    Los usuarios podrán definir si los repositorios se analizarán al completo, lo cual abarcaría todo su tiempo de vida desde elñ primer \textit{commit} hasta el último, o por intervalos de tiempo ajustables.
+    Los usuarios podrán definir si los repositorios se analizarán al completo, lo cual abarcaría todo su tiempo de vida desde el primer \textit{commit} hasta el último, o por intervalos de tiempo ajustables.
     
     \item*{RF-09 – Selección del tipo de intervalos de tiempo}
     El sistema debe ofrecer la posibilidad de seleccionar el tipo de intervalo temporal para el análisis, ya sean intervalos relativos, que abarquen cuartos de la vida del repositorio, o intervalos absolutos que equivalgan a meses de vida. Esta opción facilita la visualización de tendencias y eficiencia de trabajo en distintas fases del desarrollo de software.
@@ -132,9 +132,9 @@ A continuación se describen de forma detallada los requisitos no funcionales de
 \begin{itemize}
 
     \item*{RNF-01 – Modularidad}
-    La aplicación debe estar diseñada utilizando una arquitectura modular basada en componentes reutilizables. Debe ser comparible con patrones de diseño modernos y fácil de escalar o modificar por partes sin afectar al conjutno total del software. Esta estructura permite que futuras modificaciones o ampliaciones (como la adición de nuevas métricas o funcionalidades) se integren de forma controlada y sencilla.
+    La aplicación debe estar diseñada utilizando una arquitectura modular basada en componentes reutilizables. Debe ser compatible con patrones de diseño modernos y fácil de escalar o modificar por partes sin afectar al conjunto total del software. Esta estructura permite que futuras modificaciones o ampliaciones (como la adición de nuevas métricas o funcionalidades) se integren de forma controlada y sencilla.
     
-    \item*{RNF-02 – Usabildiad}
+    \item*{RNF-02 – Usabilidad}
     La interfaz debe ser intuitiva, clara y fácil de usar. Los formularios deben presentar instrucciones comprensibles, validaciones dinámicas y retroalimentación inmediata ante errores o acciones del usuario. Se prioriza un diseño simple y directo que permita a usuarios no técnicos comprender la aplicación sin curva de aprendizaje.
     
     \item*{RNF-03 – Reusabilidad}
@@ -144,16 +144,23 @@ A continuación se describen de forma detallada los requisitos no funcionales de
     El sistema debe mantener una separación estricta entre las capas de presentación (frontend) y lógica de negocio (backend), utilizando servicios HTTP para el intercambio de datos de forma asíncrona. Esto mejora la escalabilidad y permite gestionar respuestas y errores de forma controlada desde la interfaz.
     
     \item*{RNF-05 – Validaciones informativas}
-    Los formularios deben incorporar validación reactiva utilizando sistemas de formularios y alertas, proporcionando retroalimentación inmediata al usuario en caso de errores o datos incompletos. Esto reduce la frustración del usuario y mantiende informado al mismo, y además mejora la precisión y seguridad de los datos introducidos.
+    Los formularios deben incorporar validación reactiva utilizando sistemas de formularios y alertas, proporcionando retroalimentación inmediata al usuario en caso de errores o datos incompletos. Esto reduce la frustración del usuario y mantiene informado al mismo, y además mejora la precisión y seguridad de los datos introducidos.
     
     \item*{RNF-06 – Navegación intuitiva}
     La aplicación debe organizar sus funcionalidades de forma jerárquica, utilizando tabs, rutas y botones de navegación claros que guíen al usuario durante el análisis. Los componentes de navegación deben ser reutilizables y consistentes en toda la aplicación para facilitar el acceso rápido a las diferentes secciones.
 
 \end{itemize}
 
-\subsection{}{Casos de uso}
+\subsection{Casos de uso}
 
-En esta sección se expondrán los diferentes casos de uso que recogen los requisitos ya definidos anteriormente para cumplir con los objetivos de la aplicación establecidos.
+En esta sección se presentan los diferentes casos de uso que encapsulan los requisitos previamente definidos, con el fin de cumplir los objetivos funcionales y no funcionales establecidos para la aplicación. Cada uno de estos casos de uso describe una interacción específica entre los actores del sistema (en el caso de esta aplicación: el usuario, el backend y el frontend) y sus funcionalidades principales, proporcionando así una visión clara de cómo se espera que los usuarios interactúen con la aplicación. Esto permite no solo una mejor comprensión de las funcionalidades esenciales del sistema, sino también una base sólida para futuras etapas de diseño e implementación. La Figura \ref{fig:Diagrama-casos-de-uso} ilustra de manera general todos los casos de uso identificados, organizando visualmente las relaciones entre los actores principales y las funcionalidades del sistema, lo cual facilita su análisis y validación.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{img/Diagrama-casos-de-uso.png}
+\caption{Diagrama de casos de uso general}
+\label{fig:Diagrama-casos-de-uso}
+\end{figure}
 
 % Caso de Uso 1 -> Creación y acceso a la cuenta
 \clearpage
@@ -243,13 +250,13 @@ En esta sección se expondrán los diferentes casos de uso que recogen los requi
     \caption{CU-3 Introducción y validación de URLs de repositorios.}
 \end{table}
 
-% CU-4: Configurar análisis del repositorio
+% CU-4: Configuración del análisis de repositorios
 \clearpage
 \begin{table}[p]
     \centering
     \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
         \toprule
-        \textbf{CU-4} & Configurar análisis del repositorio \\
+        \textbf{CU-4} & Configuración del análisis de repositorios \\
         \midrule
         \textbf{Versión} & 1.0 \\
         \textbf{Autor} & Lucas Olmedo Díez \\
@@ -273,13 +280,13 @@ En esta sección se expondrán los diferentes casos de uso que recogen los requi
     \caption{CU-4 Configurar análisis del repositorio}
 \end{table}
 
-% CU-5: Gestionar grupos de repositorios de comparación
+% CU-5: Gestión de grupos de repositorios de referencia
 \clearpage
 \begin{table}[p]
     \centering
     \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
         \toprule
-        \textbf{CU-5} & Gestionar grupos de repositorios de comparación \\
+        \textbf{CU-5} & Gestión de grupos de repositorios de referencia \\
         \midrule
         \textbf{Versión} & 1.0 \\
         \textbf{Autor} & Lucas Olmedo Díez \\
@@ -302,13 +309,13 @@ En esta sección se expondrán los diferentes casos de uso que recogen los requi
     \caption{CU-5 Gestionar grupos de repositorios de comparación}
 \end{table}
 
-% CU-6: Visualizar evaluación de buenas prácticas ágiles
+% CU-6: Visualización de prácticas ágiles
 \clearpage
 \begin{table}[p]
     \centering
     \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
         \toprule
-        \textbf{CU-6} & Visualizar evaluación de buenas prácticas ágiles \\
+        \textbf{CU-6} & Visualización de prácticas ágiles \\
         \midrule
         \textbf{Versión} & 1.0 \\
         \textbf{Autor} & Lucas Olmedo Díez \\
@@ -330,13 +337,13 @@ En esta sección se expondrán los diferentes casos de uso que recogen los requi
     \caption{CU-6 Visualizar evaluación de buenas prácticas ágiles}
 \end{table}
 
-% CU-7: Comparar medidas de calidad de proceso con repositorios de referencia
+% CU-7: Comparación de medidas de calidad de proceso
 \clearpage
 \begin{table}[p]
     \centering
     \begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
         \toprule
-        \textbf{CU-7} & Comparar medidas de calidad de proceso con repositorios de referencia \\
+        \textbf{CU-7} & Comparación de medidas de calidad de proceso \\
         \midrule
         \textbf{Versión} & 1.0 \\
         \textbf{Autor} & Lucas Olmedo Díez \\

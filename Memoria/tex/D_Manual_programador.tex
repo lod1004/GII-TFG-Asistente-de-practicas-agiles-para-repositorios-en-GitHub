@@ -2,13 +2,13 @@
 
 \section{Introducción}
 
-Este apartado del anexo detalla una guía técnica completa orientada a desarolladores software que quieran trabajar o utilizar la aplicación de Asistente de prácticas ágiles para repositorios en GitHub. Se incluye una guía para clonar el entorno de desarrollo, compilar y ejecutar la aplicación, detallando los pasos necesarios a realizar en la configuración del proyecto para lograrlo.
+Este apartado del anexo detalla una guía técnica completa orientada a desarrolladores software que quieran trabajar o utilizar la aplicación de Asistente de prácticas ágiles para repositorios en GitHub. Se incluye una guía para clonar el entorno de desarrollo, compilar y ejecutar la aplicación, detallando los pasos necesarios a realizar en la configuración del proyecto para lograrlo.
 
 \section{Estructura de directorios}
-A continuación se detalla la estructura de ficheros de todo el proyecto, incluyendo tanto el código fuente de la aplicación desarrollada como la documentación, y readmes.
+A continuación se detalla la estructura de ficheros de todo el proyecto, incluyendo tanto el código fuente de la aplicación desarrollada como la documentación, y ficheros readme.
 \begin{itemize}
 	
-	\item \textbf{/}: Directorio raíz. Contiene el resto de directorios, junto al fichero gitignore y el fichero readme.d principal del proyecto.
+	\item \textbf{/}: Directorio raíz. Contiene el resto de directorios, junto al fichero .gitignore y el fichero readme.md principal del proyecto.
 	
     \item \textbf{/Memoria/}: Directorio que contiene la documentación del proyecto. En su interior se encuentran:
 
@@ -43,7 +43,7 @@ Para configurar el entorno de desarrollo del proyecto, se sugiere utilizar las h
 \begin{itemize}
 	\item \textbf{Visual Studio Code:} Se trata de un editor de código fuente gratuito, ligero y versátil. Es una herramienta útil para escribir, editar, depurar y gestionar código en una amplia variedad de lenguajes de programación. Se caracteriza por su flexibilidad, extensibilidad y capacidad para integrarse con diversas herramientas y extensiones. 
 	\item \textbf{Copilot (Opcional):} Es una extensión de \textit{Visual Studio Code} que asiste al programador con una inteligencia artificial a través de sugerencias de código, lo que acelera mucho el proceso de desarrollo.
-	\item \textbf{MongoDBCompass:} Una aplicación de escritorio desde la cual gestionar la conexión y contenidos de la base de datos ubicada en \textbf{Mongo DB Atlas}.
+	\item \textbf{MongoDB Compass:} Una aplicación de escritorio desde la cual gestionar la conexión y contenidos de la base de datos ubicada en \textbf{Mongo DB Atlas\cite{mongodb_atlas}}.
     \item \textbf{GitHubDesktop:} Un entorno gráfico de GitHub de gran utilidad gracias a la infromación visual que brinda sobre los ficheros del repositorio modificados, añadidos o borrados. Ofrece una gran ayuda para hacer \textit{commits}, \textit{pull requests} y \textit{merges} de calidad.
 \end{itemize}
 
@@ -86,29 +86,29 @@ Además del entorno base, Visual Studio Code permite instalar algunas extensione
 \section{Compilación, instalación y ejecución del proyecto}
 \label{sec:compilacion}
 
-Una vez configurado el entorno del proyecto y los sercios externos, se detallan los siguientes pasos a seguir necesarios para compilar e instalar lo necesario para poder ejecutar la aplicación.
+Una vez configurado el entorno del proyecto y los servicios externos, se detallan los siguientes pasos a seguir necesarios para compilar e instalar lo necesario para poder ejecutar la aplicación.
 
 \begin{enumerate}
 
 	\item Desde la raíz del repositorio clonado, navegar a la carpeta \textbf{src/backend} y ejecutar los siguientes comandos en una terminal:
 	\begin{itemize}
 		\item \textbf{npm install} para instalar las dependencias del servidor.
-		\item En el fichero .env del back se debe incluir una token de GitHub para poder hacer las peticiones a través de la API. Se puede ver más información sobre las token de GitHub en el siguiente enlace: \url{https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens}. 
+		\item En el fichero .env del back se debe incluir un token de GitHub para poder hacer las peticiones a través de la API. Se puede ver más información sobre las token de GitHub en el siguiente enlace: \url{https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens}. 
         \item También puede ser necesario añadir una conexión de MongoDB Atlas o, en su defecto, dejar la que ya está y usar la base de datos existente.
-		\item Ejecutar el backend con \textbf{npm run dev} o \textbf{node server.js}, según lo especificado en la documentación del proyecto.
+		\item Ejecutar el backend con \textbf{node server.js}, según lo especificado en la documentación del proyecto.
 	\end{itemize}
 
 	\item En una nueva terminal, navegar a \textbf{src/frontend} y ejecutar:
 	\begin{itemize}
 		\item \textbf{npm install} para instalar las dependencias del cliente.
 		\item \textbf{ng serve -o} para iniciar la aplicación Angular en el navegador y que la pestaña se abra de forma automática.
-        \item \textbf{Importante} asegurarse de que los servicios del frontEnd (AuthService y RepositoryService) utilicen el environment correcto. ('../../environments/environment' para ejecutar en local o '../../environments/environment.prod' para acceder al BAckend subido en el despliegue continuo en \textbf{React})
+        \item \textbf{Importante} asegurarse de que los servicios del frontend (AuthService y RepositoryService) utilicen el environment correcto. ('../../environments/environment' para ejecutar en local o '../../environments/environment.prod' para acceder al backend subido en el despliegue continuo en \textbf{Render})
 	\end{itemize}
 \end{enumerate}
 
 \section{Pruebas del sistema}
 
-El sistema fue sometido a diversas pruebas para garantizar su correcto funcionamiento, mayoritariamente manuales, por parte del autor, tutor, y usuarios externos. Debido a la ventaja de división de código en componentes de Angular, la mayoría de cambios de la aplicación eran añadidos al código, y rara vez modificaban lo hecho previamente, lo que ahorró mucho tiempo de pruebas. SIn embargo, hay dos tipos de pruebas relevantes que se hicieron durante el desarrollo del sistema.
+El sistema fue sometido a diversas pruebas para garantizar su correcto funcionamiento, principalmente manuales, por parte del autor, tutor, y usuarios externos. Debido a la ventaja de división de código en componentes de Angular, la mayoría de los cambios en la aplicación consistían en añadir código, y raramente modificaban lo hecho previamente, lo que ahorró mucho tiempo de pruebas. Sin embargo, hay dos tipos de pruebas relevantes que se realizaron durante el desarrollo del sistema.
 
 \subsection{Prueba general del sistema}
 
@@ -119,15 +119,15 @@ Según la lógica interna de la aplicación, al comparar un repositorio consigo 
 \begin{itemize}
     \item Las medidas de calidad de proceso deben ser idénticas en ambos repositorios, dado que se trata del mismo repositorio y el análisis se realiza bajo las mismas condiciones y fechas.
     
-    \item En la evaluación de prácticas ágiles, todas las medidas que sean aplicables deben considerarse superadas, ya que no hay diferencias entre los repositorios comparados. Las únicas medidas que podrían no superarse son aquellas que no se aplican al repositorio (por ejemplo, por falta de datos), ya que estas se contabilizan como "no completadas", incluso si en el repositorio comparado tampoco se aplican.
+    \item En la evaluación de prácticas ágiles, todas las medidas aplicables deben considerarse superadas, ya que no hay diferencias entre los repositorios comparados. Las únicas medidas que podrían no superarse son aquellas que no se aplican al repositorio (por ejemplo, por falta de datos), ya que estas se contabilizan como no completadas, incluso si en el repositorio comparado tampoco se aplican.
 \end{itemize}
 
 Esta prueba es útil no solo para verificar que el sistema se comporta como se espera en condiciones ideales, sino también para validar la integridad de los datos obtenidos desde GitHub, el cálculo de métricas y la aplicación de las reglas de evaluación automatizadas.
 
-\subsection{Pruebas con SonarCloud}
+\subsection{Pruebas con SonarQube}
 
-Además de la lógica interna de evaluación y comparación, el proyecto hace uso de \textbf{SonarCloud}, integrado en el repositorio de GitHub como plataforma de análisis de calidad del código. SonarCloud permite detectar de forma automatizada problemas como errores de seguridad, código duplicado, malas prácticas y código que no sigue los estándares recomendados.
+Además de la lógica interna de evaluación y comparación, el proyecto hace uso de \textbf{SonarQube\cite{sonarqube}}, integrado en el repositorio de GitHub como plataforma de análisis de calidad del código. SonarQube permite detectar de forma automatizada problemas como errores de seguridad, código duplicado, malas prácticas y código que no sigue los estándares recomendados.
 
-La integración con SonarCloud ha resultado esencial para mantener un código de alta calidad y detectar posibles refactorizaciones necesarias de forma rápida y visual.
+La integración con SonarQube ha resultado esencial para mantener un código de alta calidad y detectar posibles refactorizaciones necesarias de forma rápida y visual.
 
 Gracias a esta herramienta se ha podido reforzar la seguridad, mantenibilidad y fiabilidad del proyecto, así como evitar la duplicación de código y las posibles vulnerabilidades que puedan surgir durante el proceso de desarrollo software
