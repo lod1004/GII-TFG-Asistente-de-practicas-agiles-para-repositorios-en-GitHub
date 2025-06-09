@@ -4,17 +4,17 @@
 
 \section{Metodología de desarrollo}
 
-Durante el desarrollo del proyecto se ha seguido un enfoque iterativo e incremental, inspirado en las metodologías ágiles, especialmente en la metodología \textbf{Scrum}. Aunque no se ha implementado un Scrum completo con sprints y reuniones formales, sí se ha adoptado la filosofía de desarrollo en pequeñas iteraciones, con validaciones frecuentes de funcionalidad y mejora continua.
+Durante el desarrollo del proyecto se ha seguido un enfoque iterativo e incremental, inspirado en las metodologías ágiles, especialmente en la metodología \textbf{Scrum}. Aunque no se ha implementado completamente Scrum con reuniones formales, sí se ha adoptado la filosofía de desarrollo en pequeñas iteraciones, con validaciones frecuentes de funcionalidad y mejora continua.
 
-Cada iteración se centraba en funcionalidades concretas: la recolección de datos, la visualización de medidas de proceso, el cumplimiento de las prácticas ágiles y la mejora de la experiencia de usuario. Esta división permitió avanzar progresivamente, validando en cada iteración los resultados parciales antes de pasar a la siguiente.
+Cada iteración se centraba en funcionalidades concretas: la recolección de datos, la visualización de medidas de proceso, el cumplimiento de las prácticas ágiles, la mejora de la experiencia de usuario y el despliegue continuo. Esta división permitió avanzar progresivamente, validando en cada iteración los resultados parciales antes de pasar a la siguiente.
 
-Además, se ha hecho uso de herramientas como \textbf{Zube} para la organización de tareas y la planificación de Issues. Esto ha facilitado el seguimiento del progreso del desarrollo.
+Además, se ha hecho uso de herramientas como \textbf{Zube} para la organización de tareas y la planificación de Issues. Esto ha facilitado el seguimiento del progreso del desarrollo, como se muestra en la Figura~\ref{fig:IteracionZube}.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{img/IteracionZube.png}
-\caption{Tablero Kanban de la herramienta Zube utilizada para la planificación de tareas e iteraciones.}
-\label{fig:zube}
+\includegraphics[width=0.8\textwidth]{img/4.1 IteracionZube.png}
+\caption{Tablero Kanban de Zube.}
+\label{fig:IteracionZube}
 \end{figure}
 
 \section{Tecnologías y herramientas utilizadas}
@@ -48,7 +48,7 @@ Se consideraron otras alternativas como Python (con frameworks como FastAPI o Fl
 
 \subsection{Comunicación cliente-servidor}
 
-La comunicación entre el cliente Angular y el backend FastAPI se realiza a través de peticiones HTTP RESTful, usando el módulo \texttt{HttpClient} de Angular. La respuesta del backend incluye las medidas de proceso en los repositorios a analizar y a evaluar a partir de los repositorios de referencia proporcionados por el usuario.
+La comunicación entre el cliente Angular y el backend Node.js se realiza a través de peticiones HTTP RESTful, usando el módulo \texttt{HttpClient} de Angular. La respuesta del backend incluye las medidas de proceso en los repositorios a analizar y a evaluar a partir de los repositorios de referencia proporcionados por el usuario.
 
 \subsection{Base de datos: MongoDB y MongoDB Compass}
 
@@ -63,7 +63,7 @@ Para el almacenamiento de información relacionada con los análisis realizados 
   
 \end{itemize}
 
-La elección de MongoDB frente a bases de datos relacionales como MySQL o PostgreSQL se justifica por la naturaleza no estructurada de los datos analizados y la necesidad de una estructura flexible que pueda evolucionar fácilmente sin migraciones complejas, además se su buena integración con el backend Node. js.
+La elección de MongoDB frente a bases de datos relacionales como MySQL o PostgreSQL se justifica por la naturaleza no estructurada de los datos analizados y la necesidad de una estructura flexible que pueda evolucionar fácilmente sin migraciones complejas, además de su buena integración con el backend Node.js.
 
 
 \subsection{Diseño de la interfaz de usuario}
@@ -81,9 +81,9 @@ El código fuente del proyecto se ha gestionado con \textbf{Git}, utilizando Git
 Para las pruebas de aceptación del tutor y el desarrollo del proyecto se han utilizado dos herramientas: Render y Vercel. Estas herramientas han permitido el despliegue continuo de la aplicación web a través de la integración continua lograda gracias a la compatibilidad entre estas dos herramientas y el repositorio de GitHub donde se ha ido subiendo el código del backend y el frontend
 
 \begin{itemize}
-  \item \textbf{Despliegue continuo del backend}: Se ha utilizado la herramienta de Render para lograr el despliegue continuo del backend desde el repositorio de GitHub
+  \item \textbf{Despliegue continuo del backend}: Se ha utilizado la herramienta de \textbf{Render} para lograr el despliegue continuo del backend desde el repositorio de GitHub
   
-  \item \textbf{Despliegue continuo del frontend}: Para el frontend se ha utilizado la herramienta de Vercel, que permite un despliegue continuo rápido y eficiente, que se puede probar desde cualquier dispositivo por cualquier persona gracias a la opción de usar despliegues de carácter público.
+  \item \textbf{Despliegue continuo del frontend}: Para el frontend se ha utilizado la herramienta de \textbf{Vercel}, que permite un despliegue continuo rápido y eficiente, que se puede probar desde cualquier dispositivo por cualquier persona gracias a la opción de usar despliegues de carácter público.
   
 \end{itemize}
 
@@ -103,7 +103,8 @@ Estas herramientas de despliegue han mejorado la comunicación y las pruebas de 
 
 Durante la fase inicial del proyecto se analizaron distintas tecnologías. Las siguientes tablas resume los principales aspectos que se compararon:
 
-\begin{center}
+\begin{table}[H]
+\centering
 \begin{tabular}{|l|c|c|c|}
 \hline
 \textbf{Tecnología} & \textbf{Facilidad de uso} & \textbf{Rendimiento} & \textbf{Documentación} \\
@@ -116,10 +117,13 @@ Flask & Alta & Media & Muy completa \\
 Django & Media & Media & Muy completa \\
 \hline
 \end{tabular}
-\captionof{table}{Comparativa de tecnologías frontend y backend evaluadas en la fase inicial del proyecto.}
-\end{center}
+\caption{Comparativa de tecnologías frontend y backend evaluadas en la fase inicial del proyecto.}
+\label{tabla:frontend-backend1}
+\end{table}
 
-\begin{center}
+
+\begin{table}[H]
+\centering
 \begin{tabular}{|l|c|c|c|}
 \hline
 \textbf{Tecnología} & \textbf{Facilidad de uso} & \textbf{Rendimiento} & \textbf{Documentación} \\
@@ -132,11 +136,13 @@ Django & Media & Media & Muy completa \\
 Spring Boot & Baja & Muy Alta & Muy completa \\
 \hline
 \end{tabular}
-\captionof{table}{Comparativa de tecnologías backend y frameworks analizados.}
-\end{center}
+\caption{Comparativa de tecnologías backend y frameworks analizados.}
+\label{tabla:backend-frameworks}
+\end{table}
 
 
-\begin{center}
+\begin{table}[H]
+\centering
 \begin{tabular}{|l|c|c|c|}
 \hline
 \textbf{Base de Datos} & \textbf{Facilidad de uso} & \textbf{Rendimiento} & \textbf{Documentación} \\
@@ -149,11 +155,12 @@ Firebase Realtime DB & Muy alta & Medio & Buena \\
 Redis & Media & Muy Alto (caché) & Buena \\
 \hline
 \end{tabular}
-\captionof{table}{Comparativa de tecnologías de bases de datos utilizadas y evaluadas.}
-\end{center}
+\caption{Comparativa de tecnologías de bases de datos utilizadas y evaluadas.}
+\label{tabla:basesdedatos}
+\end{table}
 
 
-La elección final se basa en la compatibilidad entre tecnologías, la curva de aprendizaje, y el tipo de aplicación (analítica, con formularios complejos y visualización estructurada).
+La elección final se basa en la compatibilidad entre tecnologías, la curva de aprendizaje y el tipo de aplicación (analítica, con formularios complejos y visualización estructurada).
 
 \section{Resumen de herramientas utilizadas}
 
@@ -161,8 +168,6 @@ A continuación se muestra una tabla con las herramientas utilizadas durante el 
 
 \begin{table}[H]
 \centering
-\caption{Herramientas y tecnologías utilizadas en cada parte del proyecto.}
-\label{herramientasportipodeuso}
 \begin{tabular}{l c c c c c}
 \toprule
 \textbf{Herramientas} & Frontend & Backend & Base de Datos & Documentación & Despliegue \\
@@ -171,7 +176,7 @@ HTML5 & X & & & & \\
 TypeScript & X & & & & \\
 Angular 19.2.3 & X & & & & \\
 Node.js & & X & & & \\
-XP & & X & & & \\
+Extreme Programming & & X & & & \\
 GitHub API & & X & & & \\
 Mongoose & & X & X & & \\
 MongoDB & & & X & & \\
@@ -184,4 +189,6 @@ Overleaf & & & & X & \\
 Git & X & X & X & X & X \\
 \bottomrule
 \end{tabular}
+\caption{Herramientas y tecnologías utilizadas en cada parte del proyecto.}
+\label{herramientasportipodeuso}
 \end{table}

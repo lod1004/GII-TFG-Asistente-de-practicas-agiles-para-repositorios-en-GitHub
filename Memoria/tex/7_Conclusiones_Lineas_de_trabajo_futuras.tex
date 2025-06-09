@@ -6,15 +6,15 @@ El desarrollo de este proyecto ha permitido abordar de forma práctica y teóric
 
 Una de las principales aportaciones del proyecto ha sido la demostración de que es posible realizar un seguimiento detallado y automatizado de la calidad del desarrollo de un proyecto utilizando exclusivamente datos disponibles públicamente en plataformas como GitHub. Este enfoque presenta importantes ventajas en términos de escalabilidad, reproducibilidad y objetividad, y puede aplicarse tanto en contextos profesionales como educativos.
 
-Desde un punto de vista metodológico, el proyecto ha validado el uso de métricasde calidad de proceso centradas en la actividad, colaboración y mantenimiento como indicadores fiables de la salud y madurez de un proyecto. Asimismo, se ha confirmado que el análisis temporal aporta una dimensión adicional imprescindible para comprender la evolución de trabajo de un equipo y la implementación progresiva de metodologías ágiles.
+Desde un punto de vista metodológico, el proyecto ha validado el uso de medidas de calidad de proceso centradas en la actividad, colaboración y mantenimiento como indicadores fiables de la salud y madurez de un proyecto. Asimismo, se ha confirmado que el análisis temporal aporta una dimensión adicional imprescindible para comprender la evolución de trabajo de un equipo y la implementación progresiva de metodologías ágiles.
 
 \section*{Conclusiones técnicas}
 
 Desde el plano técnico, se destacan los siguientes logros:
 
 \begin{itemize}
-\item Se ha desarrollado una herramienta capaz de recopilar y analizar datos estructurados desde la API de GitHub, procesando la información relevante de Commits, Issues, Pull Requests, Releases, ficheros workflow y de la actividad de los miembros del equipo.
-\item Se ha implementado un sistema de métricas y reglas evaluativas, basado en trabajos de referencia como el \textit{Agile Subway Map}, permitiendo una evaluación automática de prácticas ágiles y de calidad técnica del repositorio. Gracias a la naturaleza del código que cumple el principio abierto / cerrado es sencillo agregar nuevas reglas en el futuro.
+\item Se ha desarrollado una herramienta capaz de recopilar y analizar datos estructurados desde la API de GitHub, procesando la información relevante de \textit{commits}, \textit{issues}, \textit{pull requests}, \textit{releases}, ficheros \textit{workflow} y de la actividad de los miembros del equipo.
+\item Se ha implementado un sistema de métricas y reglas evaluativas, basado en trabajos de referencia como el \textit{Agile Subway Map}, permitiendo una evaluación automática de prácticas ágiles y de calidad técnica del repositorio. Gracias a la naturaleza del código que cumple el principio abierto/cerrado es sencillo agregar nuevas reglas en el futuro.
 \item Se ha incorporado un módulo de análisis temporal dinámico, que permite filtrar y segmentar los datos en función de intervalos absolutos o relativos, lo que amplía notablemente las posibilidades de evaluación y seguimiento.
 \item Se ha demostrado la viabilidad del uso académico de la herramienta, facilitando tanto la autoevaluación por parte de los estudiantes como la evaluación objetiva por parte del profesorado.
 \end{itemize}
@@ -24,7 +24,7 @@ Desde el plano técnico, se destacan los siguientes logros:
 Aunque el proyecto ha cumplido con los objetivos establecidos inicialmente, se han identificado ciertos aspectos que podrían mejorarse o extenderse en futuros desarrollos:
 
 \begin{itemize}
-\item La interfaz de visualización y presentación de resultados podría enriquecerse mediante el uso de dashboards interactivos, gráficas dinámicas y alertas visuales que faciliten una interpretación más intuitiva por parte del usuario.
+\item La interfaz de visualización y presentación de resultados podría enriquecerse mediante el uso de \textit{dashboards} interactivos, gráficas dinámicas y alertas visuales que faciliten una interpretación más intuitiva por parte del usuario.
 \item Otra posible mejora sería permitir una configuración más flexible y adaptativa, dependiendo del tipo de proyecto (tamaño del equipo, duración, objetivos pedagógicos), que permita elegir qué reglas se evaluarán o incluir nuevas personalizadas.
 \item El sistema podría beneficiarse de la integración con otras plataformas complementarias a GitHub, como Jira o Trello, para obtener una visión más completa del proceso de gestión ágil cuando se utilicen otras herramientas en paralelo.
 \end{itemize}
@@ -34,10 +34,10 @@ Aunque el proyecto ha cumplido con los objetivos establecidos inicialmente, se h
 A partir de los resultados obtenidos y de la experiencia adquirida en este proyecto, se proponen varias líneas de trabajo futuro que permitirían ampliar el alcance, mejorar la utilidad y profundizar en la capacidad analítica del sistema desarrollado:
 
 \begin{enumerate}
-\item Ampliación del conjunto de métricas y reglas: Incorporar nuevas métricas relacionadas con la calidad del código, como el número de revisiones por Pull Request, cobertura de código, o uso de despliegues.
+\item Ampliación del conjunto de medidas y reglas: Incorporar nuevas medidas relacionadas con la calidad del código, como el número de revisiones por Pull Request, cobertura de código, o uso de despliegues.
 \item Desarrollo de un modelo de puntuación integral: Diseñar un sistema de puntuación global que integre múltiples dimensiones (actividad, colaboración, mantenimiento, calidad) para ofrecer una evaluación unificada del estado del proyecto.
 \item Validación empírica con más proyectos académicos y profesionales: Realizar estudios de caso con distintas asignaturas, universidades o incluso equipos reales del sector para validar la robustez y adaptabilidad del sistema en diversos contextos.
-\item Incorporación de aprendizaje automático: Aplicar técnicas de machine learning para detectar patrones de comportamiento, predecir cuellos de botella o sugerir automáticamente acciones de mejora basadas en proyectos similares.
+\item Incorporación de aprendizaje automático: Aplicar técnicas de \textit{machine learning} para detectar patrones de comportamiento, predecir cuellos de botella o sugerir automáticamente acciones de mejora basadas en proyectos similares.
 \end{enumerate}
 
 \section*{Reflexión final}

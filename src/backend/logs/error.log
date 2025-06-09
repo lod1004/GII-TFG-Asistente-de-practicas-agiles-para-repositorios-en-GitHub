@@ -21,3 +21,5 @@
 [2025-06-08 18:22:25] [ERROR]: Promesa no manejada: ReferenceError: errors is not defined
 [2025-06-08 18:22:25] [ERROR]: Promesa no manejada: ReferenceError: errors is not defined
 [2025-06-08 18:22:26] [ERROR]: Promesa no manejada: ReferenceError: errors is not defined
+[2025-06-08 21:22:57] [ERROR]: Error al procesar las URLs: validateAverageDays is not defined validateAverageDays is not defined
+[2025-06-08 21:26:17] [ERROR]: Error al procesar las URLs: validateAverageDays is not defined validateAverageDays is not defined

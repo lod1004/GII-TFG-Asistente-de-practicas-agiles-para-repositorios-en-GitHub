@@ -1,16 +1,16 @@
 \capitulo{6}{Trabajos relacionados}
 
-La funcionalidad principal y más común de este proyecto es el análisis de reposiotrios de GitHub, y la comparación entre estos. Hay una gran variedad de herramientas similares que también analizan repositorios, y/o los comparan entre sí.
+La funcionalidad principal y más común de este proyecto es el análisis de repositorios de GitHub, y la comparación entre estos. Hay una gran variedad de herramientas similares que también analizan repositorios, y/o los comparan entre sí.
 
 Se han seleccionado algunas de estas herramientas debido a su similaridad con la aplicación que presenta este proyecto a la hora de analizar aspectos clave de repositorios. Estas herramientas son: 
 \textit{Criticality-Score}~\cite{ossf_criticality_score}, 
 \textit{Agile-Metrics}~\cite{dagrisa_agile_metrics}, 
 \textit{Activiti-API}~\cite{dba0010_activiti_api}  
-\textit{Comparador-de-metricas-de-evolucion-en-repositorios-ftware}~\cite{joaquin_gm_gii_o_ma}
+\textit{Comparador-de-metricas-de-evolucion-en-repositorios-software}~\cite{joaquin_gm_gii_o_ma}
 
 Estas herramientas realizan análisis puntuales de repositorios, pero no permiten al usuario especificar periodos temporales personalizados. Los proyectos mencionados abordan el análisis de proyectos de software desde distintas perspectivas, sirviendo como referentes valiosos para el desarrollo del presente trabajo.
 
-Criticality-Score se centra en medir la importancia de los proyectos open source para priorizar su seguridad, pero no evalúa métricas cualitativas ni trabaja con umbrales.
+Criticality-Score se centra en medir la importancia de los proyectos \textit{open source} para priorizar su seguridad, pero no evalúa métricas cualitativas ni trabaja con umbrales.
 
 Agile-Metrics recopila indicadores ágiles según la forja de repositorio utilizada, pero carece de una unificación de métricas y no trabaja con GitHub, lo que limita su alcance.
 
@@ -39,20 +39,20 @@ El proyecto \textit{Comparador-de-metricas-de-evolucion-en-repositorios-Software
 	\label{comparacion_trabajos}
 \end{table}
 
-El proyecto presentado en este TFG amplía las funcionalidades de las herramientas mencionadas con una mayor capacidad de comparación y evaluación de métricas mediante el análisis de la evolución temporal usando fechas e intervalos personalizados, resultando así en una herramienta avanzada tanto para análisis retrospectivos en detalle como para evaluación continua durante el desarrollo.
+El proyecto presentado en este TFG amplía las funcionalidades de las herramientas mencionadas con una mayor capacidad de comparación y evaluación de métricas mediante el análisis de la evolución temporal usando fechas e intervalos personalizados, lo que da lugar a una herramienta avanzada tanto para análisis retrospectivos en detalle como para evaluación continua durante el desarrollo.
 
-Esta funcionalidad permite al usuario seleccionar rangos de fechas personalizados sobre los cuales se calcularán las métricas, facilitando así el seguimiento detallado del progreso, mantenimiento y salud de un proyecto a lo largo del tiempo. Esta característica no está presente las herramientas analizadas, donde los análisis se realizan de forma estática y centrados en el estado actual del repositorio, aunque se utilicen fechas para la obtención de algunas métricas.
+Esta funcionalidad permite al usuario seleccionar rangos de fechas personalizados sobre los cuales se calcularán las métricas, facilitando así el seguimiento detallado del progreso, mantenimiento y salud de un proyecto a lo largo del tiempo. Esta característica no está presente en las herramientas analizadas, donde los análisis se realizan de forma estática y centrados en el estado actual del repositorio, aunque se utilicen fechas para la obtención de algunas métricas.
 
-Gracias a esta funcionalidad temporal, el usuario puede, por ejemplo, evaluar cómo ha cambiado la calidad del repositorio desde el inicio del mismo, o comprobar si el uso de las prácticas ágiles de desarrollo han tenido impacto en la velocidad y el desarrollo del mismo. Esta capacidad resulta especialmente útil en contextos docentes (como proyectos fin de carrera o asignaturas de carreras relacionadas a la informática), donde se requiere un seguimiento detallado y didáctico de la evolución del trabajo de los estudiantes.
+Gracias a esta funcionalidad temporal, el usuario puede, por ejemplo, evaluar cómo ha cambiado la calidad del repositorio desde el inicio del mismo, o comprobar si el uso de las prácticas ágiles de desarrollo han tenido impacto en su velocidad y progreso. Esta capacidad resulta especialmente útil en contextos docentes (como proyectos fin de carrera o asignaturas de carreras relacionadas con la informática), donde se requiere un seguimiento detallado y didáctico de la evolución del trabajo de los estudiantes.
 
-Además, incluye la posibilidad de realizar tanto análisis relativos como análisis absolutos. Esto es una opción útil a la hora de ver cómo evolucionan las estadísticas cuantitativas del repositorio, lo que permite no sólo observar si un repositorio mejora o empeora con el paso de unidades de tiempo, sino también con el paso de las distintas fases de desarrollo del proyecto. Por ejemplo, se puede observar si la definición de ``Done'' se respeta de forma más consistente con el paso de los sprints.. 
+Además, incluye la posibilidad de realizar tanto análisis relativos como análisis absolutos. Esto es una opción útil a la hora de ver cómo evolucionan las estadísticas cuantitativas del repositorio, lo que permite no sólo observar si un repositorio mejora o empeora con el paso de unidades de tiempo, sino también con el paso de las distintas fases de desarrollo del proyecto. Por ejemplo, se puede observar si la definición de ``Done'' se respeta de forma más consistente con el paso de los sprints. 
 
-Los análisis cuantitativos realizados por la aplicación (como el promedio de subidas de releases, la frecuencia de commits, o la media de issues cerradas en distintos periodos temporales—) permiten relacionar directamente el comportamiento observable del proyecto con el cumplimiento de ciertas prácticas ágiles.
+Los análisis cuantitativos realizados por la aplicación (como el promedio de subidas de releases, la frecuencia de commits, o la media de issues cerradas en distintos periodos temporales) permiten relacionar directamente el comportamiento observable del proyecto con el cumplimiento de ciertas prácticas ágiles.
 
 Por ejemplo, una alta frecuencia de commits con regularidad en el tiempo puede asociarse con una correcta integración continua (CI), una práctica clave en metodologías como Scrum y XP. Del mismo modo, un bajo tiempo medio de cierre de issues sugiere una gestión eficiente del product backlog, lo cual refleja un buen refinamiento del mismo y una comunicación efectiva entre los miembros del equipo.
 
 Además, los intervalos personalizados permiten correlacionar periodos de desarrollo con eventos concretos (entregas, sprints, cambios de equipo, etc.) para evaluar su impacto. Esto se alinea con la filosofía ágil de desarrollo continuo, ya que el análisis permite detectar patrones de mejora o estancamiento y aplicar ajustes informados.
 
-Otro aspecto relevante que potencia esta herramienta es su capacidad para analizar repositorios reales públicos entregados por estudiantes en la Universidad de Burgos (UBU). Esto no solo sirve como una oportunidad de evaluación objetiva del grado de aplicación de prácticas ágiles en un entorno académico, sino también como un mecanismo de autoevaluación y aprendizaje para los alumnos. Al observar sus métricas de trabajo reflejadas en estadísticas, pueden identificar áreas de mejora, ajustar su forma de colaborar, y alinearse mejor con los principios ágiles.
+Otro aspecto relevante que potencia esta herramienta es su capacidad para analizar repositorios reales públicos entregados por estudiantes en la \acrfull{ubu}. Esto no solo sirve como una oportunidad de evaluación objetiva del grado de aplicación de prácticas ágiles en un entorno académico, sino también como un mecanismo de autoevaluación y aprendizaje para los alumnos. Al observar sus métricas de trabajo reflejadas en estadísticas, pueden identificar áreas de mejora, ajustar su forma de colaborar, y alinearse mejor con los principios ágiles.
 
 Así, la herramienta no solo sirve como analizador técnico, sino también como un instrumento docente útil para la enseñanza y práctica de metodologías ágiles en entornos universitarios.
