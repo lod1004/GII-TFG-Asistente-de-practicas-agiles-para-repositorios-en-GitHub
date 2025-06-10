@@ -120,7 +120,7 @@ cd ../frontend
 npm install
 
 # Ejecuta backend (Node.js)
-npm run dev
+node server.js
 
 # Ejecuta frontend (Angular)
-ng serve
+ng serve -o
